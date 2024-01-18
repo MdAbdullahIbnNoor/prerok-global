@@ -1,17 +1,29 @@
 import { createBrowserRouter } from "react-router-dom";
-import App from "./App";
-import ContactUs from "./Components/ContactUs/ContactUs";
+import Home from "./Layouts/Home/Home";
+import Homepage from "./Layouts/Homepage/Homepage";
+import AboutPage from "./Layouts/AboutPage/AboutPage";
+import ContactUs from "./Components/Homepage/ContactUs/ContactUs";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App></App>,
+    element: <Home></Home>,
+    errorElement: <div>404</div>,
+    children: [
+      {
+        path: "/",
+        element: <Homepage></Homepage>,
+      },
+      {
+        path: "/about",
+        element: <AboutPage></AboutPage>,
+      },
+      {
+        path: "/contact",
+        element: <ContactUs></ContactUs>,
+      },
+    ],
   },
-  {
-    path: "/contact",
-    element: <ContactUs></ContactUs>,
-  },
-
 ]);
 
 export default router;
