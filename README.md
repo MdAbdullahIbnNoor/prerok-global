@@ -1,4 +1,3 @@
 ## Prerok-Global
 
-Fast Delivery! 
-and secound delivery
+Fast Delivery!!!
