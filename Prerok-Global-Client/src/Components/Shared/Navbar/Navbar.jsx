@@ -43,10 +43,10 @@ const Navbar = () => {
                 : "hidden"
             }`}
           >
-            <NavLink to={"#"} className=" ">
+            <NavLink to={"/"} className=" ">
               Home
             </NavLink>
-            <NavLink to={"#"} className=" ">
+            <NavLink to={"/about"} className=" ">
               About
             </NavLink>
             <NavLink to={"#"} className=" ">
@@ -55,7 +55,7 @@ const Navbar = () => {
             <NavLink to={"#"} className=" ">
               Pricing
             </NavLink>
-            <NavLink to={"#"} className=" ">
+            <NavLink to={"/contact"} className=" ">
               Contact
             </NavLink>
             <NavLink to={"#"} className=" ">

@@ -7,7 +7,7 @@ import "./Footer.css";
 import visa from '../../../../public/visa.webp'
 import paypal from '../../../../public/paypal.png'
 import stripe from '../../../../public/stripe.png'
-import ssl from '../../../../public/ssl commerz.PNG'
+import ssl from '../../../../public/ssl_commerz.png'
 
 // import  Link  from "react-router-dom";
 const Footer = () => {

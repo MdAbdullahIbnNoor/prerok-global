@@ -1,5 +1,5 @@
 import Title from "../../Title/Title";
-import "./ContactUs.css";
+
 const ContactUs = () => {
   return (
     <div className="md:flex justify-between my-10 px-5 min-h-[70vh]">
