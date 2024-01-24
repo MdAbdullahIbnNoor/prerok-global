@@ -101,6 +101,6 @@ We appreciate your understanding and support as we continue to develop and impro
 
 ## License
 
-### Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License (CC BY-NC-ND 3.0)
+### Creative Commons Attribution-NonCommercial-NoDerivs 4.0 Unported License (CC BY-NC-ND 4.0)
 
-This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License. To view a copy of this license, visit [https://creativecommons.org/licenses/by-nc-nd/3.0/](https://creativecommons.org/licenses/by-nc-nd/3.0/) or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License. To view a copy of this license, visit [https://creativecommons.org/licenses/by-nc-nd/4.0/](https://creativecommons.org/licenses/by-nc-nd/4.0/) or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
