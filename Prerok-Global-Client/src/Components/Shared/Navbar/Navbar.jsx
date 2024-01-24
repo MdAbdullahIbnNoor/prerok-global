@@ -58,6 +58,9 @@ const Navbar = () => {
             <NavLink to={"/contact"} className=" ">
               Contact
             </NavLink>
+            <NavLink to={"/userProfile"} className=" ">
+              User Profile
+            </NavLink>
             <NavLink to={"#"} className=" ">
               Blog
             </NavLink>
