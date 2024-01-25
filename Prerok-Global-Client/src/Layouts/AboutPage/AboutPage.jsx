@@ -8,12 +8,12 @@ import { TbWorldPin } from "react-icons/tb";
 const AboutPage = () => {
     return (
         <div>
-            <div className="max-w-7xl mx-auto my-10 px-2">
+            <div className="mx-auto my-10 px-2 max-w-screen-2xl">
                 {/* about heading */}
                 <div className="flex items-center justify-between relative">
                     <div>
                         <h3 className="text-2xl font-black uppercase">About Us</h3>
-                        <h1 className="text-8xl uppercase absolute -left-1/4 font-bold text-black/5 top-40 -z-40">About</h1>
+                        <h1 className="text-7xl uppercase absolute -left-52 font-bold text-black/5 top-40 -z-40">About</h1>
                         <p className="text-[#ACACAC]">Know about us more</p>
                     </div>
                     <div className="text-[#ACACAC] flex gap-2 text-sm">

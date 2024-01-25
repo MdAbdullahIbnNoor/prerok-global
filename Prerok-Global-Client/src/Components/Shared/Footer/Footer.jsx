@@ -13,7 +13,7 @@ import ssl from '../../../../public/ssl_commerz.png'
 const Footer = () => {
   return (
     <div className="relative containerB">
-      <div className="overlyB px-4 md:px-20 mt-20 bg-gray-800 text-white min-h-[60vh] ">
+      <div className="overlyB px-4 md:px-20 mt-20 bg-gray-800 text-white min-h-[40vh] ">
         <div className="md:flex justify-between items-center space-y-20 ">
           <div className="pt-10">
             {/* logo section  */}
