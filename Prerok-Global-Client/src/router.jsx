@@ -4,6 +4,8 @@ import Homepage from "./Layouts/Homepage/Homepage";
 import AboutPage from "./Layouts/AboutPage/AboutPage";
 import UserProfile from "./Components/UserProfile/UserProfile";
 import ContactUs from "./Components/ContactUs/ContactUs";
+import LoginPage from "./Layouts/LoginPage/LoginPage";
+import RegistrationPage from "./Layouts/RegistrationPage/RegistrationPage";
 
 const router = createBrowserRouter([
   {
@@ -14,6 +16,14 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Homepage></Homepage>,
+      },
+      {
+        path: "/login",
+        element: <LoginPage></LoginPage>
+      },
+      {
+        path: "/registration",
+        element: <RegistrationPage></RegistrationPage>
       },
       {
         path: "/about",
@@ -29,6 +39,7 @@ const router = createBrowserRouter([
       },
     ],
   },
+  
 ]);
 
 export default router;
