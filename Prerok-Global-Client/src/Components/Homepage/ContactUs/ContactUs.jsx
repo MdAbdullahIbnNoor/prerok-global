@@ -4,11 +4,11 @@ const ContactUs = () => {
   return (
     <div className="md:flex justify-between my-10 px-5 min-h-[70vh]">
       <div>
-        <div>
+        <div data-aos="fade-up">
           <Title>CONTACT US</Title>
-        </div>
         <p className="text-xl text-gray-40 mt-2">Get in touch with us easiky</p>
-        <div className="mt-10 overlyA space-y-10">
+        </div>
+        <div className="mt-10 overlyA space-y-10" data-aos="fade-right">
           <div className="flex gap-4 md:gap-20">
             <div>
               <h1 className="text-lg font-semibold text-gray-700">
