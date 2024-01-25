@@ -26,9 +26,9 @@ const Navbar = () => {
             <span className="text-white">Call us now: </span>
             <span className="text-yellow-600"> +880-1756-390-370</span>
           </div>
-          <button className="btn bg-yellow-400 w-32 h-10 flex text-center items-center justify-center">
+          <Link to="/login" className="btn bg-yellow-400 w-32 h-10 flex text-center items-center justify-center">
             SIGN IN
-          </button>
+          </Link>
         </div>
       </div>
       <nav className=" p-4 w-[90%] mx-auto">
