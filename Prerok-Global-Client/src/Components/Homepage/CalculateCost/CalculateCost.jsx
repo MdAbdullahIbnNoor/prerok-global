@@ -36,8 +36,8 @@ const CalculateCost = () => {
                             <label className='md:text-lg font-bold mr-3 text-[#222222]'>WEIGHT (KG):</label>
                             <input className='border-2 border-opacity-15 border-black focus:border-[#f5ab35] shadow-lg rounded-lg py-2 w-3/4' type="text" />
                         </div>
-                        <div className='flex-col md:flex-row'>
-                            <label className='md:text-lg font-bold mr-9 text-[#222222]'>LOCATION:</label>
+                        <div className='flex flex-col md:flex-row'>
+                            <label className='md:text-lg font-bold text-[#222222] md:mr-9'>LOCATION:</label>
                             <input className='border-2 border-opacity-15 border-black focus:border-[#f5ab35] shadow-lg rounded-lg py-2 px-3 w-1/3 md:mr-12' type="text" placeholder='From' />
                             <input className='border-2 border-opacity-15 border-black focus:border-[#f5ab35] shadow-lg rounded-lg py-2 w-1/3 px-3' type="text" placeholder='To' />
                         </div>
