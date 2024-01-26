@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { FaUpload } from "react-icons/fa";
+import { FaUpload, FaSpinner } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
+import { imageUpload } from "../../api/imageUpload";
 
 
 const RegistrationPage = () => {
     const [selectedImage, setSelectedImage] = useState(null);
-    const { registerUser } = useAuth();
+    const [errorMessage, setError] = useState("")
+    const [loading, setLoading] = useState(false);
+    const { registerUser, updateUser } = useAuth();
 
-    const handlePhotoUpload = (data) => {
-        setSelectedImage(data)
-    }
 
     const handleSignUp = async (e) => {
         e.preventDefault();
@@ -22,17 +22,33 @@ const RegistrationPage = () => {
         const phone = form.phone.value;
         const country = form.country.value;
         const street = form.street.value;
+        setError("")
+        if (!name) {
+            return setError("Please type your name")
+        }
+        else if (!selectedImage) {
+            return setError("Please upload a image of you")
+        }
+        else if (!email) {
+            return setError("Please type your email")
+        }
+        else if (!password) {
+            return setError("Please input a password")
+        }
+
 
         const userInfo = { name, image, email, password, phone, country, street }
 
         try {
-            const {user: registerInfo} = await registerUser(email, password)
+            setLoading(true)
+            const { data: imageData } = await imageUpload(image);
+            const { user: registerInfo } = await registerUser(email, password)
+            await updateUser(name, imageData.display_url)
+            setLoading(false)
             console.log(registerInfo);
-                // .then(res => console.log(res))
-                // .catch(err => console.log(err))
-
         } catch (error) {
             console.log(error.message);
+            setLoading(false)
         }
 
         console.log(userInfo)
@@ -55,7 +71,7 @@ const RegistrationPage = () => {
                             {/* image  */}
                             <div>
                                 <label className="border block h-11 w-full px-4 py-2 mt-3 rounded-sm caret-[#f5ab35] focus:border-[#f5ab35] cursor-pointer" htmlFor="photoInput"><FaUpload className="inline mr-1 text-lg"></FaUpload> {selectedImage ? selectedImage.name : "Upload Photo"}</label>
-                                <input hidden onChange={(e) => handlePhotoUpload(e.target.files[0])} type="file" name="" id="photoInput" />
+                                <input hidden onChange={(e) => setSelectedImage(e.target.files[0])} type="file" name="" id="photoInput" />
                             </div>
                             {/* email  */}
                             <input type="email" name="email" className="border h-11 w-full px-4 py-2 mt-3 rounded-sm caret-[#f5ab35] focus:border-[#f5ab35]" placeholder="YOUR EMAIL" id="email" /> <br />
@@ -73,7 +89,18 @@ const RegistrationPage = () => {
                             </div>
                             {/* password  */}
                             <input type="password" name="password" className="border h-11 w-full px-4 py-2 mt-3 rounded-sm caret-[#f5ab35]" placeholder="PASSWORD" id="password" />
-                            <input type="submit" className="border h-11 w-full px-5 py-2 mt-3 bg-[#f5ab35] text-white font-bold rounded-sm hover:cursor-pointer transition-all duration-300 ease-in-out hover:bg-[#222222]" value="SIGN UP" />
+
+                            {/* error message */}
+                            <span className="text-red-600">{errorMessage}</span>
+
+                            <button disabled={loading} className="border h-11 w-full px-5 py-2 mt-3 bg-[#f5ab35] text-white font-bold rounded-sm hover:cursor-pointer transition-all duration-300 ease-in-out hover:bg-[#222222] flex items-center justify-center">
+                                {
+                                    loading ?
+                                        <FaSpinner className="animate-spin"></FaSpinner>
+                                        :
+                                        "SIGN UP"
+                                }
+                            </button>
                         </form>
                         <p className="text-center text-[#b2b2b2] text-sm mt-3 hover:cursor-pointer transition-all duration-300 ease-in-out hover:text-[#f5ab35]">Having Trouble?</p>
                     </div>
