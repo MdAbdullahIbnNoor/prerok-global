@@ -4,6 +4,7 @@ import { FaUpload, FaSpinner } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
 import { imageUpload } from "../../api/imageUpload";
 import toast from "react-hot-toast";
+import SocialLogin from "../../Components/AuthenticationPage/SocialLogin/SocialLogin";
 
 
 const RegistrationPage = () => {
@@ -106,6 +107,7 @@ const RegistrationPage = () => {
                         </form>
                         <p className="text-center text-[#b2b2b2] text-sm mt-3 hover:cursor-pointer transition-all duration-300 ease-in-out hover:text-[#f5ab35]">Having Trouble?</p>
                     </div>
+                    <SocialLogin></SocialLogin>
                 </div>
                 <div className="py-8 bg-[#222222] text-center mt-12">
                     <p className="text-white text-sm font-semibold mb-2">Already have an account?</p>

@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import { FaSpinner } from "react-icons/fa";
+import SocialLogin from "../../Components/AuthenticationPage/SocialLogin/SocialLogin";
 
 
 const LoginPage = () => {
@@ -53,6 +54,7 @@ const LoginPage = () => {
                         </form>
                         <p className="text-center text-[#b2b2b2] text-sm mt-3 hover:cursor-pointer transition-all duration-300 ease-in-out hover:text-[#f5ab35]">Forgot Password?</p>
                     </div>
+                    <SocialLogin></SocialLogin>
                 </div>
                 <div className="py-8 bg-[#222222] text-center mt-12">
                     <p className="text-white text-sm font-semibold mb-2">Don’t have an account?</p>
