@@ -2,7 +2,7 @@ import bannerImg from "../../../assets/banner-ship-image.jpg";
 
 const Banner = () => {
   return (
-    <div>
+    <div className=" overflow-hidden">
       {" "}
       <div className="relative z-0">
         <img src={bannerImg} className="w-full h-[600px] object-cover" alt="" />
@@ -23,18 +23,20 @@ const Banner = () => {
               />
             </svg>
           </p>
-          <p className="my-8 lg:text-xl">
-            FAST <span>&nbsp;.&nbsp;</span> SECURED<span>&nbsp;.&nbsp;</span>{" "}
-            WORLDVIEW
+          <p className="my-8 lg:text-xl" >
+            <span data-aos="fade-down">FAST</span> <span>&nbsp;.&nbsp;</span>  <span>SECURED</span><span >&nbsp;.&nbsp;</span>{" "}
+            <span data-aos="fade-up">WORLDVIEW</span>
           </p>
-          <p className="lg:text-5xl text-2xl font-extrabold">
+          <p className="lg:text-5xl text-2xl font-extrabold"  data-aos="fade-up"
+     data-aos-duration="1000">
             AWESOME TEMPLATE FOR <br />{" "}
             <span className="text-yellow-500">COURIER</span> &{" "}
             <span className="text-yellow-500">DELIVERY</span> SERVICES
           </p>
         </div>
       </div>
-      <div className="w-full absolute">
+      <div className="w-full absolute"  data-aos="fade-up"
+     data-aos-duration="2000" >
         <div className="lg:w-1/2 w-full mx-auto bg-white border-2 border-red-500 h-32 -mt-24 z-10">
           <p className="font-medium text-xl px-8 py-4">
             TRACK YOUR PRODUCT{" "}
@@ -49,8 +51,9 @@ const Banner = () => {
               className="border-2 border-slate-300 px-3 h-14 w-[400px]"
               id=""
               placeholder="Enter your product ID"
+              data-aos="fade-right"
             />
-            <button className="btn bg-red-500 hover:bg-black  h-14 w-72 ml-4 text-white">
+            <button className="btn bg-red-500 hover:bg-black  h-14 w-72 ml-4 text-white" data-aos="fade-left">
               TRACK YOUR PRODUCT
             </button>
           </div>

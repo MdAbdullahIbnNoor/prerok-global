@@ -5,13 +5,14 @@ const CalculateCost = () => {
     return (
         <div className='md:flex min-h-screen max-w-screen-2xl mx-auto my-5'>
 
+
             {/* For Left side image section */}
-            <div className='flex-1'>
+            <div className='flex-1' data-aos="fade-right">
                 <img className='md:mt-40 md:h-[450px] md:w-[680px]' src={deliveryman} alt="Delivery man image" />
             </div>
 
             {/* For right side Section */}
-            <div className='flex-1'>
+            <div className='flex-1' data-aos="fade-left">
                 <h2 className='text-xl md:text-3xl font-bold mt-10 text-[#222222]'>CALCULATE YOUR COST</h2>
                 <p className='text-base text-[#acacac] mt-5 mb-7'>Please provide your information and calculate your cost.</p>
 
