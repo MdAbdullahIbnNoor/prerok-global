@@ -1,60 +1,82 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { FaUpload } from "react-icons/fa";
+import useAuth from "../../hooks/useAuth";
 
 
 const RegistrationPage = () => {
+    const [selectedImage, setSelectedImage] = useState(null);
+    const { registerUser } = useAuth();
 
-    const handleSignUp = (e) => {
+    const handlePhotoUpload = (data) => {
+        setSelectedImage(data)
+    }
+
+    const handleSignUp = async (e) => {
         e.preventDefault();
         const form = e.target;
         const name = form.name.value;
-        const image = form.image.value;
+        const image = selectedImage;
         const email = form.email.value;
         const password = form.password.value;
         const phone = form.phone.value;
         const country = form.country.value;
         const street = form.street.value;
-        
-        const userInfo = {name, image, email, password, phone, country, street}
+
+        const userInfo = { name, image, email, password, phone, country, street }
+
+        try {
+            const {user: registerInfo} = await registerUser(email, password)
+            console.log(registerInfo);
+                // .then(res => console.log(res))
+                // .catch(err => console.log(err))
+
+        } catch (error) {
+            console.log(error.message);
+        }
 
         console.log(userInfo)
     }
-    
+
 
     return (
         <div>
             <div className=" border md:border border-[#f5ab35] w-full lg:w-5/12 mx-auto mt-24 pt-8 shadow-xl">
                 <div className="mx-0 md:mx-10">
-                <div className="text-center mb-8">
-                    <h4 className="text-xl font-semibold text-[#222222] uppercase">Sign UP</h4>
-                    <p className="text-[#b2b2b2]">Sign in to <span className="font-bold">GO</span> for getting all details</p>
-                </div>
-                <hr />
-                <div className="mt-6">
-                    <form onSubmit={handleSignUp} className="w-11/12 mx-auto">
-                        {/* name  */}
-                        <input type="text" name="name" className="border h-11 w-full px-4 py-2 rounded-sm caret-[#f5ab35] focus:border-[#f5ab35]" placeholder="YOUR NAME" id="" /> <br />
-                        {/* image  */}
-                        <input type="text" name="image" className="border h-11 w-full px-4 py-2 mt-3 rounded-sm caret-[#f5ab35] focus:border-[#f5ab35]" placeholder="IMAGE URL" id="" /> <br />
-                        {/* email  */}
-                        <input type="email" name="email" className="border h-11 w-full px-4 py-2 mt-3 rounded-sm caret-[#f5ab35] focus:border-[#f5ab35]" placeholder="YOUR EMAIL" id="" /> <br />
-                        {/* phone  */}
-                        <input type="text" name="phone" className="border h-11 w-full px-4 py-2 mt-3 rounded-sm caret-[#f5ab35] focus:border-[#f5ab35]" placeholder="CONTACT NUMBER" id="" /> <br />
+                    <div className="text-center mb-8">
+                        <h4 className="text-xl font-semibold text-[#222222] uppercase">Sign UP</h4>
+                        <p className="text-[#b2b2b2]">Sign in to <span className="font-bold">GO</span> for getting all details</p>
+                    </div>
+                    <hr />
+                    <div className="mt-6">
+                        <form onSubmit={handleSignUp} className="w-11/12 mx-auto">
+                            {/* name  */}
+                            <input type="text" name="name" className="border h-11 w-full px-4 py-2 rounded-sm caret-[#f5ab35] focus:border-[#f5ab35]" placeholder="YOUR NAME" id="name" /> <br />
+                            {/* image  */}
+                            <div>
+                                <label className="border block h-11 w-full px-4 py-2 mt-3 rounded-sm caret-[#f5ab35] focus:border-[#f5ab35] cursor-pointer" htmlFor="photoInput"><FaUpload className="inline mr-1 text-lg"></FaUpload> {selectedImage ? selectedImage.name : "Upload Photo"}</label>
+                                <input hidden onChange={(e) => handlePhotoUpload(e.target.files[0])} type="file" name="" id="photoInput" />
+                            </div>
+                            {/* email  */}
+                            <input type="email" name="email" className="border h-11 w-full px-4 py-2 mt-3 rounded-sm caret-[#f5ab35] focus:border-[#f5ab35]" placeholder="YOUR EMAIL" id="email" /> <br />
+                            {/* phone  */}
+                            <input type="text" name="phone" className="border h-11 w-full px-4 py-2 mt-3 rounded-sm caret-[#f5ab35] focus:border-[#f5ab35]" placeholder="CONTACT NUMBER" id="phone" /> <br />
                             <div className="flex justify-between gap-2">
                                 <div>
-                        {/* country  */}
-                                <input type="text" name="country" className="border h-11 w-full px-4 py-2 mt-3 rounded-sm caret-[#f5ab35] focus:border-[#f5ab35]" placeholder="COUNTRY NAME" id="" /> <br />
+                                    {/* country  */}
+                                    <input type="text" name="country" className="border h-11 w-full px-4 py-2 mt-3 rounded-sm caret-[#f5ab35] focus:border-[#f5ab35]" placeholder="COUNTRY NAME" id="countryName" /> <br />
                                 </div>
                                 <div>
-                        {/* street  */}
-                                <input type="text" name="street" className="border h-11 w-full px-4 py-2 mt-3 rounded-sm caret-[#f5ab35] focus:border-[#f5ab35]" placeholder="STREET ADDRESS" id="" /> <br />
+                                    {/* street  */}
+                                    <input type="text" name="street" className="border h-11 w-full px-4 py-2 mt-3 rounded-sm caret-[#f5ab35] focus:border-[#f5ab35]" placeholder="STREET ADDRESS" id="street" /> <br />
                                 </div>
                             </div>
-                        {/* password  */}
-                        <input type="password" name="password" className="border h-11 w-full px-4 py-2 mt-3 rounded-sm caret-[#f5ab35]" placeholder="PASSWORD" id="" />
-                        <input type="submit" className="border h-11 w-full px-5 py-2 mt-3 bg-[#f5ab35] text-white font-bold rounded-sm hover:cursor-pointer transition-all duration-300 ease-in-out hover:bg-[#222222]" value="SIGN UP" />
-                    </form>
-                    <p className="text-center text-[#b2b2b2] text-sm mt-3 hover:cursor-pointer transition-all duration-300 ease-in-out hover:text-[#f5ab35]">Having Trouble?</p>
-                </div>
+                            {/* password  */}
+                            <input type="password" name="password" className="border h-11 w-full px-4 py-2 mt-3 rounded-sm caret-[#f5ab35]" placeholder="PASSWORD" id="password" />
+                            <input type="submit" className="border h-11 w-full px-5 py-2 mt-3 bg-[#f5ab35] text-white font-bold rounded-sm hover:cursor-pointer transition-all duration-300 ease-in-out hover:bg-[#222222]" value="SIGN UP" />
+                        </form>
+                        <p className="text-center text-[#b2b2b2] text-sm mt-3 hover:cursor-pointer transition-all duration-300 ease-in-out hover:text-[#f5ab35]">Having Trouble?</p>
+                    </div>
                 </div>
                 <div className="py-8 bg-[#222222] text-center mt-12">
                     <p className="text-white text-sm font-semibold mb-2">Already have an account?</p>
