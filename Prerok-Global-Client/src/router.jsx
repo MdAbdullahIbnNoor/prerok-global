@@ -3,7 +3,11 @@ import Home from "./Layouts/Home/Home";
 import Homepage from "./Layouts/Homepage/Homepage";
 import AboutPage from "./Layouts/AboutPage/AboutPage";
 import ContactUs from "./Components/Homepage/ContactUs/ContactUs";
+
 import CustomsDocument from "./Components/CustomsDocument/CustomsDocument";
+
+import UserProfile from "./Components/UserProfile/UserProfile";
+
 
 const router = createBrowserRouter([
   {
@@ -24,8 +28,13 @@ const router = createBrowserRouter([
         element: <ContactUs></ContactUs>,
       },
       {
+
         path: "/customsDocument",
         element: <CustomsDocument/>,
+
+        path: "/userProfile",
+        element: <UserProfile></UserProfile>,
+
       },
     ],
   },
