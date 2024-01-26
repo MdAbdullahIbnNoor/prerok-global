@@ -58,8 +58,8 @@ const Navbar = () => {
             <NavLink to={"/contact"} className=" ">
               Contact
             </NavLink>
-            <NavLink to={"#"} className=" ">
-              Blog
+            <NavLink to={"/customsDocument"} className=" ">
+              Customs
             </NavLink>
             <svg
               xmlns="http://www.w3.org/2000/svg"

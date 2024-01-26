@@ -3,6 +3,7 @@ import Home from "./Layouts/Home/Home";
 import Homepage from "./Layouts/Homepage/Homepage";
 import AboutPage from "./Layouts/AboutPage/AboutPage";
 import ContactUs from "./Components/Homepage/ContactUs/ContactUs";
+import CustomsDocument from "./Components/CustomsDocument/CustomsDocument";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         element: <ContactUs></ContactUs>,
+      },
+      {
+        path: "/customsDocument",
+        element: <CustomsDocument/>,
       },
     ],
   },
