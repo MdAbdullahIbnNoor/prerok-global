@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { FaUpload, FaSpinner } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
 import { imageUpload } from "../../api/imageUpload";
+import toast from "react-hot-toast";
 
 
 const RegistrationPage = () => {
@@ -45,9 +46,10 @@ const RegistrationPage = () => {
             const { user: registerInfo } = await registerUser(email, password)
             await updateUser(name, imageData.display_url)
             setLoading(false)
+            toast.success("Sign up successful")
             console.log(registerInfo);
         } catch (error) {
-            console.log(error.message);
+            toast.error(error.message);
             setLoading(false)
         }
 
