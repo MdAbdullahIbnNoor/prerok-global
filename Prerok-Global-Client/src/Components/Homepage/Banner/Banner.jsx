@@ -2,7 +2,7 @@ import bannerImg from "../../../assets/banner-ship-image.jpg";
 
 const Banner = () => {
   return (
-    <div className=" overflow-hidden">
+    <div className=" overflow-hidden mb-8">
       {" "}
       <div className="relative z-0">
         <img src={bannerImg} className="w-full h-[600px] object-cover" alt="" />
@@ -37,25 +37,24 @@ const Banner = () => {
       </div>
 
 
-      <div className="w-full absolute"  data-aos="fade-up"
-     data-aos-duration="2000" >
-        <div className="lg:w-1/2 w-full mx-auto bg-white border-2 border-red-500 h-32 -mt-24 z-10">
+      <div className="w-full absolute p-2" >
+        <div className="lg:w-1/2 w-full mx-auto bg-white border-2 border-red-500 md:h-32 -mt-24 z-10">
           <p className="font-medium text-xl px-8 py-4">
             TRACK YOUR PRODUCT{" "}
             <span className="font-light text-sm text-slate-500">
               Now you can track your product easily
             </span>
           </p>
-          <div className="flex justify-center">
+          <div className="md:flex justify-center md:-mt-3  p-2">
             <input
               type="text"
               name="productID"
-              className="border-2 border-slate-300 px-3 h-14 w-[400px]"
+              className="border-2 border-slate-300 mb-2 px-3 md:h-14 md:w-[400px]"
               id=""
               placeholder="Enter your product ID"
               data-aos="fade-right"
             />
-            <button className="btn bg-red-500 hover:bg-black  h-14 w-72 ml-4 text-white" data-aos="fade-left">
+            <button className="btn btn-sm bg-red-500 hover:bg-black  md:h-14 md:w-72 ml-4 text-white" data-aos="fade-left">
               TRACK YOUR PRODUCT
             </button>
           </div>
