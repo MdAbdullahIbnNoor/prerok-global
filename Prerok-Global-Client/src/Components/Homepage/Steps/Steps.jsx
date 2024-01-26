@@ -2,9 +2,10 @@ import deliveryTruck from "../../../../public/images/deliveryTruck.png";
 
 const Steps = () => {
   return (
-    <div className="h-72 bg-[url('../../../../public/images/city.jpg')]">
+    <div className="h-72 overflow-hidden bg-[url('../../../../public/images/city.jpg')]">
       <div className="relative bg-black/70 flex  justify-between items-center ">
-        <div className="flex justify-around text-white px-12">
+
+        <div className="flex justify-around text-white px-12" data-aos="fade-right">
           <div className="flex justify-between items-center">
             <h1 className="text-7xl font-semibold">1.</h1>
             <div className=" ml-3">
@@ -15,7 +16,8 @@ const Steps = () => {
             </div>
           </div>
         </div>
-        <div className="flex justify-around text-white ">
+
+        <div className="flex justify-around text-white " data-aos="fade-up"> 
           <div className="flex justify-between items-center">
             <h1 className="text-7xl font-semibold">2.</h1>
             <div className=" ml-3">
@@ -26,7 +28,8 @@ const Steps = () => {
             </div>
           </div>
         </div>
-        <div className="flex justify-around text-white">
+
+        <div className="flex justify-around text-white" data-aos="fade-down">
           <div className="flex justify-between items-center">
             <h1 className="text-7xl font-semibold">3.</h1>
             <div className=" ml-3">
@@ -37,7 +40,8 @@ const Steps = () => {
             </div>
           </div>
         </div>
-        <div>
+
+        <div data-aos="fade-left">
           <img src={deliveryTruck} alt="" className="md:mt-16" />
         </div>
       </div>
