@@ -5,6 +5,7 @@ import useAuth from "../../hooks/useAuth";
 import { imageUpload } from "../../api/imageUpload";
 import toast from "react-hot-toast";
 import SocialLogin from "../../Components/AuthenticationPage/SocialLogin/SocialLogin";
+// import axios from "axios";
 
 
 const RegistrationPage = () => {
@@ -39,22 +40,21 @@ const RegistrationPage = () => {
         }
 
 
-        const userInfo = { name, image, email, password, phone, country, street }
 
         try {
             setLoading(true)
             const { data: imageData } = await imageUpload(image);
-            const { user: registerInfo } = await registerUser(email, password)
+            await registerUser(email, password)
             await updateUser(name, imageData.display_url)
+            const userInfo = { name, image: imageData.display_url, email, password, phone, country, street }
+            // await axios.post('http://localhost:5000/api/users/add-user', userInfo)
             setLoading(false)
             toast.success("Sign up successful")
-            console.log(registerInfo);
         } catch (error) {
             toast.error(error.message);
             setLoading(false)
         }
 
-        console.log(userInfo)
     }
 
 
