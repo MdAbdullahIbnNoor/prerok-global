@@ -3,8 +3,14 @@ import Home from "./Layouts/Home/Home";
 import Homepage from "./Layouts/Homepage/Homepage";
 import AboutPage from "./Layouts/AboutPage/AboutPage";
 import UserProfile from "./Components/UserProfile/UserProfile";
+import FAQ from './Components/FAQ/FAQ';
+import GenerelFAQ from './Components/FAQ/GenerelFAQ/GenerelFAQ';
+import SecurityFAQ from './Components/FAQ/SecurityFAQ/SecurityFAQ';
+import FeatureFAQ from './Components/FAQ/FeatureFAQ/FeatureFAQ';
 import ContactUs from "./Components/ContactUs/ContactUs";
 import ProductTracking from "./Components/ProductTracking/ProductTracking";
+import LoginPage from "./Layouts/LoginPage/LoginPage";
+import RegistrationPage from "./Layouts/RegistrationPage/RegistrationPage";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +21,14 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Homepage></Homepage>,
+      },
+      {
+        path: "/login",
+        element: <LoginPage></LoginPage>
+      },
+      {
+        path: "/registration",
+        element: <RegistrationPage></RegistrationPage>
       },
       {
         path: "/about",
@@ -34,6 +48,28 @@ const router = createBrowserRouter([
       }
     ],
   },
+
+  {
+    path:'faq',
+    element: <FAQ></FAQ>,
+    children:[
+        // normal users route
+        {
+            path:'generelfaq',
+            element:<GenerelFAQ></GenerelFAQ>,
+        },
+        {
+          path:'securityfaq',
+          element:<SecurityFAQ></SecurityFAQ>,
+        },
+        {
+          path: 'featurefaq',
+          element: <FeatureFAQ></FeatureFAQ>,
+        },
+    ]
+}
+
+
 ]);
 
 export default router;
