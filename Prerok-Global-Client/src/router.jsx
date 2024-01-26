@@ -4,6 +4,7 @@ import Homepage from "./Layouts/Homepage/Homepage";
 import AboutPage from "./Layouts/AboutPage/AboutPage";
 import UserProfile from "./Components/UserProfile/UserProfile";
 import ContactUs from "./Components/ContactUs/ContactUs";
+import ProductTracking from "./Components/ProductTracking/ProductTracking";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
         path: "/userProfile",
         element: <UserProfile></UserProfile>,
       },
+      {
+        path: "/productTracking",
+        element: <ProductTracking></ProductTracking>
+      }
     ],
   },
 ]);

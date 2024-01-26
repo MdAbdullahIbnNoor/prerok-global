@@ -49,7 +49,7 @@ const Navbar = () => {
             <NavLink to={"/about"} className=" ">
               About
             </NavLink>
-            <NavLink to={"#"} className=" ">
+            <NavLink to={"productTracking"} className=" ">
               Tracking
             </NavLink>
             <NavLink to={"#"} className=" ">
