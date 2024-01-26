@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+
+import { useState } from 'react';
 import { FaArrowRight } from 'react-icons/fa';
 
 const Pricing = () => {
@@ -38,18 +39,20 @@ const Pricing = () => {
     const [hoveredPlan, setHoveredPlan] = useState(null);
 
     return (
-        <div className='my-16'>
-            <div className='relative'>
+        <div className='my-16 overflow-hidden'>
+            <div className='relative' data-aos="fade-up"
+     data-aos-duration="1000">
                 <h1 className='text-2xl font-bold text-center mb-2 text-gray-700'>PRICING & PLANS</h1>
                 <p className='text-gray-400 text-center'>See our pricing & plans to get the best service</p>
                 <h1 className='text-8xl font-bold mt-16 text-center relative bottom-36 right-0 opacity-5'>PRICING</h1>
             </div>
 
-            <div className='md:flex gap-4 lg:max-w-screen-2xl mx-auto justify-center'>
+            <div className='md:flex gap-4 lg:max-w-screen-2xl mx-auto justify-center' data-aos="fade-up"
+     data-aos-duration="2000">
                 {pricingPlans.map((plan) => (
                     <div
                         key={plan.id}
-                        className={`flex-col space-y-3 px-4 border-2 ${plan.id === 2 ? 'border-amber-500' : 'border-gray-200'} hover:border-amber-500 py-10 items-center justify-center w-1/4 ${hoveredPlan === plan.id ? 'hovered' : ''} ${plan.id === 2 ? 'bg-amber-500' : ''}`}
+                        className={`flex-col space-y-3 px-4 border-2 box ${plan.id === 2 ? 'border-amber-500' : 'border-gray-200'} hover:border-amber-500 py-10 items-center justify-center w-1/4 ${hoveredPlan === plan.id ? 'hovered' : ''} ${plan.id === 2 ? 'bg-amber-500' : ''}`}
                         onMouseEnter={() => setHoveredPlan(plan.id)}
                         onMouseLeave={() => setHoveredPlan(null)}
                     >
