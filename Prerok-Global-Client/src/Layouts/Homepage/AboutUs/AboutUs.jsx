@@ -5,7 +5,7 @@ import { BsTruckFront } from "react-icons/bs";
 
 const AboutUs = () => {
     return (
-        <div className='md:flex px-12'>
+        <div className='md:flex px-12 max-w-screen-2xl mx-auto'>
             <div className='flex-1'>
                 <h2 className="text-3xl font-bold mt-10 text-[#222222]">About Us</h2>
                 <p className="text-base text-[#acacac] mt-5 mb-7">Welcome to Prerok-Global! Discover a world of seamless delivery services with us. Experience swift deliveries, hassle-free returns, real-time shipment tracking, and convenient online quoting and booking. Stay informed with our real-time notifications, and connect with our dedicated customer support via live chat. Your satisfaction is our priority.</p>
