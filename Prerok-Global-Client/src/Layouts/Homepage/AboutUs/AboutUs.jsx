@@ -6,7 +6,8 @@ import { BsTruckFront } from "react-icons/bs";
 
 const AboutUs = () => {
     return (
-        <div className='md:flex px-12 overflow-hidden'>
+        <div className='md:flex px-12 max-w-screen-2xl mx-auto'>
+
             <div className='flex-1'>
               
             
