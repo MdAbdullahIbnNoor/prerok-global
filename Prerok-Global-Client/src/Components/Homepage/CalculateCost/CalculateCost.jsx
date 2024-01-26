@@ -12,7 +12,7 @@ const CalculateCost = () => {
 
             {/* For right side Section */}
             <div className='flex-1'>
-                <h2 className='text-xl md:text-3xl font-bold mt-10 text-[#222222]'>CALCULATE YOUR COST</h2>
+                <h2 className='text-xl md:text-3xl font-bold mt-10 text-[#222222]'>CALCULATE COST</h2>
                 <p className='text-base text-[#acacac] mt-5 mb-7'>Please provide your information and calculate your cost.</p>
 
                 {/* Form section */}
@@ -35,8 +35,8 @@ const CalculateCost = () => {
                             <label className='md:text-lg font-bold mr-3 text-[#222222]'>WEIGHT (KG):</label>
                             <input className='border-2 border-opacity-15 border-black focus:border-[#f5ab35] shadow-lg rounded-lg py-2 w-3/4' type="text" />
                         </div>
-                        <div className='flex-col md:flex-row'>
-                            <label className='md:text-lg font-bold mr-9 text-[#222222]'>LOCATION:</label>
+                        <div className='flex flex-col md:flex-row'>
+                            <label className='md:text-lg font-bold text-[#222222] md:mr-9'>LOCATION:</label>
                             <input className='border-2 border-opacity-15 border-black focus:border-[#f5ab35] shadow-lg rounded-lg py-2 px-3 w-1/3 md:mr-12' type="text" placeholder='From' />
                             <input className='border-2 border-opacity-15 border-black focus:border-[#f5ab35] shadow-lg rounded-lg py-2 w-1/3 px-3' type="text" placeholder='To' />
                         </div>

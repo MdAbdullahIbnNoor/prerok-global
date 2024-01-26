@@ -11,7 +11,7 @@ const FAQ = () => {
             <Navbar></Navbar>
             <div className="md:flex">
                 {/* dashboard side bar */}
-                <div className="w-80 min-h-screen bg-white flex justify-center text-white">
+                <div className="w-80 h-fit bg-white flex justify-center text-white">
                     <ul className="menu p-4 space-y-3">
 
 
