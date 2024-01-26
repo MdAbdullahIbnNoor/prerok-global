@@ -35,6 +35,8 @@ const Banner = () => {
           </p>
         </div>
       </div>
+
+
       <div className="w-full absolute"  data-aos="fade-up"
      data-aos-duration="2000" >
         <div className="lg:w-1/2 w-full mx-auto bg-white border-2 border-red-500 h-32 -mt-24 z-10">
@@ -59,6 +61,7 @@ const Banner = () => {
           </div>
         </div>
       </div>
+      
       <div className="h-32"></div>
     </div>
   );

@@ -8,6 +8,7 @@ import GenerelFAQ from './Components/FAQ/GenerelFAQ/GenerelFAQ';
 import SecurityFAQ from './Components/FAQ/SecurityFAQ/SecurityFAQ';
 import FeatureFAQ from './Components/FAQ/FeatureFAQ/FeatureFAQ';
 import ContactUs from "./Components/ContactUs/ContactUs";
+import ProductTracking from "./Components/ProductTracking/ProductTracking";
 import LoginPage from "./Layouts/LoginPage/LoginPage";
 import RegistrationPage from "./Layouts/RegistrationPage/RegistrationPage";
 
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
         path: "/userProfile",
         element: <UserProfile></UserProfile>,
       },
+      {
+        path: "/productTracking",
+        element: <ProductTracking></ProductTracking>
+      }
     ],
   },
 
