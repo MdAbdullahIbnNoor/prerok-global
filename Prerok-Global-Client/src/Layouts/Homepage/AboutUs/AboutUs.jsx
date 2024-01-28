@@ -2,6 +2,7 @@ import car from './../../../assets/Home/delivery-truck02.png'
 import { GoRocket } from "react-icons/go";
 import { IoShieldCheckmarkOutline } from "react-icons/io5";
 import { BsTruckFront } from "react-icons/bs";
+import Title from '../../../Components/Title/Title';
 
 
 const AboutUs = () => {
@@ -12,7 +13,10 @@ const AboutUs = () => {
               
             
                 <div data-aos="fade-right">
-                <p>About Us</p>
+                    <Title>
+                    About Us
+                    </Title>
+               
                 </div>
                 <p className="text-base text-[#acacac] mt-5 mb-7" data-aos="fade-right">Welcome to Prerok-Global! Discover a world of seamless delivery services with us. Experience swift deliveries, hassle-free returns, real-time shipment tracking, and convenient online quoting and booking. Stay informed with our real-time notifications, and connect with our dedicated customer support via live chat. Your satisfaction is our priority.</p>
 
