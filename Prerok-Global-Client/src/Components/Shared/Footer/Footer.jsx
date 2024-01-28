@@ -2,12 +2,12 @@ import { FaFacebook } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa6";
 import { FaGithub } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
-import logo from "../../../../public/Prerok_Global.png";
+import logo from "../../../assets/footerImage/Prerok-logo.png";
 import "./Footer.css";
-import visa from '../../../../public/visa.webp'
-import paypal from '../../../../public/paypal.png'
-import stripe from '../../../../public/stripe.png'
-import ssl from '../../../../public/ssl_commerz.png'
+import visa from '../../../assets/footerImage/visa.webp'
+import paypal from '../../../assets/footerImage/paypal.png'
+import stripe from '../../../assets/footerImage/stripe.png'
+import ssl from '../../../assets/footerImage/ssl_commerz.png'
 
 // import  Link  from "react-router-dom";
 const Footer = () => {
@@ -18,11 +18,10 @@ const Footer = () => {
           <div className="pt-10">
             {/* logo section  */}
             <div className="">
-              <img className="w-28" src={logo} alt="" />
-              <h1 className="text-2xl font-bold">
-                {" "}
-                <span className="text-2xl"> Prerok</span>{" "}
-                <span className="text-yellow-500"> Global</span>{" "}
+              <img className="w-32 h-32 -mb-9" src={logo} alt="footer logo" />
+              <h1 className="text-2xl md:text-3xl pt-0 font-bold">
+                <span className=""> Prerok</span>
+                <span className="text-yellow-500"> Global</span>
               </h1>
             </div>
           </div>

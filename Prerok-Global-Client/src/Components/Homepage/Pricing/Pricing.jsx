@@ -42,8 +42,8 @@ const Pricing = () => {
         <div className='my-16 overflow-hidden'>
             <div className='relative' data-aos="fade-up"
      data-aos-duration="1000">
-                <h1 className='text-2xl font-bold text-center mb-2 text-gray-700'>PRICING & PLANS</h1>
-                <p className='text-gray-400 text-center'>See our pricing & plans to get the best service</p>
+                <h1 className='text-3xl md:text-4xl font-bold text-center mb-2  text-gray-700'>PRICING & PLANS</h1>
+                <p className='text-gray-400 text-lg text-center'>See our pricing & plans to get the best service</p>
                 <h1 className='text-8xl font-bold mt-16 text-center relative bottom-36 right-0 opacity-5'>PRICING</h1>
             </div>
 
