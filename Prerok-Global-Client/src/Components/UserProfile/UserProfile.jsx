@@ -1,8 +1,13 @@
 
 import { IoMdAlert } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 
 const UserProfile = () => {
+
+
+
+
     return (
       <div className="w-3/4 mx-auto bg-slate-50 shadow-lg p-4">
         <h1>user profile sections</h1>
@@ -178,7 +183,10 @@ const UserProfile = () => {
   
         <div className=" mt-7 space-y-6 mx-auto">
           <div className="">
-              <button className="btn w-full bg-green-500 text-white text-lg uppercase hover:bg-green-600 ">Update Info </button>
+            <Link to="/updateProfile">
+            <button className="btn w-full bg-green-500 text-white text-lg uppercase hover:bg-green-600 ">Update Info </button>
+            </Link>
+           
           </div>
           <div className="">
               <button className=" btn w-full bg-red-500 text-white text-lg uppercase  hover:bg-red-600 "> Back </button>
