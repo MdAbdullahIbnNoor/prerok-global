@@ -27,10 +27,20 @@ async function run() {
     const userCollection = client.db("prerokGlobalDB").collection("users")
 
     // await client.connect();
-    app.post('/api/users/add-user', async(req, res) =>{
+
+    // endpoint for post a new user
+    app.post('/api/users/add-user', async (req, res) => {
       const userData = req.body;
       const result = await userCollection.insertOne(userData);
       res.send(result)
+    })
+
+    // endpoint for get existing user by email
+    app.get('/api/user/get-user/:email', async (req, res) => {
+      const email = req.params.email;
+      const query = { email: email };
+      const result = await userCollection.findOne(query)
+      res.send(result);
     })
 
     // Send a ping to confirm a successful connection
