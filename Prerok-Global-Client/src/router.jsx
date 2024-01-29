@@ -11,7 +11,9 @@ import ContactUs from "./Components/ContactUs/ContactUs";
 import ProductTracking from "./Components/ProductTracking/ProductTracking";
 import LoginPage from "./Layouts/LoginPage/LoginPage";
 import RegistrationPage from "./Layouts/RegistrationPage/RegistrationPage";
+import PlaceOrder from "./Components/Shipping/PlaceOrder/PlaceOrder";
 import CustomsDocument from "./Layouts/CustomsDocument/CustomsDocument";
+
 
 const router = createBrowserRouter([
   {
@@ -45,6 +47,12 @@ const router = createBrowserRouter([
       },
       {
         path: "/productTracking",
+        element: <ProductTracking></ProductTracking>,
+      },
+      {
+        path: "/placeOrder",
+        element: <PlaceOrder></PlaceOrder>,
+      },
         element: <ProductTracking></ProductTracking>
       },
       {

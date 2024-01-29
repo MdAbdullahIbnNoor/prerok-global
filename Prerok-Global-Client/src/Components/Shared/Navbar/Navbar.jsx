@@ -78,6 +78,9 @@ const Navbar = () => {
             <NavLink to={"/customDocument"} className=" ">
               Customs
             </NavLink>
+            <NavLink to={"/placeOrder"} className=" ">
+              Place Order
+            </NavLink>
             {user && (
               <NavLink to={"/userProfile"} className=" ">
                 Dashboard
