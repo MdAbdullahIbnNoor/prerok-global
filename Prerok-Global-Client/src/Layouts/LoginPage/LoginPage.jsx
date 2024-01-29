@@ -13,7 +13,6 @@ const LoginPage = () => {
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
-
         const loginInfo = { email, password };
         try {
             await loginUser(email, password);
@@ -22,10 +21,7 @@ const LoginPage = () => {
         } catch (error) {
             toast.error(error.message)
         }
-
-
         console.log(loginInfo);
-
     }
 
     return (

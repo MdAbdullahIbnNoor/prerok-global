@@ -4,12 +4,12 @@ import { FaGithub } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import logo from "../../../assets/footerImage/Prerok-logo.png";
 import "./Footer.css";
+import { Link } from "react-router-dom";
 import visa from '../../../assets/footerImage/visa.webp'
 import paypal from '../../../assets/footerImage/paypal.png'
 import stripe from '../../../assets/footerImage/stripe.png'
 import ssl from '../../../assets/footerImage/ssl_commerz.png'
 
-// import  Link  from "react-router-dom";
 const Footer = () => {
   return (
     <div className="relative containerB">
@@ -30,10 +30,10 @@ const Footer = () => {
             <h1 className="font-bold text-xl">QUICK LINKS</h1>
             <div className="flex flex-col space-y-5 mt-5 ">
               {/* <Link></Link> */}
-              <a href="#">SITEMAP</a>
-              <a href="#">PRICING</a>
-              <a href="#">PAYMENT METHOD</a>
-              <a href="#">SUPPORT</a>
+              <Link to="#">SITEMAP</Link>
+              <Link to="#">PRICING</Link>
+              <Link to="#">PAYMENT METHOD</Link>
+              <Link to="#">SUPPORT</Link>
             </div>
           </div>
 
@@ -41,10 +41,14 @@ const Footer = () => {
             <h1 className="font-bold text-xl">IMPORTANT LINKS</h1>
             <div className="flex flex-col space-y-5 mt-5">
               {/* <Link></Link> */}
-              <a href="#">THEMEFOREST</a>
-              <a href="#">ENVATO</a>
-              <a href="#">AUDIOJUNGLE </a>
-              <a href="#">VIDEOHIBE</a>
+              <Link to="/faq">FAQ</Link>
+              <Link to={"/about"} className=" ">
+                About
+              </Link>
+              <Link to={"/contact"} className=" ">
+                Contact
+              </Link>
+              <Link to="#">Returns and Refunds</Link>
             </div>
           </div>
 
@@ -67,15 +71,15 @@ const Footer = () => {
             </div>
 
             <div className="flex gap-1">
-                <img className="w-16" src={paypal} alt="paypal" />
-                <img className="w-16" src={visa} alt="visa card " />
-                <img className="w-16" src={ssl} alt="sslcomarz" />
-                <img className="w-16" src={stripe} alt="stripe" />
+              <img className="w-16" src={paypal} alt="paypal" />
+              <img className="w-16" src={visa} alt="visa card " />
+              <img className="w-16" src={ssl} alt="sslcomarz" />
+              <img className="w-16" src={stripe} alt="stripe" />
             </div>
           </div>
         </div>
       </div>
-      
+
       <div className=" bg-gray-900 w-full md:h-16  bottom-0">
         <div className="md:flex justify-between px-5 py-5 md:px-20 items-center">
           <h1 className="text-gray-300">
