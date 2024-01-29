@@ -36,11 +36,21 @@ async function run() {
       res.send(result);
     })
 
-    // endpoint for post a new user
+    // endpoint for post a new user or get existing message
     app.post('/api/users/add-user', async (req, res) => {
-      const userData = req.body;
-      const result = await userCollection.insertOne(userData);
-      res.send(result)
+      try {
+        const userData = req.body;
+        const email = req.body.email;
+        const query = { email: email }
+        const user = await userCollection.findOne(query);
+        if (user) {
+          return res.status(200).send({ message: "User found" });
+        }
+        const result = await userCollection.insertOne(userData);
+        res.status(201).send(result);
+      } catch (error) {
+        res.status(500).send({ error: message });
+      }
     })
 
     // endpoint for update existing user data
