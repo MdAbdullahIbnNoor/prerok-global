@@ -36,6 +36,16 @@ const RegistrationPage = () => {
         else if (!password) {
             return setError("Please input a password")
         }
+        else if (password.length<6) {
+            return setError("Password should have minimum 6 characters");
+        }
+        else if (!/[A-Z]/.test(password)) {
+            return setError("Password should have atleats one capital letter");
+        }
+        else if (!/[!@#$%^&*]/.test(password)) {
+            return setError("Password should have atleats one special character")
+        }
+
 
         try {
             setLoading(true)
