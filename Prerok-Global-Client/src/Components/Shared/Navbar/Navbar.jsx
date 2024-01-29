@@ -64,8 +64,11 @@ const Navbar = () => {
             <NavLink to={"/userProfile"} className=" ">
               User Profile
             </NavLink>
-            <NavLink to={"#"} className=" ">
-              Blog
+            <NavLink to={"/customDocument"} className=" ">
+              Customs
+            </NavLink>
+            <NavLink to={"/placeOrder"} className=" ">
+              Place Order
             </NavLink>
             <svg
               xmlns="http://www.w3.org/2000/svg"
