@@ -30,10 +30,14 @@ async function run() {
 
     // endpoint for get existing user by email
     app.get('/api/user/get-user/:email', async (req, res) => {
-      const email = req.params.email;
-      const query = { email: email };
-      const result = await userCollection.findOne(query)
-      res.send(result);
+      try {
+        const email = req.params.email;
+        const query = { email: email };
+        const result = await userCollection.findOne(query)
+        res.status(200).send(result);
+      } catch (error) {
+        res.status(500).send({ message: error.message })
+      }
     })
 
     // endpoint for post a new user or get existing message
@@ -55,28 +59,32 @@ async function run() {
 
     // endpoint for update existing user data
     app.put('/api/users/update-user/:email', async (req, res) => {
-      const email = req.params.email;
-      const filter = { email: email }
-      const updatedDoc = {
-        $set: {
-          email: req.body.email || "",
-          password: req.body.password || "",
-          name: req.body.name || "",
-          gender: req.body.gender || "",
-          dateOfBirth: req.body.dateOfBirth || "",
-          mobileNumber: req.body.mobileNumber || "",
-          country: req.body.country || "",
-          state: req.body.state || "",
-          postcode: req.body.postcode || "",
-          division: req.body.division || "",
-          district: req.body.district || "",
-          upazila: req.body.upazila || "",
-          village: req.body.village || "",
-          roadNumber: req.body.roadNumber || "",
+      try {
+        const email = req.params.email;
+        const filter = { email: email }
+        const updatedDoc = {
+          $set: {
+            email: req.body.email || "",
+            password: req.body.password || "",
+            name: req.body.name || "",
+            gender: req.body.gender || "",
+            dateOfBirth: req.body.dateOfBirth || "",
+            mobileNumber: req.body.mobileNumber || "",
+            country: req.body.country || "",
+            state: req.body.state || "",
+            postcode: req.body.postcode || "",
+            division: req.body.division || "",
+            district: req.body.district || "",
+            upazila: req.body.upazila || "",
+            village: req.body.village || "",
+            roadNumber: req.body.roadNumber || "",
+          }
         }
+        const result = await userCollection.updateOne(filter, updatedDoc)
+        res.status(200).send(result);
+      } catch (error) {
+        res.status(500).send({ message: error.message })
       }
-      const result = await userCollection.updateOne(filter, updatedDoc)
-      res.send(result);
     })
 
     // Send a ping to confirm a successful connection
