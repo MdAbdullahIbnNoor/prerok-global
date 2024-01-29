@@ -1,12 +1,19 @@
 import { useState } from "react";
 import logo from "../../../assets/Prerok_Global_Logo.png";
 import { Link, NavLink } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const { user, logoutUser } = useAuth();
+
+  const handleLogout = () => {
+    logoutUser();
   };
 
   return (
@@ -26,12 +33,21 @@ const Navbar = () => {
             <span className="text-white">Call us now: </span>
             <span className="text-yellow-600"> +880-1756-390-370</span>
           </div>
-          <Link
-            to="/login"
-            className="btn bg-yellow-400 w-32 h-10 flex text-center items-center justify-center"
-          >
-            SIGN IN
-          </Link>
+          {!user ? (
+            <Link
+              to="/login"
+              className="btn bg-yellow-400 w-32 h-10 flex text-center items-center justify-center"
+            >
+              SIGN IN
+            </Link>
+          ) : (
+            <Link
+              onClick={handleLogout}
+              className="btn bg-yellow-400 w-32 h-10 flex text-center items-center justify-center"
+            >
+              SIGN OUT
+            </Link>
+          )}
         </div>
       </div>
       <nav className=" p-4 w-[90%] mx-auto">
@@ -62,9 +78,11 @@ const Navbar = () => {
             <NavLink to={"/customDocument"} className=" ">
               Customs
             </NavLink>
-            <NavLink to={"/userProfile"} className=" ">
-              Dashboard
-            </NavLink>
+            {user && (
+              <NavLink to={"/userProfile"} className=" ">
+                Dashboard
+              </NavLink>
+            )}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="32"
