@@ -59,8 +59,8 @@ const Navbar = () => {
             <NavLink to={"/support"} className=" ">
               Support
             </NavLink>
-            <NavLink to={"#"} className=" ">
-              Blog
+            <NavLink to={"/customDocument"} className=" ">
+              Customs
             </NavLink>
             <NavLink to={"/userProfile"} className=" ">
               Dashboard
