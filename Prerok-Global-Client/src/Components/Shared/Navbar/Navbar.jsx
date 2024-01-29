@@ -26,7 +26,10 @@ const Navbar = () => {
             <span className="text-white">Call us now: </span>
             <span className="text-yellow-600"> +880-1756-390-370</span>
           </div>
-          <Link to="/login" className="btn bg-yellow-400 w-32 h-10 flex text-center items-center justify-center">
+          <Link
+            to="/login"
+            className="btn bg-yellow-400 w-32 h-10 flex text-center items-center justify-center"
+          >
             SIGN IN
           </Link>
         </div>
@@ -46,26 +49,21 @@ const Navbar = () => {
             <NavLink to={"/"} className=" ">
               Home
             </NavLink>
-            <NavLink to={"/about"} className=" ">
-              About
-            </NavLink>
             <NavLink to={"productTracking"} className=" ">
               Tracking
             </NavLink>
             <NavLink to={"#"} className=" ">
-              Pricing
+              Shipping
             </NavLink>
-            <NavLink to={"/contact"} className=" ">
-              Contact
-            </NavLink>
-            <NavLink to={"/faq"} className=" ">
-              FAQ
-            </NavLink>
-            <NavLink to={"/userProfile"} className=" ">
-              User Profile
+
+            <NavLink to={"/support"} className=" ">
+              Support
             </NavLink>
             <NavLink to={"#"} className=" ">
               Blog
+            </NavLink>
+            <NavLink to={"/userProfile"} className=" ">
+              Dashboard
             </NavLink>
             <svg
               xmlns="http://www.w3.org/2000/svg"
