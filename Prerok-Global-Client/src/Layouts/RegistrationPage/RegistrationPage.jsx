@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaUpload, FaSpinner } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
 import { imageUpload } from "../../api/imageUpload";
 import toast from "react-hot-toast";
 import SocialLogin from "../../Components/AuthenticationPage/SocialLogin/SocialLogin";
-// import axios from "axios";
+import { saveUser } from "../../api/usersApi";
 
 
 const RegistrationPage = () => {
@@ -13,6 +13,7 @@ const RegistrationPage = () => {
     const [errorMessage, setError] = useState("")
     const [loading, setLoading] = useState(false);
     const { registerUser, updateUser } = useAuth();
+    const navigate = useNavigate()
 
 
     const handleSignUp = async (e) => {
@@ -22,9 +23,6 @@ const RegistrationPage = () => {
         const image = selectedImage;
         const email = form.email.value;
         const password = form.password.value;
-        const phone = form.phone.value;
-        const country = form.country.value;
-        const street = form.street.value;
         setError("")
         if (!name) {
             return setError("Please type your name")
@@ -39,17 +37,18 @@ const RegistrationPage = () => {
             return setError("Please input a password")
         }
 
-
-
         try {
             setLoading(true)
             const { data: imageData } = await imageUpload(image);
-            await registerUser(email, password)
-            await updateUser(name, imageData.display_url)
-            const userInfo = { name, image: imageData.display_url, email, password, phone, country, street }
-            // await axios.post('http://localhost:5000/api/users/add-user', userInfo)
-            setLoading(false)
-            toast.success("Sign up successful")
+            await registerUser(email, password);
+            await updateUser(name, imageData.display_url);
+            const userInfo = { name, image: imageData.display_url, email };
+            const dbResponse = await saveUser(userInfo)
+            if (dbResponse.acknowledged) {
+                setLoading(false)
+                toast.success("Sign up successful")
+                navigate('/')
+            }
         } catch (error) {
             toast.error(error.message);
             setLoading(false)
