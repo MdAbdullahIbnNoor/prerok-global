@@ -28,6 +28,14 @@ async function run() {
 
     // await client.connect();
 
+    // endpoint for get existing user by email
+    app.get('/api/user/get-user/:email', async (req, res) => {
+      const email = req.params.email;
+      const query = { email: email };
+      const result = await userCollection.findOne(query)
+      res.send(result);
+    })
+
     // endpoint for post a new user
     app.post('/api/users/add-user', async (req, res) => {
       const userData = req.body;
@@ -35,11 +43,29 @@ async function run() {
       res.send(result)
     })
 
-    // endpoint for get existing user by email
-    app.get('/api/user/get-user/:email', async (req, res) => {
+    // endpoint for update existing user data
+    app.put('/api/users/update-user/:email', async (req, res) => {
       const email = req.params.email;
-      const query = { email: email };
-      const result = await userCollection.findOne(query)
+      const filter = { email: email }
+      const updatedDoc = {
+        $set: {
+          email: req.body.email || "",
+          password: req.body.password || "",
+          name: req.body.name || "",
+          gender: req.body.gender || "",
+          dateOfBirth: req.body.dateOfBirth || "",
+          mobileNumber: req.body.mobileNumber || "",
+          country: req.body.country || "",
+          state: req.body.state || "",
+          postcode: req.body.postcode || "",
+          division: req.body.division || "",
+          district: req.body.district || "",
+          upazila: req.body.upazila || "",
+          village: req.body.village || "",
+          roadNumber: req.body.roadNumber || "",
+        }
+      }
+      const result = await userCollection.updateOne(filter, updatedDoc)
       res.send(result);
     })
 
