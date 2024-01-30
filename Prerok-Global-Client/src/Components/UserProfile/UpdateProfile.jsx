@@ -1,53 +1,78 @@
-
 import { useForm } from "react-hook-form";
 import { axiosPublic, axiosSecure } from "../../api/axiosInstances";
-
-import useAuth from "../../hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import { imageUpload } from "../../api/imageUpload";
+import Loading from "../Shared/Loading/Loading";
+import { useNavigate, useParams } from "react-router";
+import { useState } from "react";
+import toast from "react-hot-toast";
 
 const UpdateProfile = () => {
-  const { user } = useAuth();
-
+  const { email } = useParams();
   const { register, handleSubmit } = useForm();
+  const [imageURL, setImageURL] = useState("");
+  const [manualLoading, setManualLoading] = useState(false);
+  const [updateLoading, setUpdateLoading] = useState(false);
 
-  const { data: users ,  refetch} = useQuery({
-    queryKey: ["users"],
-    queryFn: async () => {
-      const res = await axiosPublic.get(`/api/user/get-user/${user?.email}`);
+  const navigate = useNavigate();
+
+  // user data
+  const { data: users, isLoading, refetch } = useQuery({
+    queryKey: ["usersData", email], queryFn: async () => {
+      const res = await axiosPublic.get(`/api/user/get-user/${email}`)
       return res.data;
-    },
-  });
-  console.log(users);
+    }
+  })
 
+  if (isLoading) {
+    return <Loading></Loading>
+  }
 
+  // image upload handler
+  const handleImageChange = async (imageData) => {
+    try {
+      setManualLoading(true)
+      const { data: imageFile } = await imageUpload(imageData);
+      setImageURL(imageFile.display_url)
+      setManualLoading(false)
+    } catch (error) {
+      toast.error(error.message);
+      setManualLoading(false)
+    }
+  }
+
+  // update info handler
   const onSubmit = async (data) => {
-    console.log(data);
-
-    const { data: imageFile } = await imageUpload(data?.image[0]);
-    console.log(imageFile);
-
-    const userData = {
-      name: data?.name,
-      dateOFBirth: data?.dateOFBirth,
-
-      district: data?.district,
-      division: data?.division,
-      email: data?.email,
-      gender: data?.gender,
-      image: imageFile.display_url,
-      postcode: data?.postcode,
-
-      roadNumber: data?.roadNumber,
-      state: data?.state,
-      upazilla: data?.upazilla,
-      village: data?.village,
-    };
-    console.log(userData);
-
-    const response = await axiosSecure.put(`/api/users/update-user/${user?.email}`, userData)
-    console.log(response.data)
-
+    try {
+      setUpdateLoading(true)
+      const userData = {
+        name: data?.name,
+        dateOfBirth: data?.dateOfBirth,
+        district: data?.district,
+        division: data?.division,
+        email: data?.email,
+        gender: data?.gender,
+        image: imageURL || users.image,
+        postcode: data?.postcode,
+        country: data?.country,
+        mobileNumber: data?.mobileNumber,
+        roadNumber: data?.roadNumber,
+        state: data?.state,
+        upazilla: data?.upazilla,
+        village: data?.village,
+      };
+      const { data: response } = await axiosSecure.put(`/api/users/update-user/${email}`, userData)
+      if (response.modifiedCount > 0) {
+        toast.success("User Updated");
+        refetch();
+        navigate("/userProfile")
+        setUpdateLoading(false)
+      }
+      setUpdateLoading(false)
+    } catch (error) {
+      toast.error(error.message)
+      setUpdateLoading(false)
+    }
   };
 
   return (
@@ -58,7 +83,7 @@ const UpdateProfile = () => {
           <div className="w-3/4 flex justify-center items-center mx-auto">
             <div className="avatar online">
               <div className="w-24 rounded-full">
-                <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                <img src={users?.image || "https://i.ibb.co/nzvNdjs/corporate-user-icon.png"} />
               </div>
             </div>
           </div>
@@ -67,8 +92,9 @@ const UpdateProfile = () => {
               <div className="flex flex-col w-max mx-auto text-center">
                 <label>
                   <input
-                    {...register("image")}
+                    onChange={(e) => handleImageChange(e.target.files[0])}
                     type="file"
+                    accept="image/*"
                     className="file-input file-input-bordered file-input-warning file-input-xs w-full max-w-xs"
                   />
                 </label>
@@ -148,7 +174,7 @@ const UpdateProfile = () => {
                 <span className="label-text">Date OF Birth </span>
               </div>
               <input
-                {...register("dateOFBirth")}
+                {...register("dateOfBirth")}
                 defaultValue={users?.dateOfBirth}
                 type="date"
                 placeholder="Date Of Birth"
@@ -273,7 +299,7 @@ const UpdateProfile = () => {
           />
         </label>
 
-        <button className="btn"> Submit</button>
+        <button className="btn" disabled={manualLoading || isLoading || updateLoading}> {manualLoading ? "Wait! image is uploading..." : updateLoading ? "Updating..." : "Update"}</button>
       </form>
     </div>
   );

@@ -54,14 +54,12 @@ const router = createBrowserRouter([
         path: "/placeOrder",
         element: <PlaceOrder></PlaceOrder>,
       },
-        element: <ProductTracking></ProductTracking>
-      },
       {
         path: "/customDocument",
         element: <CustomsDocument/>
       },
       {
-        path: "/updateProfile",
+        path: "/updateProfile/:email",
         element: <UpdateProfile></UpdateProfile>
       }
     ],
