@@ -30,16 +30,36 @@ async function run() {
     // await client.connect();
 
     // endpoit for genarate a token and set on client side cookie
-    app.post('/jwt', async (req, res) => {
-      const email = req.body.email;
-      const token = jwt.sign({ email }, process.env.TOKEN_SECRET, { expiresIn: "1h" });
-      res.cookie("token", token, {
-        httpOnly: true,
-        secure: false,
-        sameSite: "none"
-      }).send({ message: "success" })
+    app.post('/jwt', (req, res) => {
+      try {
+        const email = req.body.email;
+        const token = jwt.sign({ email }, process.env.TOKEN_SECRET, { expiresIn: "1h" });
+        res.cookie("token", token, {
+          httpOnly: true,
+          secure: false,
+          sameSite: "none"
+        }).send({ message: "success" })
+      } catch (error) {
+        res.status(500).send(error.message)
+      }
+
     })
-    
+
+    // endpoit for clear token cookie
+    app.delete('/clear-cookie', (req, res) => {
+      try {
+        res.clearCookie("token", {
+          maxAge: 0,
+          httpOnly: true,
+          secure: true,
+          sameSite: "none"
+        }).send({ message: "success" })
+      } catch (error) {
+        res.status(500).send()
+      }
+
+    })
+
     // endpoint for get existing user by email
     app.get('/api/user/get-user/:email', async (req, res) => {
       try {
