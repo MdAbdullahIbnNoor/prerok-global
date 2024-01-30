@@ -65,8 +65,8 @@ async function run() {
         const updatedDoc = {
           $set: {
             email: req.body.email || "",
-            password: req.body.password || "",
             name: req.body.name || "",
+            image: req.body.image || "",
             gender: req.body.gender || "",
             dateOfBirth: req.body.dateOfBirth || "",
             mobileNumber: req.body.mobileNumber || "",
@@ -75,7 +75,7 @@ async function run() {
             postcode: req.body.postcode || "",
             division: req.body.division || "",
             district: req.body.district || "",
-            upazila: req.body.upazila || "",
+            upazilla: req.body.upazilla || "",
             village: req.body.village || "",
             roadNumber: req.body.roadNumber || "",
           }
