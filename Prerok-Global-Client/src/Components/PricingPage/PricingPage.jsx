@@ -10,6 +10,11 @@ const PricingPage = () => {
                     <div>Help</div>
                 </div>
             </div>
+            <div className="flex bg-slate-300 text-slate-700 px-3 py-2 gap-2 text-lg font-medium">
+                <div>1.</div>
+                <div>Address Information</div>
+            </div>
+            
         </div>
     );
 };
