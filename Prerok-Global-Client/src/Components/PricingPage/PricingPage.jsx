@@ -21,6 +21,21 @@ const PricingPage = () => {
                 <div className="px-5">
                     <h2 className="text-2xl mt-2 text-amber-500">Enter your (From) address and the recipient&apos;s (To) address.</h2>
                 </div>
+                <div>
+                    <form className="flex items-center gap-10">
+                        <div className="w-1/2">
+                            <h4 className="font-semibold text-amber-500 ml-5">From Address</h4>
+                            <hr className="ml-5"/>
+                            <div>
+
+                            </div>
+                        </div>
+                        <div className="w-1/2">
+                            <h4 className="font-semibold text-amber-500">To Address</h4>
+                            <hr />
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     );
