@@ -1,7 +1,7 @@
 import { FaGoogle, FaFacebook } from "react-icons/fa";
 import useAuth from "../../../hooks/useAuth";
 import toast from "react-hot-toast";
-import { saveUser } from "../../../api/usersApi";
+import { getToken, saveUser } from "../../../api/usersApi";
 import { useNavigate } from "react-router";
 
 const SocialLogin = () => {
@@ -17,6 +17,7 @@ const SocialLogin = () => {
             };
             const dbResponse = await saveUser(userInfo)
             if (dbResponse.acknowledged || dbResponse.message === "User found") {
+                await getToken(loginInfo.email)
                 toast.success("Login successful")
                 navigate('/')
             }
