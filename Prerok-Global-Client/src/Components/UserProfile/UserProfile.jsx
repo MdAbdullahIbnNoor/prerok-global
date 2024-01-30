@@ -69,7 +69,7 @@ const UserProfile = () => {
               <p className="border-2 rounded-md px-4 py-2 ">
 
                 {/* input here the dynamic name  */}
-                <span className="py-3">{users?.name}</span>
+                <span className="py-3">{userData?.name}</span>
               </p>
             </div>
 
