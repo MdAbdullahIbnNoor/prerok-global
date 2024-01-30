@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const jwt = require('jsonwebtoken');
 const app = express();
 require("dotenv").config();
 const port = process.env.PORT || 5000;
@@ -28,6 +29,17 @@ async function run() {
 
     // await client.connect();
 
+    // endpoit for genarate a token and set on client side cookie
+    app.post('/jwt', async (req, res) => {
+      const email = req.body.email;
+      const token = jwt.sign({ email }, process.env.TOKEN_SECRET, { expiresIn: "1h" });
+      res.cookie("token", token, {
+        httpOnly: true,
+        secure: false,
+        sameSite: "none"
+      }).send({ message: "success" })
+    })
+    
     // endpoint for get existing user by email
     app.get('/api/user/get-user/:email', async (req, res) => {
       try {
