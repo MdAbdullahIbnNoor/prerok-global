@@ -13,6 +13,7 @@ import LoginPage from "./Layouts/LoginPage/LoginPage";
 import RegistrationPage from "./Layouts/RegistrationPage/RegistrationPage";
 import PlaceOrder from "./Components/Shipping/PlaceOrder/PlaceOrder";
 import CustomsDocument from "./Layouts/CustomsDocument/CustomsDocument";
+import UpdateProfile from "./Components/UserProfile/UpdateProfile";
 
 
 const router = createBrowserRouter([
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
       {
         path: "/customDocument",
         element: <CustomsDocument/>
+      },
+      {
+        path: "/updateProfile",
+        element: <UpdateProfile></UpdateProfile>
       }
     ],
   },
