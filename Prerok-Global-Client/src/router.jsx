@@ -14,6 +14,7 @@ import RegistrationPage from "./Layouts/RegistrationPage/RegistrationPage";
 import PlaceOrder from "./Components/Shipping/PlaceOrder/PlaceOrder";
 import CustomsDocument from "./Layouts/CustomsDocument/CustomsDocument";
 import UpdateProfile from "./Components/UserProfile/UpdateProfile";
+import PricingPage from "./Components/PricingPage/PricingPage";
 
 
 const router = createBrowserRouter([
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
       {
         path: "/updateProfile/:email",
         element: <UpdateProfile></UpdateProfile>
+      },
+      {
+        path: "/pricing",
+        element: <PricingPage></PricingPage>
       }
     ],
   },
