@@ -53,6 +53,7 @@ async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
     const userCollection = client.db("prerokGlobalDB").collection("users")
+    const bookingCollection = client.db("prerokGlobalDB").collection("bookings")
 
     // await client.connect();
 
@@ -149,6 +150,18 @@ async function run() {
         }
         const result = await userCollection.updateOne(filter, updatedDoc)
         res.status(200).send(result);
+      } catch (error) {
+        res.status(500).send({ message: error.message })
+      }
+    })
+
+
+    // endpoint for post a new booking
+    app.post('/api/bookings/add-booking', async (req, res) => {
+      try {
+        const bookingData = req.body;
+        const result = await bookingCollection.insertOne(bookingData);
+        res.send(result);
       } catch (error) {
         res.status(500).send({ message: error.message })
       }
