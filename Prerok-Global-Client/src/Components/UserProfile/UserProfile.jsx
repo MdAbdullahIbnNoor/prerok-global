@@ -70,7 +70,7 @@ const UserProfile = () => {
                 <IoMdAlert className="text-red-500" />
               </h1>
               <h2 className="text-sm drop-shadow-xl ">
-                This account is created on {`----dynamic value--`}{" "}
+                This account is created at {`----dynamic value--`}{" "}
               </h2>
             </div>
             <div className="w-full p-2 mt-4 rounded-lg ">
