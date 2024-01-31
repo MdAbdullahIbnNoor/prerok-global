@@ -1,11 +1,39 @@
 const express = require("express");
 const cors = require("cors");
+const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
 const app = express();
 require("dotenv").config();
 const port = process.env.PORT || 5000;
 
+//middlewares
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: ["http://localhost:5173"],
+  credentials: true
+}));
+app.use(cookieParser())
+
+//custom middlewares
+
+//middlewares for verify a user by token
+const verifyUser = async (req, res, next) => {
+  try {
+    const token = req.cookies?.token;
+    if (!token) {
+      return res.status(401).send({ message: "unauthorized access" })
+    }
+    jwt.verify(token, process.env.TOKEN_SECRET, (err, decode) => {
+      if (err) {
+        return res.status(401).send({ message: "unauthorized access" })
+      }
+      req.user = decode;
+    })
+    next()
+  } catch (error) {
+    return res.status(500).send({ message: error.message })
+  }
+}
 
 
 
@@ -28,10 +56,45 @@ async function run() {
 
     // await client.connect();
 
-    // endpoint for get existing user by email
-    app.get('/api/user/get-user/:email', async (req, res) => {
+    // endpoit for genarate a token and set on client side cookie
+    app.post('/jwt', (req, res) => {
       try {
+        const email = req.body.email;
+        const token = jwt.sign({ email }, process.env.TOKEN_SECRET);
+        res.cookie("token", token, {
+          httpOnly: true,
+          secure: false,
+          // sameSite: "none"
+        }).send({ message: "success" })
+      } catch (error) {
+        res.status(500).send(error.message)
+      }
+
+    })
+
+    // endpoit for clear token cookie
+    app.delete('/clear-cookie', (req, res) => {
+      try {
+        res.clearCookie("token", {
+          maxAge: 0,
+          httpOnly: true,
+          secure: true,
+          sameSite: "none"
+        }).send({ message: "success" })
+      } catch (error) {
+        res.status(500).send()
+      }
+
+    })
+
+    // endpoint for get existing user by email
+    app.get('/api/user/get-user/:email', verifyUser, async (req, res) => {
+      try {
+        const user = req.user;
         const email = req.params.email;
+        if (user.email !== email) {
+          return res.status(401).send({ message: "unauthorized access" });
+        }
         const query = { email: email };
         const result = await userCollection.findOne(query)
         res.status(200).send(result);
@@ -58,9 +121,13 @@ async function run() {
     })
 
     // endpoint for update existing user data
-    app.put('/api/users/update-user/:email', async (req, res) => {
+    app.put('/api/users/update-user/:email', verifyUser, async (req, res) => {
       try {
+        const user = req.user;
         const email = req.params.email;
+        if (user.email !== email) {
+          return res.status(401).send({ message: "unauthorized access" });
+        }
         const filter = { email: email }
         const updatedDoc = {
           $set: {

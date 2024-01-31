@@ -5,7 +5,7 @@ import useAuth from "../../hooks/useAuth";
 import { imageUpload } from "../../api/imageUpload";
 import toast from "react-hot-toast";
 import SocialLogin from "../../Components/AuthenticationPage/SocialLogin/SocialLogin";
-import { saveUser } from "../../api/usersApi";
+import { getToken, saveUser } from "../../api/usersApi";
 
 
 const RegistrationPage = () => {
@@ -53,8 +53,9 @@ const RegistrationPage = () => {
             await registerUser(email, password);
             await updateUser(name, imageData.display_url);
             const userInfo = { name, image: imageData.display_url, email };
-            const dbResponse = await saveUser(userInfo)
+            const dbResponse = await saveUser(userInfo);
             if (dbResponse.acknowledged) {
+                await getToken(email);
                 setLoading(false)
                 toast.success("Sign up successful")
                 navigate('/')
