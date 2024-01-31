@@ -37,7 +37,7 @@ const verifyUser = async (req, res, next) => {
 
 
 
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const uri = process.env.DB_URI;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
@@ -161,7 +161,37 @@ async function run() {
       try {
         const bookingData = req.body;
         const result = await bookingCollection.insertOne(bookingData);
-        res.send(result);
+        res.status(200).send(result);
+      } catch (error) {
+        res.status(500).send({ message: error.message })
+      }
+    })
+
+    // endpoint for update a existing booking
+    app.put('/api/bookings/update-booking/:id', async (req, res) => {
+      try {
+        const bookingData = req.body;
+        const id = req.params.id;
+        const filter = { _id: new ObjectId(id) }
+        const updatedDoc = {
+          $set: {
+            name: bookingData.name,
+          }
+        }
+        const result = await bookingCollection.updateOne(filter, updatedDoc)
+        res.send(result)
+      } catch (error) {
+        res.status(500).send({ message: error.message })
+      }
+    })
+
+    //endpoint for delete a existing booking
+    app.delete('/api/bookings/delete-booking/:id', async (req, res) => {
+      try {
+        const id = req.params.id;
+        const filter = { _id: new ObjectId(id) };
+        const result = await bookingCollection.deleteOne(filter)
+        res.send(result)
       } catch (error) {
         res.status(500).send({ message: error.message })
       }
