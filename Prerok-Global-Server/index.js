@@ -155,6 +155,40 @@ async function run() {
       }
     })
 
+    // endpoint for get all bookings
+    app.get('/api/bookings/get-bookings', async (req, res) => {
+      try {
+        const result = await bookingCollection.find().toArray();
+        res.status(200).send(result);
+      } catch (error) {
+        res.status(500).send({ message: error.message })
+      }
+    })
+
+    // endpoint for get bookings by email
+    app.get('/api/bookings/get-bookings/:email', async (req, res) => {
+      try {
+        const email = req.params.email;
+        const filter = { bookingEmail: email }
+        const result = await bookingCollection.find(filter).toArray();
+        res.status(200).send(result);
+      } catch (error) {
+        res.status(500).send({ message: error.message })
+      }
+    })
+
+    // endpoint for get a booking by id
+    app.get('/api/bookings/get-booking/:id', async (req, res) => {
+      try {
+        const id = req.params.id;
+        const filter = { _id: new ObjectId(id) };
+        const result = await bookingCollection.findOne(filter);
+        res.status(200).send(result);
+      } catch (error) {
+        res.status(500).send({ message: error.message });
+      }
+    })
+
 
     // endpoint for post a new booking
     app.post('/api/bookings/add-booking', async (req, res) => {
