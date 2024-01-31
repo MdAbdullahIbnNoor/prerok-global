@@ -110,12 +110,18 @@ const PricingPage = () => {
                                     <div>Email:</div>
                                     <div><input type="text" className="border px-2" name="" placeholder="" id="" /></div>
                                 </div>
+                                <div className="flex justify-between  p-3 px-12">
+                                    <div>Tax ID no.</div>
+                                    <div><input type="text" className="border px-2" name="" placeholder="" id="" /></div>
+                                </div>
                                 <div className="flex justify-end gap-5 p-3 px-12">
                                     
                                     <div><input type="checkbox" name="" id="" /></div>
                                     <div>This is residential address</div>
                                 </div>
-                                
+                                <div className="flex justify-end">
+                                <input type="submit"  className="btn bg-yellow-400 w-32 p-2 flex text-center items-center justify-center mr-12" value="Continue" />
+                                </div>
                             </div>
                         </div>
                     </form>
