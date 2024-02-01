@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Stepper from "../Stepper/Stepper";
 // import { useNavigate } from "react-router";
 
 const ProductTracking = () => {
@@ -84,6 +85,9 @@ const ProductTracking = () => {
         </div>
       </div>
       }
+
+      {/* stepper  */}
+      <Stepper></Stepper>
 
       {/* bg image sections  */}
       <div className="w-3/2 mx-auto mt-10" data-aos="fade-up ">

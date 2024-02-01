@@ -68,7 +68,7 @@ const Navbar = () => {
             <NavLink to={"productTracking"} className=" ">
               Tracking
             </NavLink>
-            <NavLink to={"#"} className=" ">
+            <NavLink to={"/pricing"} className=" ">
               Shipping
             </NavLink>
 

@@ -1,8 +1,10 @@
+import Stepper from "../Stepper/Stepper";
 
 
 const PricingPage = () => {
     return (
         <div className="w-11/12 mx-auto">
+            <Stepper></Stepper>
             {/* first section  */}
             <div className="bg-slate-500 text-white flex justify-between px-3 py-3">
                 <h2 className="text-2xl">PrerokGlobal Ship Manager</h2>
