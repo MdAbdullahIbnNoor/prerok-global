@@ -1,215 +1,271 @@
-
 import { IoMdAlert } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import { axiosSecure } from "../../api/axiosInstances";
 import Loading from "../Shared/Loading/Loading";
-
+import { AiFillEdit } from "react-icons/ai";
+import { MdKeyboardArrowRight } from "react-icons/md";
 
 const UserProfile = () => {
   const { user } = useAuth();
+  const navigate = useNavigate();
 
-  const { data: userData, isLoading, refetch } = useQuery({
-    queryKey: ["usersData", user?.email], queryFn: async () => {
-      const res = await axiosSecure.get(`/api/user/get-user/${user?.email}`)
+  const { data: userData, isLoading } = useQuery({
+    queryKey: ["usersData", user?.email],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/api/user/get-user/${user?.email}`);
       return res.data;
-    }
-  })
+    },
+  });
 
-  if(isLoading){
-    return <Loading></Loading>
+  if (isLoading) {
+    return <Loading></Loading>;
   }
   console.log(userData);
 
+  const handelBack = () => {
+    navigate(-1);
+  };
 
   return (
-    <div className="w-3/4 mx-auto bg-slate-50 shadow-lg p-4">
-      <h1>user profile sections</h1>
+    <div className=" md:w-3/4  mx-auto bg-slate-50 overflow-hidden p-4">
+      <div className="md:flex gap-10 lg:gap-20">
+        <div className="bg-white shadow-lg rounded-2xl md:w-3/3 ">
+          <img
+            alt="profile"
+            src="https://i.ibb.co/b6WNwMk/Teachable-Blog-Linked-In-Banners-3-800x200.jpg"
+            className="w-full object-cover mb-4 rounded-t-lg h-48"
+          />
+          <div className="flex flex-col items-center justify-center p-4 -mt-16">
+            <a href="#" className="relative block">
+              <img
+                alt="profile"
+                src={userData?.image}
+                className="mx-auto object-cover rounded-full h-28 w-28  border-2 border-white "
+              />
+            </a>
 
-      <div className="md:flex items-center md:gap-4">
-        <h1 className="text-xl font-semibold text-gray-500 drop-shadow-xl ">
-          Account Information{" "}
-        </h1>
-        <div className="flex gap-1">
-          <h1>
-            <IoMdAlert className="text-red-500" />
-          </h1>
-          <h2 className="text-sm drop-shadow-xl ">
-            This account is created on {`----dynamic value--`}{" "}
-          </h2>
-        </div>
+            <p className="p-2 px-4 text-xs text-white bg-green-600 rounded-full">
+              {"user"}
+            </p>
+            <p
+              className="mt-2 text-xl font-medium text-gray-800 drop-shadow-lg "
+              data-aos="fade-left"
+            >
+              {userData?.name}
+            </p>
 
+            <Link to={`/updateProfile/${userData?.email}`}>
+              <button
+                data-aos="fade-right"
+                className="px-4 text-lg py-1 flex items-center rounded-lg text-white cursor-pointer   mb-1"
+              >
+                <AiFillEdit className="text-orange-500 font-bold text-3xl" />
+              </button>
+            </Link>
 
-      </div>
-      <hr className="border-1 border-gray-300 " />
+            <div className="flex gap-1" data-aos="fade-right">
+              <h1>
+                <IoMdAlert className="text-red-500" />
+              </h1>
+              <h2 className="text-sm drop-shadow-xl ">
+                This account is created at {`----dynamic value--`}{" "}
+              </h2>
+            </div>
+            <div className="w-full p-2 mt-4 rounded-lg ">
+              <hr />
+              <div className=" md:px-5 text-sm text-gray-600 ">
+                <p
+                  className="font-bold text-gray-500 text-lg mb-3 drop-shadow-lg"
+                  data-aos="fade-right"
+                >
+                  Personal Information{" "}
+                </p>
+                <div className="space-y-3" data-aos="fade-right">
+                  <p className="flex flex-col">
+                    Full Name
+                    <span className="font-bold text-gray-600k ">
+                      {user?.displayName}
+                    </span>
+                  </p>
+                  <p className="flex flex-col">
+                    User Email
+                    <span className="font-bold text-gray-600 ">
+                      {user?.email}
+                    </span>
+                  </p>
+                  <p className="flex flex-col">
+                    Phone Number
+                    <span className="font-bold text-gray-600 ">
+                      {userData?.mobileNumber}
+                    </span>
+                  </p>
+                </div>
 
-      {/* user profile photo  sections  */}
-      <div>
-        <h1 className="text-gray-500 font-semibold drop-shadow-xl my-3">Change Profile Picture</h1>
-        <div className="avatar online">
-          <div className="w-24 rounded-full">
-            <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                <div className="mt-5">
+                  <div className="mt-5 mb-5">
+                    <Link to={`/updateProfile/${user?.email}`}>
+                      <button
+                        data-aos="fade-up"
+                        data-aos-anchor-placement="bottom-bottom"
+                        className="btn bg-green-500 mr-1  text-white btn-sm drop-shadow-xl hover:bg-green-600"
+                      >
+                        Update
+                      </button>
+                    </Link>
+
+                    <button
+                      data-aos="fade-up"
+                      data-aos-anchor-placement="bottom-bottom"
+                      onClick={handelBack}
+                      className="btn bg-red-500 text-white btn-sm drop-shadow-xl hover:bg-red-600"
+                    >
+                      Cancle
+                    </button>
+                  </div>
+
+                  <div className="flex"></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <div className="mt-5 mb-5">
-          <button className="btn bg-green-500 mr-1  text-white btn-sm drop-shadow-xl hover:bg-green-600">Update</button>
-          <button className="btn bg-red-500 text-white btn-sm drop-shadow-xl hover:bg-red-600">Cancle</button>
-        </div>
-        <hr className="border-1 mt-3 border-gray-300 " />
-      </div>
 
-      {/* Personal Inpormations sections  */}
-      <div className="text-gray-500   mt-10">
-        <h1 className="text-xl font-semibold text-gray-500">Personal Information</h1>
-        <div className="md:flex gap-9 mt-4">
-          <div className="flex-[1] space-y-7">
+        <div className="shadow-lg w-full mt-5 rounded-md p-5 lg:px-10">
+          <p className="font-bold text-gray-500 text-xl mb-3">
+            Others Informations
+          </p>
+          <div className="space-y-4">
             <div>
-              <h1 className="text-lg font-semibold"> Name</h1>
-              <p className="border-2 rounded-md px-4 py-2 ">
-
-                {/* input here the dynamic name  */}
-                <span className="py-3">{userData?.name}</span>
+              <h1 className="text-lg font-semibold "> Gender </h1>
+              <p className=" rounded-md px-4 ">
+                {/* input here the dynamic value  */}
+                <span className="flex items-center gap-2" data-aos="fade-right">
+                  {" "}
+                  <MdKeyboardArrowRight className="text-orange-500 text-xl" />{" "}
+                  {userData?.gender}
+                </span>
               </p>
             </div>
 
             <div>
-              <h1 className="text-lg font-semibold"> Gender </h1>
-              <p className="border-2 rounded-md px-4 py-2 ">
-
+              <h1 className="text-lg font-semibold "> Date Of Birth </h1>
+              <p className=" rounded-md px-4 ">
                 {/* input here the dynamic value  */}
-                <span className="py-3">Male/ Female</span>
+                <span className="flex items-center gap-2" data-aos="fade-right">
+                  {" "}
+                  <MdKeyboardArrowRight className="text-orange-500 text-xl" />{" "}
+                  {userData?.dateOfBirth}
+                </span>
               </p>
             </div>
 
             <div>
-              <h1 className="text-lg font-semibold"> Date OF Birth </h1>
-              <p className="border-2 rounded-md px-4 py-2 ">
-
+              <h1 className="text-lg font-semibold "> Country </h1>
+              <p className=" rounded-md px-4 ">
                 {/* input here the dynamic value  */}
-                <span className="py-3">22/09/2024</span>
+                <span className="flex items-center gap-2" data-aos="fade-right">
+                  {" "}
+                  <MdKeyboardArrowRight className="text-orange-500 text-xl" />{" "}
+                  {userData?.country}
+                </span>
               </p>
             </div>
 
             <div>
-              <h1 className="text-lg font-semibold"> Mobile No</h1>
-              <p className="border-2 rounded-md px-4 py-2 ">
-
+              <h1 className="text-lg font-semibold "> State </h1>
+              <p className=" rounded-md px-4 ">
                 {/* input here the dynamic value  */}
-                <span className="py-3">029320303</span>
+                <span className="flex items-center gap-2" data-aos="fade-right">
+                  {" "}
+                  <MdKeyboardArrowRight className="text-orange-500 text-xl" />{" "}
+                  {userData?.state}
+                </span>
+              </p>
+            </div>
+
+            <div>
+              <h1 className="text-lg font-semibold "> Post Code </h1>
+              <p className=" rounded-md px-4 ">
+                {/* input here the dynamic value  */}
+                <span className="flex items-center gap-2" data-aos="fade-right">
+                  {" "}
+                  <MdKeyboardArrowRight className="text-orange-500 text-xl" />{" "}
+                  {userData?.postcode}
+                </span>
+              </p>
+            </div>
+
+            <div>
+              <h1 className="text-lg font-semibold "> Division </h1>
+              <p className=" rounded-md px-4 ">
+                {/* input here the dynamic value  */}
+                <span className="flex items-center gap-2" data-aos="fade-right">
+                  {" "}
+                  <MdKeyboardArrowRight className="text-orange-500 text-xl" />{" "}
+                  {userData?.division}
+                </span>
               </p>
             </div>
             <div>
-              <h1 className="text-lg font-semibold"> Email </h1>
-              <p className="border-2 rounded-md px-4 py-2 ">
-
+              <h1 className="text-lg font-semibold "> District </h1>
+              <p className=" rounded-md px-4 ">
                 {/* input here the dynamic value  */}
-                <span className="py-3">xyz.com</span>
+                <span className="flex items-center gap-2" data-aos="fade-right">
+                  {" "}
+                  <MdKeyboardArrowRight className="text-orange-500 text-xl" />{" "}
+                  {userData?.district}
+                </span>
               </p>
             </div>
             <div>
-              <h1 className="text-lg font-semibold"> Country </h1>
-              <p className="border-2 rounded-md px-4 py-2 ">
-
+              <h1 className="text-lg font-semibold "> Upazilla </h1>
+              <p className=" rounded-md px-4 ">
                 {/* input here the dynamic value  */}
-                <span className="py-3"> Bangladesh </span>
+                <span className="flex items-center gap-2" data-aos="fade-right">
+                  {" "}
+                  <MdKeyboardArrowRight className="text-orange-500 text-xl" />{" "}
+                  {userData?.upazilla}
+                </span>
               </p>
             </div>
             <div>
-              <h1 className="text-lg font-semibold"> State </h1>
-              <p className="border-2 rounded-md px-4 py-2 ">
-
+              <h1 className="text-lg font-semibold "> Village </h1>
+              <p className=" rounded-md px-4 ">
                 {/* input here the dynamic value  */}
-                <span className="py-3"> Dhaka </span>
+                <span className="flex items-center gap-2" data-aos="fade-right">
+                  {" "}
+                  <MdKeyboardArrowRight className="text-orange-500 text-xl" />{" "}
+                  {userData?.village}
+                </span>
+              </p>
+            </div>
+            <div>
+              <h1 className="text-lg font-semibold "> House & Road NO </h1>
+              <p className=" rounded-md px-4 ">
+                {/* input here the dynamic value  */}
+                <span className="flex items-center gap-2" data-aos="fade-right">
+                  {" "}
+                  <MdKeyboardArrowRight className="text-orange-500 text-xl" />{" "}
+                  {userData?.roadNumber}
+                </span>
               </p>
             </div>
           </div>
-
-          {/* Locations  */}
-          <div className="flex-[1] space-y-7">
-            <div>
-              <h1 className="text-lg font-semibold"> Post Code </h1>
-              <p className="border-2 rounded-md px-4 py-2 ">
-
-                {/* input here the dynamic value  */}
-                <span className="py-3"> 1200 </span>
-              </p>
-            </div>
-
-
-            <div>
-              <h1 className="text-lg font-semibold"> Post Code </h1>
-              <p className="border-2 rounded-md px-4 py-2 ">
-
-                {/* input here the dynamic value  */}
-                <span className="py-3"> Dhaka </span>
-              </p>
-            </div>
-
-            <div>
-              <h1 className="text-lg font-semibold"> Division </h1>
-              <p className="border-2 rounded-md px-4 py-2 ">
-
-                {/* input here the dynamic value  */}
-                <span className="py-3"> Dhaka </span>
-              </p>
-            </div>
-
-
-            <div>
-              <h1 className="text-lg font-semibold"> District </h1>
-              <p className="border-2 rounded-md px-4 py-2 ">
-
-                {/* input here the dynamic value  */}
-                <span className="py-3"> Savar </span>
-              </p>
-            </div>
-
-            <div>
-              <h1 className="text-lg font-semibold"> Upazilla </h1>
-              <p className="border-2 rounded-md px-4 py-2 ">
-
-                {/* input here the dynamic value  */}
-                <span className="py-3"> Nobinagor </span>
-              </p>
-            </div>
-
-            <div>
-              <h1 className="text-lg font-semibold"> Village </h1>
-              <p className="border-2 rounded-md px-4 py-2 ">
-
-                {/* input here the dynamic value  */}
-                <span className="py-3"> Ambagn </span>
-              </p>
-            </div>
-            <div>
-              <h1 className="text-lg font-semibold"> Road Number & House Number </h1>
-              <p className="border-2 rounded-md px-4 py-2 ">
-
-                {/* input here the dynamic value  */}
-                <span className="py-3"> 5/6 block tha - 66/56 house</span>
-              </p>
-            </div>
-
-
+          <div className="blocl text-center">
+            <Link to={`/updateProfile/${user?.email}`}>
+              <button
+                data-aos="fade-left"
+                data-aos-anchor-placement="bottom-bottom"
+                className="btn bg-green-500 mr-1 px-10  text-white btn-sm drop-shadow-xl hover:bg-green-600"
+              >
+                Add Info
+              </button>
+            </Link>
           </div>
         </div>
       </div>
-
-      <div className=" mt-7 space-y-6 mx-auto">
-        <div className="">
-          <Link to={`/updateProfile/${user?.email}`}>
-            <button className="btn w-full bg-green-500 text-white text-lg uppercase hover:bg-green-600 ">Update Info </button>
-          </Link>
-
-        </div>
-        <div className="">
-          <button className=" btn w-full bg-red-500 text-white text-lg uppercase  hover:bg-red-600 "> Back </button>
-
-        </div>
-      </div>
-
-
     </div>
   );
 };

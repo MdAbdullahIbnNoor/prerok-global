@@ -11,8 +11,8 @@ import {
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import auth from "../configs/firebase.config";
-import useAuth from "../hooks/useAuth";
 import toast from "react-hot-toast";
+import { removeToken } from "../api/usersApi";
 
 export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
@@ -51,6 +51,7 @@ const AuthProvider = ({ children }) => {
   const logoutUser = async () => {
     setLoading(true);
     await signOut(auth);
+    await removeToken();
     toast("Logout successful");
     setLoading(false);
   };
