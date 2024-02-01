@@ -16,6 +16,7 @@ import CustomsDocument from "./Layouts/CustomsDocument/CustomsDocument";
 import UpdateProfile from "./Components/UserProfile/UpdateProfile";
 import Dashboard from "./Layouts/Dashboard/Dashboard";
 import Bookings from "./Layouts/Dashboard/User/Bookings/Bookings";
+import AddressBook from "./Layouts/Dashboard/User/AddressBooking/AddressBook";
 
 
 const router = createBrowserRouter([
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
       {
         path: 'profile',
         element: <UserProfile></UserProfile>
+      },
+      {
+        path: 'address-book',
+        element: <AddressBook></AddressBook>
       },
       {
         path: 'update-profile/:email',
