@@ -29,7 +29,7 @@ const UserProfile = () => {
   };
 
   return (
-    <div className=" md:w-3/4  mx-auto bg-slate-50 overflow-hidden p-4">
+    <div className="mx-auto overflow-hidden p-4">
       <div className="md:flex gap-10 lg:gap-20">
         <div className="bg-white shadow-lg rounded-2xl md:w-3/3 ">
           <img
@@ -105,7 +105,7 @@ const UserProfile = () => {
 
                 <div className="mt-5">
                   <div className="mt-5 mb-5">
-                    <Link to={`/updateProfile/${user?.email}`}>
+                    <Link to={`/dashboard/update-profile/${user?.email}`}>
                       <button
                         data-aos="fade-up"
                         data-aos-anchor-placement="bottom-bottom"
@@ -254,7 +254,7 @@ const UserProfile = () => {
             </div>
           </div>
           <div className="blocl text-center">
-            <Link to={`/updateProfile/${user?.email}`}>
+            <Link to={`/dashboard/update-profile/${user?.email}`}>
               <button
                 data-aos="fade-left"
                 data-aos-anchor-placement="bottom-bottom"

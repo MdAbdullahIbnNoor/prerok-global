@@ -14,6 +14,7 @@ import RegistrationPage from "./Layouts/RegistrationPage/RegistrationPage";
 import PlaceOrder from "./Components/Shipping/PlaceOrder/PlaceOrder";
 import CustomsDocument from "./Layouts/CustomsDocument/CustomsDocument";
 import UpdateProfile from "./Components/UserProfile/UpdateProfile";
+import Dashboard from "./Layouts/Dashboard/Dashboard";
 
 
 const router = createBrowserRouter([
@@ -40,7 +41,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/contact",
-        element: <ContactUs></ContactUs> ,
+        element: <ContactUs></ContactUs>,
       },
       {
         path: "/userProfile",
@@ -56,7 +57,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/customDocument",
-        element: <CustomsDocument/>
+        element: <CustomsDocument />
       },
       {
         path: "/updateProfile/:email",
@@ -64,26 +65,40 @@ const router = createBrowserRouter([
       }
     ],
   },
+  {
+    path: '/dashboard',
+    element: <Dashboard></Dashboard>,
+    children: [
+      {
+        path: 'profile',
+        element: <UserProfile></UserProfile>
+      },
+      {
+        path: 'update-profile/:email',
+        element: <UpdateProfile></UpdateProfile>
+      },
+    ]
+  },
 
   {
-    path:'faq',
+    path: 'faq',
     element: <FAQ></FAQ>,
-    children:[
-        // normal users route
-        {
-            path:'generelfaq',
-            element:<GenerelFAQ></GenerelFAQ>,
-        },
-        {
-          path:'securityfaq',
-          element:<SecurityFAQ></SecurityFAQ>,
-        },
-        {
-          path: 'featurefaq',
-          element: <FeatureFAQ></FeatureFAQ>,
-        },
+    children: [
+      // normal users route
+      {
+        path: 'generelfaq',
+        element: <GenerelFAQ></GenerelFAQ>,
+      },
+      {
+        path: 'securityfaq',
+        element: <SecurityFAQ></SecurityFAQ>,
+      },
+      {
+        path: 'featurefaq',
+        element: <FeatureFAQ></FeatureFAQ>,
+      },
     ]
-}
+  }
 
 
 ]);
