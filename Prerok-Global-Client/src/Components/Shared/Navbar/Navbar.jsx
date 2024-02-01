@@ -27,7 +27,7 @@ const Navbar = () => {
   const handleLogout = () => {
     logoutUser();
   };
-  console.log(prevPosition);
+  // console.log(prevPosition);
 
   const navLinks = <>
     <NavLink to={"/"} className="font-semibold py-2 px-2">
