@@ -1,4 +1,18 @@
+import { useState } from "react";
+
+// import { useNavigate } from "react-router";
+
 const ProductTracking = () => {
+
+  const [isVisible, setIsVisible] = useState(false);
+  // const navigate = useNavigate();
+
+  const handleTracking = (e) => {
+    e.preventDefault();
+    setIsVisible(!isVisible);
+
+  }
+
   return (
     <div className="overflow-hidden lg:max-w-screen-2xl my-10 mx-auto px-3 md:px-20">
 
@@ -20,25 +34,27 @@ const ProductTracking = () => {
               Now you can track your product easily
             </span>
           </p>
-          <div className="md:flex justify-center p-5 ">
+          <form onSubmit={handleTracking} className="md:flex justify-center p-5 ">
             <input
               type="text"
               name="productID"
-              className="border-2 mb-2 border-slate-300   md:w-[400px] mx-auto "
+              className="border-2 mb-2 border-slate-300   md:w-[400px] mx-auto px-4"
               id=""
               placeholder="Enter your product ID"
               data-aos="fade-right"
             />
-            <button className="btn bg-red-500 hover:bg-black  h-14 md:w-72 ml-4 block mx-auto text-white" data-aos="fade-left">
-              TRACK YOUR PRODUCT
-            </button>
-          </div>
+            <input type="submit" value="TRACK YOUR PRODUCT" className="btn bg-red-500 hover:bg-black  h-14 md:w-72 ml-4 block mx-auto text-white" data-aos="fade-left"/>
+              
+            
+          </form>
         </div>
       </div>
 
 
       {/* image and product details sections  */}
-      <div className="md:w-2/3 mt-10 md:mt-20  mx-auto">
+      {
+        isVisible &&
+        <div className="md:w-2/3 mt-10 md:mt-20  mx-auto">
         <div className="md:flex ">
                 <div className="flex-[1] w-full object-cover " data-aos="zoom-in-right">
                     <img src="https://i.ibb.co/f4y9xtm/download.png" alt="product picture" />
@@ -51,7 +67,7 @@ const ProductTracking = () => {
                     </div>
                     <div className=" p-1 border-b-2 ">
                         <span className="mr-5">PRODUCT ID: </span>
-                        <span> 9034215</span>
+                        <span>FA-9034215</span>
                     </div>
                     <div className=" p-1 border-b-2 ">
                         <span className="mr-5">ORDER DATE:</span>
@@ -68,6 +84,9 @@ const ProductTracking = () => {
                 </div>
         </div>
       </div>
+      }
+
+      
 
       {/* bg image sections  */}
       <div className="w-3/2 mx-auto mt-10" data-aos="fade-up ">
