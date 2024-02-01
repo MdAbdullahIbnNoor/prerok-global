@@ -37,7 +37,7 @@ const verifyUser = async (req, res, next) => {
 
 
 
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const uri = process.env.DB_URI;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
@@ -53,6 +53,7 @@ async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
     const userCollection = client.db("prerokGlobalDB").collection("users")
+    const bookingCollection = client.db("prerokGlobalDB").collection("bookings")
 
     // await client.connect();
 
@@ -149,6 +150,82 @@ async function run() {
         }
         const result = await userCollection.updateOne(filter, updatedDoc)
         res.status(200).send(result);
+      } catch (error) {
+        res.status(500).send({ message: error.message })
+      }
+    })
+
+    // endpoint for get all bookings
+    app.get('/api/bookings/get-bookings', async (req, res) => {
+      try {
+        const result = await bookingCollection.find().toArray();
+        res.status(200).send(result);
+      } catch (error) {
+        res.status(500).send({ message: error.message })
+      }
+    })
+
+    // endpoint for get bookings by email
+    app.get('/api/bookings/get-bookings/:email', async (req, res) => {
+      try {
+        const email = req.params.email;
+        const filter = { bookingEmail: email }
+        const result = await bookingCollection.find(filter).toArray();
+        res.status(200).send(result);
+      } catch (error) {
+        res.status(500).send({ message: error.message })
+      }
+    })
+
+    // endpoint for get a booking by id
+    app.get('/api/bookings/get-booking/:id', async (req, res) => {
+      try {
+        const id = req.params.id;
+        const filter = { _id: new ObjectId(id) };
+        const result = await bookingCollection.findOne(filter);
+        res.status(200).send(result);
+      } catch (error) {
+        res.status(500).send({ message: error.message });
+      }
+    })
+
+
+    // endpoint for post a new booking
+    app.post('/api/bookings/add-booking', async (req, res) => {
+      try {
+        const bookingData = req.body;
+        const result = await bookingCollection.insertOne(bookingData);
+        res.status(200).send(result);
+      } catch (error) {
+        res.status(500).send({ message: error.message })
+      }
+    })
+
+    // endpoint for update a existing booking
+    app.put('/api/bookings/update-booking/:id', async (req, res) => {
+      try {
+        const bookingData = req.body;
+        const id = req.params.id;
+        const filter = { _id: new ObjectId(id) }
+        const updatedDoc = {
+          $set: {
+            name: bookingData.name,
+          }
+        }
+        const result = await bookingCollection.updateOne(filter, updatedDoc)
+        res.send(result)
+      } catch (error) {
+        res.status(500).send({ message: error.message })
+      }
+    })
+
+    //endpoint for delete a existing booking
+    app.delete('/api/bookings/delete-booking/:id', async (req, res) => {
+      try {
+        const id = req.params.id;
+        const filter = { _id: new ObjectId(id) };
+        const result = await bookingCollection.deleteOne(filter)
+        res.send(result)
       } catch (error) {
         res.status(500).send({ message: error.message })
       }
