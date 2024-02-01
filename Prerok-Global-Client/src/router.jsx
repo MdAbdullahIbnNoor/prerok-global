@@ -15,6 +15,7 @@ import PlaceOrder from "./Components/Shipping/PlaceOrder/PlaceOrder";
 import CustomsDocument from "./Layouts/CustomsDocument/CustomsDocument";
 import UpdateProfile from "./Components/UserProfile/UpdateProfile";
 import Dashboard from "./Layouts/Dashboard/Dashboard";
+import Bookings from "./Layouts/Dashboard/User/Bookings/Bookings";
 
 
 const router = createBrowserRouter([
@@ -77,6 +78,10 @@ const router = createBrowserRouter([
         path: 'update-profile/:email',
         element: <UpdateProfile></UpdateProfile>
       },
+      {
+        path: 'bookings',
+        element: <Bookings></Bookings>
+      }
     ]
   },
 

@@ -57,12 +57,12 @@ const Navbar = () => {
     </NavLink>
     <NavLink to={"/placeOrder"} className={({ isActive }) => isActive ? "relative border-b-2 border-amber-500 inline-block text-black hover:text-gray-800 group font-semibold pt-2 pl-1 pr-2" : "relative border-b-2 border-transparent inline-block text-black hover:text-gray-800 group font-semibold pt-2 pl-1 pr-2"}>
       Place Order
-      <span className="absolute inset-x-0 -bottom-0.5 h-0.5 bg-amber-500 transition-transform origin-center transform scale-x-0 group-hover:scale-x-100 duration-200 w-full"></span>
+      <span className="absolute inset-x-0 -bottom-0.5 h-0.5 bg-amber-500 transition-transform origin-left transform scale-x-0 group-hover:scale-x-100 duration-200 w-full"></span>
     </NavLink>
     {user && (
-      <NavLink to={"/userProfile"} className={({ isActive }) => isActive ? "relative border-b-2 border-amber-500 inline-block text-black hover:text-gray-800 group font-semibold pt-2 pl-1 pr-2" : "relative border-b-2 border-transparent inline-block text-black hover:text-gray-800 group font-semibold pt-2 pl-1 pr-2"}>
+      <NavLink to={"/dashboard/bookings"} className={({ isActive }) => isActive ? "relative border-b-2 border-amber-500 inline-block text-black hover:text-gray-800 group font-semibold pt-2 pl-1 pr-2" : "relative border-b-2 border-transparent inline-block text-black hover:text-gray-800 group font-semibold pt-2 pl-1 pr-2"}>
         Dashboard
-        <span className="absolute inset-x-0 -bottom-0.5 h-0.5 bg-amber-500 transition-transform origin-center transform scale-x-0 group-hover:scale-x-100 duration-200 w-full"></span>
+        <span className="absolute inset-x-0 -bottom-0.5 h-0.5 bg-amber-500 transition-transform origin-left transform scale-x-0 group-hover:scale-x-100 duration-200 w-full"></span>
       </NavLink>
     )}
   </>

@@ -1,17 +1,15 @@
 import { NavLink } from "react-router-dom";
 import logo from "../../../assets/Prerok_Global_Logo.png";
+import { useState } from "react";
+import Hamburger from "hamburger-react";
 const Sidebar = () => {
-    
-    const navLinksDashboard = <>
-        <NavLink to={"/dashboard/profile"} className={({ isActive }) => isActive ? "relative border-b-2 border-amber-500 inline-block text-black hover:text-gray-800 group font-semibold pt-2 px-2" : "relative border-b-2 border-transparent inline-block text-black hover:text-gray-800 group font-semibold pt-2 px-2"}>
-            Profile
-            <span className="absolute inset-x-0 -bottom-0.5 h-0.5 bg-amber-500 transition-transform origin-left transform scale-x-0 group-hover:scale-x-100 duration-200"></span>
+    const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-        </NavLink>
-        <NavLink to={"productTracking"} className={({ isActive }) => isActive ? "relative border-b-2 border-amber-500 inline-block text-black hover:text-gray-800 group font-semibold pt-2 px-2" : "relative border-b-2 border-transparent inline-block text-black hover:text-gray-800 group font-semibold pt-2 px-2"}>
+    const navLinksDashboard = <>
+
+        <NavLink to={"/dashboard/bookings"} className={({ isActive }) => isActive ? "relative border-b-2 border-amber-500 inline-block text-black hover:text-gray-800 group font-semibold pt-2 px-2" : "relative border-b-2 border-transparent inline-block text-black hover:text-gray-800 group font-semibold pt-2 px-2"}>
             Bookings
             <span className="absolute inset-x-0 -bottom-0.5 h-0.5 bg-amber-500 transition-transform origin-left transform scale-x-0 group-hover:scale-x-100 duration-200"></span>
-
         </NavLink>
         <NavLink to={"/dashboard/address-book"} className={({ isActive }) => isActive ? "relative border-b-2 border-amber-500 inline-block text-black hover:text-gray-800 group font-semibold pt-2 px-2" : "relative border-b-2 border-transparent inline-block text-black hover:text-gray-800 group font-semibold pt-2 px-2"}>
             Address Book
@@ -20,6 +18,10 @@ const Sidebar = () => {
         </NavLink>
         <NavLink to={"/payment-history"} className={({ isActive }) => isActive ? "relative border-b-2 border-amber-500 inline-block text-black hover:text-gray-800 group font-semibold pt-2 px-2" : "relative border-b-2 border-transparent inline-block text-black hover:text-gray-800 group font-semibold pt-2 px-2"}>
             Payment History
+            <span className="absolute inset-x-0 -bottom-0.5 h-0.5 bg-amber-500 transition-transform origin-left transform scale-x-0 group-hover:scale-x-100 duration-200"></span>
+        </NavLink>
+        <NavLink to={"/dashboard/profile"} className={({ isActive }) => isActive ? "relative border-b-2 border-amber-500 inline-block text-black hover:text-gray-800 group font-semibold pt-2 px-2" : "relative border-b-2 border-transparent inline-block text-black hover:text-gray-800 group font-semibold pt-2 px-2"}>
+            Profile
             <span className="absolute inset-x-0 -bottom-0.5 h-0.5 bg-amber-500 transition-transform origin-left transform scale-x-0 group-hover:scale-x-100 duration-200"></span>
         </NavLink>
         <NavLink to={"/support"} className={({ isActive }) => isActive ? "relative border-b-2 border-amber-500 inline-block text-black hover:text-gray-800 group font-semibold pt-2 px-2" : "relative border-b-2 border-transparent inline-block text-black hover:text-gray-800 group font-semibold pt-2 px-2"}>
@@ -59,11 +61,30 @@ const Sidebar = () => {
         </NavLink>
     </>
     return (
-        <div className="min-h-screen px-2 pt-[5vh] fixed">
-            <div className="min-h-[90vh] my-auto flex items-center justify-center flex-col w-full shadow-xl rounded-md text-center ">
+        <div className="min-h-screen lg:px-2 pt-1 md:mt-[5vh] fixed lg:w-auto w-full">
+            {/* menu dropdown */}
+            <div className='lg:hidden flex items-center justify-between mx-2 bg-white shadow-md'>
+                <Hamburger toggled={isMobileMenuOpen} toggle={setMobileMenuOpen} />
                 <div>
+                    <img src={logo} className="w-36 py-3 mx-3" alt="logo of prerok global" />
+                </div>
+            </div>
+            <div className="min-h-[90vh] hidden w-72 my-auto lg:flex items-center justify-center flex-col shadow-xl rounded-md text-center ">
+                <div className="fixed top-6">
                     <img src={logo} className="w-52 py-3 mx-3" alt="logo of prerok global" />
                 </div>
+                <div className="">
+                    <div className="flex flex-col gap-3">
+                        {navLinksDashboard}
+                    </div>
+                    <hr className="my-6" />
+                    <div className="flex flex-col gap-3">
+                        {navLinks}
+                    </div>
+                </div>
+            </div>
+
+            <div className={`min-h-[90vh] lg:hidden my-auto flex items-center justify-center flex-col w-56 bg-white shadow-xl rounded-md text-center  ${isMobileMenuOpen ? "translate-x-0 opacity-100" : "-translate-x-[500px] opacity-50"} transition duration-300`}>
                 <div className="">
                     <div className="flex flex-col gap-3">
                         {navLinksDashboard}
