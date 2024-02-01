@@ -41,7 +41,7 @@ const UserProfile = () => {
             <a href="#" className="relative block">
               <img
                 alt="profile"
-                src={user?.photoURL}
+                src={userData?.image}
                 className="mx-auto object-cover rounded-full h-28 w-28  border-2 border-white "
               />
             </a>
@@ -53,10 +53,10 @@ const UserProfile = () => {
               className="mt-2 text-xl font-medium text-gray-800 drop-shadow-lg "
               data-aos="fade-left"
             >
-              {user?.displayName}
+              {userData?.name}
             </p>
 
-            <Link to={`/updateProfile/${user?.email}`}>
+            <Link to={`/updateProfile/${userData?.email}`}>
               <button
                 data-aos="fade-right"
                 className="px-4 text-lg py-1 flex items-center rounded-lg text-white cursor-pointer   mb-1"
@@ -252,6 +252,17 @@ const UserProfile = () => {
                 </span>
               </p>
             </div>
+          </div>
+          <div className="blocl text-center">
+            <Link to={`/updateProfile/${user?.email}`}>
+              <button
+                data-aos="fade-left"
+                data-aos-anchor-placement="bottom-bottom"
+                className="btn bg-green-500 mr-1 px-10  text-white btn-sm drop-shadow-xl hover:bg-green-600"
+              >
+                Add Info
+              </button>
+            </Link>
           </div>
         </div>
       </div>
