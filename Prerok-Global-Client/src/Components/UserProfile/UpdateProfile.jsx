@@ -29,6 +29,8 @@ const UpdateProfile = () => {
     },
   });
 
+  console.log(users)
+
   if (isLoading) {
     return <Loading></Loading>;
   }
