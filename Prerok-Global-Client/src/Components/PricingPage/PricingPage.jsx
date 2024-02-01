@@ -1,10 +1,52 @@
-import Stepper from "../Stepper/Stepper";
-
+// import Stepper from "../Stepper/Stepper";
+import { useState } from "react";
+import "../Stepper/Stepper.css";
+import { TiTick } from "react-icons/ti";
 
 const PricingPage = () => {
+
+    const steps = ["Customer Info", "Shipping Info", "Payment", "Processing", "On Delivery", "Delivered"];
+  const [currentStep, setCurrentStep] = useState(1);
+  const [complete, setComplete] = useState(false);
+
+  const handleStepper = (e) => {
+    e.preventDefault();
+    currentStep === steps.length
+      ? setComplete(true)
+      : setCurrentStep((prev) => prev + 1);
+  }
+
+
     return (
         <div className="w-11/12 mx-auto">
-            <Stepper></Stepper>
+            {/* stepper  */}
+            {/* <Stepper></Stepper> */}
+            <>
+      <div className="hidden lg:flex  justify-between p-10 bg-slate-600 w-full lg:w-3/4 mx-auto text-black">
+        {steps?.map((step, i) => (
+          <div
+            key={i}
+            className={`step-item ${currentStep === i + 1 && "active"} ${
+              (i + 1 < currentStep || complete) && "complete"
+            } `}
+          >
+            <div className="step">
+              {i + 1 < currentStep || complete ? <TiTick size={24} /> : i + 1}
+            </div>
+            <p className="text-gray-500">{step}</p>
+          </div>
+        ))}
+      </div>
+      {/* {!complete && (
+        <button
+          className="btn"
+          onClick={handleStepper}
+        >
+          {currentStep === steps.length ? "Finish" : "Next"}
+        </button>
+      )} */}
+    </>
+
             {/* first section  */}
             <div className="bg-slate-500 text-white flex justify-between px-3 py-3">
                 <h2 className="text-2xl">PrerokGlobal Ship Manager</h2>
@@ -24,7 +66,7 @@ const PricingPage = () => {
                     <h2 className="text-2xl mt-2 text-amber-500">Enter your (From) address and the recipient&apos;s (To) address.</h2>
                 </div>
                 <div>
-                    <form className="flex flex-col lg:flex-row  gap-10">
+                    <form onSubmit={handleStepper} className="flex flex-col lg:flex-row  gap-10">
                         <div className="w-full lg:w-1/2">
                             <h4 className="font-semibold text-amber-500 ml-5">From Address</h4>
                             <hr className="ml-5"/>

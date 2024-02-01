@@ -14,7 +14,7 @@ const Stepper = () => {
 
   return (
     <>
-      <div className="flex justify-between p-10 bg-slate-600 w-3/4 mx-auto text-black">
+      <div className="hidden lg:flex  justify-between p-10 bg-slate-600 w-full lg:w-3/4 mx-auto text-black">
         {steps?.map((step, i) => (
           <div
             key={i}
