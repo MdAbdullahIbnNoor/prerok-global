@@ -17,6 +17,7 @@ import UpdateProfile from "./Components/UserProfile/UpdateProfile";
 import Dashboard from "./Layouts/Dashboard/Dashboard";
 import Bookings from "./Layouts/Dashboard/User/Bookings/Bookings";
 import AddressBook from "./Layouts/Dashboard/User/AddressBooking/AddressBook";
+import PricingPage from "./Components/PricingPage/PricingPage";
 
 
 const router = createBrowserRouter([
@@ -79,6 +80,8 @@ const router = createBrowserRouter([
       {
         path: 'bookings',
         element: <Bookings></Bookings>
+        path: "/pricing",
+        element: <PricingPage></PricingPage>
       }
     ]
   },

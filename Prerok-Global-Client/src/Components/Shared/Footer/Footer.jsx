@@ -31,7 +31,7 @@ const Footer = () => {
             <div className="flex flex-col space-y-5 mt-5 ">
               {/* <Link></Link> */}
               <Link to="#">SITEMAP</Link>
-              <Link to="#">PRICING</Link>
+              <Link to="/pricing">PRICING</Link>
               <Link to="#">PAYMENT METHOD</Link>
               <Link to="#">SUPPORT</Link>
             </div>
