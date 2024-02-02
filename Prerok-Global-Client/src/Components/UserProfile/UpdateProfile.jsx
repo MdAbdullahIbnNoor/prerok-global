@@ -29,8 +29,6 @@ const UpdateProfile = () => {
     },
   });
 
-  console.log(users)
-
   if (isLoading) {
     return <Loading></Loading>;
   }
@@ -75,7 +73,7 @@ const UpdateProfile = () => {
       if (response.modifiedCount > 0) {
         toast.success("User Updated");
         refetch();
-        navigate("/userProfile");
+        navigate("/dashboard/profile");
         setUpdateLoading(false);
       }
       setUpdateLoading(false);
@@ -90,13 +88,13 @@ const UpdateProfile = () => {
   };
 
   return (
-    <div className=" w-11/12 md:w-3/6 mx-auto mt-20 overflow-hidden bg-gray-50 p-2 rounded-md shadow-md ">
+    <div className="p-4 mx-auto overflow-hidden rounded-md shadow-md ">
       <form onSubmit={handleSubmit(onSubmit)}>
         <p className="text-center md:my-5 font-semibold text-gray-400">
           Update Your Profile
         </p>
         {/* avatar  */}
-        <div>
+        <div data-aos="fade-down">
           <div className="w-3/4 flex justify-center items-center mx-auto">
             <div className="avatar online">
               <div className="w-24 rounded-full">
@@ -126,13 +124,12 @@ const UpdateProfile = () => {
         </div>
 
         {/* main container  */}
-        <div className="p-4 flex gap-5 flex-col md:flex-row ">
+        <div  className="p-4 flex gap-5 flex-col md:flex-row ">
           {/* section 1  */}
-          <div className="w-full space-y-4 ">
+          <div className="w-full space-y-4 " data-aos="fade-right">
             {/* name field  */}
             <label
               className="form-control w-full md:md:my-5"
-              data-aos="fade-right"
             >
               <div className="label">
                 <span className="label-text text-gray-500"> User Name </span>
@@ -149,7 +146,6 @@ const UpdateProfile = () => {
             {/* email field  */}
             <label
               className="form-control w-full  md:md:my-5"
-              data-aos="fade-right"
             >
               <div className="label">
                 <span className="label-text text-gray-500">Email </span>
@@ -166,7 +162,6 @@ const UpdateProfile = () => {
             {/* mobile  */}
             <label
               className="form-control w-full md:my-5"
-              data-aos="fade-right"
             >
               <div className="label">
                 <span className="label-text text-gray-500">Mobile </span>
@@ -181,7 +176,7 @@ const UpdateProfile = () => {
             </label>
 
             {/* select gender  */}
-            <div data-aos="fade-right">
+            <div >
               <div className="label">
                 <span className="label-text text-gray-500">Gender </span>
               </div>
@@ -202,7 +197,6 @@ const UpdateProfile = () => {
             {/* date of birth  */}
             <label
               className="form-control w-full md:my-5"
-              data-aos="fade-right"
             >
               <div className="label">
                 <span className="label-text text-gray-500">Date OF Birth </span>
@@ -219,7 +213,6 @@ const UpdateProfile = () => {
             {/* Country  */}
             <label
               className="form-control w-full md:my-5"
-              data-aos="fade-right"
             >
               <div className="label">
                 <span className="label-text text-gray-500">Country </span>
@@ -235,9 +228,9 @@ const UpdateProfile = () => {
           </div>
 
           {/* section 2  */}
-          <div className="w-full space-y-4">
+          <div className="w-full space-y-4" data-aos="fade-left">
             {/* state  */}
-            <label className="form-control w-full md:my-5" data-aos="fade-left">
+            <label className="form-control w-full md:my-5" >
               <div className="label">
                 <span className="label-text text-gray-500">State </span>
               </div>
@@ -251,7 +244,7 @@ const UpdateProfile = () => {
             </label>
 
             {/* post code  */}
-            <label className="form-control w-full md:my-5" data-aos="fade-left">
+            <label className="form-control w-full md:my-5" >
               <div className="label">
                 <span className="label-text text-gray-500">Post Code </span>
               </div>
@@ -265,7 +258,7 @@ const UpdateProfile = () => {
             </label>
 
             {/* Division */}
-            <label className="form-control w-full md:my-5" data-aos="fade-left">
+            <label className="form-control w-full md:my-5" >
               <div className="label">
                 <span className="label-text text-gray-500">Division </span>
               </div>
@@ -279,7 +272,7 @@ const UpdateProfile = () => {
             </label>
 
             {/* District     */}
-            <label className="form-control w-full md:my-5" data-aos="fade-left">
+            <label className="form-control w-full md:my-5" >
               <div className="label">
                 <span className="label-text text-gray-500">District </span>
               </div>
@@ -293,7 +286,7 @@ const UpdateProfile = () => {
             </label>
 
             {/* Upazilla     */}
-            <label className="form-control w-full md:my-5" data-aos="fade-left">
+            <label className="form-control w-full md:my-5" >
               <div className="label">
                 <span className="label-text text-gray-500">Upazilla </span>
               </div>
@@ -307,7 +300,7 @@ const UpdateProfile = () => {
             </label>
 
             {/* Village     */}
-            <label className="form-control w-full md:my-5" data-aos="fade-left">
+            <label className="form-control w-full md:my-5" >
               <div className="label">
                 <span className="label-text text-gray-500">Village </span>
               </div>
@@ -323,7 +316,7 @@ const UpdateProfile = () => {
         </div>
 
         {/* Road Number & House Number     */}
-        <label className="form-control px-4 w-full " data-aos="fade-left">
+        <label className="form-control px-4 w-full " >
           <div className="label">
             <span className="label-text text-gray-500">
               Road Number & House Number{" "}
@@ -340,7 +333,6 @@ const UpdateProfile = () => {
 
         <div className="flex justify-center mt-4 md:my-5 gap-4">
           <button
-            data-aos="fade-right"
             className="btn bg-green-500 text-white btn-sm drop-shadow-xl hover:bg-green-600 "
             disabled={manualLoading || isLoading || updateLoading}
           >
@@ -353,7 +345,6 @@ const UpdateProfile = () => {
           </button>
 
           <button
-            data-aos="fade-left"
             onClick={handelBack}
             className="btn bg-red-500 text-white btn-sm drop-shadow-xl hover:bg-red-600"
           >

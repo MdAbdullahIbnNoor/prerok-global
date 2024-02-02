@@ -52,8 +52,9 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
-    const userCollection = client.db("prerokGlobalDB").collection("users")
-    const bookingCollection = client.db("prerokGlobalDB").collection("bookings")
+    const userCollection = client.db("prerokGlobalDB").collection("users");
+    const bookingCollection = client.db("prerokGlobalDB").collection("bookings");
+    const addressCollection = client.db("prerokGlobalDB").collection("address");
 
     // await client.connect();
 
@@ -226,6 +227,77 @@ async function run() {
         const filter = { _id: new ObjectId(id) };
         const result = await bookingCollection.deleteOne(filter)
         res.send(result)
+      } catch (error) {
+        res.status(500).send({ message: error.message })
+      }
+    })
+
+    //endpoint for get a all by userId
+    app.get('/api/addressbook/get-all-address/:id', async (req, res) => {
+      try {
+        const id = req.params.id;
+        const filter = { userID: id };
+        const result = await addressCollection.find(filter).toArray();
+        res.status(200).send(result)
+      } catch (error) {
+        res.status(500).send({ message: error.message })
+      }
+    })
+
+    //endpoint for get a single address by addressid
+    app.get('/api/addressbook/get-a-address/:id', async (req, res) => {
+      try {
+        const id = req.params.id;
+        const filter = { _id: new ObjectId(id) };
+        const result = await addressCollection.findOne(filter);
+        res.status(200).send(result)
+      } catch (error) {
+        res.status(500).send({ message: error.message })
+      }
+    })
+
+    //endpoint for post a new address
+    app.post('/api/addressbook/add-address', async (req, res) => {
+      try {
+        const address = req.body;
+        const result = await addressCollection.insertOne(address);
+        res.status(201).send(result)
+      } catch (error) {
+        res.status(500).send({ message: error.message })
+      }
+    })
+
+    //endpoint for update a existing address
+    app.put('/api/addressbook/update-address/:id', async (req, res) => {
+      try {
+        const id = req.params.id;
+        const filter = { _id: new ObjectId(id) };
+        const address = req.body;
+        const updatedDoc = {
+          $set: {
+            name: address.name,
+            phone: address.phone,
+            email: address.email,
+            country: address.country,
+            address: address.address,
+            postal_code: address.postal_code,
+            district: address.district,
+            division: address.division,
+          }
+        }
+        const result = await addressCollection.updateOne(filter, updatedDoc);
+        res.status(201).send(result)
+      } catch (error) {
+        res.status(500).send({ message: error.message })
+      }
+    })
+
+    app.delete('/api/addressbook/delete-address/:id', async (req, res) => {
+      try {
+        const id = req.params.id;
+        const filter = { _id: new ObjectId(id) };
+        const result = await addressCollection.deleteOne(filter);
+        res.send(result);
       } catch (error) {
         res.status(500).send({ message: error.message })
       }

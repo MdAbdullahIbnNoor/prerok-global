@@ -14,6 +14,9 @@ import RegistrationPage from "./Layouts/RegistrationPage/RegistrationPage";
 import PlaceOrder from "./Components/Shipping/PlaceOrder/PlaceOrder";
 import CustomsDocument from "./Layouts/CustomsDocument/CustomsDocument";
 import UpdateProfile from "./Components/UserProfile/UpdateProfile";
+import Dashboard from "./Layouts/Dashboard/Dashboard";
+import Bookings from "./Layouts/Dashboard/User/Bookings/Bookings";
+import AddressBook from "./Layouts/Dashboard/User/AddressBooking/AddressBook";
 import PricingPage from "./Components/PricingPage/PricingPage";
 
 
@@ -41,11 +44,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/contact",
-        element: <ContactUs></ContactUs> ,
-      },
-      {
-        path: "/userProfile",
-        element: <UserProfile></UserProfile>,
+        element: <ContactUs></ContactUs>,
       },
       {
         path: "/productTracking",
@@ -57,38 +56,55 @@ const router = createBrowserRouter([
       },
       {
         path: "/customDocument",
-        element: <CustomsDocument/>
+        element: <CustomsDocument />
+      },
+
+    ],
+  },
+  {
+    path: '/dashboard',
+    element: <Dashboard></Dashboard>,
+    children: [
+      {
+        path: 'profile',
+        element: <UserProfile></UserProfile>
       },
       {
-        path: "/updateProfile/:email",
+        path: 'address-book',
+        element: <AddressBook></AddressBook>
+      },
+      {
+        path: 'update-profile/:email',
         element: <UpdateProfile></UpdateProfile>
       },
       {
+        path: 'bookings',
+        element: <Bookings></Bookings>
         path: "/pricing",
         element: <PricingPage></PricingPage>
       }
-    ],
+    ]
   },
 
   {
-    path:'faq',
+    path: 'faq',
     element: <FAQ></FAQ>,
-    children:[
-        // normal users route
-        {
-            path:'generelfaq',
-            element:<GenerelFAQ></GenerelFAQ>,
-        },
-        {
-          path:'securityfaq',
-          element:<SecurityFAQ></SecurityFAQ>,
-        },
-        {
-          path: 'featurefaq',
-          element: <FeatureFAQ></FeatureFAQ>,
-        },
+    children: [
+      // normal users route
+      {
+        path: 'generelfaq',
+        element: <GenerelFAQ></GenerelFAQ>,
+      },
+      {
+        path: 'securityfaq',
+        element: <SecurityFAQ></SecurityFAQ>,
+      },
+      {
+        path: 'featurefaq',
+        element: <FeatureFAQ></FeatureFAQ>,
+      },
     ]
-}
+  }
 
 
 ]);

@@ -29,7 +29,7 @@ const UserProfile = () => {
   };
 
   return (
-    <div className=" md:w-3/4  mx-auto bg-slate-50 overflow-hidden p-4">
+    <div className="mx-auto overflow-hidden p-4">
       <div className="md:flex gap-10 lg:gap-20">
         <div className="bg-white shadow-lg rounded-2xl md:w-3/3 ">
           <img
@@ -38,23 +38,18 @@ const UserProfile = () => {
             className="w-full object-cover mb-4 rounded-t-lg h-48"
           />
           <div className="flex flex-col items-center justify-center p-4 -mt-16">
-            <a href="#" className="relative block">
-              <img
-                alt="profile"
-                src={userData?.image}
-                className="mx-auto object-cover rounded-full h-28 w-28  border-2 border-white "
-              />
-            </a>
+            <img
+              alt="profile"
+              src={userData?.image}
+              className="mx-auto object-cover rounded-full h-28 w-28  border-2 border-white "
+            />
 
             <p className="p-2 px-4 text-xs text-white bg-green-600 rounded-full">
               {"user"}
             </p>
-            <p
-              className="mt-2 text-xl font-medium text-gray-800 drop-shadow-lg "
-              data-aos="fade-left"
-            >
+            <h4 className="mt-2 text-xl font-medium text-gray-800">
               {userData?.name}
-            </p>
+            </h4>
 
             <Link to={`/updateProfile/${userData?.email}`}>
               <button
@@ -69,9 +64,6 @@ const UserProfile = () => {
               <h1>
                 <IoMdAlert className="text-red-500" />
               </h1>
-              <h2 className="text-sm drop-shadow-xl ">
-                This account is created at {`----dynamic value--`}{" "}
-              </h2>
             </div>
             <div className="w-full p-2 mt-4 rounded-lg ">
               <hr />
@@ -80,7 +72,7 @@ const UserProfile = () => {
                   className="font-bold text-gray-500 text-lg mb-3 drop-shadow-lg"
                   data-aos="fade-right"
                 >
-                  Personal Information{" "}
+                  Personal Information
                 </p>
                 <div className="space-y-3" data-aos="fade-right">
                   <p className="flex flex-col">
@@ -105,21 +97,17 @@ const UserProfile = () => {
 
                 <div className="mt-5">
                   <div className="mt-5 mb-5">
-                    <Link to={`/updateProfile/${user?.email}`}>
+                    <Link to={`/dashboard/update-profile/${user?.email}`}>
                       <button
-                        data-aos="fade-up"
-                        data-aos-anchor-placement="bottom-bottom"
-                        className="btn bg-green-500 mr-1  text-white btn-sm drop-shadow-xl hover:bg-green-600"
+                        className="btn bg-green-500 mr-1  text-white btn-sm  hover:bg-green-600"
                       >
                         Update
                       </button>
                     </Link>
 
                     <button
-                      data-aos="fade-up"
-                      data-aos-anchor-placement="bottom-bottom"
                       onClick={handelBack}
-                      className="btn bg-red-500 text-white btn-sm drop-shadow-xl hover:bg-red-600"
+                      className="btn bg-red-500 text-white btn-sm  hover:bg-red-600"
                     >
                       Cancle
                     </button>
@@ -254,11 +242,9 @@ const UserProfile = () => {
             </div>
           </div>
           <div className="blocl text-center">
-            <Link to={`/updateProfile/${user?.email}`}>
+            <Link to={`/dashboard/update-profile/${user?.email}`}>
               <button
-                data-aos="fade-left"
-                data-aos-anchor-placement="bottom-bottom"
-                className="btn bg-green-500 mr-1 px-10  text-white btn-sm drop-shadow-xl hover:bg-green-600"
+                className="btn bg-green-500 mr-1 px-10 text-white btn-sm hover:bg-green-600"
               >
                 Add Info
               </button>
