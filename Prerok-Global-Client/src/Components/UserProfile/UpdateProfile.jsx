@@ -29,8 +29,6 @@ const UpdateProfile = () => {
     },
   });
 
-  console.log(users)
-
   if (isLoading) {
     return <Loading></Loading>;
   }
@@ -75,7 +73,7 @@ const UpdateProfile = () => {
       if (response.modifiedCount > 0) {
         toast.success("User Updated");
         refetch();
-        navigate("/userProfile");
+        navigate("/dashboard/profile");
         setUpdateLoading(false);
       }
       setUpdateLoading(false);

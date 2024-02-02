@@ -46,10 +46,6 @@ const router = createBrowserRouter([
         element: <ContactUs></ContactUs>,
       },
       {
-        path: "/userProfile",
-        element: <UserProfile></UserProfile>,
-      },
-      {
         path: "/productTracking",
         element: <ProductTracking></ProductTracking>,
       },
@@ -61,10 +57,7 @@ const router = createBrowserRouter([
         path: "/customDocument",
         element: <CustomsDocument />
       },
-      {
-        path: "/updateProfile/:email",
-        element: <UpdateProfile></UpdateProfile>
-      }
+
     ],
   },
   {
