@@ -3,7 +3,7 @@ import { useState } from "react";
 import "../Stepper/Stepper.css";
 import { TiTick } from "react-icons/ti";
 import AddressForm from "./AddressForm";
-import Processing from "./processing";
+// import Processing from "./processing";
 
 const PricingPage = () => {
 
