@@ -1,55 +1,13 @@
-// import Stepper from "../Stepper/Stepper";
-import { useState } from "react";
-import "../Stepper/Stepper.css";
-import { TiTick } from "react-icons/ti";
-import AddressForm from "./AddressForm";
-import Processing from "./processing";
+import React from 'react'
 
-const PricingPage = () => {
-
-    const steps = ["Customer Info", "Shipping Info", "Payment", "Processing", "On Delivery", "Delivered"];
-    const [currentStep, setCurrentStep] = useState(1);
-    const [complete, setComplete] = useState(false);
-
-    const handleStepper = (e) => {
-        e.preventDefault();
-        currentStep === steps.length
-            ? setComplete(true)
-            : setCurrentStep((prev) => prev + 1);
-    }
-
-
+const AddressForm = ({ handleStepper }) => {
     return (
-        <div className="w-11/12 mx-auto">
-            <>
-                <div className="hidden lg:flex  justify-between p-10 bg-slate-600 w-full lg:w-3/4 mx-auto text-black">
-                    {steps?.map((step, i) => (
-                        <div
-                            key={i}
-                            className={`step-item ${currentStep === i + 1 && "active"} ${(i + 1 < currentStep || complete) && "complete"
-                                } `}
-                        >
-                            <div className="step">
-                                {i + 1 < currentStep || complete ? <TiTick size={24} /> : i + 1}
-                            </div>
-                            <p className="text-gray-500">{step}</p>
-                        </div>
-                    ))}
-                </div>
-            </>
-
-            {/* first section  */}
-            <div className="bg-slate-500 text-white flex justify-between px-3 py-3">
-                <h2 className="text-2xl">PrerokGlobal Ship Manager</h2>
-                <div className="flex items-center gap-5 text-sm">
-                    <div>Advance Shipping</div>
-                    <div>Help</div>
-                </div>
+        <div>
+            <div className="flex bg-slate-300 text-slate-700 px-3 py-2 gap-2 text-lg font-medium mt-10">
+                <div>1.</div>
+                <div>Address Information</div>
             </div>
-            {/* second section  */}
-            
-            {/* form section  */}
-            {/* <div>
+            <div>
                 <div className="px-5">
                     <h2 className="text-2xl mt-2 text-amber-500">Enter your (From) address and the recipient&apos;s (To) address.</h2>
                 </div>
@@ -57,7 +15,7 @@ const PricingPage = () => {
                     <form onSubmit={handleStepper} className="flex flex-col lg:flex-row  gap-10">
                         <div className="w-full lg:w-1/2">
                             <h4 className="font-semibold text-amber-500 ml-5">From Address</h4>
-                            <hr className="ml-5"/>
+                            <hr className="ml-5" />
                             <div>
                                 <div className="flex justify-between  p-3 px-12">
                                     <div>Your Name:</div>
@@ -99,7 +57,7 @@ const PricingPage = () => {
                                     <div>Tax ID no.</div>
                                     <div><input type="text" className="border px-2" name="" placeholder="" id="" /></div>
                                 </div>
-                                
+
                             </div>
                         </div>
                         <div className="w-full lg:w-1/2">
@@ -147,22 +105,20 @@ const PricingPage = () => {
                                     <div><input type="text" className="border px-2" name="" placeholder="" id="" /></div>
                                 </div>
                                 <div className="flex justify-end gap-5 p-3 px-12">
-                                    
+
                                     <div><input type="checkbox" name="" id="" /></div>
                                     <div>This is residential address</div>
                                 </div>
                                 <div className="flex justify-end">
-                                <input type="submit"  className="btn bg-yellow-400 w-32 p-2 flex text-center items-center justify-center mr-12" value="Continue" />
+                                    <input type="submit" className="btn bg-yellow-400 w-32 p-2 flex text-center items-center justify-center mr-12" value="Continue" />
                                 </div>
                             </div>
                         </div>
                     </form>
                 </div>
-            </div> */}
-            {(currentStep === 1 || currentStep === 2 || currentStep === 3) && <AddressForm handleStepper={handleStepper}/>}
-            {currentStep === 4 && <Processing />}
+            </div>
         </div>
-    );
-};
+    )
+}
 
-export default PricingPage;
+export default AddressForm
