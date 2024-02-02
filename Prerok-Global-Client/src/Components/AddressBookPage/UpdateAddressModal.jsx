@@ -5,22 +5,22 @@ import { FaPlus } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
 import toast from "react-hot-toast";
 import { axiosSecure } from '../../api/axiosInstances';
+import { MdEdit } from 'react-icons/md';
 
 
-const CreateAddressModal = ({ id, refetch }) => {
+const UpdateAddressModal = ({ refetch, data }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [manualLoading, setManualLoading] = useState(false);
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
 
-    const onSubmit = async (data) => {
+    const onSubmit = async (inputData) => {
         try {
             setManualLoading(true);
-            const addressData = data;
-            addressData.userID = id;
-            const { data: dbResponse } = await axiosSecure.post('/api/addressbook/add-address', addressData);
-            if (dbResponse.acknowledged) {
-                toast.success("Address Added");
+            const addressData = inputData;
+            const { data: dbResponse } = await axiosSecure.put(`/api/addressbook/update-address/${data._id}`, addressData);
+            if (dbResponse.modifiedCount > 0) {
+                toast.success("Address Updated");
                 reset()
                 setIsOpen(false)
                 refetch()
@@ -33,12 +33,7 @@ const CreateAddressModal = ({ id, refetch }) => {
     }
     return (
         <>
-            <button onClick={() => setIsOpen(true)} className="btn text-black btn-wide shadow-md">
-                <span>
-                    <FaPlus className="text-amber-500 text-2xl" />
-                </span>{" "}
-                Add New Delivery Address
-            </button>
+            <button onClick={() => setIsOpen(true)} className="text-xl font-semibold inline cursor-pointer"><MdEdit></MdEdit></button>
             <div className={`${isOpen ? "scale-100" : "scale-0"} bg-white/40  duration-300 ease-out h-screen w-full px-2 top-0 right-0 flex items-center justify-center z-50 fixed`}>
                 <div className='relative w-full md:w-8/12 lg:w-4/12'>
                     {/* input form */}
@@ -50,14 +45,14 @@ const CreateAddressModal = ({ id, refetch }) => {
                             onClick={() => setIsOpen(false)}
                             className='px-2 py-2 text-2xl rounded-full bg-gray-200 absolute top-3 right-3 cursor-pointer' ><RxCross2></RxCross2></span>
 
-                        <h2 className="text-2xl text-amber-500 mb-6 mt-4 font-semibold text-center">Details About New Address</h2>
+                        <h2 className="text-2xl text-amber-500 mb-6 mt-4 font-semibold text-center">Update {data.name}'s Address</h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
                             {/* Name Field */}
                             <div className="flex mb-4">
                                 {/* <p className=" w-1/3"><label className="text-left font-semibold">Name</label></p> */}
                                 <div className="w-full">
-                                    <input type="text" {...register("name", { required: true })} placeholder="Name" className="border py-1 outline-none w-full px-3" />
+                                    <input defaultValue={data?.name} type="text" {...register("name", { required: true })} placeholder="Name" className="border py-1 outline-none w-full px-3" />
                                     {errors.name && <p className="text-red-600">Name is required</p>}
                                 </div>
                             </div>
@@ -67,7 +62,7 @@ const CreateAddressModal = ({ id, refetch }) => {
                             <div className="flex mb-4">
                                 {/* <p className=" w-1/3"><label className="text-left font-semibold">Phone</label></p> */}
                                 <div className="w-full">
-                                    <input type="number" {...register("phone", { required: true })} placeholder="Phone" className="border py-1 outline-none w-full px-3" />
+                                    <input type="number" defaultValue={data?.phone} {...register("phone", { required: true })} placeholder="Phone" className="border py-1 outline-none w-full px-3" />
                                     {errors.phone && <p className="text-red-600">Phone is required</p>}
                                 </div>
                             </div>
@@ -77,7 +72,7 @@ const CreateAddressModal = ({ id, refetch }) => {
                             <div className="flex mb-4">
                                 {/* <p className=" w-1/3"><label className="text-left font-semibold">Email</label></p> */}
                                 <div className="w-full">
-                                    <input type="email" {...register("email", { required: true })} placeholder="Email" className="border py-1 outline-none w-full px-3" />
+                                    <input type="email" defaultValue={data?.email} {...register("email", { required: true })} placeholder="Email" className="border py-1 outline-none w-full px-3" />
                                     {errors.email && <p className="text-red-600">Email is required</p>}
                                 </div>
                             </div>
@@ -86,7 +81,7 @@ const CreateAddressModal = ({ id, refetch }) => {
                             <div className="flex mb-4">
                                 {/* <p className=" w-1/3"><label className="text-left font-semibold">Country</label></p> */}
                                 <div className="w-full">
-                                    <input type="text" {...register("country", { required: true })} placeholder="Country" className="border py-1 outline-none w-full px-3" />
+                                    <input type="text" defaultValue={data?.country} {...register("country", { required: true })} placeholder="Country" className="border py-1 outline-none w-full px-3" />
                                     {errors.country && <p className="text-red-600">Country is required</p>}
                                 </div>
                             </div>
@@ -95,7 +90,7 @@ const CreateAddressModal = ({ id, refetch }) => {
                             <div className="flex mb-4">
                                 {/* <p className=" w-1/3"><label className="text-left font-semibold">Address</label></p> */}
                                 <div className="w-full">
-                                    <input type="text" {...register("address", { required: true })} placeholder="Address" className="border py-1 outline-none w-full px-3" />
+                                    <input type="text" defaultValue={data?.address} {...register("address", { required: true })} placeholder="Address" className="border py-1 outline-none w-full px-3" />
                                     {errors.address && <p className="text-red-600">Address is required</p>}
                                 </div>
                             </div>
@@ -104,7 +99,7 @@ const CreateAddressModal = ({ id, refetch }) => {
                             <div className="flex mb-4">
                                 {/* <p className=" w-1/3"><label className="text-left font-semibold">Postal code</label></p> */}
                                 <div className="w-full">
-                                    <input type="text" {...register("postal_code", { required: true })} placeholder="Postal code" className="border py-1 outline-none w-full px-3" />
+                                    <input type="text" defaultValue={data?.postal_code} {...register("postal_code", { required: true })} placeholder="Postal code" className="border py-1 outline-none w-full px-3" />
                                     {errors.postal_code && <p className="text-red-600">Postal code is required</p>}
                                 </div>
                             </div>
@@ -114,7 +109,7 @@ const CreateAddressModal = ({ id, refetch }) => {
                             <div className="flex mb-4">
                                 {/* <p className=" w-1/3"><label className="text-left font-semibold">District</label></p> */}
                                 <div className="w-full">
-                                    <input type="text" {...register("district", { required: true })} placeholder="District" className="border py-1 outline-none w-full px-3" />
+                                    <input type="text" defaultValue={data?.district} {...register("district", { required: true })} placeholder="District" className="border py-1 outline-none w-full px-3" />
                                     {errors.district && <p className="text-red-600">District is required</p>}
                                 </div>
                             </div>
@@ -123,7 +118,7 @@ const CreateAddressModal = ({ id, refetch }) => {
                             <div className="flex mb-4">
                                 {/* <p className=" w-1/3"><label className="text-left font-semibold">Division</label></p> */}
                                 <div className="w-full">
-                                    <input type="text" {...register("division", { required: true })} placeholder="Division" className="border py-1 outline-none w-full px-3" />
+                                    <input type="text" defaultValue={data?.division} {...register("division", { required: true })} placeholder="Division" className="border py-1 outline-none w-full px-3" />
                                     {errors.division && <p className="text-red-600">Division is required</p>}
                                 </div>
                             </div>
@@ -134,7 +129,7 @@ const CreateAddressModal = ({ id, refetch }) => {
                                 <span>
                                     <FaPlus className="text-amber-500 text-2xl" />
                                 </span>
-                                Add Address
+                                Update Address
                             </button>
                         </div>
                     </form>
@@ -144,4 +139,4 @@ const CreateAddressModal = ({ id, refetch }) => {
     );
 };
 
-export default CreateAddressModal;
+export default UpdateAddressModal;

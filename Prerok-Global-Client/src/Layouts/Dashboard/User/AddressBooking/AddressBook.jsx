@@ -3,7 +3,7 @@ import useAuth from "../../../../hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import { axiosSecure } from "../../../../api/axiosInstances";
 import Loading from "../../../../Components/Shared/Loading/Loading";
-import { MdEdit, MdDelete } from 'react-icons/md';
+import AddressCard from "../../../../Components/AddressBookPage/AddressCard";
 
 const AddressBook = () => {
     const { user } = useAuth();
@@ -16,7 +16,6 @@ const AddressBook = () => {
             return allData;
         },
     });
-
 
     if (isLoading) {
         return <Loading></Loading>
@@ -35,37 +34,7 @@ const AddressBook = () => {
                     data?.allAddress.length > 0 ?
                         <div className="grid grid-cols-1 md:grid-cols-2 w-full mx-auto p-2 gap-6">
                             {
-                                data?.allAddress?.map(address => <div key={address._id} className="bg-gray-50  md:flex justify-between p-3 px-5 shadow-md rounded-md">
-                                    {/* user info */}
-                                    <div className="space-y-2 w-full">
-                                        <div className="flex justify-between">
-                                            <p className="text-black font-semibold text-xl">{address.name}</p>
-                                            {/* edit and delete button  */}
-                                            <div className="flex gap-3 items-center justify-end right-3 top-3">
-                                                <button className="text-xl font-semibold inline cursor-pointer"><MdEdit></MdEdit></button>
-                                                <button className="text-xl font-semibold inline cursor-pointer"><MdDelete></MdDelete></button>
-                                            </div>
-                                        </div>
-
-                                        <div className="flex items-center gap-6">
-                                            <p className="text-gray-500 font-medium">Phone: {address.phone} </p>
-                                            <p className="text-gray-500 font-medium">Email: {address.email} </p>
-                                        </div>
-                                        <div className="flex items-center gap-6">
-                                            <p className="text-gray-500 font-medium">Country: {address.country} </p>
-                                            <p className="text-gray-500 font-medium">Postal Code: {address.postal_code} </p>
-                                        </div>
-                                        <div className="flex items-center gap-6">
-                                            <p className="text-gray-500 font-medium">District: {address.district} </p>
-                                            <p className="text-gray-500 font-medium">Division: {address.division} </p>
-                                        </div>
-
-                                        <p className="text-gray-500 font-medium">Adreess: {address.address} </p>
-
-                                    </div>
-                                </div>
-
-                                )
+                                data?.allAddress?.map(address => <AddressCard refetch={refetch} address={address} key={address._id}></AddressCard>)
                             }
                         </div>
                         :
