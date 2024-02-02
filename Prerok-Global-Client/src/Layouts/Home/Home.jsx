@@ -6,7 +6,7 @@ import { Toaster } from 'react-hot-toast';
 
 const Home = () => {
   return (
-    <div>
+    <div className="px-4">
       <Toaster
         position="top-center"
         reverseOrder={false}
