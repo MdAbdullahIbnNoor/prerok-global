@@ -2,14 +2,33 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaPlus } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
+import toast from "react-hot-toast";
+import { axiosSecure } from '../../api/axiosInstances';
 
-const CreateAddressModal = () => {
+
+const CreateAddressModal = ({ id, refetch }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
-    const { register, handleSubmit, formState: { errors }, reset } = useForm()
+    const [manualLoading, setManualLoading] = useState(false);
+    const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
-    const onSubmit = (data) => {
-        console.log(data);
+
+    const onSubmit = async (data) => {
+        try {
+            setManualLoading(true);
+            const addressData = data;
+            addressData.userID = id;
+            const { data: dbResponse } = await axiosSecure.post('/api/addressbook/add-address', addressData);
+            if (dbResponse.acknowledged) {
+                toast.success("Address Added");
+                reset()
+                setIsOpen(false)
+                refetch()
+            }
+            setManualLoading(false)
+        } catch (error) {
+            toast.error(error.message)
+            setManualLoading(false)
+        }
     }
     return (
         <>
@@ -30,67 +49,24 @@ const CreateAddressModal = () => {
                             onClick={() => setIsOpen(false)}
                             className='px-2 py-2 text-2xl rounded-full bg-gray-200 absolute top-3 right-3 cursor-pointer' ><RxCross2></RxCross2></span>
 
-                        <div className="rounded px-2 py-3">
-                            <h2 className="text-2xl text-amber-500 mb-6 mt-4 font-semibold text-center">Details About New Address</h2>
+                        <h2 className="text-2xl text-amber-500 mb-6 mt-4 font-semibold text-center">Details About New Address</h2>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
                             {/* Name Field */}
                             <div className="flex mb-4">
-                                <p className=" w-1/3"><label className="text-left font-semibold">Name</label></p>
-                                <div className=" w-2/3">
-                                    <input type="text" {...register("name", { required: true })} placeholder="" className="border py-1 outline-none w-full px-3" />
+                                {/* <p className=" w-1/3"><label className="text-left font-semibold">Name</label></p> */}
+                                <div className="w-full">
+                                    <input type="text" {...register("name", { required: true })} placeholder="Name" className="border py-1 outline-none w-full px-3" />
                                     {errors.name && <p className="text-red-600">Name is required</p>}
                                 </div>
                             </div>
 
-                            {/* Company field */}
-                            <div className="flex mb-4">
-                                <p className=" w-1/3"><label className="text-left font-semibold">Company</label></p>
-                                <div className=" w-2/3">
-                                    <input type="text" {...register("company")} placeholder="" className="border py-1 outline-none w-full px-3" />
-                                </div>
-                            </div>
-
-                            {/* Country Field */}
-                            <div className="flex mb-4">
-                                <p className=" w-1/3"><label className="text-left font-semibold">Country / Location</label></p>
-                                <div className=" w-2/3">
-                                    <input type="text" {...register("country", { required: true })} placeholder="" className="border py-1 outline-none w-full px-3" />
-                                    {errors.country && <p className="text-red-600">Country is required</p>}
-                                </div>
-                            </div>
-                            {/* Address Field */}
-                            <div className="flex mb-4">
-                                <p className=" w-1/3"><label className="text-left font-semibold">Address</label></p>
-                                <div className=" w-2/3">
-                                    <input type="text" {...register("address", { required: true })} placeholder="" className="border py-1 outline-none w-full px-3" />
-                                    {errors.address && <p className="text-red-600">Address is required</p>}
-                                </div>
-                            </div>
-
-                            {/* Postal code Field */}
-                            <div className="flex mb-4">
-                                <p className=" w-1/3"><label className="text-left font-semibold">Postal code</label></p>
-                                <div className=" w-2/3">
-                                    <input type="text" {...register("postal_code", { required: true })} placeholder="" className="border py-1 outline-none w-full px-3" />
-                                    {errors.postal_code && <p className="text-red-600">Postal code is required</p>}
-                                </div>
-                            </div>
-
-
-                            {/* City Field */}
-                            <div className="flex mb-4">
-                                <p className=" w-1/3"><label className="text-left font-semibold">City</label></p>
-                                <div className=" w-2/3">
-                                    <input type="text" {...register("city", { required: true })} placeholder="" className="border py-1 outline-none w-full px-3" />
-                                    {errors.city && <p className="text-red-600">City is required</p>}
-                                </div>
-                            </div>
 
                             {/* Phone Field */}
                             <div className="flex mb-4">
-                                <p className=" w-1/3"><label className="text-left font-semibold">Phone</label></p>
-                                <div className=" w-2/3">
-                                    <input type="number" {...register("phone", { required: true })} placeholder="" className="border py-1 outline-none w-full px-3" />
+                                {/* <p className=" w-1/3"><label className="text-left font-semibold">Phone</label></p> */}
+                                <div className="w-full">
+                                    <input type="number" {...register("phone", { required: true })} placeholder="Phone" className="border py-1 outline-none w-full px-3" />
                                     {errors.phone && <p className="text-red-600">Phone is required</p>}
                                 </div>
                             </div>
@@ -98,21 +74,68 @@ const CreateAddressModal = () => {
 
                             {/* Email Field */}
                             <div className="flex mb-4">
-                                <p className=" w-1/3"><label className="text-left font-semibold">Email</label></p>
-                                <div className=" w-2/3">
-                                    <input type="email" {...register("email", { required: true })} placeholder="" className="border py-1 outline-none w-full px-3" />
+                                {/* <p className=" w-1/3"><label className="text-left font-semibold">Email</label></p> */}
+                                <div className="w-full">
+                                    <input type="email" {...register("email", { required: true })} placeholder="Email" className="border py-1 outline-none w-full px-3" />
                                     {errors.email && <p className="text-red-600">Email is required</p>}
                                 </div>
                             </div>
 
-                        </div>
+                            {/* Country Field */}
+                            <div className="flex mb-4">
+                                {/* <p className=" w-1/3"><label className="text-left font-semibold">Country</label></p> */}
+                                <div className="w-full">
+                                    <input type="text" {...register("country", { required: true })} placeholder="Country" className="border py-1 outline-none w-full px-3" />
+                                    {errors.country && <p className="text-red-600">Country is required</p>}
+                                </div>
+                            </div>
 
-                        <button disabled={isLoading} className="btn text-black btn-wide shadow-md">
-                            <span>
-                                <FaPlus className="text-amber-500 text-2xl" />
-                            </span>
-                            Add New Delivery Address
-                        </button>
+                            {/* Address Field */}
+                            <div className="flex mb-4">
+                                {/* <p className=" w-1/3"><label className="text-left font-semibold">Address</label></p> */}
+                                <div className="w-full">
+                                    <input type="text" {...register("address", { required: true })} placeholder="Address" className="border py-1 outline-none w-full px-3" />
+                                    {errors.address && <p className="text-red-600">Address is required</p>}
+                                </div>
+                            </div>
+
+                            {/* Postal code Field */}
+                            <div className="flex mb-4">
+                                {/* <p className=" w-1/3"><label className="text-left font-semibold">Postal code</label></p> */}
+                                <div className="w-full">
+                                    <input type="text" {...register("postal_code", { required: true })} placeholder="Postal code" className="border py-1 outline-none w-full px-3" />
+                                    {errors.postal_code && <p className="text-red-600">Postal code is required</p>}
+                                </div>
+                            </div>
+
+
+                            {/* District Field */}
+                            <div className="flex mb-4">
+                                {/* <p className=" w-1/3"><label className="text-left font-semibold">District</label></p> */}
+                                <div className="w-full">
+                                    <input type="text" {...register("district", { required: true })} placeholder="District" className="border py-1 outline-none w-full px-3" />
+                                    {errors.district && <p className="text-red-600">District is required</p>}
+                                </div>
+                            </div>
+
+                            {/* Division Field */}
+                            <div className="flex mb-4">
+                                {/* <p className=" w-1/3"><label className="text-left font-semibold">Division</label></p> */}
+                                <div className="w-full">
+                                    <input type="text" {...register("division", { required: true })} placeholder="Division" className="border py-1 outline-none w-full px-3" />
+                                    {errors.division && <p className="text-red-600">Division is required</p>}
+                                </div>
+                            </div>
+
+                        </div>
+                        <div className='text-center'>
+                            <button disabled={manualLoading} className="btn text-black btn-wide shadow-md ">
+                                <span>
+                                    <FaPlus className="text-amber-500 text-2xl" />
+                                </span>
+                                Add Address
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>

@@ -238,7 +238,7 @@ async function run() {
         const id = req.params.id;
         const filter = { userID: id };
         const result = await addressCollection.find(filter).toArray();
-        res.status(201).send(result)
+        res.status(200).send(result)
       } catch (error) {
         res.status(500).send({ message: error.message })
       }
@@ -250,7 +250,7 @@ async function run() {
         const id = req.params.id;
         const filter = { _id: new ObjectId(id) };
         const result = await addressCollection.findOne(filter);
-        res.status(201).send(result)
+        res.status(200).send(result)
       } catch (error) {
         res.status(500).send({ message: error.message })
       }
