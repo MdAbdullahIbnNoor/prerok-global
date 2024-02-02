@@ -2,8 +2,8 @@
 import { useState } from "react";
 import "../Stepper/Stepper.css";
 import { TiTick } from "react-icons/ti";
+import { Link } from "react-router-dom";
 import AddressForm from "./AddressForm";
-// import Processing from "./processing";
 
 const PricingPage = () => {
 
@@ -20,7 +20,9 @@ const PricingPage = () => {
 
 
     return (
+
         <div className="w-11/12 mx-auto">
+
             <>
                 <div className="hidden lg:flex  justify-between p-10 bg-slate-600 w-full lg:w-3/4 mx-auto text-black">
                     {steps?.map((step, i) => (
@@ -36,6 +38,16 @@ const PricingPage = () => {
                         </div>
                     ))}
                 </div>
+
+                {/* {!complete && (
+        <button
+          className="btn"
+          onClick={handleStepper}
+        >
+          {currentStep === steps.length ? "Finish" : "Next"}
+        </button>
+      )} */}
+
             </>
 
             {/* first section  */}
@@ -57,7 +69,7 @@ const PricingPage = () => {
                     <form onSubmit={handleStepper} className="flex flex-col lg:flex-row  gap-10">
                         <div className="w-full lg:w-1/2">
                             <h4 className="font-semibold text-amber-500 ml-5">From Address</h4>
-                            <hr className="ml-5"/>
+                            <hr className="ml-5" />
                             <div>
                                 <div className="flex justify-between  p-3 px-12">
                                     <div>Your Name:</div>
@@ -99,7 +111,7 @@ const PricingPage = () => {
                                     <div>Tax ID no.</div>
                                     <div><input type="text" className="border px-2" name="" placeholder="" id="" /></div>
                                 </div>
-                                
+
                             </div>
                         </div>
                         <div className="w-full lg:w-1/2">
@@ -147,12 +159,14 @@ const PricingPage = () => {
                                     <div><input type="text" className="border px-2" name="" placeholder="" id="" /></div>
                                 </div>
                                 <div className="flex justify-end gap-5 p-3 px-12">
-                                    
+
                                     <div><input type="checkbox" name="" id="" /></div>
                                     <div>This is residential address</div>
                                 </div>
                                 <div className="flex justify-end">
-                                <input type="submit"  className="btn bg-yellow-400 w-32 p-2 flex text-center items-center justify-center mr-12" value="Continue" />
+                                    <Link to="/dashboard/pricing/2">
+                                        <input type="submit" className="btn bg-yellow-400 w-32 p-2 flex text-center items-center justify-center mr-12" value="Continue" />
+                                    </Link>
                                 </div>
                             </div>
                         </div>
