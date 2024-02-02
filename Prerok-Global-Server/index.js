@@ -9,7 +9,7 @@ const port = process.env.PORT || 5000;
 //middlewares
 app.use(express.json());
 app.use(cors({
-  origin: ["http://localhost:5173"],
+  origin: ["http://localhost:5173", "https://prerokglobal.web.app"],
   credentials: true
 }));
 app.use(cookieParser())
@@ -66,7 +66,7 @@ async function run() {
         res.cookie("token", token, {
           httpOnly: true,
           secure: false,
-          // sameSite: "none"
+          sameSite: "none"
         }).send({ message: "success" })
       } catch (error) {
         res.status(500).send(error.message)

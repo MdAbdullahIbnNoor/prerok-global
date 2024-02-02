@@ -34,7 +34,7 @@ const AddressBook = () => {
                     data?.allAddress.length > 0 ?
                         <div className="grid grid-cols-1 md:grid-cols-2 w-full mx-auto p-2 gap-6">
                             {
-                                data?.allAddress?.map(address => <AddressCard refetch={refetch} address={address} key={address._id}></AddressCard>)
+                              data &&  data?.allAddress?.map(address => <AddressCard refetch={refetch} address={address} key={address._id}></AddressCard>)
                             }
                         </div>
                         :
