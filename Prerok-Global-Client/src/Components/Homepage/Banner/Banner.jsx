@@ -23,21 +23,23 @@ const Banner = () => {
               />
             </svg>
           </p>
-          <p className="my-8 lg:text-xl" >
-            <span data-aos="fade-down">FAST</span> <span>&nbsp;.&nbsp;</span>  <span>SECURED</span><span >&nbsp;.&nbsp;</span>{" "}
-            <span data-aos="fade-up">WORLDVIEW</span>
+          <p className="my-8 lg:text-xl">
+            <span data-aos="fade-down">FAST</span> <span>&nbsp;.&nbsp;</span>{" "}
+            <span>SECURED</span>
+            <span>&nbsp;.&nbsp;</span> <span data-aos="fade-up">WORLDVIEW</span>
           </p>
-          <p className="lg:text-5xl text-2xl font-extrabold"  data-aos="fade-up"
-     data-aos-duration="1000">
-            AWESOME TEMPLATE FOR <br />{" "}
-            <span className="text-yellow-500">COURIER</span> &{" "}
-            <span className="text-yellow-500">DELIVERY</span> SERVICES
+          <p
+            className="lg:text-5xl text-2xl font-extrabold"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+          >
+            Seamless Shipping: <br />{" "}
+            <span className="text-yellow-500">Your Goods</span> |{" "}
+            <span className="text-yellow-500">Our Guarantee</span>
           </p>
         </div>
       </div>
-
-
-      <div className="w-full absolute p-2" >
+      <div className="w-full absolute p-2">
         <div className="lg:w-1/2 w-full mx-auto bg-white border-2 border-red-500 md:h-32 -mt-24 z-10">
           <p className="font-medium text-xl px-8 py-4">
             TRACK YOUR PRODUCT{" "}
@@ -54,13 +56,15 @@ const Banner = () => {
               placeholder="Enter your product ID"
               data-aos="fade-right"
             />
-            <button className="btn btn-sm bg-red-500 hover:bg-black  md:h-14 md:w-72 ml-4 text-white" data-aos="fade-left">
+            <button
+              className="btn btn-sm bg-red-500 hover:bg-black  md:h-14 md:w-72 ml-4 text-white"
+              data-aos="fade-left"
+            >
               TRACK YOUR PRODUCT
             </button>
           </div>
         </div>
       </div>
-      
       <div className="h-32"></div>
     </div>
   );

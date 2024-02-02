@@ -3,10 +3,10 @@ import Home from "./Layouts/Home/Home";
 import Homepage from "./Layouts/Homepage/Homepage";
 import AboutPage from "./Layouts/AboutPage/AboutPage";
 import UserProfile from "./Components/UserProfile/UserProfile";
-import FAQ from './Components/FAQ/FAQ';
-import GenerelFAQ from './Components/FAQ/GenerelFAQ/GenerelFAQ';
-import SecurityFAQ from './Components/FAQ/SecurityFAQ/SecurityFAQ';
-import FeatureFAQ from './Components/FAQ/FeatureFAQ/FeatureFAQ';
+import FAQ from "./Components/FAQ/FAQ";
+import GenerelFAQ from "./Components/FAQ/GenerelFAQ/GenerelFAQ";
+import SecurityFAQ from "./Components/FAQ/SecurityFAQ/SecurityFAQ";
+import FeatureFAQ from "./Components/FAQ/FeatureFAQ/FeatureFAQ";
 import ContactUs from "./Components/ContactUs/ContactUs";
 import ProductTracking from "./Components/ProductTracking/ProductTracking";
 import LoginPage from "./Layouts/LoginPage/LoginPage";
@@ -18,7 +18,6 @@ import Dashboard from "./Layouts/Dashboard/Dashboard";
 import Bookings from "./Layouts/Dashboard/User/Bookings/Bookings";
 import AddressBook from "./Layouts/Dashboard/User/AddressBooking/AddressBook";
 import PricingPage from "./Components/PricingPage/PricingPage";
-
 
 const router = createBrowserRouter([
   {
@@ -32,11 +31,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/login",
-        element: <LoginPage></LoginPage>
+        element: <LoginPage></LoginPage>,
       },
       {
         path: "/registration",
-        element: <RegistrationPage></RegistrationPage>
+        element: <RegistrationPage></RegistrationPage>,
       },
       {
         path: "/about",
@@ -56,57 +55,56 @@ const router = createBrowserRouter([
       },
       {
         path: "/customDocument",
-        element: <CustomsDocument />
+        element: <CustomsDocument />,
       },
-
     ],
   },
   {
-    path: '/dashboard',
+    path: "/dashboard",
     element: <Dashboard></Dashboard>,
     children: [
       {
-        path: 'profile',
-        element: <UserProfile></UserProfile>
+        path: "profile",
+        element: <UserProfile></UserProfile>,
       },
       {
-        path: 'address-book',
-        element: <AddressBook></AddressBook>
+        path: "address-book",
+        element: <AddressBook></AddressBook>,
       },
       {
-        path: 'update-profile/:email',
-        element: <UpdateProfile></UpdateProfile>
+        path: "update-profile/:email",
+        element: <UpdateProfile></UpdateProfile>,
       },
       {
-        path: 'bookings',
-        element: <Bookings></Bookings>
-        path: "/pricing",
-        element: <PricingPage></PricingPage>
-      }
-    ]
+        path: "bookings",
+        element: <Bookings></Bookings>,
+      },
+      {
+        path: "pricing",
+        element: <PricingPage></PricingPage>,
+      },
+    ],
   },
 
   {
-    path: 'faq',
+    path: "faq",
     element: <FAQ></FAQ>,
     children: [
       // normal users route
       {
-        path: 'generelfaq',
+        path: "generelfaq",
         element: <GenerelFAQ></GenerelFAQ>,
       },
       {
-        path: 'securityfaq',
+        path: "securityfaq",
         element: <SecurityFAQ></SecurityFAQ>,
       },
       {
-        path: 'featurefaq',
+        path: "featurefaq",
         element: <FeatureFAQ></FeatureFAQ>,
       },
-    ]
-  }
-
-
+    ],
+  },
 ]);
 
 export default router;
