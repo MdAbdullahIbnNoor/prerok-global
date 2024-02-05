@@ -1,5 +1,6 @@
 const User = require("../models/user.model");
 
+//controler for get user by his email
 exports.getUserByEmail = async (req, res) => {
     try {
         const email = req.params.email;
@@ -10,6 +11,7 @@ exports.getUserByEmail = async (req, res) => {
     }
 }
 
+//controler for create a new user
 exports.createUser = async (req, res) => {
     try {
         const userData = req.body;
@@ -30,6 +32,7 @@ exports.createUser = async (req, res) => {
     }
 }
 
+//controler for update a existing user
 exports.updateUser = async (req, res) => {
     try {
         const email = req.params.email;

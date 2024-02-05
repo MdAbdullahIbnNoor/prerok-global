@@ -1,10 +1,13 @@
 const { createUser, getUserByEmail, updateUser } = require('../controlers/user.controlers');
 const router = require('express').Router();
 
-router.get('/api/user/get-user/:email', getUserByEmail)
+//route for get user by his email
+router.get('/get-user/:email', getUserByEmail)
 
-router.post('/api/users/add-user', createUser);
+//route for create a new user
+router.post('/add-user', createUser);
 
-router.put('/api/users/update-user/:email', updateUser);
+//route for update a existing user
+router.put('/update-user/:email', updateUser);
 
 module.exports = router;
