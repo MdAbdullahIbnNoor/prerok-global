@@ -25,17 +25,16 @@ exports.savePaymentInfo = async (req, res) => {
     try {
         const payment = req.body
         console.log(payment);
-        // const newPayement = new Payment({
-        //     transactionID: payment.transactionId,
-        //     amount: payment.amount,
-        //     status: payment.status,
-        //     bookingID: payment.bookingID,
-        //     userID: payment.userID,
-        //     email: payment.email,
-        //     name: payment.name,
-        // })
-        // const result = await newPayement.save();
-        // res.status(201).send(result);
+        const newPayement = new Payment({
+            transactionID: payment.transactionId,
+            amount: payment.amount,
+            status: payment.status,
+            bookingID: payment.bookingID,
+            email: payment.email,
+            name: payment.name,
+        })
+        const result = await newPayement.save();
+        res.status(201).send({ success: true, message: "Payment Info Saved", data: result });
     } catch (error) {
         res.status(500).send({ message: error.message });
     }

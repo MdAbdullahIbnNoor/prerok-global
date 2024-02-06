@@ -10,7 +10,7 @@ import CheckoutFrom from '../CheckoutForm/CheckoutForm'
 
 const stripePromise = loadStripe(import.meta.env.VITE_PAYMENT_KEY);
 
-const PaymentModal = ({ closeModal, isOpen }) => {
+const PaymentModal = ({ closeModal, isOpen, handleStepper, setBookingInfo, bookingInfo }) => {
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog as='div' className='relative z-10' onClose={closeModal}>
@@ -46,17 +46,17 @@ const PaymentModal = ({ closeModal, isOpen }) => {
                 </Dialog.Title>
                 <div className='mt-2'>
                   <p className='text-sm text-gray-500'>
-                   Demo Card Number: 4242 4242 4242 4242
+                    Demo Card Number: 4242 4242 4242 4242
                   </p>
                 </div>
                 <div className='mt-2'>
                   <p className='text-sm text-gray-500'>
-                    Location: 
+                    Location:
                   </p>
                 </div>
                 <div className='mt-2'>
                   <p className='text-sm text-gray-500'>
-                   abc
+                    abc
                   </p>
                 </div>
                 {/* <div className='mt-2'>
@@ -68,7 +68,7 @@ const PaymentModal = ({ closeModal, isOpen }) => {
 
                 <div className='mt-2'>
                   <p className='text-sm text-gray-500'>
-                    Price: 
+                    Price:
                   </p>
                 </div>
                 <hr className='mt-8 ' />
@@ -78,7 +78,7 @@ const PaymentModal = ({ closeModal, isOpen }) => {
                 {/* checkOut form  */}
 
                 <Elements stripe={stripePromise}>
-                    <CheckoutFrom closeModal={closeModal} ></CheckoutFrom>
+                  <CheckoutFrom closeModal={closeModal} setBookingInfo={setBookingInfo} bookingInfo={bookingInfo} handleStepper={handleStepper} ></CheckoutFrom>
                 </Elements>
 
 

@@ -19,11 +19,6 @@ const paymentSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
-    userID: {
-        type: String,
-        required: true,
-        trim: true
-    },
     email: {
         type: String,
         required: true,
