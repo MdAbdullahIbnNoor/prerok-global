@@ -14,7 +14,7 @@ const UserProfile = () => {
   const { data: userData, isLoading } = useQuery({
     queryKey: ["usersData", user?.email],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/api/user/get-user/${user?.email}`);
+      const res = await axiosSecure.get(`/api/users/get-user/${user?.email}`);
       return res.data;
     },
   });
