@@ -14,7 +14,7 @@
     @apply bg-green-600;
   }
   .complete p {
-    @apply text-white;
+    @apply text-black;
   }
   .complete:not(:first-child):before,
   .active:not(:first-child):before {
