@@ -21,6 +21,8 @@ import PricingPage from "./Components/PricingPage/PricingPage";
 import ShippingInfo from "./Components/PricingPage/ShippingInfo";
 import PaymentHistory from "./Layouts/Dashboard/User/PaymentHistory/PaymentHistory";
 import CreateBooking from "./Layouts/Dashboard/User/CreateBooking/CreateBooking";
+import Payment from "./Layouts/Dashboard/User/Payment/Payment";
+
 
 const router = createBrowserRouter([
   {
@@ -73,6 +75,10 @@ const router = createBrowserRouter([
       {
         path: "address-book",
         element: <AddressBook></AddressBook>,
+      },
+      {
+        path: "payment",
+        element: <Payment></Payment>,
       },
       {
         path: "payment-history",

@@ -1,103 +1,78 @@
-import { MdPayment } from "react-icons/md";
-import { MdPayments } from "react-icons/md";
+import { useQuery } from "@tanstack/react-query";
+import { axiosSecure } from "../../../../api/axiosInstances";
+import Loading from "../../../../Components/Shared/Loading/Loading";
+import useAuth from "../../../../hooks/useAuth";
 
 const PaymentHistory = () => {
-    return (
-        <div>
-            <p className="text-gray-500 text-2xl font-semibold my-10 text-center ">
-                Payment Details{" "}
-            </p>
+    const {user } = useAuth()
+    // console.log(user)
+  // get user payment history
+  const {
+    data: users,
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ["usersData"],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/memberPay`);
+      return res.data;
+    },
+  });
 
-            <div className="grid gap-4 grid-col-col md:grid-cols-2">
-                <div className=" flex items-center gap-4 bg-gray-200  p-4 h-30  shadow-md rounded-sm drop-shadow-md">
-                    {/* icon */}
-                    <div className="">
-                        <MdPayment className="text-3xl font-bold text-green-500" />
-                    </div>
-                    {/* content */}
-                    <div>
-                        <h1 className=" font-semibold text-gray-600 uppercase">
-                            Total Payment
-                            <p className="text-3xl font-bold text-gray-500">$ 3000 </p>
-                        </h1>
-                    </div>
-                </div>
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
 
-                <div className=" flex items-center gap-4 bg-gray-200  p-4 h-30  shadow-md rounded-sm drop-shadow-md">
-                    {/* icon */}
-                    <div className="">
-                        <MdPayments className="text-3xl font-bold text-green-500" />
-                    </div>
-                    {/* content */}
-                    <div>
-                        <h1 className=" font-semibold text-gray-600 uppercase">
-                            Refund Money
-                            <p className="text-3xl font-bold text-gray-500">$ 00 </p>
-                        </h1>
-                    </div>
-                </div>
-            </div>
+  const filterdUser = users.filter( data => data.email === user?.email)
+  console.log(filterdUser)
 
-            {/* table  */}
+//   console.log(users)
 
-            <div>
-                <div className="overflow-x-auto mt-20 bg-gray-50 p-3 rounded-lg">
-                    <div className="overflow-x-auto mb-20 md:ml-10 md:px-20">
-                        <table className="table table-zebra  ">
-                            {/* head */}
-                            <thead className="bg-gray-400 text-white text-lg">
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Date</th>
-                                    <th>Transaction Id </th>
-                                    <th>Pay Mony</th>
-                                    <th>Status</th>
-                                    <th>Pay</th>
-                                </tr>
-                            </thead>
-                            <tbody className="text-gray-500">
-                                <tr>
-                                    <td>Shanto</td>
-                                    <td>shanto@gmail.com</td>
-                                    <td>02-03-2024</td>
-                                    <td>pi_3OHUw3AaAV1XQZrv2RI1nvWZ </td>
-                                    <td>2000</td>
-                                    <td>
-                                        <div className="badge bg-green-500  px-4 py-3 text-white">
-                                            paid
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div className="btn bg-green-500  px-4 py-3 text-white">
-                                            PAYMENT
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Mahmudul </td>
-                                    <td>tamim@gmail.com</td>
-                                    <td>02-03-2024</td>
-                                    <td>pi_3OHUw3AaAV1XQZrvojfofjRI1nZ </td>
-                                    <td>1000</td>
-                                    <td>
-                                        <div className="badge bg-yellow-500  px-4 py-3 text-white">
-                                            unpaid
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div className="btn bg-green-500  px-4 py-3 text-white">
-                                            PAYMENT
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+  return (
+    <div>
+      {/* table  */}
+
+      <div>
+        <div className="overflow-x-auto mt-20 min-h-[70vh] bg-gray-50 p-3 rounded-lg">
+          <div className=" mb-20 md:ml-10 ">
+            <table className="table table-zebra  ">
+              {/* head */}
+              <thead className="bg-gray-400 text-white text-lg">
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Date</th>
+                  <th>Transaction Id </th>
+                  <th>Pay Mony</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody className="text-gray-500">
+              {
+  filterdUser?.map((data) => (
+    <tr key={data._id}>
+      <td>{data.name}</td>
+      <td>{data.email}</td>
+      <td>{data.date}</td>
+      <td>{data.transactionId}</td>
+      <td>{data.price}</td>
+      <td>
+        <div className={`badge ${data.status === 'paid' ? 'bg-green-500' : 'bg-red-500'} px-4 py-3 text-white`}>
+          {data.status}
         </div>
-    );
+      </td>
+    </tr>
+  ))
+}
+
+                
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default PaymentHistory;
