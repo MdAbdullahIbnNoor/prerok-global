@@ -19,8 +19,8 @@ const CreateAddressModal = ({ id, refetch }) => {
             const addressData = data;
             addressData.userID = id;
             const { data: dbResponse } = await axiosSecure.post('/api/addressbook/add-address', addressData);
-            if (dbResponse.acknowledged) {
-                toast.success("Address Added");
+            if (dbResponse.success) {
+                toast.success(dbResponse.message);
                 reset()
                 setIsOpen(false)
                 refetch()

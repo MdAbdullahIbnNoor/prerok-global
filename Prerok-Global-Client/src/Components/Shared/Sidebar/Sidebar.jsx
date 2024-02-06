@@ -16,8 +16,20 @@ const Sidebar = () => {
             <span className="absolute inset-x-0 -bottom-0.5 h-0.5 bg-amber-500 transition-transform origin-left transform scale-x-0 group-hover:scale-x-100 duration-200"></span>
 
         </NavLink>
-        <NavLink to={"/payment-history"} className={({ isActive }) => isActive ? "relative border-b-2 border-amber-500 inline-block text-black hover:text-gray-800 group font-semibold pt-2 px-2" : "relative border-b-2 border-transparent inline-block text-black hover:text-gray-800 group font-semibold pt-2 px-2"}>
+        <NavLink to={"/dashboard/payment"} className={({ isActive }) => isActive ? "relative border-b-2 border-amber-500 inline-block text-black hover:text-gray-800 group font-semibold pt-2 px-2" : "relative border-b-2 border-transparent inline-block text-black hover:text-gray-800 group font-semibold pt-2 px-2"}>
+            Payment 
+            <span className="absolute inset-x-0 -bottom-0.5 h-0.5 bg-amber-500 transition-transform origin-left transform scale-x-0 group-hover:scale-x-100 duration-200"></span>
+        </NavLink>
+        <NavLink to={"/dashboard/payment-history"} className={({ isActive }) => isActive ? "relative border-b-2 border-amber-500 inline-block text-black hover:text-gray-800 group font-semibold pt-2 px-2" : "relative border-b-2 border-transparent inline-block text-black hover:text-gray-800 group font-semibold pt-2 px-2"}>
             Payment History
+            <span className="absolute inset-x-0 -bottom-0.5 h-0.5 bg-amber-500 transition-transform origin-left transform scale-x-0 group-hover:scale-x-100 duration-200"></span>
+        </NavLink>
+        <NavLink to={"/dashboard/create-booking"} className={({ isActive }) => isActive ? "relative border-b-2 border-amber-500 inline-block text-black hover:text-gray-800 group font-semibold pt-2 px-2" : "relative border-b-2 border-transparent inline-block text-black hover:text-gray-800 group font-semibold pt-2 px-2"}>
+            Create Booking
+            <span className="absolute inset-x-0 -bottom-0.5 h-0.5 bg-amber-500 transition-transform origin-left transform scale-x-0 group-hover:scale-x-100 duration-200"></span>
+        </NavLink>
+        <NavLink to={"/dashboard/pricing/1"} className={({ isActive }) => isActive ? "relative border-b-2 border-amber-500 inline-block text-black hover:text-gray-800 group font-semibold pt-2 px-2" : "relative border-b-2 border-transparent inline-block text-black hover:text-gray-800 group font-semibold pt-2 px-2"}>
+            Add Booking
             <span className="absolute inset-x-0 -bottom-0.5 h-0.5 bg-amber-500 transition-transform origin-left transform scale-x-0 group-hover:scale-x-100 duration-200"></span>
         </NavLink>
         <NavLink to={"/dashboard/profile"} className={({ isActive }) => isActive ? "relative border-b-2 border-amber-500 inline-block text-black hover:text-gray-800 group font-semibold pt-2 px-2" : "relative border-b-2 border-transparent inline-block text-black hover:text-gray-800 group font-semibold pt-2 px-2"}>
@@ -73,7 +85,7 @@ const Sidebar = () => {
                 <div className="fixed top-6">
                     <img src={logo} className="w-52 py-3 mx-3" alt="logo of prerok global" />
                 </div>
-                <div className="">
+                <div className="py-[113px]">
                     <div className="flex flex-col gap-3">
                         {navLinksDashboard}
                     </div>

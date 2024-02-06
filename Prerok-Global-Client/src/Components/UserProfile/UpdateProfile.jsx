@@ -24,7 +24,7 @@ const UpdateProfile = () => {
   } = useQuery({
     queryKey: ["usersData", email],
     queryFn: async () => {
-      const res = await axiosPublic.get(`/api/user/get-user/${email}`);
+      const res = await axiosPublic.get(`/api/users/get-user/${email}`);
       return res.data;
     },
   });

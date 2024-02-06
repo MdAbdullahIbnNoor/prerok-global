@@ -18,6 +18,11 @@ import Dashboard from "./Layouts/Dashboard/Dashboard";
 import Bookings from "./Layouts/Dashboard/User/Bookings/Bookings";
 import AddressBook from "./Layouts/Dashboard/User/AddressBooking/AddressBook";
 import PricingPage from "./Components/PricingPage/PricingPage";
+import ShippingInfo from "./Components/PricingPage/ShippingInfo";
+import PaymentHistory from "./Layouts/Dashboard/User/PaymentHistory/PaymentHistory";
+import CreateBooking from "./Layouts/Dashboard/User/CreateBooking/CreateBooking";
+import Payment from "./Layouts/Dashboard/User/Payment/Payment";
+
 
 const router = createBrowserRouter([
   {
@@ -72,6 +77,14 @@ const router = createBrowserRouter([
         element: <AddressBook></AddressBook>,
       },
       {
+        path: "payment",
+        element: <Payment></Payment>,
+      },
+      {
+        path: "payment-history",
+        element: <PaymentHistory></PaymentHistory>,
+      },
+      {
         path: "update-profile/:email",
         element: <UpdateProfile></UpdateProfile>,
       },
@@ -80,8 +93,16 @@ const router = createBrowserRouter([
         element: <Bookings></Bookings>,
       },
       {
-        path: "pricing",
+        path: "create-booking",
+        element: <CreateBooking></CreateBooking>,
+      },
+      {
+        path: "pricing/1",
         element: <PricingPage></PricingPage>,
+      },
+      {
+        path: "pricing/2",
+        element: <ShippingInfo></ShippingInfo>,
       },
     ],
   },
