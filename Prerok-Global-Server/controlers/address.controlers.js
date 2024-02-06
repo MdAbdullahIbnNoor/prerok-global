@@ -4,7 +4,7 @@ const Address = require("../models/address.model");
 exports.getAddressByUserID = async (req, res) => {
     try {
         const id = req.params.id;
-        const result = await Address.find({userID: id});
+        const result = await Address.find({ userID: id });
         res.status(200).send(result)
     } catch (error) {
         res.status(500).send({ message: error.message })
@@ -38,7 +38,7 @@ exports.createAddress = async (req, res) => {
             userID: address.userID,
         })
         const result = await newAddress.save();
-        res.status(201).send(result)
+        res.status(201).send({ success: true, message: "Address Created", data: result })
     } catch (error) {
         res.status(500).send({ message: error.message })
     }
@@ -61,9 +61,8 @@ exports.updateAddress = async (req, res) => {
                 division: address.division,
             }
         }
-        const result = await Address.findByIdAndUpdate(id, updatedDoc, { new: true });
-
-        res.status(201).send(result)
+        const result = await Address.updateOne({_id: id}, updatedDoc);
+        res.status(201).send(result);
     } catch (error) {
         res.status(500).send({ message: error.message })
     }

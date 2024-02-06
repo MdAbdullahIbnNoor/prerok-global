@@ -77,7 +77,7 @@ const Sidebar = () => {
                 <div className="fixed top-6">
                     <img src={logo} className="w-52 py-3 mx-3" alt="logo of prerok global" />
                 </div>
-                <div className="">
+                <div className="py-[113px]">
                     <div className="flex flex-col gap-3">
                         {navLinksDashboard}
                     </div>

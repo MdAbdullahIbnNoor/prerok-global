@@ -19,6 +19,7 @@ const UpdateAddressModal = ({ refetch, data }) => {
             setManualLoading(true);
             const addressData = inputData;
             const { data: dbResponse } = await axiosSecure.put(`/api/addressbook/update-address/${data._id}`, addressData);
+            console.log(dbResponse);
             if (dbResponse.modifiedCount > 0) {
                 toast.success("Address Updated");
                 reset()

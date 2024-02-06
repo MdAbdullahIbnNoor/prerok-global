@@ -7,7 +7,7 @@ exports.genarateToken = (req, res) => {
         res.cookie("token", token, {
             httpOnly: true,
             secure: false,
-            // sameSite: "none"
+            // sameSite: "None"
         }).send({ message: "success" })
     } catch (error) {
         res.status(500).send(error.message)
@@ -21,7 +21,7 @@ exports.removeToken = (req, res) => {
             maxAge: 0,
             httpOnly: true,
             secure: false,
-            // sameSite: "none"
+            // sameSite: "None"
         }).send({ message: "success" })
     } catch (error) {
         res.status(500).send()
