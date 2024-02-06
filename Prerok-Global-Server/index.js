@@ -80,8 +80,8 @@ async function run() {
         res.clearCookie("token", {
           maxAge: 0,
           httpOnly: true,
-          secure: true,
-          sameSite: "none"
+          secure: false,
+          // sameSite: "none"
         }).send({ message: "success" })
       } catch (error) {
         res.status(500).send()
