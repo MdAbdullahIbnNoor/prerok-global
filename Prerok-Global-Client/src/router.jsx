@@ -20,6 +20,7 @@ import AddressBook from "./Layouts/Dashboard/User/AddressBooking/AddressBook";
 import PricingPage from "./Components/PricingPage/PricingPage";
 import ShippingInfo from "./Components/PricingPage/ShippingInfo";
 import PaymentHistory from "./Layouts/Dashboard/User/PaymentHistory/PaymentHistory";
+import Payment from "./Layouts/Dashboard/User/Payment/Payment";
 
 const router = createBrowserRouter([
   {
@@ -72,6 +73,10 @@ const router = createBrowserRouter([
       {
         path: "address-book",
         element: <AddressBook></AddressBook>,
+      },
+      {
+        path: "payment",
+        element: <Payment></Payment>,
       },
       {
         path: "payment-history",
