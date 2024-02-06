@@ -4,8 +4,12 @@ const User = require("../models/user.model");
 exports.getUserByEmail = async (req, res) => {
     try {
         const email = req.params.email;
-        const user = await User.findOne({ email });
-        res.status(200).send(user);
+        const user = req.user;
+        if (user.email !== email) {
+            return res.status(401).send({ message: "unauthorized access" });
+        }
+        const userData = await User.findOne({ email });
+        res.status(200).send(userData);
     } catch (error) {
         res.status(500).send({ message: error.message });
     }
@@ -35,7 +39,11 @@ exports.createUser = async (req, res) => {
 //controler for update a existing user
 exports.updateUser = async (req, res) => {
     try {
+        const user = req.user;
         const email = req.params.email;
+        if (user.email !== email) {
+            return res.status(401).send({ message: "unauthorized access" });
+        }
         const updatedDoc = {
             $set: {
                 email: req.body.email,
@@ -54,7 +62,7 @@ exports.updateUser = async (req, res) => {
                 roadNumber: req.body.roadNumber,
             }
         };
-        const result = await User.updateOne({email}, updatedDoc);
+        const result = await User.updateOne({ email }, updatedDoc);
         res.status(200).send(result);
     } catch (error) {
         res.status(500).send({ message: error.message });
