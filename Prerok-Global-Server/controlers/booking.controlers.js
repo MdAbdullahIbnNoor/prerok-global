@@ -22,7 +22,36 @@ exports.getBookingsByEmail = async (req, res) => {
     }
 }
 
-// controlers for get all bokings by gmail
+// controlers for get all bokings
+exports.getAllBookings = async (req, res) => {
+    try {
+        const bookings = await Booking.find()
+        res.status(200).send(bookings)
+    } catch (error) {
+        res.status(500).send({ message: error.message });
+    }
+}
+
+// controlers for update booking data by booking id
+exports.updateBookingInfo = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const data = req.body;
+        const updatedDoc = {
+            $set: {
+                fromAddress: data.fromAddress,
+                toAddress: data.toAddress,
+                parcelInfo: data.parcelInfo,
+            }
+        }
+        const bookings = await Booking.updateOne({ _id: id }, updatedDoc);
+        res.status(200).send(bookings);
+    } catch (error) {
+        res.status(500).send({ message: error.message });
+    }
+}
+
+// controlers for update tracking status by booking id
 exports.updateTrackingStatus = async (req, res) => {
     try {
         const id = req.params.id;
@@ -52,6 +81,17 @@ exports.createBooking = async (req, res) => {
         })
         const result = await newBooking.save();
         res.status(201).send({ success: true, message: "Booking Successful", data: result })
+    } catch (error) {
+        res.status(500).send({ message: error.message })
+    }
+}
+
+// controlers for delete a existing booking
+exports.deleteBooking = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const result = await Booking.deleteOne({ _id: id })
+        res.status(201).send(result)
     } catch (error) {
         res.status(500).send({ message: error.message })
     }
