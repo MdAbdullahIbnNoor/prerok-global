@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import { MdPayment, MdPayments } from "react-icons/md";
+import { MdPayment } from "react-icons/md";
 import PaymentModal from "./PaymentModal/PaymentModal";
 import stripe from "../../../../assets/payment.jpg"
 import ssl from "../../../../assets/stripe.jpg"

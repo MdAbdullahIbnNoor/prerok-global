@@ -51,12 +51,12 @@ const PaymentModal = ({ closeModal, isOpen, handleStepper, setBookingInfo, booki
                 </div>
                 <div className='mt-2'>
                   <p className='text-sm text-gray-500'>
-                    Location:
+                    Location: {bookingInfo?.fromAddress?.from_district}, {bookingInfo?.fromAddress?.from_country} to {bookingInfo?.toAddress?.to_district}, {bookingInfo?.toAddress?.to_country}
                   </p>
                 </div>
                 <div className='mt-2'>
                   <p className='text-sm text-gray-500'>
-                    abc
+                    Parcel Reciever: {bookingInfo?.toAddress?.to_name}, {bookingInfo?.toAddress?.to_email}
                   </p>
                 </div>
                 {/* <div className='mt-2'>
@@ -68,7 +68,7 @@ const PaymentModal = ({ closeModal, isOpen, handleStepper, setBookingInfo, booki
 
                 <div className='mt-2'>
                   <p className='text-sm text-gray-500'>
-                    Price:
+                    Price: ${bookingInfo?.parcelInfo?.shippingCost}
                   </p>
                 </div>
                 <hr className='mt-8 ' />

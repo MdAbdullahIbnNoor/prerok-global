@@ -24,7 +24,6 @@ exports.createPaymentIntent = async (req, res) => {
 exports.savePaymentInfo = async (req, res) => {
     try {
         const payment = req.body
-        console.log(payment);
         const newPayement = new Payment({
             transactionID: payment.transactionId,
             amount: payment.amount,

@@ -7,7 +7,6 @@ import useAuth from "../../../../../hooks/useAuth";
 import { axiosSecure } from "../../../../../api/axiosInstances";
 import { ImSpinner } from "react-icons/im";
 import Swal from "sweetalert2";
-import { saveBooking } from "../../../../../api/bookingApi";
 
 const CheckoutFrom = ({ closeModal, handleStepper, setBookingInfo, bookingInfo }) => {
   const [processing, setProcessing] = useState(false);
@@ -18,7 +17,6 @@ const CheckoutFrom = ({ closeModal, handleStepper, setBookingInfo, bookingInfo }
   const stripe = useStripe();
   const elements = useElements();
   const { user } = useAuth();
-  const navigate = useNavigate();
 
   // Need Booking data
   const price = bookingInfo?.parcelInfo?.shippingCost || 0;
@@ -89,7 +87,6 @@ const CheckoutFrom = ({ closeModal, handleStepper, setBookingInfo, bookingInfo }
 
       const currentDate = new Date();
       const utcFormattedDate = currentDate.toISOString();
-      console.log(utcFormattedDate);
       // now save the payment information  in the database
       const payment = {
         email: user.email,
@@ -101,11 +98,10 @@ const CheckoutFrom = ({ closeModal, handleStepper, setBookingInfo, bookingInfo }
       };
 
       const data = { ...bookingInfo, paymentInfo: payment };
-      setBookingInfo(data)
-
+      
       const { data: saveBookingResponse } = await axiosSecure.post('/api/bookings/create-booking', data);
-      console.log(saveBookingResponse);
-
+      setBookingInfo({...data, trackingID: saveBookingResponse?.data?._id})
+      
       // const saveBooking = await saveBooking(data)
       // console.log(saveBooking);
 
@@ -113,7 +109,7 @@ const CheckoutFrom = ({ closeModal, handleStepper, setBookingInfo, bookingInfo }
       const { data: savePaymentResponse } = await axiosSecure.post("/api/payments/payment-info", { ...payment, bookingID: saveBookingResponse.data._id });
       if (savePaymentResponse?.success) {
         Swal.fire({
-          position: "top-center",
+          position: "center",
           icon: "success",
           title: "Payment Successful",
           showConfirmButton: false,
