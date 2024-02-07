@@ -4,8 +4,25 @@ const Booking = require("../models/booking.model");
 exports.getBookingsByEmail = async (req, res) => {
     try {
         const email = req.params.email;
-        const bookings = await Booking.find({bookingEmail: email})
+        const bookings = await Booking.find({ bookingEmail: email })
         res.status(200).send(bookings)
+    } catch (error) {
+        res.status(500).send({ message: error.message });
+    }
+}
+
+// controlers for get all bokings by gmail
+exports.updateTrackingStatus = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const status = req.body.status;
+        const updatedDoc = {
+            $set: {
+                trackingStatus: status
+            }
+        }
+        const bookings = await Booking.updateOne({ _id: id }, updatedDoc);
+        res.status(200).send(bookings);
     } catch (error) {
         res.status(500).send({ message: error.message });
     }
