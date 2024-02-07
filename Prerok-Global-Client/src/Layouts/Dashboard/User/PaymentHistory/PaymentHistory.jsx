@@ -14,7 +14,7 @@ const PaymentHistory = () => {
   } = useQuery({
     queryKey: ["usersData"],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/memberPay`);
+      const res = await axiosSecure.get(`/api/payments/all-payment-history`);
       return res.data;
     },
   });

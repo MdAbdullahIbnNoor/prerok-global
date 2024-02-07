@@ -3,6 +3,8 @@ import "../../../../Components/Stepper/stepper.css";
 import { TiTick } from "react-icons/ti";
 import AddressInfo from "../../../../Components/CreateBookingPage/AddressInfo";
 import ParcelInfo from "../../../../Components/CreateBookingPage/ParcelInfo";
+import Payment from "../Payment/Payment";
+import ProcessingStatus from "../../../../Components/CreateBookingPage/ProcessingStatus";
 
 const CreateBooking = () => {
     const steps = ["Address Info", "Parcel Info", "Payment Info", "Processing Status"];
@@ -53,6 +55,14 @@ const CreateBooking = () => {
                 {
                     currentStep === 2 &&
                     <ParcelInfo setBookingInfo={setBookingInfo} bookingInfo={bookingInfo} handleStepper={handleStepper}></ParcelInfo>
+                }
+                {
+                    currentStep === 3 &&
+                    <Payment setBookingInfo={setBookingInfo} bookingInfo={bookingInfo} handleStepper={handleStepper}></Payment>
+                }
+                {
+                    currentStep === 4 &&
+                    <ProcessingStatus  setBookingInfo={setBookingInfo} bookingInfo={bookingInfo} handleStepper={handleStepper}></ProcessingStatus>
                 }
             </div>
         </div>

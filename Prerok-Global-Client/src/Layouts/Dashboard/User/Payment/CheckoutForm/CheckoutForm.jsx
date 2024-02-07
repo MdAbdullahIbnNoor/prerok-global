@@ -8,7 +8,7 @@ import { axiosSecure } from "../../../../../api/axiosInstances";
 import { ImSpinner } from "react-icons/im";
 import Swal from "sweetalert2";
 
-const CheckoutFrom = ({ closeModal }) => {
+const CheckoutFrom = ({ closeModal, handleStepper, setBookingInfo, bookingInfo }) => {
   const [processing, setProcessing] = useState(false);
   const [error, setError] = useState("");
   const [cardError, setCardError] = useState("");
@@ -17,22 +17,20 @@ const CheckoutFrom = ({ closeModal }) => {
   const stripe = useStripe();
   const elements = useElements();
   const { user } = useAuth();
-  const navigate = useNavigate();
 
   // Need Booking data
-  const price = 5000;
+  const price = bookingInfo?.parcelInfo?.shippingCost || 0;
 
   useEffect(() => {
     axiosSecure
-      .post("/create-payment-intent", { price: price })
+      .post("/api/payments/create-payment-intent", { price: price })
       .then((res) => {
-        // console.log(res.data);
         setClientSecret(res.data.clientSecret);
       })
       .catch((error) => {
         console.error("payment intent:", error);
       });
-  }, []);
+  }, [price]);
 
 
 
@@ -40,12 +38,12 @@ const CheckoutFrom = ({ closeModal }) => {
 
   const handelPayment = async (event) => {
     event.preventDefault();
+
     if (!stripe || !elements) {
       return;
     }
 
     const card = elements.getElement(CardElement);
-
     if (card == null) {
       return;
     }
@@ -87,31 +85,31 @@ const CheckoutFrom = ({ closeModal }) => {
       console.log("transaction id", paymentIntent.id);
       setTransactionId(paymentIntent.id);
 
-      // update payment status paid
-      // axiosSecure.patch(`/accepttrainer/role/${_id}`)
-      // .then(res =>{
-      //     console.log(res.data)
-      // })
-
       const currentDate = new Date();
       const utcFormattedDate = currentDate.toISOString();
-      console.log(utcFormattedDate);
       // now save the payment information  in the database
       const payment = {
         email: user.email,
         name: user?.displayName,
-        price: price,
+        amount: price,
         transactionId: paymentIntent.id,
         date: utcFormattedDate,
         status: "paid",
       };
 
+      const data = { ...bookingInfo, paymentInfo: payment };
+      
+      const { data: saveBookingResponse } = await axiosSecure.post('/api/bookings/create-booking', data);
+      setBookingInfo({...data, trackingID: saveBookingResponse?.data?._id})
+      
+      // const saveBooking = await saveBooking(data)
+      // console.log(saveBooking);
+
       // send  data to the db
-      const res = await axiosSecure.post("/payment-info", payment);
-      console.log(res.data);
-      if (res?.data?.insertedId) {
+      const { data: savePaymentResponse } = await axiosSecure.post("/api/payments/payment-info", { ...payment, bookingID: saveBookingResponse.data._id });
+      if (savePaymentResponse?.success) {
         Swal.fire({
-          position: "top-center",
+          position: "center",
           icon: "success",
           title: "Payment Successful",
           showConfirmButton: false,
@@ -120,7 +118,8 @@ const CheckoutFrom = ({ closeModal }) => {
 
         //   redirect to payment history page
         setProcessing(false);
-        navigate("/dashboard/payment-history");
+        handleStepper()
+        // navigate("/dashboard/payment-history");
       }
     }
   };
