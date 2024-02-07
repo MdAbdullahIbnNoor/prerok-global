@@ -18,6 +18,8 @@
     "firebase": "^10.7.2",
     "formik": "^2.4.5",
     "hamburger-react": "^2.5.0",
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.8.1",
     "localforage": "^1.10.0",
     "lottie-react": "^2.4.0",
     "match-sorter": "^6.3.2",

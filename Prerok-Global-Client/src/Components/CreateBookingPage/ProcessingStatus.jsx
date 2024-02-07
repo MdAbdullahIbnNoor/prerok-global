@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import PDFGenerator from "./PDFGenerator";
 
 /* eslint-disable react/prop-types */
 const ProcessingStatus = ({ bookingInfo }) => {
@@ -51,8 +52,8 @@ const ProcessingStatus = ({ bookingInfo }) => {
                         <p>Status: <span className="font-medium">{bookingInfo?.paymentInfo?.status}</span></p>
                     </div>
                 </div>
-                <div className="text-center space-x-3">
-                    <button className="btn bg-amber-500 border-none font-semibold text-white hover:text-black h-10">Download Invoice</button>
+                <div className="text-center space-x-3 flex justify-center gap-3">
+                    <PDFGenerator bookingInfo={bookingInfo}></PDFGenerator>
                     <Link to="/dashboard/bookings">
                         <button className="btn bg-amber-500 border-none font-semibold text-white hover:text-black h-10">Go To Bookings</button>
                     </Link>
