@@ -1,6 +1,9 @@
-const { createBooking, getBookingsByEmail, updateTrackingStatus } = require('../controlers/booking.controlers');
+const { createBooking, getBookingsByEmail, updateTrackingStatus, getBookingByID } = require('../controlers/booking.controlers');
 
 const router = require('express').Router();
+
+// router for get all bokings by gmail
+router.get("/get-booking/:id", getBookingByID)
 
 // router for get all bokings by gmail
 router.get("/get-bookings/:email", getBookingsByEmail)

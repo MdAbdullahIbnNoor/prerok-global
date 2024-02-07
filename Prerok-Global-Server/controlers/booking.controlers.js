@@ -1,5 +1,16 @@
 const Booking = require("../models/booking.model");
 
+// controlers for get a booking by booking id
+exports.getBookingByID = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const bookings = await Booking.findById(id)
+        res.status(200).send(bookings)
+    } catch (error) {
+        res.status(500).send({ message: error.message });
+    }
+}
+
 // controlers for get all bokings by gmail
 exports.getBookingsByEmail = async (req, res) => {
     try {
