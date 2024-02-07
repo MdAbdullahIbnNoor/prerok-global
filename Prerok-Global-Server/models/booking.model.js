@@ -16,6 +16,15 @@ const bookingSchema = new mongoose.Schema({
     paymentInfo: {
         type: Object,
         required: true,
+    },
+    bookingEmail: {
+        type: String,
+        required: true
+    },
+    trackingStatus: {
+        type: String,
+        required: true,
+        default: "Booking Confirmed"
     }
 })
 
