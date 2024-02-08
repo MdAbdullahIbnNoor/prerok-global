@@ -17,6 +17,15 @@ const userSchema = new mongoose.Schema({
         trim: true,
         unique: true
     },
+    email: {
+        required: true,
+        type: String,
+        default: "user"
+    },
+    role: {
+        type: String,
+        default: 'user',
+    },
     gender: {
         type: String,
         default: '',
@@ -62,9 +71,9 @@ const userSchema = new mongoose.Schema({
         default: '',
     },
 },
-{
-    timestamps: true
-})
+    {
+        timestamps: true
+    })
 
 // model for user
 const User = mongoose.model("users", userSchema);
