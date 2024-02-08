@@ -4,10 +4,10 @@ const User = require("../models/user.model");
 exports.getUserByEmail = async (req, res) => {
     try {
         const email = req.params.email;
-        const user = req.user;
-        if (user.email !== email) {
-            return res.status(401).send({ message: "unauthorized access" });
-        }
+        // const user = req.user;
+        // if (user.email !== email) {
+        //     return res.status(401).send({ message: "unauthorized access" });
+        // }
         const userData = await User.findOne({ email });
         res.status(200).send(userData);
     } catch (error) {
@@ -39,11 +39,11 @@ exports.createUser = async (req, res) => {
 //controler for update a existing user
 exports.updateUser = async (req, res) => {
     try {
-        const user = req.user;
+        // const user = req.user;
         const email = req.params.email;
-        if (user.email !== email) {
-            return res.status(401).send({ message: "unauthorized access" });
-        }
+        // if (user.email !== email) {
+        //     return res.status(401).send({ message: "unauthorized access" });
+        // }
         const updatedDoc = {
             $set: {
                 email: req.body.email,
@@ -63,6 +63,27 @@ exports.updateUser = async (req, res) => {
             }
         };
         const result = await User.updateOne({ email }, updatedDoc);
+        res.status(200).send(result);
+    } catch (error) {
+        res.status(500).send({ message: error.message });
+    }
+}
+
+//controler for update role of a existing user
+exports.updateRole = async (req, res) => {
+    try {
+        const data = req.body;
+        // const user = req.user;
+        // const email = req.params.email;
+        // if (user.email !== email) {
+        //     return res.status(401).send({ message: "unauthorized access" });
+        // }
+        const updatedDoc = {
+            $set: {
+                role: data?.role
+            }
+        };
+        const result = await User.updateOne({ email: data?.email }, updatedDoc);
         res.status(200).send(result);
     } catch (error) {
         res.status(500).send({ message: error.message });

@@ -97,7 +97,7 @@ const CheckoutFrom = ({ closeModal, handleStepper, setBookingInfo, bookingInfo }
         status: "paid",
       };
 
-      const data = { ...bookingInfo, paymentInfo: payment };
+      const data = { ...bookingInfo, paymentInfo: payment, bookingEmail: user?.email };
       
       const { data: saveBookingResponse } = await axiosSecure.post('/api/bookings/create-booking', data);
       setBookingInfo({...data, trackingID: saveBookingResponse?.data?._id})
