@@ -7,9 +7,10 @@ import AddressForm from "./AddressForm";
 
 const PricingPage = () => {
 
-    const steps = ["Customer Info", "Shipping Info", "Payment", "Processing", "On Delivery", "Delivered"];
-    const [currentStep, setCurrentStep] = useState(1);
-    const [complete, setComplete] = useState(false);
+  const steps = ["Customer Info", "Shipping Info", "Payment", "Processing", "On Delivery", "Delivered"];
+  const [currentStep, setCurrentStep] = useState(1);
+  const [complete, setComplete] = useState(false);
+
 
     const handleStepper = (e) => {
         e.preventDefault();
