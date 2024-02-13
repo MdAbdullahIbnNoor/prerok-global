@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../../../../Components/Stepper/stepper.css";
+import "../../../../Components/Stepper/Stepper.css";
 import { TiTick } from "react-icons/ti";
 import AddressInfo from "../../../../Components/CreateBookingPage/AddressInfo";
 import ParcelInfo from "../../../../Components/CreateBookingPage/ParcelInfo";
