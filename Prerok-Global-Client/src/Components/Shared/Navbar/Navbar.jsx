@@ -170,7 +170,9 @@ const Navbar = () => {
                 : "-translate-x-full opacity-50"
             } transition duration-300`}
           >
+
             {navLinks}
+
           </div>
           {/* menu dropdown */}
           <div className="lg:hidden mx-2">

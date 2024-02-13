@@ -22,6 +22,7 @@ import CreateBooking from "./Layouts/Dashboard/User/CreateBooking/CreateBooking"
 import Payment from "./Layouts/Dashboard/User/Payment/Payment";
 
 
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -69,6 +70,7 @@ const router = createBrowserRouter([
       {
         path: "profile",
         element: <UserProfile></UserProfile>,
+
       },
       {
         path: "address-book",
