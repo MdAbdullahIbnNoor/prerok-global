@@ -11,7 +11,7 @@ const AddressBook = () => {
         queryKey: ["usersData", "address-book", user?.email],
         queryFn: async () => {
             try {
-                const { data: userData } = await axiosSecure.get(`/api/user/get-user/${user?.email}`);
+                const { data: userData } = await axiosSecure.get(`/api/users/get-user/${user?.email}`);
                 const { data: allAddress } = await axiosSecure.get(`/api/addressbook/get-all-address/${userData._id}`);
                 const allData = { userData, allAddress };
                 return allData;
