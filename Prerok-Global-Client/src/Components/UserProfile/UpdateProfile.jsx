@@ -13,7 +13,6 @@ const UpdateProfile = () => {
   const [imageURL, setImageURL] = useState("");
   const [manualLoading, setManualLoading] = useState(false);
   const [updateLoading, setUpdateLoading] = useState(false);
-
   const navigate = useNavigate();
 
   // user data

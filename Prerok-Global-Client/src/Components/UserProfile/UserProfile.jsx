@@ -22,7 +22,7 @@ const UserProfile = () => {
   if (isLoading) {
     return <Loading></Loading>;
   }
-  console.log(userData);
+  // console.log(userData);
 
   const handelBack = () => {
     navigate(-1);
@@ -51,7 +51,7 @@ const UserProfile = () => {
               {userData?.name}
             </h4>
 
-            <Link to={`/updateProfile/${userData?.email}`}>
+            <Link to={`/dashboard/update-profile/${user?.email}`}>
               <button
                 data-aos="fade-right"
                 className="px-4 text-lg py-1 flex items-center rounded-lg text-white cursor-pointer   mb-1"
@@ -241,7 +241,7 @@ const UserProfile = () => {
               </p>
             </div>
           </div>
-          <div className="blocl text-center">
+          <div className="blocl text-center mt-5">
             <Link to={`/dashboard/update-profile/${user?.email}`}>
               <button
                 className="btn bg-green-500 mr-1 px-10 text-white btn-sm hover:bg-green-600"

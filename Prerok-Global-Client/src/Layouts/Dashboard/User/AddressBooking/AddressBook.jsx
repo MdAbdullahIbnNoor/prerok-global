@@ -7,6 +7,7 @@ import AddressCard from "../../../../Components/AddressBookPage/AddressCard";
 
 const AddressBook = () => {
     const { user } = useAuth();
+    
     const { data, isLoading, refetch, isError } = useQuery({
         queryKey: ["usersData", "address-book", user?.email],
         queryFn: async () => {
