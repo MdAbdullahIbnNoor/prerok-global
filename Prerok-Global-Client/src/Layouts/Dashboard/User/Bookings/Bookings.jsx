@@ -36,13 +36,13 @@ const Bookings = () => {
       }
     },
   });
-  console.log(data);
+  // console.log(data);
 
   const totalPayment = data?.reduce(
     (taka, p) => taka + p?.paymentInfo?.amount,
     0
   );
-  console.log(totalPayment);
+  // console.log(totalPayment);
 
   if (isLoading) {
     return <Loading></Loading>;

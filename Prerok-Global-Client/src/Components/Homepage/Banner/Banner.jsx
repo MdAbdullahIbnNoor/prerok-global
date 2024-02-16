@@ -1,6 +1,16 @@
+import { useNavigate } from "react-router";
 import bannerImg from "../../../assets/banner-ship-image.jpg";
 
 const Banner = () => {
+  const navigate = useNavigate();
+  const handleTrackProduct = (e) => {
+    e.preventDefault();
+    const form = new FormData(e.currentTarget);
+    const productIdForSearch = form.get("productIdForSearch");
+    console.log(productIdForSearch);
+    navigate(`/productTracking?productIdForSearch=${productIdForSearch}`);
+  };
+
   return (
     <div className=" overflow-hidden mb-8">
       {" "}
@@ -48,20 +58,22 @@ const Banner = () => {
             </span>
           </p>
           <div className="md:flex justify-center md:-mt-3  p-2">
-            <input
-              type="text"
-              name="productID"
-              className="border-2 border-slate-300 mb-2 px-3 md:h-14 md:w-[400px]"
-              id=""
-              placeholder="Enter your product ID"
-              data-aos="fade-right"
-            />
-            <button
-              className="btn btn-sm bg-red-500 hover:bg-black  md:h-14 md:w-72 ml-4 text-white"
-              data-aos="fade-left"
-            >
-              TRACK YOUR PRODUCT
-            </button>
+            <form onSubmit={handleTrackProduct}>
+              <input
+                type="text"
+                name="productIdForSearch"
+                className="border-2 border-slate-300 mb-2 px-3 md:h-14 md:w-[400px]"
+                placeholder="Enter your product ID"
+                data-aos="fade-right"
+              />
+              <button
+                type="submit"
+                className="btn btn-sm bg-red-500 hover:bg-black  md:h-14 md:w-72 ml-4 text-white"
+                data-aos="fade-left"
+              >
+                TRACK YOUR PRODUCT
+              </button>
+            </form>
           </div>
         </div>
       </div>

@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { axiosSecure } from "../../api/axiosInstances";
+import { useParams } from "react-router";
 
 // import { useNavigate } from "react-router";
 
@@ -7,6 +8,8 @@ const ProductTracking = () => {
   const [isVisible, setIsVisible] = useState(false);
   // const navigate = useNavigate();
   const [bookingData, setBookingData] = useState(null);
+  let { productIdForSearch } = useParams();
+  productIdForSearch && console.log(productIdForSearch);
 
   const handleTracking = async (e) => {
     e.preventDefault();
@@ -17,7 +20,16 @@ const ProductTracking = () => {
       .then((res) => setBookingData(res.data));
     if (bookingData) setIsVisible(!isVisible);
   };
-  console.log(bookingData);
+
+  useEffect(() => {
+    if (productIdForSearch) {
+      axiosSecure
+        .get(`/api/tracking/get-tracking-details/${productIdForSearch}`)
+        .then((res) => setBookingData(res.data));
+      if (bookingData) setIsVisible(!isVisible);
+    }
+  }, [productIdForSearch, bookingData, isVisible]);
+  // console.log(bookingData);
 
   return (
     <div className="overflow-hidden lg:max-w-screen-2xl my-10 mx-auto px-3 md:px-20">
