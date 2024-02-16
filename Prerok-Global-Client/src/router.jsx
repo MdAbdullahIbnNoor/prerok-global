@@ -21,6 +21,9 @@ import PaymentHistory from "./Layouts/Dashboard/User/PaymentHistory/PaymentHisto
 import CreateBooking from "./Layouts/Dashboard/User/CreateBooking/CreateBooking";
 import Payment from "./Layouts/Dashboard/User/Payment/Payment";
 import PrivateRoute from "./routes/PrivateRoute";
+import AllUsersPage from "./Layouts/Dashboard/Admin/AllUsersPage/AllUsersPage";
+import AllBookingsPage from "./Layouts/Dashboard/Admin/AllBokingsPage/AllBookingsPage";
+import AdminRoute from "./routes/AdminRoute";
 
 
 
@@ -96,7 +99,15 @@ const router = createBrowserRouter([
       {
         path: "create-booking",
         element: <PrivateRoute><CreateBooking></CreateBooking></PrivateRoute>,
-      }
+      },
+      {
+        path: "all-users",
+        element: <PrivateRoute><AdminRoute><AllUsersPage></AllUsersPage></AdminRoute></PrivateRoute>,
+      },
+      {
+        path: "all-bookings",
+        element: <PrivateRoute><AdminRoute><AllBookingsPage></AllBookingsPage></AdminRoute></PrivateRoute>,
+      },
     ],
   },
 
