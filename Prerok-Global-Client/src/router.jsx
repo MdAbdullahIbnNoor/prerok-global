@@ -25,6 +25,8 @@ import AllUsersPage from "./Layouts/Dashboard/Admin/AllUsersPage/AllUsersPage";
 import AllBookingsPage from "./Layouts/Dashboard/Admin/AllBokingsPage/AllBookingsPage";
 import AdminRoute from "./routes/AdminRoute";
 import AllPaymentPage from "./Layouts/Dashboard/Admin/AllPaymentPage/AllPaymentPage";
+import ErrorPage from "./Layouts/ErrorPage/ErrorPage";
+import BookingDetails from "./Layouts/Dashboard/BookingDetails/BookingDetails";
 
 
 
@@ -32,7 +34,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Home></Home>,
-    errorElement: <div>404</div>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
@@ -109,6 +111,14 @@ const router = createBrowserRouter([
         path: "all-bookings",
         element: <PrivateRoute><AdminRoute><AllBookingsPage></AllBookingsPage></AdminRoute></PrivateRoute>,
       },
+      {
+        path: "/dsadasjdas",
+        element: <CreateBooking></CreateBooking>,
+      },
+      {
+        path: "booking-details",
+        element: <BookingDetails></BookingDetails>,
+      }
     ],
   },
 

@@ -46,9 +46,9 @@ const Payment = ({ handleStepper, setBookingInfo, bookingInfo }) => {
                 </div>
 
                 <div className="flex justify-between items-center mt-5 border border-gray-100">
-                    <div className="mt-5  ">
+                    <div className="mt-5 mb-8  ">
                         <img
-                            className="w-[300px] h-[100px] object-cover"
+                            className="w-[300px] h-[90px] object-cover"
                             src={stripe} alt="" />
                         <button
                             onClick={() => setIsOpen(true)}
