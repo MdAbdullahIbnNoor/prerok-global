@@ -14,11 +14,10 @@ const ProductTracking = () => {
   const handleTracking = async (e) => {
     e.preventDefault();
     const enteredProductId = e.target.elements.productID.value;
-
     await axiosSecure
       .get(`/api/tracking/get-tracking-details/${enteredProductId}`)
       .then((res) => setBookingData(res.data));
-    if (bookingData) setIsVisible(!isVisible);
+    if (bookingData) setIsVisible(true);
   };
 
   useEffect(() => {
@@ -26,7 +25,7 @@ const ProductTracking = () => {
       axiosSecure
         .get(`api/bookings/get-booking/${productIdForSearch}`)
         .then((res) => setBookingData(res.data.paymentInfo));
-      if (bookingData) setIsVisible(!isVisible);
+      if (bookingData) setIsVisible(true);
     }
   }, [productIdForSearch, bookingData, isVisible]);
   // console.log(bookingData);
