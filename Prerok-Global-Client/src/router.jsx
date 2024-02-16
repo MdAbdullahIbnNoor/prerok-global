@@ -112,7 +112,7 @@ const router = createBrowserRouter([
         element: <PrivateRoute><AdminRoute><AllBookingsPage></AllBookingsPage></AdminRoute></PrivateRoute>,
       },
       {
-        path: "/dsadasjdas",
+        path: "create-booking",
         element: <CreateBooking></CreateBooking>,
       },
       {
