@@ -7,6 +7,7 @@ const addressRoutes = require('./routes/address.routes');
 const authRoutes = require('./routes/auth.routes');
 const paymentRoutes = require('./routes/payment.routes');
 const bookingRoutes = require('./routes/booking.routes');
+const trackingRoutes = require('./routes/tracking.routes')
 
 
 
@@ -28,6 +29,7 @@ app.use('/api/addressbook', addressRoutes);
 app.use(authRoutes);
 app.use('/api/payments', paymentRoutes);
 app.use('/api/bookings', bookingRoutes)
+app.use('/api/tracking', trackingRoutes);
 
 
 
