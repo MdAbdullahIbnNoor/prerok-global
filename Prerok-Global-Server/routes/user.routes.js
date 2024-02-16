@@ -1,6 +1,9 @@
-const { createUser, getUserByEmail, updateUser, updateRole } = require('../controlers/user.controlers');
+const { createUser, getUserByEmail, updateUser, updateRole, getAllUser } = require('../controlers/user.controlers');
 const { verifyUser } = require('../middlewares/authMiddleware');
 const router = require('express').Router();
+
+//route for get all user
+router.get('/get-all-user', getAllUser)
 
 //route for get user by his email
 router.get('/get-user/:email', getUserByEmail)

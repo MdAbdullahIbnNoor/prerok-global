@@ -17,13 +17,14 @@ import UpdateProfile from "./Components/UserProfile/UpdateProfile";
 import Dashboard from "./Layouts/Dashboard/Dashboard";
 import Bookings from "./Layouts/Dashboard/User/Bookings/Bookings";
 import AddressBook from "./Layouts/Dashboard/User/AddressBooking/AddressBook";
-import PaymentHistory from "./Layouts/Dashboard/User/PaymentHistory/PaymentHistory";
+// import PaymentHistory from "./Layouts/Dashboard/User/PaymentHistory/PaymentHistory";
 import CreateBooking from "./Layouts/Dashboard/User/CreateBooking/CreateBooking";
 import Payment from "./Layouts/Dashboard/User/Payment/Payment";
 import PrivateRoute from "./routes/PrivateRoute";
 import AllUsersPage from "./Layouts/Dashboard/Admin/AllUsersPage/AllUsersPage";
 import AllBookingsPage from "./Layouts/Dashboard/Admin/AllBokingsPage/AllBookingsPage";
 import AdminRoute from "./routes/AdminRoute";
+import AllPaymentPage from "./Layouts/Dashboard/Admin/AllPaymentPage/AllPaymentPage";
 
 
 
@@ -86,7 +87,7 @@ const router = createBrowserRouter([
       },
       {
         path: "payment-history",
-        element: <PrivateRoute><PaymentHistory></PaymentHistory></PrivateRoute>,
+        element: <PrivateRoute><AllPaymentPage></AllPaymentPage></PrivateRoute>,
       },
       {
         path: "update-profile/:email",
