@@ -23,7 +23,7 @@ const CreateBooking = () => {
 
     return (
 
-        <div className="">
+        <div className="py-10 ">
             <div className="flex items-center justify-between bg-white w-full mx-auto text-black max-w-xl mb-6">
                 {steps?.map((step, i) => (
                     <div

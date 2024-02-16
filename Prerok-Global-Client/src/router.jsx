@@ -20,6 +20,8 @@ import AddressBook from "./Layouts/Dashboard/User/AddressBooking/AddressBook";
 import PaymentHistory from "./Layouts/Dashboard/User/PaymentHistory/PaymentHistory";
 import CreateBooking from "./Layouts/Dashboard/User/CreateBooking/CreateBooking";
 import Payment from "./Layouts/Dashboard/User/Payment/Payment";
+import ErrorPage from "./Layouts/ErrorPage/ErrorPage";
+import BookingDetails from "./Layouts/Dashboard/BookingDetails/BookingDetails";
 
 
 
@@ -27,7 +29,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Home></Home>,
-    errorElement: <div>404</div>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
@@ -95,6 +97,10 @@ const router = createBrowserRouter([
       {
         path: "create-booking",
         element: <CreateBooking></CreateBooking>,
+      },
+      {
+        path: "booking-details",
+        element: <BookingDetails></BookingDetails>,
       }
     ],
   },

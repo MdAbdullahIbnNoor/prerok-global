@@ -6,50 +6,46 @@ import { FaHandshakeSimple } from "react-icons/fa6";
 import { MdDeliveryDining, MdPayment, MdPayments } from "react-icons/md";
 import { useState } from "react";
 import PaymentModal from "../Payment/PaymentModal/PaymentModal";
+import { FaArrowRightArrowLeft } from "react-icons/fa6";
 
-import stripe from "../../../../assets/payment.jpg";
-import ssl from "../../../../assets/stripe.jpg";
 import useAuth from "../../../../hooks/useAuth";
+import { useQuery } from "@tanstack/react-query";
+import Loading from "../../../../Components/Shared/Loading/Loading";
+import { axiosSecure } from "../../../../api/axiosInstances";
 
 const Bookings = () => {
   let [isOpen, setIsOpen] = useState(false);
-  const {user} = useAuth()
-
+  const { user } = useAuth();
   const closeModal = () => {
     setIsOpen(false);
   };
 
+  // get booking address by email
 
-//   need product informations 
-const pName = "laptop"
-const bName = "dell"
-const amoutn = 1000
-const productId = "93240u30e"
-
-
-  const handelSslPayment = () =>{
-    const paymentInfo ={
-        userEmail : user?.email,
-        name: user?.displayName,
-        productName: pName,
-        brandName: bName,
-        price: parseFloat( amoutn),
-        productId: productId,
+  const { data, isLoading } = useQuery({
+    queryKey: ["allBookings", user?.email],
+    queryFn: async () => {
+      try {
+        const { data: allBookings } = await axiosSecure.get(
+          `/api/bookings/get-bookings/${user?.email}`
+        );
+        return allBookings;
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        throw error;
       }
-    //   console.log(paymentInfo)
-  
-    //   fetch('http://localhost:5000/sslPay', {
-    //     method: 'POST',
-    //     headers:{
-    //       'content-type' : 'application/json'
-    //     },
-    //     body: JSON.stringify(paymentInfo)
-    //   })
-    //   .then(res => res.json())
-    //   .then( data =>{
-    //     window.location.replace(data.url)
-    //     console.log(data)
-    //   })
+    },
+  });
+  console.log(data);
+
+  const totalPayment = data?.reduce(
+    (taka, p) => taka + p?.paymentInfo?.amount,
+    0
+  );
+  console.log(totalPayment);
+
+  if (isLoading) {
+    return <Loading></Loading>;
   }
 
   return (
@@ -61,7 +57,7 @@ const productId = "93240u30e"
         <div>
           <h1 className="text-3xl font-semibold text-orange-400 ">
             Welcome
-            <span className=" text-yellow-500"> User </span>
+            <span className=" text-yellow-500"> {user?.displayName} </span>
           </h1>
         </div>
       </div>
@@ -71,60 +67,66 @@ const productId = "93240u30e"
         <div className="mx-auto">
           <div className="grid gap-4 grid-cols-1 md:grid-cols-3 ">
             {/* first card  */}
-            <div className=" flex items-center gap-4 w-56 p-4 h-30  shadow-md rounded-sm ">
+            <div className=" flex items-center gap-4  p-4 h-30  shadow-md rounded-sm ">
               {/* icon */}
               <div className="">
                 <SiClockify className="text-3xl font-bold text-red-500" />
               </div>
               {/* content */}
               <div>
-                <p className="text-3xl font-bold text-gray-500">20</p>
+                <p className="text-3xl font-bold text-gray-500">
+                  {data?.length}
+                </p>
                 <h1 className=" font-semibold text-gray-600 uppercase">
-                  Delayed
+                  Total Bookings
                 </h1>
               </div>
             </div>
 
-            <div className="flex items-center gap-4 w-56 p-4 h-30 shadow-md rounded-sm  ">
+            <div className="flex items-center gap-4  p-4 h-30 shadow-md rounded-sm  ">
               {/* icon */}
               <div className=" ">
                 <FaHandHoldingHand className="text-3xl font-bold text-yellow-500" />
               </div>
               {/* content */}
               <div>
-                <p className="text-3xl font-bold text-gray-500">6</p>
+                <p className="text-3xl font-bold text-gray-500">
+                  {data[0]?.parcelInfo?.shippingCost}
+                </p>
                 <h1 className=" font-semibold text-gray-600 uppercase">
-                  Exceptence
+                  Shipping Cost
                 </h1>
               </div>
             </div>
-            <div className=" flex items-center gap-4 w-56 p-4 h-30 shadow-md rounded-sm  ">
+            <div className=" flex items-center gap-4  p-4 h-30 shadow-md rounded-sm  ">
               {/* icon */}
               <div className=" ">
                 <SiOpslevel className="text-3xl font-bold text-red-500" />
               </div>
               {/* content */}
               <div>
-                <p className="text-3xl font-bold text-gray-500">20</p>
+                <p className="text-2xl uppercase font-semibold text-gray-500">
+                  {data[0]?.parcelInfo?.packaging_type}
+                </p>
                 <h1 className=" font-semibold text-gray-600 uppercase">
-                  Label Creation
+                  Packing Type
                 </h1>
               </div>
             </div>
-            <div className=" flex items-center gap-4 w-56 p-4 h-30 shadow-md rounded-sm  ">
+            <div className=" flex items-center gap-4  p-4 h-30 shadow-md rounded-sm  ">
               {/* icon */}
               <div className=" ">
                 <FaCircleArrowRight className="text-3xl font-bold text-purple-500" />
               </div>
               {/* content */}
               <div>
-                <p className="text-3xl font-bold text-gray-500">20</p>
+                <p className="text-2xl font-semibold uppercase text-gray-500">{data[0]?.parcelInfo?.shipping_method}</p>
                 <h1 className=" font-semibold text-gray-600 uppercase">
-                  Early
+                  Shipping Methode
                 </h1>
               </div>
             </div>
-            <div className=" flex items-center gap-4 w-56 p-4 h-30 shadow-md rounded-sm  ">
+            <div className=" flex items-center gap-4  p-4 h-30 shadow-md rounded-sm  ">
               {/* icon */}
               <div className=" ">
                 <FaHandshakeSimple className="text-3xl font-bold text-gray-500" />
@@ -135,15 +137,15 @@ const productId = "93240u30e"
                 <h1 className=" font-semibold text-gray-600">ONTIME </h1>
               </div>
             </div>
-            <div className=" flex items-center gap-4 w-56 p-4 h-30 shadow-md rounded-sm  ">
+            <div className=" flex items-center gap-4  p-4 h-30 shadow-md rounded-sm  ">
               {/* icon */}
               <div className=" ">
                 <MdDeliveryDining className="text-3xl font-bold text-green-500" />
               </div>
               {/* content */}
               <div>
-                <p className="text-3xl font-bold text-gray-500">20</p>
-                <h1 className=" font-semibold text-gray-600">DELIVERED</h1>
+                <p className="text-xl font-bold flex gap-2 items-center uppercase text-gray-500"> {data[0]?.fromAddress?.from_address} <FaArrowRightArrowLeft className="text-yellow-500" /> {data[0]?.toAddress?.to_address} </p>
+                <h1 className=" font-semibold text-gray-600">From - To</h1>
               </div>
             </div>
           </div>
@@ -157,8 +159,10 @@ const productId = "93240u30e"
               {/* content */}
               <div>
                 <h1 className=" font-semibold text-gray-600 uppercase">
-                  Total
-                  <p className="text-3xl font-bold text-gray-500">$ 3000 </p>
+                  Total Pay
+                  <p className="text-3xl font-bold text-gray-500">
+                    $ {totalPayment}{" "}
+                  </p>
                 </h1>
               </div>
             </div>
@@ -177,9 +181,8 @@ const productId = "93240u30e"
               </div>
             </div>
 
-
             {/* payment mathodes  */}
-            <div className="md:w-7/6 mx-auto">
+            {/* <div className="md:w-7/6 mx-auto">
               <h1 className="text-2xl font-bold text-gray-400">Payment Mathodes</h1>
 
               <div className="flex justify-between items-center   bg-gray-50 ">
@@ -210,9 +213,8 @@ const productId = "93240u30e"
                   </div>               
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
-
 
           {/* table  */}
           <div>
@@ -220,50 +222,31 @@ const productId = "93240u30e"
               <table className="table">
                 {/* head */}
                 <thead>
-                  <tr>
+                  <tr className="uppercase">
                     <th>Invoice Id</th>
                     <th>TRACKING NUMBER</th>
-                    <th>STATUS</th>
+                    <th> booking STATUS </th>
                     <th>SCHEDUL DELIVERY DATE </th>
                     <th>SCHEDUL DELIVERY TIME </th>
-                    <th>Pay</th>
+                    <th className="uppercase">Payment Status</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {/* row 1 */}
-                  <tr>
-                    <th>1</th>
-                    <td>032974293</td>
-                    <td>Dealy</td>
-                    <td>12-03-22</td>
-                    <td>12:40 pm</td>
-                    <td></td>
-                  </tr>
-                  {/* row 2 */}
-                  <tr>
-                    <th>2</th>
-                    <td>032974293</td>
-                    <td>Dealy </td>
-                    <td>14-03-23</td>
-                    <td>11:20 pm</td>
-                  </tr>
-                  {/* row 3 */}
-                  <tr>
-                    <th>3</th>
-                    <td>032974293</td>
-                    <td>Pending</td>
-                    <td>14-03-23</td>
-                    <td>01:40 pm</td>
-                  </tr>
+                  {data &&
+                    data.map((bookingInfo, idx) => (
+                      <tr key={idx}>
+                        <th>{idx + 1}</th>
+                        <td>{bookingInfo?._id}</td>
+                        <td>{bookingInfo?.trackingStatus}</td>
+                        <td>12-03-22</td>
+                        <td>12:40 pm</td>
+                        <td> {bookingInfo?.paymentInfo?.status} </td>
+                      </tr>
+                    ))}
                 </tbody>
               </table>
             </div>
-        
-
-
           </div>
-
-       
         </div>
       </div>
 
