@@ -24,8 +24,8 @@ const ProductTracking = () => {
   useEffect(() => {
     if (productIdForSearch) {
       axiosSecure
-        .get(`/api/tracking/get-tracking-details/${productIdForSearch}`)
-        .then((res) => setBookingData(res.data));
+        .get(`api/bookings/get-booking/${productIdForSearch}`)
+        .then((res) => setBookingData(res.data.paymentInfo));
       if (bookingData) setIsVisible(!isVisible);
     }
   }, [productIdForSearch, bookingData, isVisible]);
