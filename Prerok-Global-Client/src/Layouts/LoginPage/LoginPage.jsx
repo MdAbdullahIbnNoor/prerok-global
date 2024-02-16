@@ -3,7 +3,7 @@ import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import { FaSpinner } from "react-icons/fa";
 import SocialLogin from "../../Components/AuthenticationPage/SocialLogin/SocialLogin";
-import { getToken } from "../../api/usersApi";
+// import { getToken } from "../../api/usersApi";
 
 
 const LoginPage = () => {
@@ -14,10 +14,10 @@ const LoginPage = () => {
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
-        const loginInfo = { email, password };
+        // const loginInfo = { email, password };
         try {
             await loginUser(email, password);
-            await getToken(email);
+            // await getToken(email);
             toast.success("Login sucessfull")
             navigate("/")
         } catch (error) {

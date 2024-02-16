@@ -52,7 +52,7 @@ const Navbar = () => {
         Tracking
         <span className="absolute inset-x-0 -bottom-0.5 h-0.5 bg-amber-500 transition-transform origin-left transform scale-x-0 group-hover:scale-x-100 duration-200"></span>
       </NavLink>
-      <NavLink
+      {/* <NavLink
         to={"/placeOrder"}
         className={({ isActive }) =>
           isActive
@@ -62,7 +62,7 @@ const Navbar = () => {
       >
         Place Order
         <span className="absolute inset-x-0 -bottom-0.5 h-0.5 bg-amber-500 transition-transform origin-left transform scale-x-0 group-hover:scale-x-100 duration-200 w-full"></span>
-      </NavLink>
+      </NavLink> */}
       {/*<NavLink
         to={"/shipping"}
         className={({ isActive }) =>

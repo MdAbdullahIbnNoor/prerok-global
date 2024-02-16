@@ -11,7 +11,7 @@ import ContactUs from "./Components/ContactUs/ContactUs";
 import ProductTracking from "./Components/ProductTracking/ProductTracking";
 import LoginPage from "./Layouts/LoginPage/LoginPage";
 import RegistrationPage from "./Layouts/RegistrationPage/RegistrationPage";
-import PlaceOrder from "./Components/Shipping/PlaceOrder/PlaceOrder";
+// import PlaceOrder from "./Components/Shipping/PlaceOrder/PlaceOrder";
 import CustomsDocument from "./Layouts/CustomsDocument/CustomsDocument";
 import UpdateProfile from "./Components/UserProfile/UpdateProfile";
 import Dashboard from "./Layouts/Dashboard/Dashboard";
@@ -20,6 +20,7 @@ import AddressBook from "./Layouts/Dashboard/User/AddressBooking/AddressBook";
 import PaymentHistory from "./Layouts/Dashboard/User/PaymentHistory/PaymentHistory";
 import CreateBooking from "./Layouts/Dashboard/User/CreateBooking/CreateBooking";
 import Payment from "./Layouts/Dashboard/User/Payment/Payment";
+import PrivateRoute from "./routes/PrivateRoute";
 
 
 
@@ -53,10 +54,10 @@ const router = createBrowserRouter([
         path: "/productTracking",
         element: <ProductTracking></ProductTracking>,
       },
-      {
-        path: "/placeOrder",
-        element: <PlaceOrder></PlaceOrder>,
-      },
+      // {
+      //   path: "/placeOrder",
+      //   element: <PlaceOrder></PlaceOrder>,
+      // },
       {
         path: "/customDocument",
         element: <CustomsDocument />,
@@ -65,36 +66,36 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <Dashboard></Dashboard>,
+    element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     children: [
       {
         path: "profile",
-        element: <UserProfile></UserProfile>,
+        element: <PrivateRoute><UserProfile></UserProfile></PrivateRoute>,
 
       },
       {
         path: "address-book",
-        element: <AddressBook></AddressBook>,
+        element: <PrivateRoute><AddressBook></AddressBook></PrivateRoute>,
       },
       {
         path: "payment",
-        element: <Payment></Payment>,
+        element: <PrivateRoute><Payment></Payment></PrivateRoute>,
       },
       {
         path: "payment-history",
-        element: <PaymentHistory></PaymentHistory>,
+        element: <PrivateRoute><PaymentHistory></PaymentHistory></PrivateRoute>,
       },
       {
         path: "update-profile/:email",
-        element: <UpdateProfile></UpdateProfile>,
+        element: <PrivateRoute><UpdateProfile></UpdateProfile></PrivateRoute>,
       },
       {
         path: "bookings",
-        element: <Bookings></Bookings>,
+        element: <PrivateRoute><PrivateRoute><Bookings></Bookings></PrivateRoute></PrivateRoute>,
       },
       {
         path: "create-booking",
-        element: <CreateBooking></CreateBooking>,
+        element: <PrivateRoute><CreateBooking></CreateBooking></PrivateRoute>,
       }
     ],
   },
