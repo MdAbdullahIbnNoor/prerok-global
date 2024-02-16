@@ -23,7 +23,7 @@ const PaymentHistory = () => {
   }
 
   const filterdUser = users.filter((data) => data.email === user?.email);
-  console.log(filterdUser);
+  // console.log(filterdUser);
 
   //   console.log(users)
 
