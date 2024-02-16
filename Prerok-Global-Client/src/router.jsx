@@ -11,15 +11,20 @@ import ContactUs from "./Components/ContactUs/ContactUs";
 import ProductTracking from "./Components/ProductTracking/ProductTracking";
 import LoginPage from "./Layouts/LoginPage/LoginPage";
 import RegistrationPage from "./Layouts/RegistrationPage/RegistrationPage";
-import PlaceOrder from "./Components/Shipping/PlaceOrder/PlaceOrder";
+// import PlaceOrder from "./Components/Shipping/PlaceOrder/PlaceOrder";
 import CustomsDocument from "./Layouts/CustomsDocument/CustomsDocument";
 import UpdateProfile from "./Components/UserProfile/UpdateProfile";
 import Dashboard from "./Layouts/Dashboard/Dashboard";
 import Bookings from "./Layouts/Dashboard/User/Bookings/Bookings";
 import AddressBook from "./Layouts/Dashboard/User/AddressBooking/AddressBook";
-import PaymentHistory from "./Layouts/Dashboard/User/PaymentHistory/PaymentHistory";
+// import PaymentHistory from "./Layouts/Dashboard/User/PaymentHistory/PaymentHistory";
 import CreateBooking from "./Layouts/Dashboard/User/CreateBooking/CreateBooking";
 import Payment from "./Layouts/Dashboard/User/Payment/Payment";
+import PrivateRoute from "./routes/PrivateRoute";
+import AllUsersPage from "./Layouts/Dashboard/Admin/AllUsersPage/AllUsersPage";
+import AllBookingsPage from "./Layouts/Dashboard/Admin/AllBokingsPage/AllBookingsPage";
+import AdminRoute from "./routes/AdminRoute";
+import AllPaymentPage from "./Layouts/Dashboard/Admin/AllPaymentPage/AllPaymentPage";
 import ErrorPage from "./Layouts/ErrorPage/ErrorPage";
 import BookingDetails from "./Layouts/Dashboard/BookingDetails/BookingDetails";
 
@@ -55,10 +60,10 @@ const router = createBrowserRouter([
         path: "/productTracking",
         element: <ProductTracking></ProductTracking>,
       },
-      {
-        path: "/placeOrder",
-        element: <PlaceOrder></PlaceOrder>,
-      },
+      // {
+      //   path: "/placeOrder",
+      //   element: <PlaceOrder></PlaceOrder>,
+      // },
       {
         path: "/customDocument",
         element: <CustomsDocument />,
@@ -67,32 +72,44 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <Dashboard></Dashboard>,
+    element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     children: [
       {
         path: "profile",
-        element: <UserProfile></UserProfile>,
+        element: <PrivateRoute><UserProfile></UserProfile></PrivateRoute>,
 
       },
       {
         path: "address-book",
-        element: <AddressBook></AddressBook>,
+        element: <PrivateRoute><AddressBook></AddressBook></PrivateRoute>,
       },
       {
         path: "payment",
-        element: <Payment></Payment>,
+        element: <PrivateRoute><Payment></Payment></PrivateRoute>,
       },
       {
         path: "payment-history",
-        element: <PaymentHistory></PaymentHistory>,
+        element: <PrivateRoute><AllPaymentPage></AllPaymentPage></PrivateRoute>,
       },
       {
         path: "update-profile/:email",
-        element: <UpdateProfile></UpdateProfile>,
+        element: <PrivateRoute><UpdateProfile></UpdateProfile></PrivateRoute>,
       },
       {
         path: "bookings",
-        element: <Bookings></Bookings>,
+        element: <PrivateRoute><PrivateRoute><Bookings></Bookings></PrivateRoute></PrivateRoute>,
+      },
+      {
+        path: "create-booking",
+        element: <PrivateRoute><CreateBooking></CreateBooking></PrivateRoute>,
+      },
+      {
+        path: "all-users",
+        element: <PrivateRoute><AdminRoute><AllUsersPage></AllUsersPage></AdminRoute></PrivateRoute>,
+      },
+      {
+        path: "all-bookings",
+        element: <PrivateRoute><AdminRoute><AllBookingsPage></AllBookingsPage></AdminRoute></PrivateRoute>,
       },
       {
         path: "create-booking",

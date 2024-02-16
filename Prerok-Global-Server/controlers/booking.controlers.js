@@ -55,7 +55,7 @@ exports.updateBookingInfo = async (req, res) => {
 exports.updateTrackingStatus = async (req, res) => {
     try {
         const id = req.params.id;
-        const status = req.body.status;
+        const status = req.body.trackingStatus;
         const updatedDoc = {
             $set: {
                 trackingStatus: status
