@@ -7,7 +7,7 @@ exports.getTrackingById = async (req, res) => {
     const bookingID = req.params.trackingId;
 
     const result = await Payment.findOne({ bookingID });
-    console.log(result);
+    // console.log(result);
 
     res.status(200).send(result);
   } catch (error) {
