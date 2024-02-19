@@ -27,6 +27,7 @@ import AdminRoute from "./routes/AdminRoute";
 import AllPaymentPage from "./Layouts/Dashboard/Admin/AllPaymentPage/AllPaymentPage";
 import ErrorPage from "./Layouts/ErrorPage/ErrorPage";
 import BookingDetails from "./Layouts/Dashboard/BookingDetails/BookingDetails";
+import ReturnPage from "./Layouts/Dashboard/User/ReturnPage/ReturnPage";
 
 
 
@@ -97,11 +98,15 @@ const router = createBrowserRouter([
       },
       {
         path: "bookings",
-        element: <PrivateRoute><PrivateRoute><Bookings></Bookings></PrivateRoute></PrivateRoute>,
+        element: <PrivateRoute><Bookings></Bookings></PrivateRoute>,
       },
       {
         path: "create-booking",
         element: <PrivateRoute><CreateBooking></CreateBooking></PrivateRoute>,
+      },
+      {
+        path: "return-product",
+        element: <PrivateRoute><ReturnPage></ReturnPage></PrivateRoute>,
       },
       {
         path: "all-users",

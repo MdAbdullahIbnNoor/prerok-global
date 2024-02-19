@@ -1,4 +1,4 @@
-const { createBooking, getBookingsByEmail, updateTrackingStatus, getBookingByID, updateBookingInfo, deleteBooking, getAllBookings } = require('../controlers/booking.controlers');
+const { createBooking, getBookingsByEmail, updateTrackingStatus, getBookingByID, updateBookingInfo, deleteBooking, getAllBookings, updateReturnStatus } = require('../controlers/booking.controlers');
 
 const router = require('express').Router();
 
@@ -16,6 +16,9 @@ router.put("/update-booking/:id", updateBookingInfo)
 
 // router for update parcel tracking status
 router.patch("/update-status/:id", updateTrackingStatus)
+
+// router for update parcel return status
+router.patch("/update-return-status/:id", updateReturnStatus)
 
 // router for post a new booking
 router.post("/create-booking", createBooking)
