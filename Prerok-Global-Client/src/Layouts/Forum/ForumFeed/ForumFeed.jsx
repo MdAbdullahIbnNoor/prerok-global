@@ -1,10 +1,12 @@
-import FeedCreatePost from "../../../Components/ForumComponents/FeedCreatePost/FeedCreatePost";
+import CreatePost from "../CreatePost/CreatePost";
+import SinglePostOnFeed from "../ForumLayout/SinglePostOnFeed/SinglePostOnFeed";
 
 const ForumFeed = () => {
   return (
     <div className=" max-w-screen-2xl mx-auto">
       {/**Forum Feed page with pagination. Facebook style */}
-      <FeedCreatePost></FeedCreatePost>
+      <CreatePost></CreatePost>
+      <SinglePostOnFeed></SinglePostOnFeed>
     </div>
   );
 };

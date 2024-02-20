@@ -30,8 +30,6 @@ import BookingDetails from "./Layouts/Dashboard/BookingDetails/BookingDetails";
 import ForumFeed from "./Layouts/Forum/ForumFeed/ForumFeed";
 import CreatePost from "./Layouts/Forum/CreatePost/CreatePost";
 
-
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -72,8 +70,8 @@ const router = createBrowserRouter([
       },
       {
         path: "/forum",
-        element: <CreatePost></CreatePost>
-      }
+        element: <ForumFeed></ForumFeed>,
+      },
     ],
   },
   {
@@ -190,25 +188,6 @@ const router = createBrowserRouter([
         path: "featurefaq",
         element: <FeatureFAQ></FeatureFAQ>,
       },
-    ],
-  },
-  {
-    path: "forum",
-    element: <ForumFeed></ForumFeed>,
-    children: [
-      // // normal users route
-      // {
-      //   path: "generelfaq",
-      //   element: <GenerelFAQ></GenerelFAQ>,
-      // },
-      // {
-      //   path: "securityfaq",
-      //   element: <SecurityFAQ></SecurityFAQ>,
-      // },
-      // {
-      //   path: "featurefaq",
-      //   element: <FeatureFAQ></FeatureFAQ>,
-      // },
     ],
   },
 ]);
