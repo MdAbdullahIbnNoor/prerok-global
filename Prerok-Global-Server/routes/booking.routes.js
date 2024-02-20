@@ -20,7 +20,7 @@ router.patch("/update-status/:id", updateTrackingStatus)
 // router for update parcel return status
 router.patch("/update-return-status/:id", updateReturnStatus)
 
-// router for post a new booking
+// router for post a new booking 
 router.post("/create-booking", createBooking)
 
 // router for delete a existing booking

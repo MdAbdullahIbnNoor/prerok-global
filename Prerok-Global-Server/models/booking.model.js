@@ -28,6 +28,9 @@ const bookingSchema = new mongoose.Schema({
     },
     returnReason: {
         type: String,
+    },
+    refundType: {
+        type: String,
     }
 })
 
