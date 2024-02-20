@@ -75,7 +75,7 @@ const Navbar = () => {
         <span className="absolute inset-x-0 -bottom-0.5 h-0.5 bg-amber-500 transition-transform origin-left transform scale-x-0 group-hover:scale-x-100 duration-200"></span>
       </NavLink>*/}
       <NavLink
-        to={"/support"}
+        to={"/forum"}
         className={({ isActive }) =>
           isActive
             ? "relative border-b-2 border-amber-500 inline-block text-black hover:text-gray-800 group font-semibold pt-2 px-2"
