@@ -28,7 +28,7 @@ import AllPaymentPage from "./Layouts/Dashboard/Admin/AllPaymentPage/AllPaymentP
 import ErrorPage from "./Layouts/ErrorPage/ErrorPage";
 import BookingDetails from "./Layouts/Dashboard/BookingDetails/BookingDetails";
 import ForumFeed from "./Layouts/Forum/ForumFeed/ForumFeed";
-import CreatePost from "./Layouts/Forum/CreatePost/CreatePost";
+import SinglePost from "./Layouts/Forum/SinglePost/SinglePost";
 
 const router = createBrowserRouter([
   {
@@ -71,6 +71,10 @@ const router = createBrowserRouter([
       {
         path: "/forum",
         element: <ForumFeed></ForumFeed>,
+      },
+      {
+        path: "/forum/:id",
+        element: <SinglePost></SinglePost>,
       },
     ],
   },
