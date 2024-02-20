@@ -27,6 +27,7 @@ import AdminRoute from "./routes/AdminRoute";
 import AllPaymentPage from "./Layouts/Dashboard/Admin/AllPaymentPage/AllPaymentPage";
 import ErrorPage from "./Layouts/ErrorPage/ErrorPage";
 import BookingDetails from "./Layouts/Dashboard/BookingDetails/BookingDetails";
+import CreatePost from "./Layouts/Forum/CreatePost/CreatePost";
 
 
 
@@ -68,6 +69,10 @@ const router = createBrowserRouter([
         path: "/customDocument",
         element: <CustomsDocument />,
       },
+      {
+        path: "/forum",
+        element: <CreatePost></CreatePost>
+      }
     ],
   },
   {
