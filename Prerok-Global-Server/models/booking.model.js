@@ -25,6 +25,12 @@ const bookingSchema = new mongoose.Schema({
         type: String,
         required: true,
         default: "Booking Confirmed"
+    },
+    returnReason: {
+        type: String,
+    },
+    refundType: {
+        type: String,
     }
 })
 

@@ -11,13 +11,11 @@ import ContactUs from "./Components/ContactUs/ContactUs";
 import ProductTracking from "./Components/ProductTracking/ProductTracking";
 import LoginPage from "./Layouts/LoginPage/LoginPage";
 import RegistrationPage from "./Layouts/RegistrationPage/RegistrationPage";
-// import PlaceOrder from "./Components/Shipping/PlaceOrder/PlaceOrder";
 import CustomsDocument from "./Layouts/CustomsDocument/CustomsDocument";
 import UpdateProfile from "./Components/UserProfile/UpdateProfile";
 import Dashboard from "./Layouts/Dashboard/Dashboard";
 import Bookings from "./Layouts/Dashboard/User/Bookings/Bookings";
 import AddressBook from "./Layouts/Dashboard/User/AddressBooking/AddressBook";
-// import PaymentHistory from "./Layouts/Dashboard/User/PaymentHistory/PaymentHistory";
 import CreateBooking from "./Layouts/Dashboard/User/CreateBooking/CreateBooking";
 import Payment from "./Layouts/Dashboard/User/Payment/Payment";
 import PrivateRoute from "./routes/PrivateRoute";
@@ -27,117 +25,169 @@ import AdminRoute from "./routes/AdminRoute";
 import AllPaymentPage from "./Layouts/Dashboard/Admin/AllPaymentPage/AllPaymentPage";
 import ErrorPage from "./Layouts/ErrorPage/ErrorPage";
 import BookingDetails from "./Layouts/Dashboard/BookingDetails/BookingDetails";
-
-
+import ReturnPage from "./Layouts/Dashboard/User/ReturnPage/ReturnPage";
+import CreatePost from "./Layouts/Forum/CreatePost/CreatePost";
+import ForumFeed from "./Layouts/Forum/ForumFeed/ForumFeed";
+import SinglePost from "./Layouts/Forum/SinglePost/SinglePost";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home></Home>,
-    errorElement: <ErrorPage></ErrorPage>,
+    element: <Home />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
-        element: <Homepage></Homepage>,
+        element: <Homepage />,
       },
       {
         path: "/login",
-        element: <LoginPage></LoginPage>,
+        element: <LoginPage />,
       },
       {
         path: "/registration",
-        element: <RegistrationPage></RegistrationPage>,
+        element: <RegistrationPage />,
       },
       {
         path: "/about",
-        element: <AboutPage></AboutPage>,
+        element: <AboutPage />,
       },
       {
         path: "/contact",
-        element: <ContactUs></ContactUs>,
+        element: <ContactUs />,
       },
       {
         path: "/productTracking",
-        element: <ProductTracking></ProductTracking>,
+        element: <ProductTracking />,
       },
-      // {
-      //   path: "/placeOrder",
-      //   element: <PlaceOrder></PlaceOrder>,
-      // },
       {
         path: "/customDocument",
         element: <CustomsDocument />,
+      },
+      {
+        path: "/forum",
+        element: <ForumFeed />,
+      },
+      {
+        path: "/forum/:id",
+        element: <SinglePost />,
       },
     ],
   },
   {
     path: "/dashboard",
-    element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+    element: (
+      <PrivateRoute>
+        <Dashboard />
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "profile",
-        element: <PrivateRoute><UserProfile></UserProfile></PrivateRoute>,
-
+        element: (
+          <PrivateRoute>
+            <UserProfile />
+          </PrivateRoute>
+        ),
       },
       {
         path: "address-book",
-        element: <PrivateRoute><AddressBook></AddressBook></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <AddressBook />
+          </PrivateRoute>
+        ),
       },
       {
         path: "payment",
-        element: <PrivateRoute><Payment></Payment></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <Payment />
+          </PrivateRoute>
+        ),
       },
       {
         path: "payment-history",
-        element: <PrivateRoute><AllPaymentPage></AllPaymentPage></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <AllPaymentPage />
+          </PrivateRoute>
+        ),
       },
       {
         path: "update-profile/:email",
-        element: <PrivateRoute><UpdateProfile></UpdateProfile></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <UpdateProfile />
+          </PrivateRoute>
+        ),
       },
       {
         path: "bookings",
-        element: <PrivateRoute><PrivateRoute><Bookings></Bookings></PrivateRoute></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <Bookings />
+          </PrivateRoute>
+        ),
       },
       {
         path: "create-booking",
-        element: <PrivateRoute><CreateBooking></CreateBooking></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <CreateBooking />
+          </PrivateRoute>
+        ),
       },
       {
         path: "all-users",
-        element: <PrivateRoute><AdminRoute><AllUsersPage></AllUsersPage></AdminRoute></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <AllUsersPage />
+            </AdminRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "all-bookings",
-        element: <PrivateRoute><AdminRoute><AllBookingsPage></AllBookingsPage></AdminRoute></PrivateRoute>,
-      },
-      {
-        path: "create-booking",
-        element: <CreateBooking></CreateBooking>,
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <AllBookingsPage />
+            </AdminRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "booking-details",
-        element: <BookingDetails></BookingDetails>,
-      }
+        element: <BookingDetails />,
+      },
+      {
+        path: "return-product",
+        element: (
+          <PrivateRoute>
+            <ReturnPage />
+          </PrivateRoute>
+        ),
+      },
     ],
   },
-
   {
     path: "faq",
-    element: <FAQ></FAQ>,
+    element: <FAQ />,
     children: [
       // normal users route
       {
         path: "generelfaq",
-        element: <GenerelFAQ></GenerelFAQ>,
+        element: <GenerelFAQ />,
       },
       {
         path: "securityfaq",
-        element: <SecurityFAQ></SecurityFAQ>,
+        element: <SecurityFAQ />,
       },
       {
         path: "featurefaq",
-        element: <FeatureFAQ></FeatureFAQ>,
+        element: <FeatureFAQ />,
       },
     ],
   },
