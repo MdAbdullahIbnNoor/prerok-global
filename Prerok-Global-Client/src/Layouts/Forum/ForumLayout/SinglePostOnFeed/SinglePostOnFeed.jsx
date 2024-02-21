@@ -1,11 +1,10 @@
 import { AiOutlineLike } from "react-icons/ai";
 import { FaRegCommentAlt, FaRegShareSquare } from "react-icons/fa";
-import CommentComponent from "./CommentComponent/CommentComponent";
 
-const SinglePost = () => {
+const SinglePostOnFeed = () => {
   return (
-    <div className="border border-[#f5ab35] w-full lg:w-6/12 mx-auto mt-2 mb-4 pt-2 pb-3 shadow-xl p-4 h-full my-3">
-      <div className="overflow-hidden h-full">
+    <div className="border border-[#f5ab35] w-full lg:w-6/12 mx-auto mt-2 mb-4 pt-2 pb-3 shadow-xl p-4 h-[27rem] my-3">
+      <div className="overflow-hidden h-[23rem]">
         <h4 className="text-xl font-semibold">
           Title Lorem ipsum dolor, sit amet consectetur adipisicing elit.
         </h4>
@@ -40,10 +39,8 @@ const SinglePost = () => {
           <FaRegShareSquare /> Share
         </button>
       </div>
-      <div className="">Comments</div>
-      <CommentComponent></CommentComponent>
     </div>
   );
 };
 
-export default SinglePost;
+export default SinglePostOnFeed;
