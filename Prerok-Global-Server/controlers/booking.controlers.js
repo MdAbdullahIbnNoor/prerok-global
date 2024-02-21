@@ -1,4 +1,14 @@
 const Booking = require("../models/booking.model");
+const nodemailer = require('nodemailer');
+
+// Transporter of Nodemailer for Sending mail
+const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+        user: process.env.GMAIL_USER,
+        pass: process.env.GMAIL_APP_ID
+    }
+})
 
 // controlers for get a booking by booking id
 exports.getBookingByID = async (req, res) => {
@@ -56,12 +66,49 @@ exports.updateTrackingStatus = async (req, res) => {
     try {
         const id = req.params.id;
         const status = req.body.trackingStatus;
+        const bookingData = await Booking.findById(id);
         const updatedDoc = {
             $set: {
                 trackingStatus: status
             }
         }
         const bookings = await Booking.updateOne({ _id: id }, updatedDoc);
+
+        const gmailUser = process.env.GMAIL_USER;
+        if (!gmailUser) throw new Error("Gmail user is not set");
+
+        // if the status are updated then send the message
+        if (bookings) {
+            // mail options for booking complete message
+            const mailOptions = {
+                from: {
+                    name: "Prerok Global",
+                    address: gmailUser
+                },
+                to: bookingData.bookingEmail,
+                subject: 'Tracking Update - Prerok Global',
+                text: `Hello ${bookingData.fromAddress?.from_name},\n\nWe have an exciting update regarding your booking.`,
+                html: `<p><b>Hello ${bookingData.fromAddress?.from_name},</b></p>
+                   <p>We have an exciting update regarding your booking with Prerok Global!</p>
+        
+                   <p><b>Tracking Update:</b></p>
+                   <p>Your package is ${status}! Here are the latest tracking details:</p>
+                   <ul>
+                       <li><b>Tracking Number:</b> ${bookingData._id}</li>
+                   </ul>
+        
+                   <p>If you have any questions or concerns, please feel free to reach out to our customer support team. Thank you for choosing Prerok Global!</p>
+                   <p>Best Regards,<br>Prerok Global Team</p>`
+            };
+
+            // Send the email
+            transporter.sendMail(mailOptions, (error, info) => {
+                if (error) {
+                    res.status(500).send({ success: false, message: error })
+                }
+            })
+
+        }
         res.status(200).send(bookings);
     } catch (error) {
         res.status(500).send({ message: error.message });
@@ -80,6 +127,63 @@ exports.createBooking = async (req, res) => {
             bookingEmail: bookingData.bookingEmail
         })
         const result = await newBooking.save();
+
+        const gmailUser = process.env.GMAIL_USER;
+        if (!gmailUser) throw new Error("Gmail user is not set");
+
+        // If the booking is complete then send the mail
+        if (result) {
+            // mail options for booking complete message
+            const mailOptions = {
+                from: {
+                    name: "Prerok Global",
+                    address: gmailUser
+                },
+                to: bookingData.bookingEmail,
+                subject: 'Booking Confirmed - Prerok Global',
+                text: `Hello ${bookingData.fromAddress?.from_name},\n\nThank you for choosing Prerok Global! Your booking has been confirmed. We kindly request you to drop off your product at the nearest hub.`,
+                html: `<p><b>Hello ${bookingData.fromAddress?.from_name},</b></p>
+                       <p>Thank you for choosing Prerok Global! We are excited to inform you that your booking has been successfully confirmed.</p>
+                       <div style="display: flex; justify-content: space-between;">
+                       <div style="width: 48%;">
+                       <b>Your Tracking Number:</b> <span>${bookingData._id}</span>
+                       <p><b>From Address:</b></p>
+                       <ul>
+                           <li><b>Name:</b> ${bookingData.fromAddress?.from_name}</li>
+                           <li><b>Email:</b> ${bookingData.fromAddress?.from_email}</li>
+                           <li><b>Location:</b> ${bookingData.fromAddress?.from_address}, ${bookingData.fromAddress?.from_country}</li>
+                       </ul>
+                   </div>
+
+                       <div style="width: 48%;">
+                           <p><b>To Address:</b></p>
+                           <ul>
+                           <li><b>Name:</b> ${bookingData.toAddress?.to_name}</li>
+                           <li><b>Email:</b> ${bookingData.toAddress?.to_email}</li>
+                           <li><b>Location:</b> ${bookingData.toAddress?.to_address}, ${bookingData.toAddress?.to_country}</li>
+                           </ul>
+                       </div>
+                   </div>
+                       <p><b>Drop-off Instructions:</b></p>
+                       <p>We kindly request you to drop off your product at the nearest Prerok Global hub. This will ensure a smooth and efficient processing of your order.</p>
+                       <p><b>Important Notes:</b></p>
+                       <ul>
+                           <li>Please ensure your product is securely packaged.</li>
+                           <li>Include a copy of your booking confirmation in the package.</li>
+                       </ul>
+                       <p>If you have any questions or need assistance, feel free to contact our customer support team.</p>
+                       <p>We look forward to serving you and ensuring you have a fantastic experience with us. If you have any questions or special requests, feel free to reach out to us.</p>
+                       <p>Safe travels and see you soon!</p>
+                       <p>Best Regards,<br>Prerok Global Team</p>`
+            };
+
+            // Send the email
+            transporter.sendMail(mailOptions, (error, info) => {
+                if (error) {
+                    res.status(500).send({ success: false, message: error })
+                }
+            })
+        }
         res.status(201).send({ success: true, message: "Booking Successful", data: result })
     } catch (error) {
         res.status(500).send({ message: error.message })
