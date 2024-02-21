@@ -1,6 +1,6 @@
 const { createPaymentIntent, savePaymentInfo, getAllPaymentHistory } = require('../controlers/payment.controlers');
 
-const router = require('express').Router();
+const router = require('express').Router(); 
 
 // route for generate client secret for payment  
 router.post('/create-payment-intent', createPaymentIntent);

@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { axiosSecure } from "../../api/axiosInstances";
 import { useParams } from "react-router";
+import Lottie from "lottie-react";
+import tracking from './../../assets/animations/tracking.json'
+
 
 // import { useNavigate } from "react-router";
 
@@ -49,7 +52,7 @@ const ProductTracking = () => {
         data-aos="fade-up"
         data-aos-duration="2000"
       >
-        <div className="lg:w-1/2 w-full mx-auto bg-white border-2 border-red-500 ">
+        <div className="lg:w-1/2 w-full mx-auto bg-white border-2 border-amber-500 ">
           <p className="font-medium text-xl px-8 py-4">
             TRACK YOUR PRODUCT{" "}
             <span className="font-light text-sm text-slate-500">
@@ -58,20 +61,20 @@ const ProductTracking = () => {
           </p>
           <form
             onSubmit={handleTracking}
-            className="md:flex justify-center p-5 "
+            className="md:flex justify-center p-5 items-center"
           >
             <input
               type="text"
               name="productID"
-              className="border-2 mb-2 border-slate-300   md:w-[400px] mx-auto px-4"
+              className="border-2 mb-2 border-amber-500 md:w-[400px] mx-auto px-4 py-2 rounded-lg mt-1"
               id=""
               placeholder="Enter your product ID"
-              data-aos="fade-right"
+              // data-aos="fade-right"
             />
             <input
               type="submit"
               value="TRACK YOUR PRODUCT"
-              className="btn bg-red-500 hover:bg-black  h-14 md:w-72 ml-4 block mx-auto text-white"
+              className="btn bg-amber-500 hover:bg-black h-12 md:w-72 ml-4 block mx-auto text-white"
               data-aos="fade-left"
               name="productId"
             />
@@ -122,12 +125,13 @@ const ProductTracking = () => {
       )}
 
       {/* bg image sections  */}
-      <div className="w-3/2 mx-auto mt-10" data-aos="fade-up ">
-        <img
+      <div className="w-2/3 mx-auto mt-10" data-aos="fade-up ">
+        {/* <img
           src="https://c8.alamy.com/comp/2CG94WK/airplane-route-line-plane-dotted-route-airplane-destination-track-plane-traveling-destination-pathway-plane-travel-map-vector-illustration-2CG94WK.jpg"
           alt=""
           className=""
-        />
+        /> */}
+        <Lottie animationData={tracking} loop={true} />
       </div>
     </div>
   );

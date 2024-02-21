@@ -67,6 +67,25 @@ exports.updateTrackingStatus = async (req, res) => {
         res.status(500).send({ message: error.message });
     }
 }
+// controlers for update return status by booking id
+exports.updateReturnStatus = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const reason = req.body.returnReason;
+        const refundType = req.body.refundType;
+        const updatedDoc = {
+            $set: {
+                trackingStatus: 'returned',
+                returnReason: reason,
+                refundType: refundType
+            }
+        }
+        const bookings = await Booking.updateOne({ _id: id }, updatedDoc);
+        res.status(200).send(bookings);
+    } catch (error) {
+        res.status(500).send({ message: error.message });
+    }
+}
 
 // controlers for post a new booking
 exports.createBooking = async (req, res) => {
