@@ -27,9 +27,8 @@ import AdminRoute from "./routes/AdminRoute";
 import AllPaymentPage from "./Layouts/Dashboard/Admin/AllPaymentPage/AllPaymentPage";
 import ErrorPage from "./Layouts/ErrorPage/ErrorPage";
 import BookingDetails from "./Layouts/Dashboard/BookingDetails/BookingDetails";
-import CreatePost from "./Layouts/Forum/CreatePost/CreatePost";
-
-
+import ForumFeed from "./Layouts/Forum/ForumFeed/ForumFeed";
+import SinglePost from "./Layouts/Forum/SinglePost/SinglePost";
 
 const router = createBrowserRouter([
   {
@@ -71,50 +70,99 @@ const router = createBrowserRouter([
       },
       {
         path: "/forum",
-        element: <CreatePost></CreatePost>
-      }
+        element: <ForumFeed></ForumFeed>,
+      },
+      {
+        path: "/forum/:id",
+        element: <SinglePost></SinglePost>,
+      },
     ],
   },
   {
     path: "/dashboard",
-    element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+    element: (
+      <PrivateRoute>
+        <Dashboard></Dashboard>
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "profile",
-        element: <PrivateRoute><UserProfile></UserProfile></PrivateRoute>,
-
+        element: (
+          <PrivateRoute>
+            <UserProfile></UserProfile>
+          </PrivateRoute>
+        ),
       },
       {
         path: "address-book",
-        element: <PrivateRoute><AddressBook></AddressBook></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <AddressBook></AddressBook>
+          </PrivateRoute>
+        ),
       },
       {
         path: "payment",
-        element: <PrivateRoute><Payment></Payment></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <Payment></Payment>
+          </PrivateRoute>
+        ),
       },
       {
         path: "payment-history",
-        element: <PrivateRoute><AllPaymentPage></AllPaymentPage></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <AllPaymentPage></AllPaymentPage>
+          </PrivateRoute>
+        ),
       },
       {
         path: "update-profile/:email",
-        element: <PrivateRoute><UpdateProfile></UpdateProfile></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <UpdateProfile></UpdateProfile>
+          </PrivateRoute>
+        ),
       },
       {
         path: "bookings",
-        element: <PrivateRoute><PrivateRoute><Bookings></Bookings></PrivateRoute></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <PrivateRoute>
+              <Bookings></Bookings>
+            </PrivateRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "create-booking",
-        element: <PrivateRoute><CreateBooking></CreateBooking></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <CreateBooking></CreateBooking>
+          </PrivateRoute>
+        ),
       },
       {
         path: "all-users",
-        element: <PrivateRoute><AdminRoute><AllUsersPage></AllUsersPage></AdminRoute></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <AllUsersPage></AllUsersPage>
+            </AdminRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "all-bookings",
-        element: <PrivateRoute><AdminRoute><AllBookingsPage></AllBookingsPage></AdminRoute></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <AllBookingsPage></AllBookingsPage>
+            </AdminRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "create-booking",
@@ -123,7 +171,7 @@ const router = createBrowserRouter([
       {
         path: "booking-details",
         element: <BookingDetails></BookingDetails>,
-      }
+      },
     ],
   },
 
