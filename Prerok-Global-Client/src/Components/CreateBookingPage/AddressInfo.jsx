@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import ImportAddreessModal from './ImportAddreessModal';
 
-const AddressInfo = ({handleStepper, setBookingInfo, bookingInfo}) => {
-    const { register, handleSubmit, formState: { errors }, reset } = useForm();
+const AddressInfo = ({ handleStepper, setBookingInfo, bookingInfo }) => {
+    const { register, handleSubmit, formState: { errors }, setValue } = useForm();
 
     const onSubmit = async (data) => {
         try {
@@ -28,18 +29,44 @@ const AddressInfo = ({handleStepper, setBookingInfo, bookingInfo}) => {
                 to_country: addressData.to_country,
                 to_postal_code: addressData.to_postal_code,
             }
-            setBookingInfo({...bookingInfo, fromAddress, toAddress})
+            setBookingInfo({ ...bookingInfo, fromAddress, toAddress })
             handleStepper()
         } catch (error) {
             toast.error(error.message)
         }
     }
+
+    const handleImportFromAddress = (address) => {
+        setValue("from_name", address?.name || "")
+        setValue("from_phone", address?.phone || "")
+        setValue("from_email", address?.email || "")
+        setValue("from_division", address?.division || "")
+        setValue("from_district", address?.district || "")
+        setValue("from_address", address?.address || "")
+        setValue("from_country", address?.country || "")
+        setValue("from_postal_code", address?.postal_code || "")
+    }
+
+    const handleImportToAddress = (address) => {
+        setValue("to_name", address?.name || "")
+        setValue("to_phone", address?.phone || "")
+        setValue("to_email", address?.email || "")
+        setValue("to_division", address?.division || "")
+        setValue("to_district", address?.district || "")
+        setValue("to_address", address?.address || "")
+        setValue("to_country", address?.country || "")
+        setValue("to_postal_code", address?.postal_code || "")
+    }
+
     return (
         <div>
             <form action="" onSubmit={handleSubmit(onSubmit)}>
-                <div className='flex items-center justify-between gap-6 mt-10'>
+                <div className='flex flex-col md:flex-row gap-6 items-center justify-betweenmt-10'>
                     <div className="flex flex-col gap-2 flex-1">
-                        <h3 className='text-2xl font-medium mb-2'>From Address :</h3>
+                        <div className='md:flex items-center justify-between my-2'>
+                            <h3 className='text-2xl font-medium mb-2'>From Address :</h3>
+                            <ImportAddreessModal handleImportAddress={handleImportFromAddress} modalFor="fromAddress" />
+                        </div>
                         {/* Name Field */}
                         <div className="flex mb-4">
                             {/* <p className=" w-1/3"><label className="text-left font-semibold">Name</label></p> */}
@@ -117,7 +144,10 @@ const AddressInfo = ({handleStepper, setBookingInfo, bookingInfo}) => {
 
                     </div>
                     <div className="flex flex-col gap-2 flex-1">
-                        <h3 className='text-2xl font-medium mb-2'>To Address :</h3>
+                        <div className='md:flex items-center justify-between my-2'>
+                            <h3 className='text-2xl font-medium mb-2'>To Address :</h3>
+                            <ImportAddreessModal handleImportAddress={handleImportToAddress} modalFor="toAddress" />
+                        </div>
                         {/* Name Field */}
                         <div className="flex mb-4">
                             {/* <p className=" w-1/3"><label className="text-left font-semibold">Name</label></p> */}
