@@ -1,6 +1,7 @@
 const PrivacyPage = () => {
   return (
     <div>
+      {/* banner  */}
       <div
         className="hero min-h-max"
         style={{
@@ -11,10 +12,18 @@ const PrivacyPage = () => {
         <div className="hero-overlay bg-opacity-60"></div>
         <div className="hero-content text-right text-neutral-content">
           <div className="max-w-md py-8">
-            <h1 className="mb-5 text-3xl font-semibold">PrerokGlobal Privacy Notice</h1>
-           
-           
+            <h1 className="mb-5 text-3xl font-semibold">
+              PrerokGlobal Privacy Notice
+            </h1>
           </div>
+        </div>
+      </div>
+      <div>
+        <div className="bg-slate-100 flex justify-around py-5 px-2">
+            <div>Global Privacy Policy</div>
+            <div>Privacy Notice</div>
+            <div>Cookie Notice</div>
+            <div>Binding Corporate rules</div>
         </div>
       </div>
     </div>
