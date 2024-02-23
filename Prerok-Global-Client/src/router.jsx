@@ -80,7 +80,7 @@ const router = createBrowserRouter([
         element:<PrivacyPage></PrivacyPage>
       },
       {
-        path: "/global-privacy",
+        path: "/global-policy",
         element: <GlobalPrivacy></GlobalPrivacy>
       }
     ],

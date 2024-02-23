@@ -13,9 +13,9 @@ const GlobalPrivacy = () => {
       >
         <div className="hero-overlay bg-opacity-60"></div>
         <div className="hero-content text-right text-neutral-content">
-          <div className="max-w-md py-8">
+          <div className=" py-8">
             <h1 className="mb-5 text-3xl font-semibold">
-              PrerokGlobal Privacy Notice
+              PrerokGlobal Global Privacy Policy
             </h1>
           </div>
         </div>

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const PrivacyPage = () => {
   return (
     <div>
@@ -21,7 +23,7 @@ const PrivacyPage = () => {
       {/* 4 sections  */}
       <div>
         <div className="bg-slate-100 flex justify-around py-5 px-2">
-            <div>Global Privacy Policy</div>
+            <Link to="/global-policy" className="hover:text-amber-500 hover:underline">Global Privacy Policy</Link>
             <div>Privacy Notice</div>
             <div>Cookie Notice</div>
             <div>Binding Corporate rules</div>
