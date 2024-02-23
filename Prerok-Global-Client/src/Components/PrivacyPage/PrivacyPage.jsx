@@ -18,6 +18,7 @@ const PrivacyPage = () => {
           </div>
         </div>
       </div>
+      {/* 4 sections  */}
       <div>
         <div className="bg-slate-100 flex justify-around py-5 px-2">
             <div>Global Privacy Policy</div>
@@ -25,6 +26,12 @@ const PrivacyPage = () => {
             <div>Cookie Notice</div>
             <div>Binding Corporate rules</div>
         </div>
+      </div>
+      {/* date */}
+      <div >
+        <p className="ml-5">Last updated:  February 23, 2024</p>
+        <p className="text-center px-8 my-3 py-2">Your trust matters to us. That is why we protect your information and use it responsibly, while continuing to deliver the excellent service you expect from FedEx. We are committed to protecting your privacy and the security of your personal data. We have created this Privacy Notice to explain how FedEx collects and uses personal data.</p>
+        <p className="text-center font-bold p-2 m-2">This Privacy Policy is not a contract and does not create any legal rights or obligations.</p>
       </div>
     </div>
   );
