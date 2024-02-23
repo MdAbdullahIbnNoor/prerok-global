@@ -120,7 +120,7 @@ const Navbar = () => {
             <div>
               <Link>SITEMAP</Link>
               <span> &nbsp; |&nbsp; </span>
-              <Link>PRIVACY</Link>
+              <Link to="/privacy-policy">PRIVACY</Link>
               <span> &nbsp; |&nbsp; </span>
               <Link>PRICING</Link>
             </div>

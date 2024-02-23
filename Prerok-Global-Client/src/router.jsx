@@ -28,6 +28,7 @@ import AllPaymentPage from "./Layouts/Dashboard/Admin/AllPaymentPage/AllPaymentP
 import ErrorPage from "./Layouts/ErrorPage/ErrorPage";
 import BookingDetails from "./Layouts/Dashboard/BookingDetails/BookingDetails";
 import CreatePost from "./Layouts/Forum/CreatePost/CreatePost";
+import PrivacyPage from "./Components/PrivacyPage/PrivacyPage";
 
 
 
@@ -72,6 +73,10 @@ const router = createBrowserRouter([
       {
         path: "/forum",
         element: <CreatePost></CreatePost>
+      },
+      {
+        path: "/privacy-policy",
+        element:<PrivacyPage></PrivacyPage>
       }
     ],
   },
