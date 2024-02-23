@@ -15,7 +15,7 @@ const PrivacyPage = () => {
         <div className="hero-content text-right text-neutral-content">
           <div className="max-w-md py-8">
             <h1 className="mb-5 text-3xl font-semibold">
-              PrerokGlobal Privacy Notice
+              PrerokGlobal Privacy Policies
             </h1>
           </div>
         </div>
@@ -24,7 +24,7 @@ const PrivacyPage = () => {
       <div>
         <div className="bg-slate-100 flex justify-around py-5 px-2">
             <Link to="/global-policy" className="hover:text-amber-500 hover:underline">Global Privacy Policy</Link>
-            <Link to="/privacy-notice">Privacy Notice</Link>
+            <Link to="/privacy-notice" className="hover:text-amber-500 hover:underline">Privacy Notice</Link>
             <div>Cookie Notice</div>
             <div>Binding Corporate rules</div>
         </div>

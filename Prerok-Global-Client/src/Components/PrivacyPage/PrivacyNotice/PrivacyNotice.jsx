@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 
 const PrivacyNotice = () => {
@@ -8,7 +9,7 @@ const PrivacyNotice = () => {
         className="hero min-h-max"
         style={{
           backgroundImage:
-            "url(https://plus.unsplash.com/premium_photo-1661575403234-c5f9020094c4?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
+            "url(https://images.unsplash.com/photo-1679860567835-e27628c5d088?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
         }}
       >
         <div className="hero-overlay bg-opacity-60"></div>
@@ -23,8 +24,8 @@ const PrivacyNotice = () => {
       {/* 4 sections  */}
       <div>
         <div className="bg-slate-100 flex justify-around py-5 px-2">
-            <div>Global Privacy Policy</div>
-            <div>Privacy Notice</div>
+        <Link to="/global-policy" className="hover:text-amber-500 hover:underline">Global Privacy Policy</Link>
+            <Link to="/privacy-notice" className="hover:text-amber-500 hover:underline">Privacy Notice</Link>
             <div>Cookie Notice</div>
             <div>Binding Corporate rules</div>
         </div>
