@@ -29,6 +29,7 @@ import ErrorPage from "./Layouts/ErrorPage/ErrorPage";
 import BookingDetails from "./Layouts/Dashboard/BookingDetails/BookingDetails";
 import CreatePost from "./Layouts/Forum/CreatePost/CreatePost";
 import PrivacyPage from "./Components/PrivacyPage/PrivacyPage";
+import GlobalPrivacy from "./Components/PrivacyPage/GlobalPrivacy/GlobalPrivacy";
 
 
 
@@ -77,6 +78,10 @@ const router = createBrowserRouter([
       {
         path: "/privacy-policy",
         element:<PrivacyPage></PrivacyPage>
+      },
+      {
+        path: "/global-privacy",
+        element: <GlobalPrivacy></GlobalPrivacy>
       }
     ],
   },
