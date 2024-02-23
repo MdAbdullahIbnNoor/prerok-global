@@ -24,7 +24,7 @@ const PrivacyPage = () => {
       <div>
         <div className="bg-slate-100 flex justify-around py-5 px-2">
             <Link to="/global-policy" className="hover:text-amber-500 hover:underline">Global Privacy Policy</Link>
-            <div>Privacy Notice</div>
+            <Link to="/privacy-notice">Privacy Notice</Link>
             <div>Cookie Notice</div>
             <div>Binding Corporate rules</div>
         </div>

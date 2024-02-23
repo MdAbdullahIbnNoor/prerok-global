@@ -30,6 +30,7 @@ import BookingDetails from "./Layouts/Dashboard/BookingDetails/BookingDetails";
 import CreatePost from "./Layouts/Forum/CreatePost/CreatePost";
 import PrivacyPage from "./Components/PrivacyPage/PrivacyPage";
 import GlobalPrivacy from "./Components/PrivacyPage/GlobalPrivacy/GlobalPrivacy";
+import PrivacyNotice from "./Components/PrivacyPage/PrivacyNotice/PrivacyNotice";
 
 
 
@@ -82,6 +83,10 @@ const router = createBrowserRouter([
       {
         path: "/global-policy",
         element: <GlobalPrivacy></GlobalPrivacy>
+      },
+      {
+        path: "/privacy-notice",
+        element: <PrivacyNotice></PrivacyNotice>
       }
     ],
   },
