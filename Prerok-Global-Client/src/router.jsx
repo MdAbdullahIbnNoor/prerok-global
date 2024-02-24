@@ -27,6 +27,9 @@ import ErrorPage from "./Layouts/ErrorPage/ErrorPage";
 import BookingDetails from "./Layouts/Dashboard/BookingDetails/BookingDetails";
 import ReturnPage from "./Layouts/Dashboard/User/ReturnPage/ReturnPage";
 import CreatePost from "./Layouts/Forum/CreatePost/CreatePost";
+import PrivacyPage from "./Components/PrivacyPage/PrivacyPage";
+import GlobalPrivacy from "./Components/PrivacyPage/GlobalPrivacy/GlobalPrivacy";
+import PrivacyNotice from "./Components/PrivacyPage/PrivacyNotice/PrivacyNotice";
 import ForumFeed from "./Layouts/Forum/ForumFeed/ForumFeed";
 import SinglePost from "./Layouts/Forum/SinglePost/SinglePost";
 
@@ -66,6 +69,20 @@ const router = createBrowserRouter([
       },
       {
         path: "/forum",
+        element: <CreatePost></CreatePost>
+      },
+      {
+        path: "/privacy-policy",
+        element:<PrivacyPage></PrivacyPage>
+      },
+      {
+        path: "/global-policy",
+        element: <GlobalPrivacy></GlobalPrivacy>
+      },
+      {
+        path: "/privacy-notice",
+        element: <PrivacyNotice></PrivacyNotice>
+      }
         element: <ForumFeed />,
       },
       {
