@@ -15,7 +15,7 @@ exports.createPaymentIntent = async (req, res) => {
             payment_method_types: ['card']
         });
 
-        res.send({ clientSecret: client_secret });
+        res.send({ clientSecret: client_secret }); 
     } catch (error) {
         res.status(500).send({ message: error.message });
     }

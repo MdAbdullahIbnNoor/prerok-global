@@ -11,7 +11,6 @@ const CreateBooking = () => {
     const [currentStep, setCurrentStep] = useState(1);
     const [complete, setComplete] = useState(false);
     const [bookingInfo, setBookingInfo] = useState({})
-    console.log(bookingInfo);
 
     const handleStepper = () => {
         // e.preventDefault();
