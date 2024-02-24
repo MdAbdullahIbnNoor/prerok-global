@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+import React, { createContext, useEffect, useState, ReactNode } from "react";
 import {
   FacebookAuthProvider,
   GoogleAuthProvider,
@@ -9,30 +9,58 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
-import { createContext, useEffect, useState } from "react";
 import auth from "../configs/firebase.config";
 import toast from "react-hot-toast";
 import { removeToken } from "../api/usersApi";
 
-export const AuthContext = createContext(null);
-const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+type AuthContextType = {
+  user: User | null;
+  loading: boolean;
+  registerUser: (email: string, password: string) => Promise<void>;
+  loginUser: (email: string, password: string) => Promise<void>;
+  updateUser: (name: string, image: string) => Promise<void>;
+  googleLogin: () => Promise<void>;
+  facebookLogin: () => Promise<void>;
+  logoutUser: () => Promise<void>;
+};
 
+interface User {
+  // Define the properties of the User object
+}
+
+interface UserData {
+  email: string;
+  password: string;
+  // Define other properties as needed
+}
+
+interface AuthProviderProps {
+  children: ReactNode; // Allow any ReactNode as children
+}
+
+// Create the AuthContext
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
+
+// Create the AuthProvider component
+export const AuthProvider: React.FC<AuthProviderProps> = ({
+  children,
+}) => {
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
   const googleProvider = new GoogleAuthProvider();
   const facebookProvider = new FacebookAuthProvider();
 
-  const registerUser = (email, password) => {
+  const registerUser = (email: string, password: string) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
-  const loginUser = (email, password) => {
+  const loginUser = (email: string, password: string) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  const updateUser = (name, image) => {
+  const updateUser = (name: string, image: string) => {
     return updateProfile(auth.currentUser, {
       displayName: name,
       photoURL: image,
@@ -77,9 +105,8 @@ const AuthProvider = ({ children }) => {
     facebookLogin,
     logoutUser,
   };
-  return (
-    <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
-  );
+  
+  return <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>;
 };
 
 export default AuthProvider;
