@@ -1,19 +1,20 @@
-import { useNavigate } from "react-router";
-import bannerImg from "../../../assets/banner-ship-image.jpg";
+import React from 'react';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import bannerImg from '../../../assets/banner-ship-image.jpg';
+
 
 const Banner = () => {
   const navigate = useNavigate();
-  const handleTrackProduct = (e) => {
+  const [productIdForSearch, setProductIdForSearch] = useState("");
+
+  const handleTrackProduct = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const form = new FormData(e.currentTarget);
-    const productIdForSearch = form.get("productIdForSearch");
-    console.log(productIdForSearch);
     navigate(`/productTracking?productIdForSearch=${productIdForSearch}`);
   };
 
   return (
     <div className=" overflow-hidden mb-8">
-      {" "}
       <div className="relative z-0">
         <img src={bannerImg} className="w-full h-[600px] object-cover" alt="" />
 
@@ -65,6 +66,8 @@ const Banner = () => {
                 className="border-2 border-slate-300 mb-2 px-3 md:h-14 md:w-[400px]"
                 placeholder="Enter your product ID"
                 data-aos="fade-right"
+                value={productIdForSearch}
+                onChange={(e) => setProductIdForSearch(e.target.value)}
               />
               <button
                 type="submit"

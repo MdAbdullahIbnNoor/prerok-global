@@ -1,12 +1,13 @@
-import axios from 'axios'
+import axios from 'axios';
+
+const baseURL = process.env.VITE_SERVERBASEURL;
 
 export const axiosSecure = axios.create({
-    baseURL: import.meta.env.VITE_SERVERBASEURL,
+    baseURL,
     withCredentials: true
-})
+});
 
 export const axiosPublic = axios.create({
-    baseURL: import.meta.env.VITE_SERVERBASEURL,
+    baseURL,
     withCredentials: true
-})
-
+});
