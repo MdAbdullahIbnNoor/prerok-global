@@ -2,25 +2,36 @@ import { useEffect, useState } from "react";
 import { axiosSecure } from "../../api/axiosInstances";
 import { useParams } from "react-router";
 import Lottie from "lottie-react";
-import tracking from './../../assets/animations/tracking.json'
+// import tracking from './../../assets/animations/tracking.json'
+import trackingAnimation from './../../assets/animations/TrackingAnimation.json'
+import { FaBox, FaDollarSign, FaLocationDot } from "react-icons/fa6";
+import { FaWeight } from "react-icons/fa";
+import { TbProgress } from "react-icons/tb";
+import Loading from "../Shared/Loading/Loading";
 
 
-// import { useNavigate } from "react-router";
 
 const ProductTracking = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  // const navigate = useNavigate();
   const [bookingData, setBookingData] = useState(null);
+  const [loading, setLoading] = useState(false);
   let { productIdForSearch } = useParams();
   productIdForSearch && console.log(productIdForSearch);
 
   const handleTracking = async (e) => {
     e.preventDefault();
     const enteredProductId = e.target.elements.productID.value;
-    await axiosSecure
-      .get(`/api/tracking/get-tracking-details/${enteredProductId}`)
-      .then((res) => setBookingData(res.data));
-    if (bookingData) setIsVisible(true);
+    document.getElementById("trackingInfo").scrollIntoView({ behavior: "smooth" })
+    setLoading(true);
+    try {
+      await axiosSecure
+        .get(`/api/bookings/get-booking/${enteredProductId}`)
+        .then((res) => {
+          setBookingData(res.data)
+          setLoading(false);
+        });
+    } catch (error) {
+      setLoading(false)
+    }
   };
 
   useEffect(() => {
@@ -28,13 +39,11 @@ const ProductTracking = () => {
       axiosSecure
         .get(`api/bookings/get-booking/${productIdForSearch}`)
         .then((res) => setBookingData(res.data.paymentInfo));
-      if (bookingData) setIsVisible(true);
     }
-  }, [productIdForSearch, bookingData, isVisible]);
-  // console.log(bookingData);
+  }, [productIdForSearch, bookingData]);
 
   return (
-    <div className="overflow-hidden lg:max-w-screen-2xl my-10 mx-auto px-3 md:px-20">
+    <div className="overflow-hidden lg:max-w-screen-2xl my-10 mx-auto px-3 md:px-20 min-h-[90vh]">
       {/* title section */}
       <div>
         <h1 className="text-2xl font-bold uppercase  md:text-3xl">
@@ -49,89 +58,103 @@ const ProductTracking = () => {
       <div
         className="w-full mt-20 "
         data-aos="fade-up"
-        data-aos-duration="2000"
+        data-aos-duration="500"
       >
-        <div className="lg:w-1/2 w-full mx-auto bg-white border-2 border-amber-500 ">
-          <p className="font-medium text-xl px-8 py-4">
-            TRACK YOUR PRODUCT{" "}
+        <div className="max-w-3xl mx-auto w-full rounded-lg bg-white border-2 border-amber-500 ">
+          <p className="font-medium text-xl px-2 md:px-8 py-4">
+            TRACK YOUR PRODUCT
             <span className="font-light text-sm text-slate-500">
               Now you can track your product easily
             </span>
           </p>
           <form
             onSubmit={handleTracking}
-            className="md:flex justify-center p-5 items-center"
+            className="flex justify-center p-5 items-center gap-6"
           >
             <input
               type="text"
               name="productID"
-              className="border-2 mb-2 border-amber-500 md:w-[400px] mx-auto px-4 py-2 rounded-lg mt-1"
+              className="border-2 border-amber-500 md:w-[400px] px-4 py-2 rounded-lg outline-none"
               id=""
               placeholder="Enter your product ID"
-              // data-aos="fade-right"
             />
-            <input
-              type="submit"
-              value="TRACK YOUR PRODUCT"
-              className="btn bg-amber-500 hover:bg-black h-12 md:w-72 ml-4 block mx-auto text-white"
-              data-aos="fade-left"
-              name="productId"
-            />
+            <button type="submit" name="productId" className="btn bg-amber-500 px-4 py-2 rounded-lg  text-white duration-300 flex items-center justify-center">
+              {
+                loading ?
+                  <TbProgress className="animate-spin text-center" />
+                  :
+                  "TRACK YOUR PRODUCT"
+              }
+            </button>
           </form>
         </div>
       </div>
 
-      {/* image and product details sections  */}
-      {isVisible && (
-        <div className="md:w-2/3 mt-10 md:mt-20  mx-auto">
-          <div className="md:flex ">
-            <div
-              className="flex-[1] w-full object-cover "
-              data-aos="zoom-in-right"
-            >
-              <img
-                src="https://i.ibb.co/f4y9xtm/download.png"
-                alt="product picture"
-              />
+      <div id="trackingInfo">
+        {
+          loading &&
+          <Loading />
+        }
+
+        {
+          bookingData &&
+          <div className="flex items-center justify-center gap-6 flex-col md:flex-row">
+            <div className="my-12 max-w-lg flex-1">
+              <div className="px-6 py-3 rounded-lg border border-amber-500 w-full">
+                <h2 className="text-center my-3 text-2xl font-bold">Tracking Details</h2>
+                <div className="space-y-2">
+                  <div className="flex gap-3 items-center ">
+                    <FaLocationDot className="text-xl" />
+                    <div>
+                      <h3 className="font-semibold text-lg">Shipped from</h3>
+                      <p className="text-gray-500">{bookingData?.fromAddress?.from_name}</p>
+                      <p className="text-gray-500">{bookingData?.fromAddress?.from_address}, {bookingData?.fromAddress?.from_country}</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-3 items-center ">
+                    <FaLocationDot className="text-xl" />
+                    <div>
+                      <h3 className="font-semibold text-lg">Destination</h3>
+                      <p className="text-gray-500">{bookingData?.fromAddress?.to_name}</p>
+                      <p className="text-gray-500">{bookingData?.toAddress?.to_address}, {bookingData?.toAddress?.to_country}</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-3 items-center ">
+                    <FaWeight className="text-xl" />
+                    <div>
+                      <h3 className="font-semibold text-lg">Weight</h3>
+                      <p className="text-gray-500">{bookingData?.parcelInfo?.parcel_weight} Gram</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-3 items-center ">
+                    <FaDollarSign className="text-xl" />
+                    <div>
+                      <h3 className="font-semibold text-lg">Delivery cost</h3>
+                      <p className="text-gray-500"><FaDollarSign className="inline text-sm" />{bookingData?.parcelInfo?.shippingCost}</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-3">
+                  <div className="flex gap-3 items-center ">
+                    <FaBox className="text-xl" />
+                    <div>
+                      <h3 className="font-semibold text-lg">Tracking Status</h3>
+                      <p className="text-gray-800 font-medium">{bookingData?.trackingStatus}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div
-              className="flex-[1] p-3 bg-slate-800 space-y-7 text-gray-100"
-              data-aos="zoom-in-left"
-            >
-              <div className=" p-1 border-b-2 py-4 ">
-                <span className="mr-5">Booked By: </span>
-                <span>{bookingData.name}</span>
-              </div>
-              <div className=" p-1 border-b-2 ">
-                <span className="mr-5">Transation ID: </span>
-                <span>{bookingData.transactionID}</span>
-              </div>
-              <div className=" p-1 border-b-2 ">
-                <span className="mr-5">ORDER DATE:</span>
-                <span> {bookingData.paymentAt}</span>
-              </div>
-              <div className="p-1 border-b-2 ">
-                <span className="mr-5">ORDER STATUS: </span>
-                <span className="text-yellow-400"> {bookingData.status}</span>
-              </div>
-              <div className="p-1 border-b-2 ">
-                <span className="mr-5">ORDER AMOUNT:</span>
-                <span className=""> ${bookingData.amount}</span>
-              </div>
+            <div className="flex-1">
+              <Lottie className="h-2/4" animationData={trackingAnimation} loop={true} />
             </div>
           </div>
-        </div>
-      )}
-
-      {/* bg image sections  */}
-      <div className="w-2/3 mx-auto mt-10" data-aos="fade-up ">
-        {/* <img
-          src="https://c8.alamy.com/comp/2CG94WK/airplane-route-line-plane-dotted-route-airplane-destination-track-plane-traveling-destination-pathway-plane-travel-map-vector-illustration-2CG94WK.jpg"
-          alt=""
-          className=""
-        /> */}
-        <Lottie animationData={tracking} loop={true} />
+        }
       </div>
+      {/* bg image sections  */}
+      {/* <div className="w mx-auto mt-10" data-aos="fade-up ">
+        <Lottie animationData={tracking} loop={true} />
+      </div> */}
     </div>
   );
 };
