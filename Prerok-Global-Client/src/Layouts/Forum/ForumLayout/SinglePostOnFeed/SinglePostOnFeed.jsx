@@ -12,7 +12,7 @@ const SinglePostOnFeed = () => {
           <h6>
             Posted On:{" "}
             <span className="font-semibold">28 Jan, 2024 - 12:20 AM</span> by{" "}
-            <span className="font-semibold">Poster Name</span>
+            <span className="font-semibold">Author </span>
           </h6>
         </div>
         <p className="text-justify pb-2">
