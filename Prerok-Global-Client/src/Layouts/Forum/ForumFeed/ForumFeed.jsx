@@ -20,12 +20,12 @@ const ForumFeed = () => {
       {/**Forum Feed page with pagination. Facebook style */}
       <CreatePost></CreatePost>
       {/* <SinglePostOnFeed></SinglePostOnFeed>*/}
-      {allForum.map((singleForum, id) => (
+      {allForum.map((singleForum, _id) => (
         <div
-          key={id}
+          key={_id}
           className="border border-[#f5ab35] w-full lg:w-6/12 mx-auto mt-2 mb-4 pt-2 pb-3 shadow-xl p-4 h-[27rem] my-3"
         >
-          <Link to={`/forum/${singleForum.id}`}>
+          <Link to={`/forum/${singleForum._id}`}>
             <div className="overflow-hidden h-[23rem]">
               <h4 className="text-xl font-semibold">{singleForum.title}</h4>
               <div className="flex gap-8 border-2 border-blue justify-start py-2">
