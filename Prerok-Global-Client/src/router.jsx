@@ -192,6 +192,14 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      // {
+      //   path: "return-successful",
+      //   element: (
+      //     <PrivateRoute>
+      //       <PageAfterReturn></PageAfterReturn>{" "}
+      //     </PrivateRoute>
+      //   ),
+      // },
     ],
   },
   {
