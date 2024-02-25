@@ -26,7 +26,6 @@ import AllPaymentPage from "./Layouts/Dashboard/Admin/AllPaymentPage/AllPaymentP
 import ErrorPage from "./Layouts/ErrorPage/ErrorPage";
 import BookingDetails from "./Layouts/Dashboard/BookingDetails/BookingDetails";
 import ReturnPage from "./Layouts/Dashboard/User/ReturnPage/ReturnPage";
-import CreatePost from "./Layouts/Forum/CreatePost/CreatePost";
 import PrivacyPage from "./Components/PrivacyPage/PrivacyPage";
 import GlobalPrivacy from "./Components/PrivacyPage/GlobalPrivacy/GlobalPrivacy";
 import PrivacyNotice from "./Components/PrivacyPage/PrivacyNotice/PrivacyNotice";
@@ -69,7 +68,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/forum",
-        element: <CreatePost></CreatePost>
+        element: (
+          <PrivateRoute>
+            <ForumFeed></ForumFeed>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/privacy-policy",
@@ -77,19 +80,23 @@ const router = createBrowserRouter([
       },
       {
         path: "/global-policy",
-        element: <GlobalPrivacy></GlobalPrivacy>
+        element: <GlobalPrivacy></GlobalPrivacy>,
       },
       {
         path: "/privacy-notice",
         element: <PrivacyNotice></PrivacyNotice>
       },
       {
-        path: "/privacy-notice",
+        path:"/forum",
         element: <ForumFeed />,
       },
       {
         path: "/forum/:id",
-        element: <SinglePost />,
+        element: (
+          <PrivateRoute>
+            <SinglePost />
+          </PrivateRoute>
+        ),
       },
     ],
   },
@@ -189,6 +196,14 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      // {
+      //   path: "return-successful",
+      //   element: (
+      //     <PrivateRoute>
+      //       <PageAfterReturn></PageAfterReturn>{" "}
+      //     </PrivateRoute>
+      //   ),
+      // },
     ],
   },
   {
