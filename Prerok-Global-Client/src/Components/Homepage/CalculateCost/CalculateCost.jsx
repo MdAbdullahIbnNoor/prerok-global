@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import deliveryman from "./../../../assets/Home/delivery-man02.png";
 import useAuth from './../../../hooks/useAuth';
+import { axiosPublic } from "../../../api/axiosInstances";
 
 const CalculateCost = () => {
   const { user } = useAuth();
@@ -44,20 +45,8 @@ const CalculateCost = () => {
     };
 
     try {
-      const response = await fetch('http://localhost:5000/api/packages/calculateCost', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(requestBody)
-      });
-
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-
-      const data = await response.json();
-      setTotalCost(data.cost);
+      const { data: dbResponse } = await axiosPublic.post("/api/packages/calculateCost", requestBody)
+      setTotalCost(dbResponse.cost);
     } catch (error) {
       console.error('Error calculating cost:', error);
     }

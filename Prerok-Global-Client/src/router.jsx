@@ -73,7 +73,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/privacy-policy",
-        element:<PrivacyPage></PrivacyPage>
+        element: <PrivacyPage></PrivacyPage>
       },
       {
         path: "/global-policy",
@@ -82,7 +82,9 @@ const router = createBrowserRouter([
       {
         path: "/privacy-notice",
         element: <PrivacyNotice></PrivacyNotice>
-      }
+      },
+      {
+        path: "/privacy-notice",
         element: <ForumFeed />,
       },
       {
