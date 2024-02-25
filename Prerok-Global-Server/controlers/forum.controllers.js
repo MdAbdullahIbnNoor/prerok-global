@@ -28,10 +28,16 @@ exports.createForum = async (req, res) => {
     const newForum = new Forum({
       title: forumData.title,
       content: forumData.content,
+      thumbnail: forumData.thumbnail,
       author: forumData.author,
       tags: forumData.tags,
     });
-    console.log(newForum.title);
+    console.log(
+      newForum.title,
+      newForum.content,
+      newForum.thumbnail,
+      newForum.author
+    );
     const result = await newForum.save();
     res.status(201).send({
       success: true,

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { jsPDF } from 'jspdf';
 import 'jspdf-autotable';
 
@@ -23,6 +23,7 @@ const DocumentForm = () => {
 
         // Calculate customs cost
         const shippingFee = parseFloat(formData.shippingFee);
+        if (isNaN(shippingFee)) return;
         const dischargeCost = shippingFee * 0.1; // 10% for discharge
         const originVAT = shippingFee * originTaxRate;
         const destinationVAT = shippingFee * destinationTaxRate;
