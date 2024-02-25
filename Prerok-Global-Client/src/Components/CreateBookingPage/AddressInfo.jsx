@@ -71,7 +71,7 @@ const AddressInfo = ({ handleStepper, setBookingInfo, bookingInfo }) => {
                         <div className="flex mb-4">
                             {/* <p className=" w-1/3"><label className="text-left font-semibold">Name</label></p> */}
                             <div className="w-full">
-                                <input type="text" {...register("from_name", { required: true })} placeholder="Name" className="border py-1 outline-none w-full px-3" />
+                                <input type="text" {...register("from_name", { required: true })} placeholder="Your Name" className="border py-1 outline-none w-full px-3" />
                                 {errors.name && <p className="text-red-600">Name is required</p>}
                             </div>
                         </div>
@@ -81,7 +81,7 @@ const AddressInfo = ({ handleStepper, setBookingInfo, bookingInfo }) => {
                         <div className="flex mb-4">
                             {/* <p className=" w-1/3"><label className="text-left font-semibold">Phone</label></p> */}
                             <div className="w-full">
-                                <input type="number" {...register("from_phone", { required: true })} placeholder="Phone" className="border py-1 outline-none w-full px-3" />
+                                <input type="number" {...register("from_phone", { required: true })} placeholder="Your Phone" className="border py-1 outline-none w-full px-3" />
                                 {errors.phone && <p className="text-red-600">Phone is required</p>}
                             </div>
                         </div>
@@ -91,7 +91,7 @@ const AddressInfo = ({ handleStepper, setBookingInfo, bookingInfo }) => {
                         <div className="flex mb-4">
                             {/* <p className=" w-1/3"><label className="text-left font-semibold">Email</label></p> */}
                             <div className="w-full">
-                                <input type="email" {...register("from_email", { required: true })} placeholder="Email" className="border py-1 outline-none w-full px-3" />
+                                <input type="email" {...register("from_email", { required: true })} placeholder="Your Email" className="border py-1 outline-none w-full px-3" />
                                 {errors.email && <p className="text-red-600">Email is required</p>}
                             </div>
                         </div>
@@ -100,7 +100,7 @@ const AddressInfo = ({ handleStepper, setBookingInfo, bookingInfo }) => {
                         <div className="flex mb-4">
                             {/* <p className=" w-1/3"><label className="text-left font-semibold">Country</label></p> */}
                             <div className="w-full">
-                                <input type="text" {...register("from_country", { required: true })} placeholder="Country" className="border py-1 outline-none w-full px-3" />
+                                <input type="text" {...register("from_country", { required: true })} placeholder="From Country" className="border py-1 outline-none w-full px-3" />
                                 {errors.country && <p className="text-red-600">Country is required</p>}
                             </div>
                         </div>
@@ -109,7 +109,7 @@ const AddressInfo = ({ handleStepper, setBookingInfo, bookingInfo }) => {
                         <div className="flex mb-4">
                             {/* <p className=" w-1/3"><label className="text-left font-semibold">Address</label></p> */}
                             <div className="w-full">
-                                <input type="text" {...register("from_address", { required: true })} placeholder="Address" className="border py-1 outline-none w-full px-3" />
+                                <input type="text" {...register("from_address", { required: true })} placeholder="Your Address" className="border py-1 outline-none w-full px-3" />
                                 {errors.address && <p className="text-red-600">Address is required</p>}
                             </div>
                         </div>
@@ -118,7 +118,7 @@ const AddressInfo = ({ handleStepper, setBookingInfo, bookingInfo }) => {
                         <div className="flex mb-4">
                             {/* <p className=" w-1/3"><label className="text-left font-semibold">Postal code</label></p> */}
                             <div className="w-full">
-                                <input type="text" {...register("from_postal_code", { required: true })} placeholder="Postal code" className="border py-1 outline-none w-full px-3" />
+                                <input type="text" {...register("from_postal_code", { required: true })} placeholder="Your Postal code" className="border py-1 outline-none w-full px-3" />
                                 {errors.postal_code && <p className="text-red-600">Postal code is required</p>}
                             </div>
                         </div>
@@ -128,7 +128,7 @@ const AddressInfo = ({ handleStepper, setBookingInfo, bookingInfo }) => {
                         <div className="flex mb-4">
                             {/* <p className=" w-1/3"><label className="text-left font-semibold">District</label></p> */}
                             <div className="w-full">
-                                <input type="text" {...register("from_district", { required: true })} placeholder="District" className="border py-1 outline-none w-full px-3" />
+                                <input type="text" {...register("from_district", { required: true })} placeholder="Your District" className="border py-1 outline-none w-full px-3" />
                                 {errors.district && <p className="text-red-600">District is required</p>}
                             </div>
                         </div>
@@ -137,7 +137,7 @@ const AddressInfo = ({ handleStepper, setBookingInfo, bookingInfo }) => {
                         <div className="flex mb-4">
                             {/* <p className=" w-1/3"><label className="text-left font-semibold">Division</label></p> */}
                             <div className="w-full">
-                                <input type="text" {...register("from_division", { required: true })} placeholder="Division" className="border py-1 outline-none w-full px-3" />
+                                <input type="text" {...register("from_division", { required: true })} placeholder="Your Division" className="border py-1 outline-none w-full px-3" />
                                 {errors.division && <p className="text-red-600">Division is required</p>}
                             </div>
                         </div>
@@ -152,7 +152,7 @@ const AddressInfo = ({ handleStepper, setBookingInfo, bookingInfo }) => {
                         <div className="flex mb-4">
                             {/* <p className=" w-1/3"><label className="text-left font-semibold">Name</label></p> */}
                             <div className="w-full">
-                                <input type="text" {...register("to_name", { required: true })} placeholder="Name" className="border py-1 outline-none w-full px-3" />
+                                <input type="text" {...register("to_name", { required: true })} placeholder="Recipient Name" className="border py-1 outline-none w-full px-3" />
                                 {errors.name && <p className="text-red-600">Name is required</p>}
                             </div>
                         </div>
@@ -162,7 +162,7 @@ const AddressInfo = ({ handleStepper, setBookingInfo, bookingInfo }) => {
                         <div className="flex mb-4">
                             {/* <p className=" w-1/3"><label className="text-left font-semibold">Phone</label></p> */}
                             <div className="w-full">
-                                <input type="number" {...register("to_phone", { required: true })} placeholder="Phone" className="border py-1 outline-none w-full px-3" />
+                                <input type="number" {...register("to_phone", { required: true })} placeholder="Recipient Number" className="border py-1 outline-none w-full px-3" />
                                 {errors.phone && <p className="text-red-600">Phone is required</p>}
                             </div>
                         </div>
@@ -172,7 +172,7 @@ const AddressInfo = ({ handleStepper, setBookingInfo, bookingInfo }) => {
                         <div className="flex mb-4">
                             {/* <p className=" w-1/3"><label className="text-left font-semibold">Email</label></p> */}
                             <div className="w-full">
-                                <input type="email" {...register("to_email", { required: true })} placeholder="Email" className="border py-1 outline-none w-full px-3" />
+                                <input type="email" {...register("to_email", { required: true })} placeholder="Recipient Email" className="border py-1 outline-none w-full px-3" />
                                 {errors.email && <p className="text-red-600">Email is required</p>}
                             </div>
                         </div>
@@ -181,7 +181,7 @@ const AddressInfo = ({ handleStepper, setBookingInfo, bookingInfo }) => {
                         <div className="flex mb-4">
                             {/* <p className=" w-1/3"><label className="text-left font-semibold">Country</label></p> */}
                             <div className="w-full">
-                                <input type="text" {...register("to_country", { required: true })} placeholder="Country" className="border py-1 outline-none w-full px-3" />
+                                <input type="text" {...register("to_country", { required: true })} placeholder="To Country" className="border py-1 outline-none w-full px-3" />
                                 {errors.country && <p className="text-red-600">Country is required</p>}
                             </div>
                         </div>
@@ -190,7 +190,7 @@ const AddressInfo = ({ handleStepper, setBookingInfo, bookingInfo }) => {
                         <div className="flex mb-4">
                             {/* <p className=" w-1/3"><label className="text-left font-semibold">Address</label></p> */}
                             <div className="w-full">
-                                <input type="text" {...register("to_address", { required: true })} placeholder="Address" className="border py-1 outline-none w-full px-3" />
+                                <input type="text" {...register("to_address", { required: true })} placeholder="Recipient Address" className="border py-1 outline-none w-full px-3" />
                                 {errors.address && <p className="text-red-600">Address is required</p>}
                             </div>
                         </div>
@@ -199,7 +199,7 @@ const AddressInfo = ({ handleStepper, setBookingInfo, bookingInfo }) => {
                         <div className="flex mb-4">
                             {/* <p className=" w-1/3"><label className="text-left font-semibold">Postal code</label></p> */}
                             <div className="w-full">
-                                <input type="text" {...register("to_postal_code", { required: true })} placeholder="Postal code" className="border py-1 outline-none w-full px-3" />
+                                <input type="text" {...register("to_postal_code", { required: true })} placeholder="Recipient Postal code" className="border py-1 outline-none w-full px-3" />
                                 {errors.postal_code && <p className="text-red-600">Postal code is required</p>}
                             </div>
                         </div>
@@ -209,7 +209,7 @@ const AddressInfo = ({ handleStepper, setBookingInfo, bookingInfo }) => {
                         <div className="flex mb-4">
                             {/* <p className=" w-1/3"><label className="text-left font-semibold">District</label></p> */}
                             <div className="w-full">
-                                <input type="text" {...register("to_district", { required: true })} placeholder="District" className="border py-1 outline-none w-full px-3" />
+                                <input type="text" {...register("to_district", { required: true })} placeholder="Recipient District" className="border py-1 outline-none w-full px-3" />
                                 {errors.district && <p className="text-red-600">District is required</p>}
                             </div>
                         </div>
@@ -218,7 +218,7 @@ const AddressInfo = ({ handleStepper, setBookingInfo, bookingInfo }) => {
                         <div className="flex mb-4">
                             {/* <p className=" w-1/3"><label className="text-left font-semibold">Division</label></p> */}
                             <div className="w-full">
-                                <input type="text" {...register("to_division", { required: true })} placeholder="Division" className="border py-1 outline-none w-full px-3" />
+                                <input type="text" {...register("to_division", { required: true })} placeholder="Recipient Division" className="border py-1 outline-none w-full px-3" />
                                 {errors.division && <p className="text-red-600">Division is required</p>}
                             </div>
                         </div>
