@@ -42,7 +42,7 @@ const SinglePost = () => {
           alt=""
           className="object-cover w-full h-full rounded-xl"
         />
-        <p className="text-justify pb-2">{postData?.content}</p>
+        <p className="text-justify py-6">{postData?.content}</p>
       </div>
       <div className="flex gap-4 text-lg font-bold pt-2">
         <button className="flex items-center gap-1 px-2 py-1 rounded-lg hover:bg-yellow-400">

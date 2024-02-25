@@ -68,7 +68,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/forum",
-        element: <ForumFeed></ForumFeed>,
+        element: (
+          <PrivateRoute>
+            <ForumFeed></ForumFeed>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/privacy-policy",
@@ -83,12 +87,12 @@ const router = createBrowserRouter([
         element: <PrivacyNotice></PrivacyNotice>,
       },
       {
-        path: "/forumfeed",
-        element: <ForumFeed />,
-      },
-      {
         path: "/forum/:id",
-        element: <SinglePost />,
+        element: (
+          <PrivateRoute>
+            <SinglePost />
+          </PrivateRoute>
+        ),
       },
     ],
   },
