@@ -86,18 +86,18 @@ exports.updateTrackingStatus = async (req, res) => {
                     address: gmailUser
                 },
                 to: bookingData.bookingEmail,
-                subject: 'Tracking Update - Prerok Global',
-                text: `Hello ${bookingData.fromAddress?.from_name},\n\nWe have an exciting update regarding your booking.`,
+                subject: 'Prerok Global Tracking Update',
+                text: `Hello ${bookingData.fromAddress?.from_name},\n\nWe have some update regarding your booking.`,
                 html: `<p><b>Hello ${bookingData.fromAddress?.from_name},</b></p>
-                   <p>We have an exciting update regarding your booking with Prerok Global!</p>
+                   <p>We're thrilled to share an exciting update regarding your reservation with Prerok-Global</p>
         
                    <p><b>Tracking Update:</b></p>
                    <p>Your package is ${status}! Here are the latest tracking details:</p>
                    <ul>
-                       <li><b>Tracking Number:</b> ${bookingData._id}</li>
+                       <li><b>Product's Tracking Number:</b> ${bookingData._id}</li>
                    </ul>
         
-                   <p>If you have any questions or concerns, please feel free to reach out to our customer support team. Thank you for choosing Prerok Global!</p>
+                   <p>If you have any questions or require assistance, our expert support team is readily available. Thank you for selecting Prerok Global!</p>
                    <p>Best Regards,<br>Prerok Global Team</p>`
             };
 
