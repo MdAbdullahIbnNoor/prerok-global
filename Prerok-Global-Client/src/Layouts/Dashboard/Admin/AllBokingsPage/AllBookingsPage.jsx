@@ -18,7 +18,7 @@ const AllBookingsPage = () => {
         const trackingStatus = value;
         const { data: dbResponse } = await axiosSecure.patch(`/api/bookings/update-status/${id}`, { trackingStatus });
         if (dbResponse.modifiedCount > 0) {
-            toast.success(trackingStatus)
+            toast.success(trackingStatus) 
         }
         else{
             toast.success("error")

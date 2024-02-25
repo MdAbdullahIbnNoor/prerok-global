@@ -5,31 +5,19 @@ import useAuth from './../../../hooks/useAuth';
 const CalculateCost = () => {
   const { user } = useAuth();
   const [totalCost, setTotalCost] = useState(0);
-  const [countries, setCountries] = useState([]);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchData = () => {
-      fetch(
-        'https://restcountries.com/v3.1/all?fields=name&fbclid=IwAR1BPFYNmwF-Qi3y4gtNAF_Lc0rWrffyDQObKWW5INq03Z3Hs44w9Ho1Xsw'
-      )
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          return response.json();
-        })
-        .then((data) => {
-          setCountries(data);
-        })
-        .catch((error) => {
-          console.error('Error fetching data:', error);
-          setError(error);
-        });
-    };
-
-    fetchData();
-  }, []);
+  const countries = [
+    "Bangladesh",
+    "India",
+    "China",
+    "UK",
+    "USA",
+    "Malaysia",
+    "Turkistan",
+    "Afghanistan",
+    "Indonesia"
+  ];
 
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -37,76 +25,42 @@ const CalculateCost = () => {
 
   // console.log(countries);
 
-  const handleCalculateCost = (e) => {
+  const handleCalculateCost = async (e) => {
     e.preventDefault();
     const height = parseFloat(e.target.height.value) || 0;
     const width = parseFloat(e.target.width.value) || 0;
-    // const depth = parseFloat(e.target.depth.value) || 0;
     const weight = parseFloat(e.target.weight.value) || 0;
     const pick = e.target.pick.value;
-    const from_country = e.target.from_country.value;
-    const to_country = e.target.to_country.value;
+    const fromCountry = e.target.from_country.value;
+    const toCountry = e.target.to_country.value;
 
-    let newWeight = Math.floor((weight - 50) / 20);
-    const size = height * width;
-    let newSize = Math.floor((size - 500) / 100);
+    const requestBody = {
+      height,
+      width,
+      weight,
+      fromCountry,
+      toCountry,
+      deliveryType: pick === 'FASTED DELIVERY: +$25' ? 'Faster' : 'Usual'
+    };
 
-    console.log(height, width, weight, pick, from_country, to_country);
-    
-    // setTotalCost(calculatedCost.toFixed(2));
-    if(from_country === to_country && weight > 50 && size >500){
-      if (pick === 'USUAL DELIVERY') {
-        setTotalCost((newWeight * 5) + (newSize * 5) + 15);
-      } else if (pick === 'FASTED DELIVERY: +$25') {
-        setTotalCost((newWeight *5) + (newSize * 5) + 40);
-      }
-    }else if(from_country === to_country && weight < 50 && size >500){
-      if (pick === 'USUAL DELIVERY') {
-        setTotalCost((newSize * 5) + 15);
-      } else if (pick === 'FASTED DELIVERY: +$25') {
-        setTotalCost((newSize * 5) + 40);
-      }
-    }else if(from_country === to_country && weight > 50 && size < 500){
-      if (pick === 'USUAL DELIVERY') {
-        setTotalCost((newWeight * 5) + 15);
-      } else if (pick === 'FASTED DELIVERY: +$25') {
-        setTotalCost((newWeight *5) + 40);
-      }
-    }else if(from_country === to_country && weight < 50 && size < 500){
-      if (pick === 'USUAL DELIVERY') {
-        setTotalCost(15);
-      } else if (pick === 'FASTED DELIVERY: +$25') {
-        setTotalCost(40);
+    try {
+      const response = await fetch('http://localhost:5000/api/packages/calculateCost', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(requestBody)
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
       }
 
-    }else if(from_country !== to_country && weight > 50 && size >500){
-      if (pick === 'USUAL DELIVERY') {
-        setTotalCost((newWeight * 5) + (newSize * 5) + 100);
-      } else if (pick === 'FASTED DELIVERY: +$25') {
-        setTotalCost((newWeight *5) + (newSize * 5) + 125);
-      }
-    }else if(from_country !== to_country && weight < 50 && size >500){
-      if (pick === 'USUAL DELIVERY') {
-        setTotalCost((newSize * 5) + 100);
-      } else if (pick === 'FASTED DELIVERY: +$25') {
-        setTotalCost((newSize * 5) + 125);
-      }
-    }else if(from_country !== to_country && weight > 50 && size < 500){
-      if (pick === 'USUAL DELIVERY') {
-        setTotalCost((newWeight * 5) + 100);
-      } else if (pick === 'FASTED DELIVERY: +$25') {
-        setTotalCost((newWeight *5) + 125);
-      }
-    }else if(from_country !== to_country && weight < 50 && size < 500){
-      if (pick === 'USUAL DELIVERY') {
-        setTotalCost(100);
-      } else if (pick === 'FASTED DELIVERY: +$25') {
-        setTotalCost(125);
-      }
-
+      const data = await response.json();
+      setTotalCost(data.cost);
+    } catch (error) {
+      console.error('Error calculating cost:', error);
     }
-
-    
   };
 
   return (
@@ -132,22 +86,22 @@ const CalculateCost = () => {
 
         {/* modal */}
         <dialog id="my_modal_002" className="modal">
-              <div className="modal-box flex justify-center">
-                <div className="space-y-3">
-                  <h3 className="font-bold text-2xl">Cost Details</h3>
-                  <ul className="space-y-3">
-                    <li>Delivery charge: $15 (Intra-Country)</li>
-                    <li>Delivery charge: $100 (Foreign Country)</li>
-                    <li>Normal Delivery Charge: Weight(0.1 - 50 KG), Size(0.1 - 500 CM)</li>
-                    <li>Extra $5 for each extra 20 KG weight</li>
-                    <li>Extra $5 for each extra 100 CM size</li>
-                  </ul>
-                </div>
-              </div>
-              <form method="dialog" className="modal-backdrop">
-                <button>close</button>
-              </form>
-            </dialog>
+          <div className="modal-box flex justify-center">
+            <div className="space-y-3">
+              <h3 className="font-bold text-2xl">Cost Details</h3>
+              <ul className="space-y-3">
+                <li>Delivery charge: $15 (Intra-Country)</li>
+                <li>Delivery charge: $100 (Foreign Country)</li>
+                <li>Normal Delivery Charge: Weight(0.1 - 50 KG), Size(0.1 - 500 CM)</li>
+                <li>Extra $5 for each extra 20 KG weight</li>
+                <li>Extra $5 for each extra 100 CM size</li>
+              </ul>
+            </div>
+          </div>
+          <form method="dialog" className="modal-backdrop">
+            <button>close</button>
+          </form>
+        </dialog>
 
         {/* Form section */}
         <form
@@ -207,7 +161,7 @@ const CalculateCost = () => {
                 <option selected>From Country</option>
 
                 {countries.map((country, index) => (
-                  <option key={index}>{country.name.common}</option>
+                  <option key={index}>{country}</option>
                 ))}
               </select>
 
@@ -215,7 +169,7 @@ const CalculateCost = () => {
                 <option selected>To Country</option>
 
                 {countries.map((country, index) => (
-                  <option key={index}>{country.name.common}</option>
+                  <option key={index}>{country}</option>
                 ))}
               </select>
 
@@ -232,7 +186,7 @@ const CalculateCost = () => {
                 name="to"
               /> */}
             </div>
-            
+
             <div>
               <label className="md:text-lg font-bold mr-11 text-[#222222]">
                 PACKAGE:
@@ -251,9 +205,6 @@ const CalculateCost = () => {
                 Total Cost: {totalCost == 0 ? "$0.00" : `$${totalCost}`}
               </button> */}
             </div>
-            
-
-
             {/* modal */}
             <dialog id="my_modal" className="modal">
               <div className="modal-box flex justify-center">
@@ -266,9 +217,6 @@ const CalculateCost = () => {
                 <button>close</button>
               </form>
             </dialog>
-
-
-
           </div>
         </form>
       </div>

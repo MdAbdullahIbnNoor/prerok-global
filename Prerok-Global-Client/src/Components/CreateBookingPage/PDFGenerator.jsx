@@ -6,7 +6,7 @@ const PDFGenerator = ({ bookingInfo }) => {
     const bgColor = [255, 193, 7];
     const handleDownload = () => {
         const pdf = new jsPDF({
-            orientation: 'portrait',
+            orientation: 'portrait', 
             unit: 'mm',
             format: 'a4',
         });

@@ -1,3 +1,4 @@
+import ChatBot from "../../Components/ChatBot/ChatBot";
 import Banner from "../../Components/Homepage/Banner/Banner";
 import CalculateCost from "../../Components/Homepage/CalculateCost/CalculateCost";
 import ContactUs from "../../Components/Homepage/ContactUs/ContactUs";
@@ -11,6 +12,7 @@ const Homepage = () => {
   return (
     <div>
       <Banner></Banner>
+      <ChatBot></ChatBot>
       <AboutUs></AboutUs>
       <Delivery></Delivery>
       <Steps></Steps>
