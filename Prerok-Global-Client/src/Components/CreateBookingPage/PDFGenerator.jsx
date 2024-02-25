@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
+import logo from '../../assets/Prerok_Global_Logo.png'
 
 const PDFGenerator = ({ bookingInfo }) => {
     // const bgColor = [255, 193, 7];
@@ -11,9 +12,16 @@ const PDFGenerator = ({ bookingInfo }) => {
             format: 'a4',
         });
 
+        const imgWidth = 50;
+        const imgHeight = 50;
+        const marginTop = 10;
+        const marginRight = 10;
+        pdf.addImage(logo, 'PNG', pdf.internal.pageSize.width - imgWidth - marginRight, marginTop, imgWidth, imgHeight);
+
         pdf.setFontSize(20);
         pdf.text("Invoice", 105, 15, { align: 'center' });
 
+        
         // Add customer details
         pdf.setFontSize(12);
         pdf.text(`Customer Name: ${bookingInfo?.toAddress?.to_name}`, 15, 30);
