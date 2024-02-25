@@ -1,10 +1,8 @@
-// FormComponent.js
-import React, { useState } from 'react';
-import { PDFDownloadLink } from '@react-pdf/renderer';
-import PDFcomponent from './PDFcomponent';
+import { useState } from 'react';
+import { jsPDF } from 'jspdf';
+import 'jspdf-autotable';
 
-
-const FormComponent = () => {
+const DocumentForm = () => {
     const [formData, setFormData] = useState({
         originCountry: '',
         destinationCountry: '',
@@ -25,6 +23,7 @@ const FormComponent = () => {
 
         // Calculate customs cost
         const shippingFee = parseFloat(formData.shippingFee);
+        if (isNaN(shippingFee)) return;
         const dischargeCost = shippingFee * 0.1; // 10% for discharge
         const originVAT = shippingFee * originTaxRate;
         const destinationVAT = shippingFee * destinationTaxRate;
@@ -60,11 +59,38 @@ const FormComponent = () => {
         }
     };
 
-    const makePDF = () => (
-        <PDFDownloadLink document={<PDFcomponent data={costAnalysis} />} fileName="customs_cost_analysis.pdf">
-            {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download PDF')}
-        </PDFDownloadLink>
-    );
+    const makePDF = () => {
+        // Create a new instance of jsPDF
+        const doc = new jsPDF({
+            orientation: 'portrait',
+            unit: 'mm',
+            format: 'a4',
+        });
+
+        doc.setFontSize(15);
+        doc.text("The Cost Calculation For Your Shipment in Customs", doc.internal.pageSize.width / 2, 20, { align: 'center' });
+
+        // Define content for the PDF
+        const content = [
+            ['Shipping Fee :', costAnalysis.shippingFee.toFixed(2)],
+            ['Discharge Cost(10%) :', costAnalysis.dischargeCost.toFixed(2)],
+            ['Storage VAT :', costAnalysis.originVAT.toFixed(2)],
+            ['Port VAT :', costAnalysis.destinationVAT.toFixed(2)],
+            ['Total Cost :', costAnalysis.totalCost.toFixed(2)],
+        ];
+
+        // Add content to the PDF
+        doc.autoTable({
+            startY: 55,
+            head: [['Cost Analysis Table', '']],
+            body: content,
+            headStyles: { fillColor: [240, 207, 20] },
+            styles: { textColor: [0, 0, 0] },
+        });
+
+        // Save the PDF
+        doc.save('customs_cost_analysis.pdf');
+    };
 
     return (
         <div className='max-w-screen-2xl p-7 mx-auto flex justify-around gap-12 items-center'>
@@ -171,4 +197,4 @@ const FormComponent = () => {
     );
 };
 
-export default FormComponent;
+export default DocumentForm;

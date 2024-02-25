@@ -1,6 +1,16 @@
 const User = require("../models/user.model");
 
 //controler for get user by his email
+exports.getAllUser = async (req, res) => {
+    try {
+        const userData = await User.find();
+        res.status(200).send(userData);
+    } catch (error) {
+        res.status(500).send({ message: error.message });
+    }
+}
+
+//controler for get user by his email
 exports.getUserByEmail = async (req, res) => {
     try {
         const email = req.params.email;

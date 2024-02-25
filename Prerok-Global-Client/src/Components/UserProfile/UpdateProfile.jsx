@@ -13,7 +13,6 @@ const UpdateProfile = () => {
   const [imageURL, setImageURL] = useState("");
   const [manualLoading, setManualLoading] = useState(false);
   const [updateLoading, setUpdateLoading] = useState(false);
-
   const navigate = useNavigate();
 
   // user data
@@ -68,7 +67,7 @@ const UpdateProfile = () => {
       };
       const { data: response } = await axiosSecure.put(
         `/api/users/update-user/${email}`,
-        userData
+        userData  
       );
       if (response.modifiedCount > 0) {
         toast.success("User Updated");

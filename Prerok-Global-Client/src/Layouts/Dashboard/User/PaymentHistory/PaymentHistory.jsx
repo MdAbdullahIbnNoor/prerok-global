@@ -4,13 +4,12 @@ import Loading from "../../../../Components/Shared/Loading/Loading";
 import useAuth from "../../../../hooks/useAuth";
 
 const PaymentHistory = () => {
-    const {user } = useAuth()
-    // console.log(user)
+  const { user } = useAuth();
+  // console.log(user)
   // get user payment history
   const {
     data: users,
     isLoading,
-    refetch,
   } = useQuery({
     queryKey: ["usersData"],
     queryFn: async () => {
@@ -23,10 +22,10 @@ const PaymentHistory = () => {
     return <Loading></Loading>;
   }
 
-  const filterdUser = users.filter( data => data.email === user?.email)
-  console.log(filterdUser)
+  const filterdUser = users.filter((data) => data.email === user?.email);
+  // console.log(filterdUser);
 
-//   console.log(users)
+  //   console.log(users)
 
   return (
     <div>
@@ -43,29 +42,31 @@ const PaymentHistory = () => {
                   <th>Email</th>
                   <th>Date</th>
                   <th>Transaction Id </th>
-                  <th>Pay Mony</th>
+                  <th>Pay Money</th>
                   <th>Status</th>
                 </tr>
               </thead>
               <tbody className="text-gray-500">
-              {
-  filterdUser?.map((data) => (
-    <tr key={data._id}>
-      <td>{data.name}</td>
-      <td>{data.email}</td>
-      <td>{data.date}</td>
-      <td>{data.transactionId}</td>
-      <td>{data.price}</td>
-      <td>
-        <div className={`badge ${data.status === 'paid' ? 'bg-green-500' : 'bg-red-500'} px-4 py-3 text-white`}>
-          {data.status}
-        </div>
-      </td>
-    </tr>
-  ))
-}
-
-                
+                {filterdUser?.map((data) => (
+                  <tr key={data._id}>
+                    <td>{data?.name}</td>
+                    <td>{data?.email}</td>
+                    <td>
+                      {data?.paymentAt ? data.paymentAt.slice(0, 10) : ""}
+                    </td>
+                    <td>{data?.transactionID}</td>
+                    <td>{data?.amount}</td>
+                    <td>
+                      <div
+                        className={`badge ${
+                          data.status === "paid" ? "bg-green-500" : "bg-red-500"
+                        } px-4 py-3 text-white`}
+                      >
+                        {data.status}
+                      </div>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>

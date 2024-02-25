@@ -54,10 +54,10 @@ const CheckoutFrom = ({ closeModal, handleStepper, setBookingInfo, bookingInfo }
     });
 
     if (error) {
-      console.log("[error]", error);
+      // console.log("[error]", error);
       setError(error.message);
     } else {
-      console.log("[PaymentMethod]", paymentMethod);
+      // console.log("[PaymentMethod]", paymentMethod);
       setError("");
     }
 
@@ -74,15 +74,15 @@ const CheckoutFrom = ({ closeModal, handleStepper, setBookingInfo, bookingInfo }
       });
 
     if (confirmError) {
-      console.log("confirm error", confirmError);
+      // console.log("confirm error", confirmError);
     } else {
-      console.log("payment Intent", paymentIntent);
+      // console.log("payment Intent", paymentIntent);
     }
 
     setProcessing(true);
 
     if (paymentIntent?.status === "succeeded") {
-      console.log("transaction id", paymentIntent.id);
+      // console.log("transaction id", paymentIntent.id);
       setTransactionId(paymentIntent.id);
 
       const currentDate = new Date();

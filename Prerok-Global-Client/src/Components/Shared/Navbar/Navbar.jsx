@@ -52,7 +52,7 @@ const Navbar = () => {
         Tracking
         <span className="absolute inset-x-0 -bottom-0.5 h-0.5 bg-amber-500 transition-transform origin-left transform scale-x-0 group-hover:scale-x-100 duration-200"></span>
       </NavLink>
-      <NavLink
+      {/* <NavLink
         to={"/placeOrder"}
         className={({ isActive }) =>
           isActive
@@ -62,7 +62,7 @@ const Navbar = () => {
       >
         Place Order
         <span className="absolute inset-x-0 -bottom-0.5 h-0.5 bg-amber-500 transition-transform origin-left transform scale-x-0 group-hover:scale-x-100 duration-200 w-full"></span>
-      </NavLink>
+      </NavLink> */}
       {/*<NavLink
         to={"/shipping"}
         className={({ isActive }) =>
@@ -75,14 +75,14 @@ const Navbar = () => {
         <span className="absolute inset-x-0 -bottom-0.5 h-0.5 bg-amber-500 transition-transform origin-left transform scale-x-0 group-hover:scale-x-100 duration-200"></span>
       </NavLink>*/}
       <NavLink
-        to={"/support"}
+        to={"/forum"}
         className={({ isActive }) =>
           isActive
             ? "relative border-b-2 border-amber-500 inline-block text-black hover:text-gray-800 group font-semibold pt-2 px-2"
             : "relative border-b-2 border-transparent inline-block text-black hover:text-gray-800 group font-semibold pt-2 px-2"
         }
       >
-        Support
+        Forum
         <span className="absolute inset-x-0 -bottom-0.5 h-0.5 bg-amber-500 transition-transform origin-left transform scale-x-0 group-hover:scale-x-100 duration-200"></span>
       </NavLink>
       <NavLink
@@ -120,7 +120,7 @@ const Navbar = () => {
             <div>
               <Link>SITEMAP</Link>
               <span> &nbsp; |&nbsp; </span>
-              <Link>PRIVACY</Link>
+              <Link to="/privacy-policy">PRIVACY</Link>
               <span> &nbsp; |&nbsp; </span>
               <Link>PRICING</Link>
             </div>
@@ -170,9 +170,7 @@ const Navbar = () => {
                 : "-translate-x-full opacity-50"
             } transition duration-300`}
           >
-
             {navLinks}
-
           </div>
           {/* menu dropdown */}
           <div className="lg:hidden mx-2">
