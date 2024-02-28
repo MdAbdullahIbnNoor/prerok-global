@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { axiosSecure } from "../../api/axiosInstances";
 
 const ParcelInfo = ({ handleStepper, setBookingInfo, bookingInfo }) => {
-    const { register, handleSubmit, formState: { errors }} = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = async (data) => {
         const weight = Number(data.parcel_weight);
         // const length = Number(data.parcel_length);
@@ -15,6 +15,9 @@ const ParcelInfo = ({ handleStepper, setBookingInfo, bookingInfo }) => {
         const shippingMethod = data.shipping_method;
         // const costByDimension = Number((((length + width + height) * 0.05) + (weight * 0.01)).toFixed(1));
         // const payableAmount = calculateCost(costByDimension, packageType, shippingMethod);
+        const presentDate = new Date();
+        presentDate.setDate(presentDate.getDate() + (shippingMethod === 'expedited' ? 14 : 7));
+        const estimatedDeliveryTime = presentDate.toLocaleDateString();
         const requestBody = {
             height,
             width,
@@ -25,7 +28,7 @@ const ParcelInfo = ({ handleStepper, setBookingInfo, bookingInfo }) => {
         };
         const { data: dbResponse } = await axiosSecure.post("/api/packages/calculateCost", requestBody)
         const parcelInfo = { ...data, shippingCost: dbResponse?.cost };
-        setBookingInfo({ ...bookingInfo, parcelInfo })
+        setBookingInfo({ ...bookingInfo, parcelInfo, estimatedDeliveryTime })
         handleStepper()
     }
     return (
