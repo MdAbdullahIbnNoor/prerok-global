@@ -1,4 +1,25 @@
+import { axiosPublic } from "../../../api/axiosInstances";
+import useAuth from "../../../hooks/useAuth";
+
 const CreatePost = () => {
+  const { user } = useAuth();
+  const handleCreatePost = (e) => {
+    e.preventDefault();
+    const formdata = new FormData(e.currentTarget);
+    const title = formdata.get("title");
+    const thumbnail = formdata.get("thumbnail");
+    const content = formdata.get("content");
+    const postData = {
+      title: title,
+      thumbnail: thumbnail,
+      content: content,
+      author: user.displayName,
+    };
+    axiosPublic.post("/api/forum/create-forum-post", postData).then((res) => {
+      console.log(res.data);
+    });
+  };
+
   return (
     <div>
       <div>
@@ -11,7 +32,7 @@ const CreatePost = () => {
             </div>
             <hr />
             <div className="mt-2">
-              <form className="w-11/12 mx-auto">
+              <form className="w-11/12 mx-auto" onSubmit={handleCreatePost}>
                 {/* title  */}
                 <input
                   type="text"
@@ -24,7 +45,7 @@ const CreatePost = () => {
                 {/* Photo  */}
                 <input
                   type="text"
-                  name="image"
+                  name="thumbnail"
                   className="border h-11 w-full px-4 py-2 mt-3 rounded-sm caret-[#f5ab35] focus:border-[#f5ab35]"
                   placeholder="IMAGE LINK"
                   id="photo"
@@ -32,7 +53,7 @@ const CreatePost = () => {
                 <br />
                 <textarea
                   type="text"
-                  name="body"
+                  name="content"
                   className=" textarea textarea-bordered textarea-lg w-full  py-2 px-4 mt-1  rounded-sm caret-[#f5ab35]"
                   placeholder="What's on your mind ..."
                   id="body"
