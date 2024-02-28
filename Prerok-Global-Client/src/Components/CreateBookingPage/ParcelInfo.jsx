@@ -1,20 +1,30 @@
 /* eslint-disable react/prop-types */
 import { useForm } from "react-hook-form";
 import { Link } from 'react-router-dom';
-import { calculateCost } from "../../utils/calculateCost";
+// import { calculateCost } from "../../utils/calculateCost";
+import { axiosSecure } from "../../api/axiosInstances";
 
 const ParcelInfo = ({ handleStepper, setBookingInfo, bookingInfo }) => {
-    const { register, handleSubmit, formState: { errors }, reset } = useForm();
+    const { register, handleSubmit, formState: { errors }} = useForm();
     const onSubmit = async (data) => {
         const weight = Number(data.parcel_weight);
-        const length = Number(data.parcel_length);
+        // const length = Number(data.parcel_length);
         const width = Number(data.parcel_width);
         const height = Number(data.parcel_height);
-        const packageType = data.packaging_type;
+        // const packageType = data.packaging_type;
         const shippingMethod = data.shipping_method;
-        const costByDimension = Number((((length + width + height) * 0.05) + (weight * 0.01)).toFixed(1));
-        const payableAmount = calculateCost(costByDimension, packageType, shippingMethod);
-        const parcelInfo = { ...data, shippingCost: payableAmount };
+        // const costByDimension = Number((((length + width + height) * 0.05) + (weight * 0.01)).toFixed(1));
+        // const payableAmount = calculateCost(costByDimension, packageType, shippingMethod);
+        const requestBody = {
+            height,
+            width,
+            weight,
+            fromCountry: bookingInfo?.fromAddress?.from_country,
+            toCountry: bookingInfo?.toAddress?.to_country,
+            deliveryType: shippingMethod === 'expedited' ? 'Faster' : 'Usual'
+        };
+        const { data: dbResponse } = await axiosSecure.post("/api/packages/calculateCost", requestBody)
+        const parcelInfo = { ...data, shippingCost: dbResponse?.cost };
         setBookingInfo({ ...bookingInfo, parcelInfo })
         handleStepper()
     }
@@ -24,7 +34,7 @@ const ParcelInfo = ({ handleStepper, setBookingInfo, bookingInfo }) => {
             <div>
                 <form action="" onSubmit={handleSubmit(onSubmit)} className="max-w-xl mx-auto">
                     <div className="my-3">
-                        <label className="text-lg font-medium" htmlFor="parcel_weight">Parcel Weight(gram):</label>
+                        <label className="text-lg font-medium" htmlFor="parcel_weight">Parcel Weight(kg):</label>
                         <input min={0} type="number" {...register("parcel_weight", { required: true })} id="parcel_weight" placeholder="Parcel Weight" className="border py-1 outline-none w-full px-3 my-1" />
                         {errors.parcel_weight && <p className="text-red-600">Parcel Weight is required</p>}
                     </div>
@@ -57,7 +67,7 @@ const ParcelInfo = ({ handleStepper, setBookingInfo, bookingInfo }) => {
                             <option value="default" disabled>Select Shipping Method</option>
                             <option value="standard">Standard Shipping</option>
                             <option value="expedited">Expedited Shipping</option>
-                            <option value="express">Express Shipping</option>
+                            {/* <option value="express">Express Shipping</option> */}
                         </select>
                     </div>
                     <h5 className="mb-2 text-right">Confused?  <Link className="text-amber-500 underline" to="/pricing-chart">See pricing chart</Link></h5>
