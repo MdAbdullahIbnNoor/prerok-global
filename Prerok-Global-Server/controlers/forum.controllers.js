@@ -92,7 +92,7 @@ exports.likeForum = async (req, res) => {
     console.log("here");
     if (forum.likes.includes(userId)) {
       return res
-        .status(400)
+        .status(200)
         .send({ message: "You have already liked this forum" });
     }
     forum.likes.push(userId);
@@ -106,7 +106,9 @@ exports.likeForum = async (req, res) => {
 // Controller to add a comment to a forum
 exports.addComment = async (req, res) => {
   try {
-    const { forumId, userId, comment } = req.body;
+    const { forumId, userEmail: email, comment } = req.body;
+    const user = await User.findOne({ email });
+    const userId = user._id;
     const forum = await Forum.findById(forumId);
     if (!forum) {
       return res.status(404).send({ message: "Forum not found" });
