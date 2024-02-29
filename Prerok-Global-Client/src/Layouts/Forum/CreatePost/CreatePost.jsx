@@ -15,9 +15,16 @@ const CreatePost = () => {
       content: content,
       author: user.displayName,
     };
-    axiosPublic.post("/api/forum/create-forum-post", postData).then((res) => {
-      console.log(res.data);
-    });
+    e.currentTarget.reset();
+    axiosPublic
+      .post("/api/forum/create-forum-post", postData)
+      .then((res) => {
+        console.log(res.data);
+        e.currentTarget.reset();
+      })
+      .catch((error) => {
+        console.error("Error creating post:", error);
+      });
   };
 
   return (

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import deliveryman from "./../../../assets/Home/delivery-man02.png";
-import useAuth from './../../../hooks/useAuth';
+import useAuth from "./../../../hooks/useAuth";
 import { axiosPublic } from "../../../api/axiosInstances";
 
 const CalculateCost = () => {
@@ -17,7 +17,7 @@ const CalculateCost = () => {
     "Malaysia",
     "Turkistan",
     "Afghanistan",
-    "Indonesia"
+    "Indonesia",
   ];
 
   if (error) {
@@ -41,14 +41,17 @@ const CalculateCost = () => {
       weight,
       fromCountry,
       toCountry,
-      deliveryType: pick === 'FASTED DELIVERY: +$25' ? 'Faster' : 'Usual'
+      deliveryType: pick === "FASTED DELIVERY: +$25" ? "Faster" : "Usual",
     };
 
     try {
-      const { data: dbResponse } = await axiosPublic.post("/api/packages/calculateCost", requestBody)
+      const { data: dbResponse } = await axiosPublic.post(
+        "/api/packages/calculateCost",
+        requestBody
+      );
       setTotalCost(dbResponse.cost);
     } catch (error) {
-      console.error('Error calculating cost:', error);
+      console.error("Error calculating cost:", error);
     }
   };
 
@@ -70,8 +73,12 @@ const CalculateCost = () => {
         <p className="text-base text-[#acacac] mt-5 mb-3">
           Please provide your product information to calculate your total cost.
         </p>
-        <button className="border bg-[#f5ab35] px-5 mb-3 py-3 border-none shadow-xl text-white font-semibold" onClick={() => document.getElementById('my_modal_002').showModal()}>See Cost Details</button>
-
+        <button
+          className="border bg-[#f5ab35] px-5 mb-3 py-3 border-none shadow-xl text-white font-semibold"
+          onClick={() => document.getElementById("my_modal_002").showModal()}
+        >
+          See Cost Details
+        </button>
 
         {/* modal */}
         <dialog id="my_modal_002" className="modal">
@@ -81,7 +88,10 @@ const CalculateCost = () => {
               <ul className="space-y-3">
                 <li>Delivery charge: $15 (Intra-Country)</li>
                 <li>Delivery charge: $100 (Foreign Country)</li>
-                <li>Normal Delivery Charge: Weight(0.1 - 50 KG), Size(0.1 - 500 CM)</li>
+                <li>
+                  Normal Delivery Charge: Weight(0.1 - 50 KG), Size(0.1 - 500
+                  CM)
+                </li>
                 <li>Extra $5 for each extra 20 KG weight</li>
                 <li>Extra $5 for each extra 100 CM size</li>
               </ul>
@@ -146,7 +156,11 @@ const CalculateCost = () => {
                 LOCATION:
               </label>
 
-              <select className="select select-ghost border-2 border-opacity-15 border-black focus:border-[#f5ab35] shadow-lg rounded-lg md:mr-12 px-3 py-2 w-1/3" name="from_country" required>
+              <select
+                className="select select-ghost border-2 border-opacity-15 border-black focus:border-[#f5ab35] shadow-lg rounded-lg md:mr-12 px-3 py-2 w-1/3"
+                name="from_country"
+                required
+              >
                 <option selected>From Country</option>
 
                 {countries.map((country, index) => (
@@ -154,7 +168,11 @@ const CalculateCost = () => {
                 ))}
               </select>
 
-              <select className="select select-ghost border-2 border-opacity-15 border-black focus:border-[#f5ab35] shadow-lg rounded-lg px-3 py-2 w-1/3" name="to_country" required>
+              <select
+                className="select select-ghost border-2 border-opacity-15 border-black focus:border-[#f5ab35] shadow-lg rounded-lg px-3 py-2 w-1/3"
+                name="to_country"
+                required
+              >
                 <option selected>To Country</option>
 
                 {countries.map((country, index) => (
@@ -180,14 +198,22 @@ const CalculateCost = () => {
               <label className="md:text-lg font-bold mr-11 text-[#222222]">
                 PACKAGE:
               </label>
-              <select className="select select-ghost border-2 border-opacity-15 border-black focus:border-[#f5ab35] shadow-lg rounded-lg px-3 py-2 w-3/4" name="pick" required>
+              <select
+                className="select select-ghost border-2 border-opacity-15 border-black focus:border-[#f5ab35] shadow-lg rounded-lg px-3 py-2 w-3/4"
+                name="pick"
+                required
+              >
                 <option selected>USUAL DELIVERY</option>
                 <option>FASTED DELIVERY: +$25</option>
               </select>
             </div>
 
             <div className="w-3/4 lg:ml-32">
-              <button className="border bg-[#f5ab35] w-full py-3 mt-2 border-none shadow-xl text-white font-semibold" onClick={() => document.getElementById('my_modal').showModal()} type="submit">
+              <button
+                className="border bg-[#f5ab35] w-full py-3 mt-2 border-none shadow-xl text-white font-semibold"
+                onClick={() => document.getElementById("my_modal").showModal()}
+                type="submit"
+              >
                 Calculate
               </button>
               {/* <button className="border bg-[#df9826] w-1/4 py-3 mt-2 border-none shadow-xl text-white font-semibold">
@@ -198,8 +224,13 @@ const CalculateCost = () => {
             <dialog id="my_modal" className="modal">
               <div className="modal-box flex justify-center">
                 <div className="space-y-3">
-                  <h3 className="font-bold text-2xl">Dear {user?.displayName}</h3>
-                  <p className="text-xl font-semibold">Your Total Cost is : {totalCost == 0 ? "$0.00" : `$${totalCost}`}</p>
+                  <h3 className="font-bold text-2xl">
+                    Dear {user?.displayName}
+                  </h3>
+                  <p className="text-xl font-semibold">
+                    Your Total Cost is :{" "}
+                    {totalCost == 0 ? "$0.00" : `$${totalCost}`}
+                  </p>
                 </div>
               </div>
               <form method="dialog" className="modal-backdrop">
