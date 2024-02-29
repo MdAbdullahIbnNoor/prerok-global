@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import Forum, { IForum } from "../models/forum.model";
-import { User as UserModel } from "../models/user.model";
+import { IUser, User as UserModel } from "../models/user.model";
 
 // Controller to get a forum by forum id
 exports.getForumById = async (req: Request, res: Response) => {
@@ -102,7 +102,9 @@ exports.likeForum = async (req: Request, res: Response) => {
 exports.addComment = async (req: Request, res: Response) => {
   try {
     const { forumId, userEmail: email, comment } = req.body;
+
     const user = await UserModel.findOne({ email });
+    console.log(user);
     const userId = user?._id;
     const forum = await Forum.findById(forumId);
     if (!forum) {
