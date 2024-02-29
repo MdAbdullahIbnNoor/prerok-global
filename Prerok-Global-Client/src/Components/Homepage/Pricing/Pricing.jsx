@@ -39,12 +39,12 @@ const Pricing = () => {
     const [hoveredPlan, setHoveredPlan] = useState(null);
 
     return (
-        <div className='my-16 overflow-hidden'>
+        <div className='my-8 overflow-hidden'>
             <div className='relative' data-aos="fade-up"
      data-aos-duration="1000">
                 <h1 className='text-2xl md:text-4xl font-bold text-center mb-2 text-gray-700'>PRICING & PLANS</h1>
                 <p className='text-gray-400 text-lg text-center'>See our pricing & plans to get the best service</p>
-                <h1 className='text-7xl md:text-8xl font-bold mt-16 text-center relative bottom-36 right-0 opacity-5'>PRICING</h1>
+                <h1 className='text-7xl md:text-8xl font-bold  text-center relative bottom-36 right-0 opacity-5'>PRICING</h1>
             </div>
 
             <div className='flex-col flex md:flex-row gap-4 lg:max-w-screen-2xl mx-auto lg:justify-center' data-aos="fade-up"
