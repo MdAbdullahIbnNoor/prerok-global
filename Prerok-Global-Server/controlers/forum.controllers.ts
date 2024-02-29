@@ -1,28 +1,30 @@
+import { Request, Response } from "express";
+
 const Forum = require("../models/forum.model");
 
 // Controller to get a forum by forum id
-exports.getForumById = async (req, res) => {
+exports.getForumById = async (req: Request, res: Response) => {
   try {
     const id = req.params.id;
     const forum = await Forum.findById(id);
     res.status(200).send(forum);
   } catch (error) {
-    res.status(500).send({ message: error.message });
+    res.status(500).send({ message: (error as Error).message });
   }
 };
 
 // Controller to get all forums
-exports.getAllForums = async (req, res) => {
+exports.getAllForums = async (req: Request, res: Response) => {
   try {
     const forums = await Forum.find();
     res.status(200).send(forums);
   } catch (error) {
-    res.status(500).send({ message: error.message });
+    res.status(500).send({ message: (error as Error).message });
   }
 };
 
 // Controller to create a new forum
-exports.createForum = async (req, res) => {
+exports.createForum = async (req: Request, res: Response) => {
   try {
     const forumData = req.body;
     const newForum = new Forum({
@@ -45,12 +47,12 @@ exports.createForum = async (req, res) => {
       data: result,
     });
   } catch (error) {
-    res.status(500).send({ message: error.message });
+    res.status(500).send({ message: (error as Error).message });
   }
 };
 
 // Controller to update forum details by forum id
-exports.updateForum = async (req, res) => {
+exports.updateForum = async (req: Request, res: Response) => {
   try {
     const id = req.params.id;
     const updatedData = req.body;
@@ -59,17 +61,17 @@ exports.updateForum = async (req, res) => {
     });
     res.status(200).send(updatedForum);
   } catch (error) {
-    res.status(500).send({ message: error.message });
+    res.status(500).send({ message: (error as Error).message });
   }
 };
 
 // Controller to delete a forum by forum id
-exports.deleteForum = async (req, res) => {
+exports.deleteForum = async (req: Request, res: Response) => {
   try {
     const id = req.params.id;
     const result = await Forum.findByIdAndDelete(id);
     res.status(200).send(result);
   } catch (error) {
-    res.status(500).send({ message: error.message });
+    res.status(500).send({ message: (error as Error).message });
   }
 };

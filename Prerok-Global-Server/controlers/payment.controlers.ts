@@ -1,11 +1,13 @@
+import { Request, Response } from "express";
+
 const Payment = require("../models/payment.model");
 
 const stripe = require("stripe")(process.env.STRIPE_KEY)
 
-exports.createPaymentIntent = async (req, res) => {
+exports.createPaymentIntent = async (req: Request, res: Response) => {
     try {
         const { price } = req.body;
-        const amount = parseInt(price * 100);
+        const amount = parseInt((price * 100).toString());
         if (!price || amount < 1) {
             return res.status(400).send({ error: 'Invalid price' });
         }
@@ -15,13 +17,13 @@ exports.createPaymentIntent = async (req, res) => {
             payment_method_types: ['card']
         });
 
-        res.send({ clientSecret: client_secret }); 
+        res.send({ clientSecret: client_secret });
     } catch (error) {
-        res.status(500).send({ message: error.message });
+        res.status(500).send({ message: (error as Error).message });
     }
 }
 
-exports.savePaymentInfo = async (req, res) => {
+exports.savePaymentInfo = async (req: Request, res: Response) => {
     try {
         const payment = req.body
         const newPayement = new Payment({
@@ -35,15 +37,15 @@ exports.savePaymentInfo = async (req, res) => {
         const result = await newPayement.save();
         res.status(201).send({ success: true, message: "Payment Info Saved", data: result });
     } catch (error) {
-        res.status(500).send({ message: error.message });
+        res.status(500).send({ message: (error as Error).message });
     }
 };
 
-exports.getAllPaymentHistory = async (req, res) => {
+exports.getAllPaymentHistory = async (req: Request, res: Response) => {
     try {
         const result = await Payment.find();
         res.status(200).send(result);
     } catch (error) {
-        res.status(500).send({ message: error.message });
+        res.status(500).send({ message: (error as Error).message });
     }
 };
