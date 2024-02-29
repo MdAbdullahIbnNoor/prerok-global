@@ -31,6 +31,7 @@ import GlobalPrivacy from "./Components/PrivacyPage/GlobalPrivacy/GlobalPrivacy"
 import PrivacyNotice from "./Components/PrivacyPage/PrivacyNotice/PrivacyNotice";
 import ForumFeed from "./Layouts/Forum/ForumFeed/ForumFeed";
 import SinglePost from "./Layouts/Forum/SinglePost/SinglePost";
+import Testimonial from "./Layouts/Dashboard/User/Testimonial/Testimonial";
 
 const router = createBrowserRouter([
   {
@@ -193,6 +194,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <ReturnPage />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "testimonial",
+        element: (
+          <PrivateRoute>
+            <Testimonial />
           </PrivateRoute>
         ),
       },
