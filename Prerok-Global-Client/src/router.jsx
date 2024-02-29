@@ -34,6 +34,7 @@ import SinglePost from "./Layouts/Forum/SinglePost/SinglePost";
 import Review from "./Layouts/Dashboard/User/Review/Review";
 import PaymentMethods from "./Components/Shared/Payment-Methods/PaymentMethods";
 import GetSupport from "./Components/Shared/GetSupport/GetSupport";
+import ReturnRefundPolicy from "./Components/Shared/ReturnAndRefunds/ReturnAndRefunds";
 
 const router = createBrowserRouter([
   {
@@ -89,6 +90,10 @@ const router = createBrowserRouter([
       {
         path: "/paymentsAccepted",
         element: <PaymentMethods></PaymentMethods>,
+      },
+      {
+        path: "/returnPolicy",
+        element: <ReturnRefundPolicy></ReturnRefundPolicy>,
       },
       {
         path: "/global-policy",

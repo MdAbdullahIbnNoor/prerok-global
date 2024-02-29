@@ -1,5 +1,4 @@
 import { NavLink, Outlet } from "react-router-dom";
-import Navbar from "../Shared/Navbar/Navbar";
 import { FaEnvelopeOpenText } from "react-icons/fa6";
 import { MdOutlineSecurity } from "react-icons/md";
 import { MdOutlineStarRate } from "react-icons/md";
