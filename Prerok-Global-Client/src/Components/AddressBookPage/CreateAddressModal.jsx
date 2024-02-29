@@ -12,6 +12,18 @@ const CreateAddressModal = ({ id, refetch }) => {
     const [manualLoading, setManualLoading] = useState(false);
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
+    const countries = [
+        "Bangladesh",
+        "India",
+        "China",
+        "UK",
+        "USA",
+        "Malaysia",
+        "Turkistan",
+        "Afghanistan",
+        "Indonesia"
+    ];
+
 
     const onSubmit = async (data) => {
         try {
@@ -86,7 +98,13 @@ const CreateAddressModal = ({ id, refetch }) => {
                             <div className="flex mb-4">
                                 {/* <p className=" w-1/3"><label className="text-left font-semibold">Country</label></p> */}
                                 <div className="w-full">
-                                    <input type="text" {...register("country", { required: true })} placeholder="Country" className="border py-1 outline-none w-full px-3" />
+                                    <select {...register("country", { required: true })} className="border py-1 outline-none w-full px-3" name="country" required>
+                                        <option selected value="">Your Country</option>
+                                        {countries.map((country, index) => (
+                                            <option value={country} key={index}>{country}</option>
+                                        ))}
+                                    </select>
+                                    {/* <input type="text" {...register("country", { required: true })} placeholder="Country" className="border py-1 outline-none w-full px-3" /> */}
                                     {errors.country && <p className="text-red-600">Country is required</p>}
                                 </div>
                             </div>

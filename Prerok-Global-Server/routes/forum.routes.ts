@@ -4,6 +4,8 @@ const {
   getAllForums,
   updateForum,
   deleteForum,
+  likeForum,
+  addComment,
 } = require("../controlers/forum.controllers");
 
 const router = require("express").Router();
@@ -22,5 +24,11 @@ router.put("/update-forum/:id", updateForum);
 
 // Route to delete a forum post by its ID
 router.delete("/delete-forum/:id", deleteForum);
+
+// Route to like a forum
+router.post("/like-forum", likeForum);
+
+// Route to add a comment to a forum
+router.post("/add-comment", addComment);
 
 module.exports = router;

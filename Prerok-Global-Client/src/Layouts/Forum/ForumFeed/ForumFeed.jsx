@@ -19,7 +19,7 @@ const ForumFeed = () => {
     <div className=" max-w-screen-2xl mx-auto">
       {/**Forum Feed page with pagination. Facebook style */}
       <CreatePost></CreatePost>
-      {/* <SinglePostOnFeed></SinglePostOnFeed>*/}
+     
       {allForum.map((singleForum, _id) => (
         <div
           key={_id}

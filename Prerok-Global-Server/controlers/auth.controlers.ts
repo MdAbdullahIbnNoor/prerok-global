@@ -1,6 +1,8 @@
+import { Request, Response } from "express";
+
 const jwt = require('jsonwebtoken');
 
-exports.genarateToken = (req, res) => {
+exports.genarateToken = (req: Request, res: Response) => {
     try {
         const email = req.body.email;
         const token = jwt.sign({ email }, process.env.TOKEN_SECRET);
@@ -10,12 +12,12 @@ exports.genarateToken = (req, res) => {
             // sameSite: "None"
         }).send({ message: "success" })
     } catch (error) {
-        res.status(500).send(error.message)
+        res.status(500).send((error as Error).message)
     }
 
 }
 
-exports.removeToken = (req, res) => {
+exports.removeToken = (req: Request, res: Response) => {
     try {
         res.clearCookie("token", {
             maxAge: 0,
@@ -24,6 +26,6 @@ exports.removeToken = (req, res) => {
             // sameSite: "None"
         }).send({ message: "success" })
     } catch (error) {
-        res.status(500).send()
+        res.status(500).send({ message: (error as Error).message })
     }
 }

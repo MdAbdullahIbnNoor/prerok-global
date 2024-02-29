@@ -1,0 +1,44 @@
+[
+    {
+      "id": 1,
+      "name": "Alice Johnson",
+      "designation": "Customer",
+      "image": "https://example.com/alice_image.jpg",
+      "review": "I'm impressed with the quick and reliable delivery service provided by PrerokGlobal. It made my shipping experience hassle-free and convenient. Highly recommended!"
+    },
+    {
+      "id": 2,
+      "name": "John Smith",
+      "designation": "Business Owner",
+      "image": "https://example.com/john_image.jpg",
+      "review": "As a business owner, PrerokGlobal has significantly improved our logistics. The user-friendly interface and accurate tracking make it an excellent choice for any enterprise."
+    },
+    {
+      "id": 3,
+      "name": "Emily Brown",
+      "designation": "IT Specialist",
+      "image": "https://example.com/emily_image.jpg",
+      "review": "The secure user authentication and seamless payment process ensure a trustworthy online experience. PrerokGlobal has set a high standard for delivery service websites."
+    },
+    {
+      "id": 4,
+      "name": "David Rodriguez",
+      "designation": "Freelancer",
+      "image": "https://example.com/david_image.jpg",
+      "review": "PrerokGlobal has been a game-changer for my freelance work. The real-time tracking and efficient customer support have made it my go-to platform for shipping needs."
+    },
+    {
+      "id": 5,
+      "name": "Sophia Kim",
+      "designation": "Student",
+      "image": "https://example.com/sophia_image.jpg",
+      "review": "Using PrerokGlobal for my student projects has been a breeze. The quick delivery and simple order process have saved me time and stress. A fantastic service!"
+    },
+    {
+      "id": 6,
+      "name": "Michael White",
+      "designation": "Tech Enthusiast",
+      "image": "https://example.com/michael_image.jpg",
+      "review": "PrerokGlobal's integration of the latest tech in their tracking system is impressive. It's a modern and efficient solution for anyone who values technology in their shipping experience."
+    }
+  ]

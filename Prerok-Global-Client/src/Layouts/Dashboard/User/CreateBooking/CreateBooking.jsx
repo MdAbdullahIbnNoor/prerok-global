@@ -61,7 +61,7 @@ const CreateBooking = () => {
                 }
                 {
                     currentStep === 4 &&
-                    <ProcessingStatus  setBookingInfo={setBookingInfo} bookingInfo={bookingInfo} handleStepper={handleStepper}></ProcessingStatus>
+                    <ProcessingStatus setBookingInfo={setBookingInfo} bookingInfo={bookingInfo} handleStepper={handleStepper}></ProcessingStatus>
                 }
             </div>
         </div>

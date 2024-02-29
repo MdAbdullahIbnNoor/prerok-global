@@ -1,7 +1,26 @@
-const mongoose = require('mongoose');
+import mongoose, { Schema, Document } from "mongoose";
+
+interface IUser extends Document {
+    name: string;
+    image: string;
+    email: string;
+    role: string;
+    gender: string;
+    dateOfBirth: string;
+    mobileNumber: string;
+    country: string;
+    state: string;
+    postcode: string;
+    division: string;
+    district: string;
+    upazilla: string;
+    village: string;
+    roadNumber: string;
+}
+
 
 // schema for user
-const userSchema = new mongoose.Schema({
+const userSchema: Schema = new mongoose.Schema({
     name: {
         required: true,
         type: String,
@@ -16,11 +35,6 @@ const userSchema = new mongoose.Schema({
         type: String,
         trim: true,
         unique: true
-    },
-    email: {
-        required: true,
-        type: String,
-        default: "user"
     },
     role: {
         type: String,
@@ -76,6 +90,6 @@ const userSchema = new mongoose.Schema({
     })
 
 // model for user
-const User = mongoose.model("users", userSchema);
+const User = mongoose.model<IUser>("users", userSchema);
 
 module.exports = User;

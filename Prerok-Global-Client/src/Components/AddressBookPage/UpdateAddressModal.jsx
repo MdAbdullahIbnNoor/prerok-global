@@ -13,6 +13,18 @@ const UpdateAddressModal = ({ refetch, data }) => {
     const [manualLoading, setManualLoading] = useState(false);
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
+    const countries = [
+        "Bangladesh",
+        "India",
+        "China",
+        "UK",
+        "USA",
+        "Malaysia",
+        "Turkistan",
+        "Afghanistan",
+        "Indonesia"
+    ];
+
 
     const onSubmit = async (inputData) => {
         try {
@@ -44,7 +56,9 @@ const UpdateAddressModal = ({ refetch, data }) => {
                     >
                         <span
                             onClick={() => setIsOpen(false)}
-                            className='px-2 py-2 text-2xl rounded-full bg-gray-200 absolute top-3 right-3 cursor-pointer' ><RxCross2></RxCross2></span>
+                            className='px-2 py-2 text-2xl rounded-full bg-gray-200 absolute top-3 right-3 cursor-pointer'>
+                            <RxCross2></RxCross2>
+                        </span>
 
                         <h2 className="text-2xl text-amber-500 mb-6 mt-4 font-semibold text-center">Update {data.name}'s Address</h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -82,7 +96,17 @@ const UpdateAddressModal = ({ refetch, data }) => {
                             <div className="flex mb-4">
                                 {/* <p className=" w-1/3"><label className="text-left font-semibold">Country</label></p> */}
                                 <div className="w-full">
-                                    <input type="text" defaultValue={data?.country} {...register("country", { required: true })} placeholder="Country" className="border py-1 outline-none w-full px-3" />
+                                    <select
+                                        {...register("country", { required: true })}
+                                        defaultValue={data?.country}
+                                        className="border py-1 outline-none w-full px-3"
+                                        name="country" required>
+                                        <option selected value="">Your Country</option>
+                                        {countries.map((country, index) => (
+                                            <option value={country} key={index}>{country}</option>
+                                        ))}
+                                    </select>
+                                    {/* <input type="text" defaultValue={data?.country} {...register("country", { required: true })} placeholder="Country" className="border py-1 outline-none w-full px-3" /> */}
                                     {errors.country && <p className="text-red-600">Country is required</p>}
                                 </div>
                             </div>
