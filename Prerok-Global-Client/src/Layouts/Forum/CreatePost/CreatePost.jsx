@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import toast from "react-hot-toast";
 import { axiosPublic } from "../../../api/axiosInstances";
 import useAuth from "../../../hooks/useAuth";
@@ -77,6 +78,9 @@ const CreatePost = ({ setHasPosted }) => {
       </div>
     </div>
   );
+};
+CreatePost.propTypes = {
+  setHasPosted: PropTypes.func.isRequired,
 };
 
 export default CreatePost;
