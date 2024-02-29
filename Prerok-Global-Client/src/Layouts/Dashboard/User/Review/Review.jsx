@@ -1,7 +1,17 @@
+import useAuth from "../../../../hooks/useAuth";
 
 
 const Review = () => {
 
+    const {user} = useAuth();
+   
+
+    const data = {
+        name: user.displayName,
+        email: user.email,
+        image: user.photoURL
+    }
+    console.log(data);
 
 
   return (
