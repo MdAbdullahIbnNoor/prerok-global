@@ -143,7 +143,8 @@ exports.createBooking = async (req, res) => {
             toAddress: bookingData.toAddress,
             parcelInfo: bookingData.parcelInfo,
             paymentInfo: bookingData.paymentInfo,
-            bookingEmail: bookingData.bookingEmail
+            bookingEmail: bookingData.bookingEmail,
+            estimatedDeliveryTime: bookingData.estimatedDeliveryTime
         })
         const result = await newBooking.save();
 

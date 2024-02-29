@@ -31,7 +31,14 @@ const bookingSchema = new mongoose.Schema({
     },
     refundType: {
         type: String,
-    }
+    },
+    bookingTime: {
+        type: Date,
+        default: Date.now()
+    },
+    estimatedDeliveryTime: {
+        type: String,
+    },
 })
 
 
