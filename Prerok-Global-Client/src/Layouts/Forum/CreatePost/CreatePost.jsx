@@ -1,7 +1,9 @@
+import PropTypes from "prop-types";
+import toast from "react-hot-toast";
 import { axiosPublic } from "../../../api/axiosInstances";
 import useAuth from "../../../hooks/useAuth";
 
-const CreatePost = () => {
+const CreatePost = ({ setHasPosted }) => {
   const { user } = useAuth();
   const handleCreatePost = (e) => {
     e.preventDefault();
@@ -15,9 +17,17 @@ const CreatePost = () => {
       content: content,
       author: user.displayName,
     };
-    axiosPublic.post("/api/forum/create-forum-post", postData).then((res) => {
-      console.log(res.data);
-    });
+    e.currentTarget.reset();
+    axiosPublic
+      .post("/api/forum/create-forum-post", postData)
+      .then(() => {
+        // console.log(res.data);
+        setHasPosted(true);
+        toast.success("Your post has been published");
+      })
+      .catch((error) => {
+        console.error("Error creating post:", error);
+      });
   };
 
   return (
@@ -68,6 +78,9 @@ const CreatePost = () => {
       </div>
     </div>
   );
+};
+CreatePost.propTypes = {
+  setHasPosted: PropTypes.func.isRequired,
 };
 
 export default CreatePost;

@@ -16,8 +16,8 @@ exports.getForumById = async (req: Request, res: Response) => {
 // Controller to get all forums
 exports.getAllForums = async (req: Request, res: Response) => {
   try {
-    console.log("here");
     const forums = await Forum.find({});
+    forums.reverse();
     res.status(200).send(forums);
   } catch (error) {
     res.status(500).send({ message: (error as Error).message });
@@ -29,12 +29,7 @@ exports.createForum = async (req: Request, res: Response) => {
   try {
     const forumData: IForum = req.body;
     const newForum = new Forum(forumData);
-    console.log(
-      newForum.title,
-      newForum.content,
-      newForum.thumbnail,
-      newForum.author
-    );
+
     const result = await newForum.save();
     res.status(201).send({
       success: true,
@@ -78,13 +73,13 @@ exports.likeForum = async (req: Request, res: Response) => {
     const user = await UserModel.findOne({ email });
 
     const userId = user?._id;
-    console.log(userId);
+
     const forum = await Forum.findById(forumId);
-    console.log(forum);
+
     if (!forum) {
       return res.status(404).send({ message: "Forum not found" });
     }
-    console.log("here");
+
     if (forum.likes.includes(userId)) {
       return res
         .status(200)
@@ -104,7 +99,6 @@ exports.addComment = async (req: Request, res: Response) => {
     const { forumId, userEmail: email, comment } = req.body;
 
     const user = await UserModel.findOne({ email });
-    console.log(user);
     const userId = user?._id;
     const forum = await Forum.findById(forumId);
     if (!forum) {
