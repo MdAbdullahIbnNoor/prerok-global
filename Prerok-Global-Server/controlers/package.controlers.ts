@@ -1,6 +1,8 @@
+import { Request, Response } from "express";
+
 const Country = require('../models/country.model');
 
-const calculateDistance = (lat1, lon1, lat2, lon2) => {
+const calculateDistance = (lat1: number, lon1: number, lat2: number, lon2: number) => {
     const earthRadius = 6371; // Earth's radius in kilometers
     // Convert latitude and longitude from degrees to radians
     const lat1Rad = (lat1 * Math.PI) / 180;
@@ -19,7 +21,7 @@ const calculateDistance = (lat1, lon1, lat2, lon2) => {
     return Number(distance.toFixed(2));
 }
 
-const calculateDeliveryCost = (height, width, weight, distance, deliveryType) => {
+const calculateDeliveryCost = (height: number, width: number, weight: number, distance: number, deliveryType: string) => {
     let deliveryCharge = 0;
     // Calculate base delivery charge
     if (distance === 0) {
@@ -48,7 +50,7 @@ const calculateDeliveryCost = (height, width, weight, distance, deliveryType) =>
     return cost;
 }
 
-exports.calculateCost = async (req, res) => {
+exports.calculateCost = async (req: Request, res: Response) => {
     try {
         const { height, width, weight, fromCountry, toCountry, deliveryType } = req.body;
 

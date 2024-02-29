@@ -1,8 +1,15 @@
+import mongoose, { Schema, Document } from 'mongoose';
 
-const mongoose = require('mongoose');
+interface ICountry extends Document {
+    name: string;
+    coordinates: {
+        lat: number,
+        lon: number,
+    };
+}
 
 // Define the schema for a Country
-const countrySchema = new mongoose.Schema({
+const countrySchema: Schema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
@@ -21,6 +28,6 @@ const countrySchema = new mongoose.Schema({
 });
 
 // Create a model for the Country schema
-const Country = mongoose.model('Country', countrySchema);
+const Country = mongoose.model<ICountry>('Country', countrySchema);
 
 module.exports = Country;
