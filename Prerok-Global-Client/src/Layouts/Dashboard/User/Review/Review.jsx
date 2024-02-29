@@ -1,4 +1,9 @@
-const Testimonial = () => {
+
+
+const Review = () => {
+
+
+
   return (
     <div>
       <div className="border border-[#f5ab35] w-full lg:w-11/12 mx-auto my-20 mb-4 pt-2 pb-12 shadow-xl">
@@ -20,17 +25,18 @@ const Testimonial = () => {
                     type="radio"
                     name="rating-2"
                     className="mask mask-star-2 bg-orange-400"
+                    
+                  />
+                  <input
+                    type="radio"
+                    name="rating-2"
+                    className="mask mask-star-2 bg-orange-400"
+                  />
+                  <input
+                    type="radio"
+                    name="rating-2"
+                    className="mask mask-star-2 bg-orange-400"
                     checked
-                  />
-                  <input
-                    type="radio"
-                    name="rating-2"
-                    className="mask mask-star-2 bg-orange-400"
-                  />
-                  <input
-                    type="radio"
-                    name="rating-2"
-                    className="mask mask-star-2 bg-orange-400"
                   />
                   <input
                     type="radio"
@@ -79,4 +85,4 @@ const Testimonial = () => {
   );
 };
 
-export default Testimonial;
+export default Review;

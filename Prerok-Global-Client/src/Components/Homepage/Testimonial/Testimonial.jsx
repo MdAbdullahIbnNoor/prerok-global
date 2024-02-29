@@ -1,11 +1,17 @@
-import React from 'react';
+/* eslint-disable react/no-unescaped-entities */
+
 import 'swiper/swiper-bundle.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
+import { useLoaderData } from 'react-router';
 
 const Testimonial = () => {
+
+  const testimonials = useLoaderData();
+    console.log(testimonials)
+
   return (
     <div className="relative lg:h-[500px] max-w-full my-12">
       {/* Static Background Image */}

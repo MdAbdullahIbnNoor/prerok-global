@@ -31,7 +31,7 @@ import GlobalPrivacy from "./Components/PrivacyPage/GlobalPrivacy/GlobalPrivacy"
 import PrivacyNotice from "./Components/PrivacyPage/PrivacyNotice/PrivacyNotice";
 import ForumFeed from "./Layouts/Forum/ForumFeed/ForumFeed";
 import SinglePost from "./Layouts/Forum/SinglePost/SinglePost";
-import Testimonial from "./Layouts/Dashboard/User/Testimonial/Testimonial";
+import Review from "./Layouts/Dashboard/User/Review/Review";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +42,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Homepage />,
+        loader: () => fetch('/public/testimonial.json')
       },
       {
         path: "/login",
@@ -198,12 +199,13 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "testimonial",
+        path: "review",
         element: (
           <PrivateRoute>
-            <Testimonial />
+            <Review></Review>
           </PrivateRoute>
         ),
+        
       },
       // {
       //   path: "return-successful",
