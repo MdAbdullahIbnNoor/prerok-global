@@ -1,7 +1,8 @@
+import toast from "react-hot-toast";
 import { axiosPublic } from "../../../api/axiosInstances";
 import useAuth from "../../../hooks/useAuth";
 
-const CreatePost = () => {
+const CreatePost = ({ setHasPosted }) => {
   const { user } = useAuth();
   const handleCreatePost = (e) => {
     e.preventDefault();
@@ -20,7 +21,8 @@ const CreatePost = () => {
       .post("/api/forum/create-forum-post", postData)
       .then((res) => {
         console.log(res.data);
-        e.currentTarget.reset();
+        setHasPosted(true);
+        toast.success("Your post has been published");
       })
       .catch((error) => {
         console.error("Error creating post:", error);

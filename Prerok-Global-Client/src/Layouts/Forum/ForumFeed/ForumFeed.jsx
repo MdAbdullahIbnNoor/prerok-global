@@ -8,17 +8,25 @@ import { format } from "date-fns";
 import { Link } from "react-router-dom";
 
 const ForumFeed = () => {
+  const [hasPosted, setHasPosted] = useState(false);
   const [allForum, setAllForum] = useState([]);
-  useEffect(() => {
+  const fetchForumData = () => {
     axiosPublic("/api/forum/get-all-forum").then((res) => {
       console.log(res.data);
       setAllForum(res.data);
     });
-  }, [setAllForum]);
+  };
+  useEffect(() => {
+    fetchForumData();
+  }, []);
+  if (hasPosted) {
+    fetchForumData();
+    setHasPosted(false);
+  }
   return (
     <div className=" max-w-screen-2xl mx-auto">
       {/**Forum Feed page with pagination. Facebook style */}
-      <CreatePost></CreatePost>
+      <CreatePost setHasPosted={setHasPosted}></CreatePost>
 
       {allForum.map((singleForum, _id) => (
         <div

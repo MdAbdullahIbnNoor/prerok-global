@@ -45,7 +45,9 @@ const SinglePost = () => {
         userEmail: user.email,
         comment: commentInput,
       })
-      .then((res) => console.log(res.data));
+      .then(() => {
+        toast.success("Your comment has been published.");
+      });
     getForumData();
     setCommentInput("");
   };
