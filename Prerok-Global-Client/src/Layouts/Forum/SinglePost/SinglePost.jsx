@@ -5,6 +5,16 @@ import { useEffect, useState } from "react";
 import { axiosPublic } from "../../../api/axiosInstances";
 import { format } from "date-fns";
 import useAuth from "../../../hooks/useAuth";
+import toast from "react-hot-toast";
+import {
+  EmailIcon,
+  EmailShareButton,
+  FacebookIcon,
+  FacebookShareButton,
+  TwitterIcon,
+  TwitterShareButton,
+  XIcon,
+} from "react-share";
 
 const SinglePost = () => {
   const { id: postId } = useParams();
@@ -23,10 +33,10 @@ const SinglePost = () => {
     });
   };
   const handleLikeForum = () => {
-    console.log(likePostData);
-    axiosPublic
-      .post("api/forum/like-forum", likePostData)
-      .then((res) => console.log(res.data));
+    axiosPublic.post("api/forum/like-forum", likePostData).then((res) => {
+      console.log(res.data);
+      toast.success(res.data.message);
+    });
   };
   const handleCommentSubmit = () => {
     console.log("Comment submitted:", commentInput);
@@ -82,9 +92,16 @@ const SinglePost = () => {
         <button className="flex items-center gap-1 px-2 py-1 rounded-lg hover:bg-yellow-400">
           <FaRegCommentAlt /> Comment
         </button>
-        <button className="flex items-center gap-1 px-2 py-1 rounded-lg hover:bg-yellow-400">
-          <FaRegShareSquare /> Share
-        </button>
+
+        <FacebookShareButton url={`prerokglobal.web.app/forum/${postId}`}>
+          <FacebookIcon size={32} round={true} />
+        </FacebookShareButton>
+        <TwitterShareButton url={`prerokglobal.web.app/forum/${postId}`}>
+          <TwitterIcon size={32} round={true} />
+        </TwitterShareButton>
+        <EmailShareButton url={`prerokglobal.web.app/forum/${postId}`}>
+          <EmailIcon size={32} round={true}></EmailIcon>
+        </EmailShareButton>
       </div>
 
       <div>
@@ -102,8 +119,14 @@ const SinglePost = () => {
         </button>
       </div>
       {postData?.comments?.map((comment) => (
-        <div key={comment._id}>
-          <p>{comment.comment}</p>
+        <div key={comment._id} className="border-2 px-2 py-1 my-2">
+          <p>
+            Anonymous User{" "}
+            <span className="font-semibold">
+              {postId.substring(postId.length - 6, postId.length - 1)}
+            </span>{" "}
+            Says: <span className="font-bold">{comment.comment}</span>
+          </p>
         </div>
       ))}
     </div>
