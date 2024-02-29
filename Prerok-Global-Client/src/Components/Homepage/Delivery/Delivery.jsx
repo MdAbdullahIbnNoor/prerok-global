@@ -1,4 +1,4 @@
-import deliveryMan from "../../../../public/images/deliveryMan.png";
+import deliveryMan from "../../../assets/Home/deliveryMan.png";
 
 const Delivery = () => {
   return (
@@ -19,11 +19,9 @@ const Delivery = () => {
             Track your delivery in real-time for ultimate convenience.
             <br />
             Enjoy doorstep delivery with our swift and reliable service.
-            
           </p>
         </div>
-        <div data-aos="fade-left"
-    >
+        <div data-aos="fade-left">
           <img src={deliveryMan} alt="" className="" />
         </div>
       </div>

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
+import { User } from "../models/user.model";
 
-const User = require("../models/user.model");
 
 //controler for get user by his email
 exports.getAllUser = async (req: Request, res: Response) => {
