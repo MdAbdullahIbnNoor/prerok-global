@@ -39,8 +39,8 @@ const ReturnPage = () => {
       <p className="lg:text-lg text-center text-gray-400">
         Fill up the following form to return your product
       </p>
-      <div className="flex-col md:flex-row justify-around items-center max-w-5xl mx-auto px-12 gap-12 mt-16">
-        <div className="lg:w-1/2 mx-auto p-12 bg-white rounded shadow-lg my-16 border-2 border-amber-400">
+      <div className="flex-col-reverse lg:flex lg:flex-row justify-around items-center max-w-5xl mx-auto px-12 gap-12 mt-16">
+        <div className="lg:w-1/2 p-12 bg-white rounded shadow-lg my-16 border-2 border-amber-400">
           <div className="mb-4">
             <label htmlFor="reason" className="block font-medium">
               Reason for Return:
@@ -69,7 +69,7 @@ const ReturnPage = () => {
               id="trackingId"
               value={trackingId}
               onChange={(e) => setTrackingId(e.target.value)}
-              className="mt-1 block w-full border-amber-300 rounded-md shadow-md focus:ring-amber-500 focus:border-amber-500 p-2 pl-4 bg-amber-100 text-gray-400 font-medium"
+              className="mt-1 block w-full border-amber-300 rounded-md shadow-md focus:ring-amber-500 focus:border-amber-500 p-2 pl-4 bg-amber-100 text-gray-600 font-medium"
               placeholder="Tracking ID"
             />
           </div>
@@ -83,9 +83,9 @@ const ReturnPage = () => {
                 onChange={() => setRefundType("money")}
                 className="form-radio h-5 w-5 text-amber-600"
               />
-              <span className="ml-2">Money Back</span>
+              <span className="ml-2 text-sm lg:text-base ">Money Back</span>
             </label>
-            <label className="inline-flex items-center mt-1 ml-6">
+            <label className="inline-flex items-center mt-1 ml-2 lg:ml-6">
               <input
                 type="radio"
                 value="replacement"
@@ -93,7 +93,7 @@ const ReturnPage = () => {
                 onChange={() => setRefundType("replacement")}
                 className="form-radio h-5 w-5 text-amber-600"
               />
-              <span className="ml-2">Replacement Product</span>
+              <span className="ml-2 text-sm lg:text-base">Replacement Product</span>
             </label>
           </div>
           <button
@@ -103,7 +103,7 @@ const ReturnPage = () => {
             Return
           </button>
         </div>
-        <div className="lg:w-1/2">
+        <div className="w-full lg:w-1/2 px-6 -z-40">
           <Lottie animationData={productReturn} loop={true} />
         </div>
       </div>
