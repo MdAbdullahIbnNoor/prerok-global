@@ -5,10 +5,10 @@ interface IForum extends Document {
   content: string;
   author: string;
   thumbnail: string;
-  comments: string[];
+  comments: { user: mongoose.Schema.Types.ObjectId; comment: string }[];
   createdAt: Date;
   updatedAt: Date;
-  likes: number;
+  likes: mongoose.Schema.Types.ObjectId[];
   tags: string[];
 }
 
@@ -27,10 +27,22 @@ const forumSchema: Schema = new mongoose.Schema({
   },
   thumbnail: {
     type: String,
-    require: true,
+    required: true,
   },
   comments: {
-    type: Array,
+    type: [
+      {
+        user: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'User',
+          required: true,
+        },
+        comment: {
+          type: String,
+          required: true,
+        },
+      },
+    ],
     default: [],
   },
   createdAt: {
@@ -42,8 +54,13 @@ const forumSchema: Schema = new mongoose.Schema({
     default: Date.now,
   },
   likes: {
-    type: Number,
-    default: 0,
+    type: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+      },
+    ],
+    default: [],
   },
   tags: {
     type: [String],
@@ -51,5 +68,5 @@ const forumSchema: Schema = new mongoose.Schema({
   },
 });
 
-const Forum = mongoose.model<IForum>("Forum", forumSchema);
-module.exports = Forum;
+const Forum = mongoose.model<IForum>('Forum', forumSchema);
+export default Forum;
