@@ -1,3 +1,4 @@
+import { Request, Response } from "express";
 const express = require("express");
 const app = express();
 const cors = require("cors");
@@ -34,7 +35,7 @@ app.use("/api/tracking", trackingRoutes);
 app.use("/api/packages", packageRoutes);
 app.use("/api/forum", forumRoutes);
 
-app.get("/", (req, res) => {
+app.get("/", (req: Request, res: Response) => {
   res.send("Hello World!");
 });
 
