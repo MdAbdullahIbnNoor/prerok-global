@@ -10,6 +10,7 @@ const paymentRoutes = require("./routes/payment.routes");
 const bookingRoutes = require("./routes/booking.routes");
 const packageRoutes = require("./routes/package.routes");
 const forumRoutes = require("./routes/forum.routes");
+const testimonialRoutes = require("./routes/testimonial.routes");
 
 //configs
 require("./configs/database");
@@ -32,6 +33,7 @@ app.use("/api/payments", paymentRoutes);
 app.use("/api/bookings", bookingRoutes);
 app.use("/api/packages", packageRoutes);
 app.use("/api/forum", forumRoutes);
+app.use("/api/testimonials", testimonialRoutes)
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello World!");
