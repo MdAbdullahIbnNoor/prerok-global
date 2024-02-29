@@ -85,7 +85,7 @@ const Review = () => {
                 <label
                   className="border block h-11 w-full px-4 py-2 mt-3 rounded-sm caret-[#f5ab35] focus:border-[#f5ab35] cursor-pointer"
                   htmlFor="photoInput"
-                >
+                > 
                   <FaUpload className="inline mr-1 text-lg"></FaUpload>
                   {selectedImage
                     ? selectedImage.name
