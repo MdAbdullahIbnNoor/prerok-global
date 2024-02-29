@@ -8,18 +8,26 @@ import { format } from "date-fns";
 import { Link } from "react-router-dom";
 
 const ForumFeed = () => {
+  const [hasPosted, setHasPosted] = useState(false);
   const [allForum, setAllForum] = useState([]);
-  useEffect(() => {
+  const fetchForumData = () => {
     axiosPublic("/api/forum/get-all-forum").then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       setAllForum(res.data);
     });
-  }, [setAllForum]);
+  };
+  useEffect(() => {
+    fetchForumData();
+  }, []);
+  if (hasPosted) {
+    fetchForumData();
+    setHasPosted(false);
+  }
   return (
     <div className=" max-w-screen-2xl mx-auto">
       {/**Forum Feed page with pagination. Facebook style */}
-      <CreatePost></CreatePost>
-      {/* <SinglePostOnFeed></SinglePostOnFeed>*/}
+      <CreatePost setHasPosted={setHasPosted}></CreatePost>
+
       {allForum.map((singleForum, _id) => (
         <div
           key={_id}
@@ -60,7 +68,7 @@ const ForumFeed = () => {
             </div>
             <div className="flex gap-4 text-lg font-bold pt-2">
               <button className="flex items-center gap-1 px-2 py-1 rounded-lg hover:bg-yellow-400">
-                <AiOutlineLike /> Like
+                <AiOutlineLike /> Like {singleForum?.likes?.length}
               </button>
               <button className="flex items-center gap-1 px-2 py-1 rounded-lg hover:bg-yellow-400">
                 <FaRegCommentAlt /> Comment

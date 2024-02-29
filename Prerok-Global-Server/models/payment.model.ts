@@ -1,6 +1,18 @@
-const mongoose = require('mongoose');
 
-const paymentSchema = new mongoose.Schema({
+import mongoose, { Schema, Document } from "mongoose";
+
+interface IPayment extends Document {
+    transactionID: string;
+    amount: number;
+    status: string;
+    bookingID: string;
+    email: string;
+    name: string;
+    paymentAt: Date;
+}
+
+
+const paymentSchema: Schema = new mongoose.Schema({
     transactionID: {
         type: String,
         required: true,
@@ -34,6 +46,6 @@ const paymentSchema = new mongoose.Schema({
     },
 })
 
-const Payment = mongoose.model('payments', paymentSchema);
+const Payment = mongoose.model<IPayment>('payments', paymentSchema);
 
 module.exports = Payment;

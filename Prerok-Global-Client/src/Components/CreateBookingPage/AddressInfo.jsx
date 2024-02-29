@@ -6,6 +6,18 @@ import ImportAddreessModal from './ImportAddreessModal';
 const AddressInfo = ({ handleStepper, setBookingInfo, bookingInfo }) => {
     const { register, handleSubmit, formState: { errors }, setValue } = useForm();
 
+    const countries = [
+        "Bangladesh",
+        "India",
+        "China",
+        "UK",
+        "USA",
+        "Malaysia",
+        "Turkistan",
+        "Afghanistan",
+        "Indonesia"
+    ];
+
     const onSubmit = async (data) => {
         try {
             const addressData = data;
@@ -98,10 +110,13 @@ const AddressInfo = ({ handleStepper, setBookingInfo, bookingInfo }) => {
 
                         {/* Country Field */}
                         <div className="flex mb-4">
-                            {/* <p className=" w-1/3"><label className="text-left font-semibold">Country</label></p> */}
                             <div className="w-full">
-                                <input type="text" {...register("from_country", { required: true })} placeholder="From Country" className="border py-1 outline-none w-full px-3" />
-                                {errors.country && <p className="text-red-600">Country is required</p>}
+                                <select {...register("from_country", { required: true })} className="border py-1 outline-none w-full px-3" name="from_country" required>
+                                    <option selected value="">{errors.from_country ? "From Country is required" : "From Country"}</option>
+                                    {countries.map((country, index) => (
+                                        <option value={country} key={index}>{country}</option>
+                                    ))}
+                                </select>
                             </div>
                         </div>
 
@@ -141,7 +156,6 @@ const AddressInfo = ({ handleStepper, setBookingInfo, bookingInfo }) => {
                                 {errors.division && <p className="text-red-600">Division is required</p>}
                             </div>
                         </div>
-
                     </div>
                     <div className="flex flex-col gap-2 flex-1">
                         <div className='md:flex items-center justify-between my-2'>
@@ -179,10 +193,13 @@ const AddressInfo = ({ handleStepper, setBookingInfo, bookingInfo }) => {
 
                         {/* Country Field */}
                         <div className="flex mb-4">
-                            {/* <p className=" w-1/3"><label className="text-left font-semibold">Country</label></p> */}
                             <div className="w-full">
-                                <input type="text" {...register("to_country", { required: true })} placeholder="To Country" className="border py-1 outline-none w-full px-3" />
-                                {errors.country && <p className="text-red-600">Country is required</p>}
+                                <select {...register("to_country", { required: true })} className="border py-1 outline-none w-full px-3" name="to_country" required>
+                                    <option selected value="">{errors.to_country ? "To Country is required" : "To Country"}</option>
+                                    {countries.map((country, index) => (
+                                        <option value={country} key={index}>{country}</option>
+                                    ))}
+                                </select>
                             </div>
                         </div>
 

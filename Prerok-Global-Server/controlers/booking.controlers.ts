@@ -1,5 +1,6 @@
+import { Request, Response } from "express";
+import * as nodemailer from 'nodemailer';
 const Booking = require("../models/booking.model");
-const nodemailer = require('nodemailer');
 
 // Transporter of Nodemailer for Sending mail
 const transporter = nodemailer.createTransport({
@@ -11,39 +12,39 @@ const transporter = nodemailer.createTransport({
 })
 
 // controlers for get a booking by booking id
-exports.getBookingByID = async (req, res) => {
+exports.getBookingByID = async (req: Request, res: Response) => {
     try {
         const id = req.params.id;
         const bookings = await Booking.findById(id)
         res.status(200).send(bookings)
     } catch (error) {
-        res.status(500).send({ message: error.message });
+        res.status(500).send({ message: (error as Error).message });
     }
 }
 
 // controlers for get all bokings by gmail
-exports.getBookingsByEmail = async (req, res) => {
+exports.getBookingsByEmail = async (req: Request, res: Response) => {
     try {
         const email = req.params.email;
         const bookings = await Booking.find({ bookingEmail: email })
         res.status(200).send(bookings)
     } catch (error) {
-        res.status(500).send({ message: error.message });
+        res.status(500).send({ message: (error as Error).message });
     }
 }
 
 // controlers for get all bokings
-exports.getAllBookings = async (req, res) => {
+exports.getAllBookings = async (req: Request, res: Response) => {
     try {
         const bookings = await Booking.find()
         res.status(200).send(bookings)
     } catch (error) {
-        res.status(500).send({ message: error.message });
+        res.status(500).send({ message: (error as Error).message });
     }
 }
 
 // controlers for update booking data by booking id
-exports.updateBookingInfo = async (req, res) => {
+exports.updateBookingInfo = async (req: Request, res: Response) => {
     try {
         const id = req.params.id;
         const data = req.body;
@@ -57,12 +58,12 @@ exports.updateBookingInfo = async (req, res) => {
         const bookings = await Booking.updateOne({ _id: id }, updatedDoc);
         res.status(200).send(bookings);
     } catch (error) {
-        res.status(500).send({ message: error.message });
+        res.status(500).send({ message: (error as Error).message });
     }
 }
 
 // controlers for update tracking status by booking id
-exports.updateTrackingStatus = async (req, res) => {
+exports.updateTrackingStatus = async (req: Request, res: Response) => {
     try {
         const id = req.params.id;
         const status = req.body.trackingStatus;
@@ -102,7 +103,7 @@ exports.updateTrackingStatus = async (req, res) => {
             };
 
             // Send the email
-            transporter.sendMail(mailOptions, (error, info) => {
+            transporter.sendMail(mailOptions, (error: Error | null, info: nodemailer.SentMessageInfo) => {
                 if (error) {
                     res.status(500).send({ success: false, message: error })
                 }
@@ -111,11 +112,11 @@ exports.updateTrackingStatus = async (req, res) => {
         }
         res.status(200).send(bookings);
     } catch (error) {
-        res.status(500).send({ message: error.message });
+        res.status(500).send({ message: (error as Error).message });
     }
 }
 // controlers for update return status by booking id
-exports.updateReturnStatus = async (req, res) => {
+exports.updateReturnStatus = async (req: Request, res: Response) => {
     try {
         const id = req.params.id;
         const reason = req.body.returnReason;
@@ -130,12 +131,12 @@ exports.updateReturnStatus = async (req, res) => {
         const bookings = await Booking.updateOne({ _id: id }, updatedDoc);
         res.status(200).send(bookings);
     } catch (error) {
-        res.status(500).send({ message: error.message });
+        res.status(500).send({ message: (error as Error).message });
     }
 }
 
 // controlers for post a new booking
-exports.createBooking = async (req, res) => {
+exports.createBooking = async (req: Request, res: Response) => {
     try {
         const bookingData = req.body;
         const newBooking = new Booking({
@@ -143,7 +144,8 @@ exports.createBooking = async (req, res) => {
             toAddress: bookingData.toAddress,
             parcelInfo: bookingData.parcelInfo,
             paymentInfo: bookingData.paymentInfo,
-            bookingEmail: bookingData.bookingEmail
+            bookingEmail: bookingData.bookingEmail,
+            estimatedDeliveryTime: bookingData.estimatedDeliveryTime
         })
         const result = await newBooking.save();
 
@@ -205,17 +207,17 @@ exports.createBooking = async (req, res) => {
         }
         res.status(201).send({ success: true, message: "Booking Successful", data: result })
     } catch (error) {
-        res.status(500).send({ message: error.message })
+        res.status(500).send({ message: (error as Error).message })
     }
 }
 
 // controlers for delete a existing booking
-exports.deleteBooking = async (req, res) => {
+exports.deleteBooking = async (req: Request, res: Response) => {
     try {
         const id = req.params.id;
         const result = await Booking.deleteOne({ _id: id })
         res.status(201).send(result)
     } catch (error) {
-        res.status(500).send({ message: error.message })
+        res.status(500).send({ message: (error as Error).message })
     }
 }
