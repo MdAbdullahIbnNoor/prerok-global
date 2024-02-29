@@ -1,5 +1,4 @@
 import { NavLink, Outlet } from "react-router-dom";
-import Navbar from "../Shared/Navbar/Navbar";
 import { FaEnvelopeOpenText } from "react-icons/fa6";
 import { MdOutlineSecurity } from "react-icons/md";
 import { MdOutlineStarRate } from "react-icons/md";
@@ -8,7 +7,6 @@ import { MdOutlineStarRate } from "react-icons/md";
 const FAQ = () => {
     return (
         <div>
-            <Navbar></Navbar>
             <div className="md:flex">
                 {/* dashboard side bar */}
                 <div className="w-80 h-fit bg-white flex justify-center text-white">

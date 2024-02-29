@@ -5,10 +5,10 @@ import { FaTwitter } from "react-icons/fa";
 import logo from "../../../assets/footerImage/Prerok-logo.png";
 import "./Footer.css";
 import { Link } from "react-router-dom";
-import visa from '../../../assets/footerImage/visa.webp'
-import paypal from '../../../assets/footerImage/paypal.png'
-import stripe from '../../../assets/footerImage/stripe.png'
-import ssl from '../../../assets/footerImage/ssl_commerz.png'
+import visa from "../../../assets/footerImage/visa.webp";
+import paypal from "../../../assets/footerImage/paypal.png";
+import stripe from "../../../assets/footerImage/stripe.png";
+import ssl from "../../../assets/footerImage/ssl_commerz.png";
 
 const Footer = () => {
   return (
@@ -30,10 +30,10 @@ const Footer = () => {
             <h1 className="font-bold text-xl">QUICK LINKS</h1>
             <div className="flex flex-col space-y-5 mt-5 ">
               {/* <Link></Link> */}
-              <Link to="#">SITEMAP</Link>
-              <Link to="/dashboard/pricing">PRICING</Link>
-              <Link to="#">PAYMENT METHOD</Link>
-              <Link to="#">SUPPORT</Link>
+
+              <Link to="/privacy-policy">Privacy Policy</Link>
+              <Link to="/paymentsAccepted">PAYMENT METHODS</Link>
+              <Link to="/getSupport">SUPPORT</Link>
             </div>
           </div>
 
@@ -41,14 +41,14 @@ const Footer = () => {
             <h1 className="font-bold text-xl">IMPORTANT LINKS</h1>
             <div className="flex flex-col space-y-5 mt-5">
               {/* <Link></Link> */}
-              <Link to="/faq">FAQ</Link>
+              <Link to="/faq/generelfaq">FAQ</Link>
               <Link to={"/about"} className=" ">
                 About
               </Link>
               <Link to={"/contact"} className=" ">
                 Contact
               </Link>
-              <Link to="#">Returns and Refunds</Link>
+              <Link to="/returnPolicy">Returns and Refunds</Link>
             </div>
           </div>
 

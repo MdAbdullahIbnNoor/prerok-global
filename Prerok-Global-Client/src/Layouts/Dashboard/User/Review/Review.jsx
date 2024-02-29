@@ -1,8 +1,41 @@
-
+import { useState } from "react";
+import useAuth from "../../../../hooks/useAuth";
+import { FaUpload } from "react-icons/fa";
+import { imageUpload } from "../../../../api/imageUpload";
+import { axiosPublic } from "../../../../api/axiosInstances";
+import toast from "react-hot-toast";
 
 const Review = () => {
+  const { user } = useAuth();
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [, setLoading] = useState(false);
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const review = form.review.value;
+    const image = selectedImage;
+    setLoading(true);
+    const { data: imageData } = await imageUpload(image);
+    const reviewData = {
+      name: user.displayName,
+      email: user.email,
+      userImage: user.photoURL,
+      review,
+      reviewImage: imageData.display_url,
+    };
+    // console.log(reviewData);
+    axiosPublic
+      .post("/api/testimonials/add-testimonial", reviewData)
+      .then((res) => {
+        console.log(res.data);
 
+        toast.success("Thanks for your feedback");
+      });
+    setSelectedImage(null);
+    form.reset();
+    setLoading(false);
+  };
 
   return (
     <div>
@@ -15,64 +48,64 @@ const Review = () => {
           </div>
           {/* rating  */}
           <div className="flex justify-center mb-3">
-                <div className="rating">
-                  <input
-                    type="radio"
-                    name="rating-2"
-                    className="mask mask-star-2 bg-orange-400"
-                  />
-                  <input
-                    type="radio"
-                    name="rating-2"
-                    className="mask mask-star-2 bg-orange-400"
-                    
-                  />
-                  <input
-                    type="radio"
-                    name="rating-2"
-                    className="mask mask-star-2 bg-orange-400"
-                  />
-                  <input
-                    type="radio"
-                    name="rating-2"
-                    className="mask mask-star-2 bg-orange-400"
-                    checked
-                  />
-                  <input
-                    type="radio"
-                    name="rating-2"
-                    className="mask mask-star-2 bg-orange-400"
-                  />
-                </div>
-              </div>
+            <div className="rating">
+              <input
+                type="radio"
+                name="rating-2"
+                className="mask mask-star-2 bg-orange-400"
+              />
+              <input
+                type="radio"
+                name="rating-2"
+                className="mask mask-star-2 bg-orange-400"
+              />
+              <input
+                type="radio"
+                name="rating-2"
+                className="mask mask-star-2 bg-orange-400"
+              />
+              <input
+                type="radio"
+                name="rating-2"
+                className="mask mask-star-2 bg-orange-400"
+                checked
+              />
+              <input
+                type="radio"
+                name="rating-2"
+                className="mask mask-star-2 bg-orange-400"
+              />
+            </div>
+          </div>
           <hr />
           <div className="mt-2">
-            <form className="w-11/12 mx-auto">
-              
-              {/* title  */}
-              <input
-                type="text"
-                name="name"
-                className="border h-11 w-full px-4 py-2 mt-3 rounded-sm caret-[#f5ab35] focus:border-[#f5ab35]"
-                placeholder="Your Name"
-                id="name"
-              />{" "}
-              <br />
-              {/* Photo  */}
-              <input
-                type="text"
-                name="image"
-                className="border h-11 w-full px-4 py-2 mt-3 rounded-sm caret-[#f5ab35] focus:border-[#f5ab35]"
-                placeholder="IMAGE LINK"
-                id="image"
-              />{" "}
-              <br />
+            <form onSubmit={handleSubmit} className="w-11/12 mx-auto">
+              {/* image  */}
+              <div>
+                <label
+                  className="border block h-11 w-full px-4 py-2 mt-3 rounded-sm caret-[#f5ab35] focus:border-[#f5ab35] cursor-pointer"
+                  htmlFor="photoInput"
+                > 
+                  <FaUpload className="inline mr-1 text-lg"></FaUpload>
+                  {selectedImage
+                    ? selectedImage.name
+                    : "Upload Photo(optional)"}
+                </label>
+                <input
+                  hidden
+                  onChange={(e) => setSelectedImage(e.target.files[0])}
+                  type="file"
+                  name=""
+                  id="photoInput"
+                />
+              </div>
               <textarea
                 type="text"
                 name="review"
                 className=" textarea textarea-bordered textarea-lg w-full  py-2 px-4 mt-3  rounded-sm caret-[#f5ab35]"
                 placeholder="Give Your Feedback ..."
                 id="review"
+                required
               />
               <button className="border h-11 w-full px-5 py-2 mt-3 bg-[#f5ab35] text-white font-bold rounded-sm hover:cursor-pointer transition-all duration-300 ease-in-out hover:bg-[#222222] flex items-center justify-center">
                 SUBMIT
