@@ -1,6 +1,18 @@
-const mongoose = require("mongoose");
+import mongoose, { Schema, Document } from 'mongoose';
 
-const forumSchema = new mongoose.Schema({
+interface IForum extends Document {
+  title: string;
+  content: string;
+  author: string;
+  thumbnail: string;
+  comments: string[];
+  createdAt: Date;
+  updatedAt: Date;
+  likes: number;
+  tags: string[];
+}
+
+const forumSchema: Schema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
@@ -39,5 +51,5 @@ const forumSchema = new mongoose.Schema({
   },
 });
 
-const Forum = mongoose.model("Forum", forumSchema);
+const Forum = mongoose.model<IForum>("Forum", forumSchema);
 module.exports = Forum;
