@@ -1,4 +1,4 @@
-import deliveryTruck from "../../../../public/images/deliveryTruck.png";
+import deliveryTruck from "../../../assets/images/deliveryTruck.png";
 
 const Steps = () => {
   return (

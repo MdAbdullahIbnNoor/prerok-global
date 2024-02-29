@@ -6,8 +6,6 @@ import { Fragment } from 'react'
 import { loadStripe } from '@stripe/stripe-js'
 import CheckoutFrom from '../CheckoutForm/CheckoutForm'
 
-
-
 const stripePromise = loadStripe(import.meta.env.VITE_PAYMENT_KEY);
 
 const PaymentModal = ({ closeModal, isOpen, handleStepper, setBookingInfo, bookingInfo }) => {
