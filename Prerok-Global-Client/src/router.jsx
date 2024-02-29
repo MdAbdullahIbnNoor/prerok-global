@@ -32,6 +32,7 @@ import PrivacyNotice from "./Components/PrivacyPage/PrivacyNotice/PrivacyNotice"
 import ForumFeed from "./Layouts/Forum/ForumFeed/ForumFeed";
 import SinglePost from "./Layouts/Forum/SinglePost/SinglePost";
 import Review from "./Layouts/Dashboard/User/Review/Review";
+import PaymentMethods from "./Components/Shared/Payment-Methods/PaymentMethods";
 
 const router = createBrowserRouter([
   {
@@ -42,7 +43,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Homepage />,
-        loader: () => fetch('/public/testimonial.json')
+        loader: () => fetch("/public/testimonial.json"),
       },
       {
         path: "/login",
@@ -78,7 +79,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/privacy-policy",
-        element: <PrivacyPage></PrivacyPage>
+        element: <PrivacyPage></PrivacyPage>,
+      },
+      {
+        path: "/paymentsAccepted",
+        element: <PaymentMethods></PaymentMethods>,
       },
       {
         path: "/global-policy",
@@ -86,10 +91,10 @@ const router = createBrowserRouter([
       },
       {
         path: "/privacy-notice",
-        element: <PrivacyNotice></PrivacyNotice>
+        element: <PrivacyNotice></PrivacyNotice>,
       },
       {
-        path:"/forum",
+        path: "/forum",
         element: <ForumFeed />,
       },
       {
@@ -205,7 +210,6 @@ const router = createBrowserRouter([
             <Review></Review>
           </PrivateRoute>
         ),
-        
       },
       // {
       //   path: "return-successful",
