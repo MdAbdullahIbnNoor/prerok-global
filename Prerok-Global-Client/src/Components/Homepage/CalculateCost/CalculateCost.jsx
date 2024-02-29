@@ -53,7 +53,7 @@ const CalculateCost = () => {
   };
 
   return (
-    <div className="md:flex min-h-screen overflow-hidden max-w-screen-2xl mx-auto my-5">
+    <div className="md:flex h-full overflow-hidden max-w-screen-2xl mx-auto my-5">
       {/* For Left side image section */}
       <div className="flex-1" data-aos="fade-right">
         <img

@@ -1,5 +1,5 @@
 import { AiOutlineLike } from "react-icons/ai";
-import { FaRegCommentAlt, FaRegShareSquare } from "react-icons/fa";
+import { FaRegCommentAlt } from "react-icons/fa";
 import { useParams } from "react-router";
 import { useEffect, useState } from "react";
 import { axiosPublic } from "../../../api/axiosInstances";
@@ -11,7 +11,6 @@ import {
   EmailShareButton,
   FacebookIcon,
   FacebookShareButton,
-  TwitterIcon,
   TwitterShareButton,
   XIcon,
 } from "react-share";
@@ -97,7 +96,7 @@ const SinglePost = () => {
           <FacebookIcon size={32} round={true} />
         </FacebookShareButton>
         <TwitterShareButton url={`prerokglobal.web.app/forum/${postId}`}>
-          <TwitterIcon size={32} round={true} />
+          <XIcon size={32} round={true} />
         </TwitterShareButton>
         <EmailShareButton url={`prerokglobal.web.app/forum/${postId}`}>
           <EmailIcon size={32} round={true}></EmailIcon>

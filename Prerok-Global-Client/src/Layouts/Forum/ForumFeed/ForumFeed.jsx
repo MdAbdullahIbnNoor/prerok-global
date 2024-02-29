@@ -6,7 +6,6 @@ import { AiOutlineLike } from "react-icons/ai";
 import { FaRegCommentAlt, FaRegShareSquare } from "react-icons/fa";
 import { format } from "date-fns";
 import { Link } from "react-router-dom";
-import SinglePost from "../SinglePost/SinglePost";
 
 const ForumFeed = () => {
   const [allForum, setAllForum] = useState([]);
