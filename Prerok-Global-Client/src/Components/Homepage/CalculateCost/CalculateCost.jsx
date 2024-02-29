@@ -6,7 +6,7 @@ import { axiosPublic } from "../../../api/axiosInstances";
 const CalculateCost = () => {
   const { user } = useAuth();
   const [totalCost, setTotalCost] = useState(0);
-  const [error, setError] = useState(null);
+  // const [error, setError] = useState(null);
 
   const countries = [
     "Bangladesh",
@@ -20,9 +20,9 @@ const CalculateCost = () => {
     "Indonesia",
   ];
 
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  }
+  // if (error) {
+  //   return <div>Error: {error.message}</div>;
+  // }
 
   // console.log(countries);
 

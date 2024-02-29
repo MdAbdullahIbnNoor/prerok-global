@@ -12,7 +12,7 @@ const ForumFeed = () => {
   const [allForum, setAllForum] = useState([]);
   const fetchForumData = () => {
     axiosPublic("/api/forum/get-all-forum").then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       setAllForum(res.data);
     });
   };

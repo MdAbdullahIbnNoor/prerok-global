@@ -20,8 +20,8 @@ const CreatePost = ({ setHasPosted }) => {
     e.currentTarget.reset();
     axiosPublic
       .post("/api/forum/create-forum-post", postData)
-      .then((res) => {
-        console.log(res.data);
+      .then(() => {
+        // console.log(res.data);
         setHasPosted(true);
         toast.success("Your post has been published");
       })
