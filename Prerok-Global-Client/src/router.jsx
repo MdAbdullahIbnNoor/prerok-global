@@ -110,6 +110,25 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      {
+        path: "faq",
+        element: <FAQ />,
+        children: [
+          // normal users route
+          {
+            path: "generelfaq",
+            element: <GenerelFAQ />,
+          },
+          {
+            path: "securityfaq",
+            element: <SecurityFAQ />,
+          },
+          {
+            path: "featurefaq",
+            element: <FeatureFAQ />,
+          },
+        ],
+      },
     ],
   },
   {
@@ -224,25 +243,6 @@ const router = createBrowserRouter([
       //     </PrivateRoute>
       //   ),
       // },
-    ],
-  },
-  {
-    path: "faq",
-    element: <FAQ />,
-    children: [
-      // normal users route
-      {
-        path: "generelfaq",
-        element: <GenerelFAQ />,
-      },
-      {
-        path: "securityfaq",
-        element: <SecurityFAQ />,
-      },
-      {
-        path: "featurefaq",
-        element: <FeatureFAQ />,
-      },
     ],
   },
 ]);

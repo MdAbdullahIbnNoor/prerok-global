@@ -30,7 +30,7 @@ const Footer = () => {
             <h1 className="font-bold text-xl">QUICK LINKS</h1>
             <div className="flex flex-col space-y-5 mt-5 ">
               {/* <Link></Link> */}
-              <Link to="">SITEMAP</Link>
+
               <Link to="/privacy-policy">Privacy Policy</Link>
               <Link to="/paymentsAccepted">PAYMENT METHODS</Link>
               <Link to="/getSupport">SUPPORT</Link>
@@ -41,7 +41,7 @@ const Footer = () => {
             <h1 className="font-bold text-xl">IMPORTANT LINKS</h1>
             <div className="flex flex-col space-y-5 mt-5">
               {/* <Link></Link> */}
-              <Link to="/faq">FAQ</Link>
+              <Link to="/faq/generelfaq">FAQ</Link>
               <Link to={"/about"} className=" ">
                 About
               </Link>

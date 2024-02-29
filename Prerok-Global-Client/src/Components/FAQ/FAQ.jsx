@@ -8,7 +8,6 @@ import { MdOutlineStarRate } from "react-icons/md";
 const FAQ = () => {
     return (
         <div>
-            <Navbar></Navbar>
             <div className="md:flex">
                 {/* dashboard side bar */}
                 <div className="w-80 h-fit bg-white flex justify-center text-white">
