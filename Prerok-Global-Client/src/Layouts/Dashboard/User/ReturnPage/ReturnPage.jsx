@@ -18,7 +18,7 @@ const ReturnPage = () => {
           refundType: refundType,
         }
       );
-      console.log(response.data);
+      // console.log(response.data);
       if (response.data.modifiedCount > 0) {
         toast.success(
           "Your product has been returned successfully. We will contact you shortly for the next step"
