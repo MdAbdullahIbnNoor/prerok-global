@@ -2,6 +2,8 @@ import { useState } from "react";
 import useAuth from "../../../../hooks/useAuth";
 import { FaUpload } from "react-icons/fa";
 import { imageUpload } from "../../../../api/imageUpload";
+import { axiosPublic } from "../../../../api/axiosInstances";
+import toast from "react-hot-toast";
 
 const Review = () => {
   const { user } = useAuth();
@@ -13,16 +15,23 @@ const Review = () => {
     const form = e.target;
     const review = form.review.value;
     const image = selectedImage;
-    setLoading(true)
-            const { data: imageData } = await imageUpload(image);
-    const data = {
+    setLoading(true);
+    const { data: imageData } = await imageUpload(image);
+    const reviewData = {
       name: user.displayName,
       email: user.email,
       userImage: user.photoURL,
       review,
-      reviewImage: imageData.display_url
+      reviewImage: imageData.display_url,
     };
-    console.log(data);
+    // console.log(reviewData);
+    axiosPublic
+      .post("/api/testimonials/add-testimonial", reviewData)
+      .then((res) => {
+        console.log(res.data);
+
+        toast.success("Thanks for your feedback");
+      });
     setSelectedImage(null);
     form.reset();
     setLoading(false);
@@ -78,7 +87,9 @@ const Review = () => {
                   htmlFor="photoInput"
                 >
                   <FaUpload className="inline mr-1 text-lg"></FaUpload>
-                  {selectedImage ? selectedImage.name : "Upload Photo(optional)"}
+                  {selectedImage
+                    ? selectedImage.name
+                    : "Upload Photo(optional)"}
                 </label>
                 <input
                   hidden
