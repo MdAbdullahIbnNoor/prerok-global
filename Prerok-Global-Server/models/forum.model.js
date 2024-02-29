@@ -17,10 +17,19 @@ const forumSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
-  comments: {
-    type: Array,
-    default: [],
-  },
+  comments: [
+    {
+      user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User", // Assuming you have a User model
+        required: true,
+      },
+      comment: {
+        type: String,
+        required: true,
+      },
+    },
+  ],
   createdAt: {
     type: Date,
     default: Date.now,
@@ -29,10 +38,12 @@ const forumSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  likes: {
-    type: Number,
-    default: 0,
-  },
+  likes: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User", 
+    },
+  ],
   tags: {
     type: [String],
     default: [],
