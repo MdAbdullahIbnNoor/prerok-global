@@ -33,7 +33,7 @@ const Footer = () => {
               <Link to="">SITEMAP</Link>
               <Link to="/privacy-policy">Privacy Policy</Link>
               <Link to="/paymentsAccepted">PAYMENT METHODS</Link>
-              <Link to="#">SUPPORT</Link>
+              <Link to="/getSupport">SUPPORT</Link>
             </div>
           </div>
 

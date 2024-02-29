@@ -33,6 +33,7 @@ import ForumFeed from "./Layouts/Forum/ForumFeed/ForumFeed";
 import SinglePost from "./Layouts/Forum/SinglePost/SinglePost";
 import Review from "./Layouts/Dashboard/User/Review/Review";
 import PaymentMethods from "./Components/Shared/Payment-Methods/PaymentMethods";
+import GetSupport from "./Components/Shared/GetSupport/GetSupport";
 
 const router = createBrowserRouter([
   {
@@ -80,6 +81,10 @@ const router = createBrowserRouter([
       {
         path: "/privacy-policy",
         element: <PrivacyPage></PrivacyPage>,
+      },
+      {
+        path: "/getSupport",
+        element: <GetSupport></GetSupport>,
       },
       {
         path: "/paymentsAccepted",
