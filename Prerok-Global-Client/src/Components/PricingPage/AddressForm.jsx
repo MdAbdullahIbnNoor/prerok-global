@@ -1,6 +1,19 @@
 import React from 'react'
 
 const AddressForm = ({ handleStepper }) => {
+
+    const countries = [
+        "Bangladesh",
+        "India",
+        "China",
+        "UK",
+        "USA",
+        "Malaysia",
+        "Turkistan",
+        "Afghanistan",
+        "Indonesia"
+    ];
+
     return (
         <div>
             <div className="flex bg-slate-300 text-slate-700 px-3 py-2 gap-2 text-lg font-medium mt-10">
@@ -27,7 +40,11 @@ const AddressForm = ({ handleStepper }) => {
                                 </div>
                                 <div className="flex justify-between  p-3 px-12">
                                     <div>Country / Location:</div>
-                                    <div><input type="text" className="border px-2" name="" id="" /></div>
+                                    <div>
+                                        {countries.map((country, index) => (
+                                            <option key={index}>{country}</option>
+                                        ))}
+                                    </div>
                                 </div>
                                 <div className="flex justify-between  p-3 px-12">
                                     <div>Address:</div>

@@ -1,17 +1,19 @@
+import { Request, Response } from "express";
+
 const User = require("../models/user.model");
 
 //controler for get user by his email
-exports.getAllUser = async (req, res) => {
+exports.getAllUser = async (req: Request, res: Response) => {
     try {
         const userData = await User.find();
         res.status(200).send(userData);
     } catch (error) {
-        res.status(500).send({ message: error.message });
+        res.status(500).send({ message: (error as Error).message });
     }
 }
 
 //controler for get user by his email
-exports.getUserByEmail = async (req, res) => {
+exports.getUserByEmail = async (req: Request, res: Response) => {
     try {
         const email = req.params.email;
         // const user = req.user;
@@ -21,12 +23,12 @@ exports.getUserByEmail = async (req, res) => {
         const userData = await User.findOne({ email });
         res.status(200).send(userData);
     } catch (error) {
-        res.status(500).send({ message: error.message });
+        res.status(500).send({ message: (error as Error).message });
     }
 }
 
 //controler for create a new user
-exports.createUser = async (req, res) => {
+exports.createUser = async (req: Request, res: Response) => {
     try {
         const userData = req.body;
         const email = req.body.email;
@@ -42,12 +44,12 @@ exports.createUser = async (req, res) => {
         const dbResponse = await newUser.save();
         res.status(201).send(dbResponse)
     } catch (error) {
-        res.status(500).send({ error: error.message });
+        res.status(500).send({ error: (error as Error).message });
     }
 }
 
 //controler for update a existing user
-exports.updateUser = async (req, res) => {
+exports.updateUser = async (req: Request, res: Response) => {
     try {
         // const user = req.user;
         const email = req.params.email;
@@ -75,12 +77,12 @@ exports.updateUser = async (req, res) => {
         const result = await User.updateOne({ email }, updatedDoc);
         res.status(200).send(result);
     } catch (error) {
-        res.status(500).send({ message: error.message });
+        res.status(500).send({ message: (error as Error).message });
     }
 }
 
 //controler for update role of a existing user
-exports.updateRole = async (req, res) => {
+exports.updateRole = async (req: Request, res: Response) => {
     try {
         const data = req.body;
         // const user = req.user;
@@ -96,6 +98,6 @@ exports.updateRole = async (req, res) => {
         const result = await User.updateOne({ email: data?.email }, updatedDoc);
         res.status(200).send(result);
     } catch (error) {
-        res.status(500).send({ message: error.message });
+        res.status(500).send({ message: (error as Error).message });
     }
 }
