@@ -32,6 +32,9 @@ import PrivacyNotice from "./Components/PrivacyPage/PrivacyNotice/PrivacyNotice"
 import ForumFeed from "./Layouts/Forum/ForumFeed/ForumFeed";
 import SinglePost from "./Layouts/Forum/SinglePost/SinglePost";
 import Review from "./Layouts/Dashboard/User/Review/Review";
+import PaymentMethods from "./Components/Shared/Payment-Methods/PaymentMethods";
+import GetSupport from "./Components/Shared/GetSupport/GetSupport";
+import ReturnRefundPolicy from "./Components/Shared/ReturnAndRefunds/ReturnAndRefunds";
 
 const router = createBrowserRouter([
   {
@@ -42,7 +45,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Homepage />,
-        loader: () => fetch('/public/testimonial.json')
+        loader: () => fetch("/public/testimonial.json"),
       },
       {
         path: "/login",
@@ -78,7 +81,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/privacy-policy",
-        element: <PrivacyPage></PrivacyPage>
+        element: <PrivacyPage></PrivacyPage>,
+      },
+      {
+        path: "/getSupport",
+        element: <GetSupport></GetSupport>,
+      },
+      {
+        path: "/paymentsAccepted",
+        element: <PaymentMethods></PaymentMethods>,
+      },
+      {
+        path: "/returnPolicy",
+        element: <ReturnRefundPolicy></ReturnRefundPolicy>,
       },
       {
         path: "/global-policy",
@@ -86,10 +101,10 @@ const router = createBrowserRouter([
       },
       {
         path: "/privacy-notice",
-        element: <PrivacyNotice></PrivacyNotice>
+        element: <PrivacyNotice></PrivacyNotice>,
       },
       {
-        path:"/forum",
+        path: "/forum",
         element: <ForumFeed />,
       },
       {
@@ -99,6 +114,25 @@ const router = createBrowserRouter([
             <SinglePost />
           </PrivateRoute>
         ),
+      },
+      {
+        path: "faq",
+        element: <FAQ />,
+        children: [
+          // normal users route
+          {
+            path: "generelfaq",
+            element: <GenerelFAQ />,
+          },
+          {
+            path: "securityfaq",
+            element: <SecurityFAQ />,
+          },
+          {
+            path: "featurefaq",
+            element: <FeatureFAQ />,
+          },
+        ],
       },
     ],
   },
@@ -205,7 +239,6 @@ const router = createBrowserRouter([
             <Review></Review>
           </PrivateRoute>
         ),
-        
       },
       // {
       //   path: "return-successful",
@@ -215,25 +248,6 @@ const router = createBrowserRouter([
       //     </PrivateRoute>
       //   ),
       // },
-    ],
-  },
-  {
-    path: "faq",
-    element: <FAQ />,
-    children: [
-      // normal users route
-      {
-        path: "generelfaq",
-        element: <GenerelFAQ />,
-      },
-      {
-        path: "securityfaq",
-        element: <SecurityFAQ />,
-      },
-      {
-        path: "featurefaq",
-        element: <FeatureFAQ />,
-      },
     ],
   },
 ]);
