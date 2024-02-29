@@ -6,6 +6,7 @@ import { AiOutlineLike } from "react-icons/ai";
 import { FaRegCommentAlt, FaRegShareSquare } from "react-icons/fa";
 import { format } from "date-fns";
 import { Link } from "react-router-dom";
+import SinglePost from "../SinglePost/SinglePost";
 
 const ForumFeed = () => {
   const [allForum, setAllForum] = useState([]);
@@ -19,7 +20,7 @@ const ForumFeed = () => {
     <div className=" max-w-screen-2xl mx-auto">
       {/**Forum Feed page with pagination. Facebook style */}
       <CreatePost></CreatePost>
-     
+
       {allForum.map((singleForum, _id) => (
         <div
           key={_id}
@@ -60,7 +61,7 @@ const ForumFeed = () => {
             </div>
             <div className="flex gap-4 text-lg font-bold pt-2">
               <button className="flex items-center gap-1 px-2 py-1 rounded-lg hover:bg-yellow-400">
-                <AiOutlineLike /> Like
+                <AiOutlineLike /> Like {singleForum?.likes?.length}
               </button>
               <button className="flex items-center gap-1 px-2 py-1 rounded-lg hover:bg-yellow-400">
                 <FaRegCommentAlt /> Comment

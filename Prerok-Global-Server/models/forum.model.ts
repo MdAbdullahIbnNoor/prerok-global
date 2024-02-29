@@ -1,6 +1,6 @@
-import mongoose, { Schema, Document } from 'mongoose';
+import mongoose, { Schema, Document } from "mongoose";
 
-interface IForum extends Document {
+export interface IForum extends Document {
   title: string;
   content: string;
   author: string;
@@ -34,7 +34,7 @@ const forumSchema: Schema = new mongoose.Schema({
       {
         user: {
           type: mongoose.Schema.Types.ObjectId,
-          ref: 'User',
+          ref: "User",
           required: true,
         },
         comment: {
@@ -57,7 +57,7 @@ const forumSchema: Schema = new mongoose.Schema({
     type: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+        ref: "User",
       },
     ],
     default: [],
@@ -68,5 +68,5 @@ const forumSchema: Schema = new mongoose.Schema({
   },
 });
 
-const Forum = mongoose.model<IForum>('Forum', forumSchema);
+const Forum = mongoose.model<IForum>("Forum", forumSchema);
 export default Forum;
