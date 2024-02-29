@@ -35,7 +35,7 @@ import Review from "./Layouts/Dashboard/User/Review/Review";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/", 
     element: <Home />,
     errorElement: <ErrorPage />,
     children: [

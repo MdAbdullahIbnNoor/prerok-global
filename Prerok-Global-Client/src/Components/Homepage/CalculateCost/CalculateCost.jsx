@@ -53,7 +53,7 @@ const CalculateCost = () => {
   };
 
   return (
-    <div className="md:flex min-h-screen overflow-hidden max-w-screen-2xl mx-auto my-5">
+    <div className="md:flex min-h-fit overflow-hidden max-w-screen-2xl mx-auto my-16">
       {/* For Left side image section */}
       <div className="flex-1" data-aos="fade-right">
         <img
@@ -67,10 +67,10 @@ const CalculateCost = () => {
         <h2 className="text-xl md:text-3xl font-bold mt-10 text-[#222222]">
           CALCULATE YOUR COST
         </h2>
-        <p className="text-base text-[#acacac] mt-5 mb-3">
+        <p className="text-base text-[#acacac] mt-4 mb-4">
           Please provide your product information to calculate your total cost.
         </p>
-        <button className="border bg-[#f5ab35] px-5 mb-3 py-3 border-none shadow-xl text-white font-semibold" onClick={() => document.getElementById('my_modal_002').showModal()}>See Cost Details</button>
+        <button className="border bg-[#f5ab35] px-5 mb-8 py-3 border-none shadow-xl text-white font-semibold" onClick={() => document.getElementById('my_modal_002').showModal()}>See Cost Details</button>
 
 
         {/* modal */}
@@ -80,7 +80,7 @@ const CalculateCost = () => {
               <h3 className="font-bold text-2xl">Cost Details</h3>
               <ul className="space-y-3">
                 <li>Delivery charge: $15 (Intra-Country)</li>
-                <li>Delivery charge: $100 (Foreign Country)</li>
+                <li>Delivery charge: $0.001 per KM (Foreign Country)</li>
                 <li>Normal Delivery Charge: Weight(0.1 - 50 KG), Size(0.1 - 500 CM)</li>
                 <li>Extra $5 for each extra 20 KG weight</li>
                 <li>Extra $5 for each extra 100 CM size</li>

@@ -33,14 +33,14 @@ const ReturnPage = () => {
 
   return (
     <div>
-      <h1 className="text-4xl font-bold mb-4 text-amber-500 text-center pt-14">
+      <h1 className="text-3xl lg:text-5xl font-bold mb-4 text-amber-500 text-center pt-14">
         Return Product
       </h1>
-      <p className="text-lg text-center text-gray-400">
+      <p className="lg:text-lg text-center text-gray-400">
         Fill up the following form to return your product
       </p>
-      <div className="flex justify-around items-center max-w-5xl mx-auto px-12 gap-12 mt-16">
-        <div className="w-1/2 mx-auto p-12 bg-white rounded shadow-lg my-16 border-2 border-amber-400">
+      <div className="flex-col md:flex-row justify-around items-center max-w-5xl mx-auto px-12 gap-12 mt-16">
+        <div className="lg:w-1/2 mx-auto p-12 bg-white rounded shadow-lg my-16 border-2 border-amber-400">
           <div className="mb-4">
             <label htmlFor="reason" className="block font-medium">
               Reason for Return:
@@ -103,7 +103,7 @@ const ReturnPage = () => {
             Return
           </button>
         </div>
-        <div className="w-1/2 ">
+        <div className="lg:w-1/2">
           <Lottie animationData={productReturn} loop={true} />
         </div>
       </div>
