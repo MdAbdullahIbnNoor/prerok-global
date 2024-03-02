@@ -1,4 +1,5 @@
-import { Request, Response } from "express";
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
 const app = express();
 const cors = require("cors");
@@ -11,20 +12,15 @@ const bookingRoutes = require("./routes/booking.routes");
 const packageRoutes = require("./routes/package.routes");
 const forumRoutes = require("./routes/forum.routes");
 const testimonialRoutes = require("./routes/testimonial.routes");
-
 //configs
 require("./configs/database");
-
 //middlewares
 app.use(express.json());
-app.use(
-  cors({
+app.use(cors({
     origin: ["http://localhost:5173", "https://prerokglobal.web.app"],
     credentials: true,
-  })
-);
+}));
 app.use(cookieParser());
-
 //routes
 app.use("/api/users", userRoutes);
 app.use("/api/addressbook", addressRoutes);
@@ -33,10 +29,8 @@ app.use("/api/payments", paymentRoutes);
 app.use("/api/bookings", bookingRoutes);
 app.use("/api/packages", packageRoutes);
 app.use("/api/forum", forumRoutes);
-app.use("/api/testimonials", testimonialRoutes)
-
-app.get("/", (req: Request, res: Response) => {
-  res.send("Hello World!");
+app.use("/api/testimonials", testimonialRoutes);
+app.get("/", (req, res) => {
+    res.send("Hello World!");
 });
-
 module.exports = app;
