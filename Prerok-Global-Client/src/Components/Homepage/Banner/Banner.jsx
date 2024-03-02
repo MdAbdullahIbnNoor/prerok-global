@@ -7,7 +7,6 @@ const Banner = () => {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
     const productIdForSearch = form.get("productIdForSearch");
-    console.log(productIdForSearch);
     navigate(`/productTracking?productIdForSearch=${productIdForSearch}`);
   };
 
