@@ -49,7 +49,7 @@ const Banner = () => {
         </div>
       </div>
       <div className="w-full absolute p-2">
-        <div className="lg:w-1/2 w-full mx-auto bg-white border-2 border-red-500 md:h-32 -mt-24 z-10">
+        <div className="lg:w-1/2 lg:h-full h-full w-full mx-auto bg-white border-2 border-red-500 md:h-32 -mt-24 z-10">
           <p className="font-medium text-xl px-8 py-4">
             TRACK YOUR PRODUCT{" "}
             <span className="font-light text-sm text-slate-500">
