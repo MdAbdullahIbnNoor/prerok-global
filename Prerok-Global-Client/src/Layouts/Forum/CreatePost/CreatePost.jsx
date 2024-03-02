@@ -36,7 +36,7 @@ const CreatePost = ({ setHasPosted }) => {
         <div className="border border-[#f5ab35] w-full lg:w-6/12 mx-auto mt-2 mb-4 pt-2 pb-3 shadow-xl">
           <div className="mx-0 md:mx-10">
             <div className="text-center mb-2">
-              <h4 className="text-lg font-semibold text-[#222222] uppercase">
+              <h4 className="text-lg font-semibold text-[#080808] uppercase">
                 Create A Post
               </h4>
             </div>
