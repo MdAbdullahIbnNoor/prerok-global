@@ -67,9 +67,10 @@ const ProductTracking = () => {
       axiosSecure
         .get(`api/bookings/get-booking/${productIdForSearch}`)
         .then((res) => setBookingData(res.data.paymentInfo));
-    } else {
-      toast.error("Please Try Again");
     }
+    // else {
+    //   toast.error("Please Try Again");
+    // }
   }, [productIdForSearch, bookingData]);
 
   return (
