@@ -17,7 +17,7 @@ const Homepage = () => {
       <Delivery></Delivery>
       <Steps></Steps>
       <CalculateCost></CalculateCost>
-      <Pricing></Pricing>
+      {/*<Pricing></Pricing>*/}
       <Testimonial></Testimonial>
       <ContactUs></ContactUs>
     </div>
