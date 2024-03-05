@@ -5,19 +5,18 @@ import { MdOutlineDocumentScanner } from "react-icons/md";
 
 const FeaturesCustoms = () => {
     return (
-        <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-2xl md:px-24 lg:px-8 lg:py-20">
+        <div className="px-4 py-16 mx-auto max-w-xl md:max-w-full lg:max-w-screen-2xl md:px-24 lg:px-8 lg:py-20">
             <div className="flex flex-col lg:flex-row">
                 <div className="max-w-xl pr-16 mx-auto mb-10">
-                    <h5 className="mb-6 text-3xl font-extrabold leading-none">
+                    <h5 className="mb-6 text-3xl font-bold">
                         Let us help you determine which shipping documents you require
                     </h5>
                     <p className="mb-6 text-gray-900">
                         Completing all documentation correctly will help you to avoid customs delays. <br />
-
                         See below types of goods movements Easy Customs can provide documentation for.
                     </p>
                 </div>
-                <div className="grid gap-5 row-gap-5 sm:grid-cols-2">
+                <div className="grid gap-5 row-gap-5 grid-cols-2">
                     <div className="max-w-md">
                         <div className="flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-indigo-50 text-amber-500 text-3xl">
                             <TbTargetArrow />

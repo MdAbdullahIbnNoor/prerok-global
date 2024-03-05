@@ -56,7 +56,7 @@ const CalculateCost = () => {
   };
 
   return (
-    <div className="md:flex h-full overflow-hidden max-w-screen-2xl mx-auto my-5">
+    <div className="md:flex h-full overflow-hidden lg:max-w-screen-2xl lg:mx-auto mx-8 my-5">
       {/* For Left side image section */}
       <div className="flex-1" data-aos="fade-right">
         <img
@@ -113,7 +113,7 @@ const CalculateCost = () => {
                 HEIGHT (CM):
               </label>
               <input
-                className="border-2 border-opacity-15 border-black focus:border-[#f5ab35] shadow-lg rounded-lg py-2 w-3/4 px-3"
+                className="border-2 border-opacity-15 border-black focus:border-[#f5ab35] shadow-lg rounded-lg py-2 lg:w-3/4 px-3"
                 type="number"
                 name="height"
                 required
@@ -124,7 +124,7 @@ const CalculateCost = () => {
                 WIDTH (CM):
               </label>
               <input
-                className="border-2 border-opacity-15 border-black focus:border-[#f5ab35] shadow-lg rounded-lg py-2 w-3/4 px-3"
+                className="border-2 border-opacity-15 border-black focus:border-[#f5ab35] shadow-lg rounded-lg py-2 lg:w-3/4 px-3"
                 type="number"
                 name="width"
                 required
@@ -135,7 +135,7 @@ const CalculateCost = () => {
                 DEPTH (CM):
               </label>
               <input
-                className="border-2 border-opacity-15 border-black focus:border-[#f5ab35] shadow-lg rounded-lg py-2 w-3/4 px-3"
+                className="border-2 border-opacity-15 border-black focus:border-[#f5ab35] shadow-lg rounded-lg py-2 lg:w-3/4 px-3"
                 type="text"
                 name="depth"
               />
@@ -145,19 +145,19 @@ const CalculateCost = () => {
                 WEIGHT (KG):
               </label>
               <input
-                className="border-2 border-opacity-15 border-black focus:border-[#f5ab35] shadow-lg rounded-lg py-2 w-3/4 px-3"
+                className="border-2 border-opacity-15 border-black focus:border-[#f5ab35] shadow-lg rounded-lg py-2 lg:w-3/4 px-3"
                 type="text"
                 name="weight"
                 required
               />
             </div>
-            <div className="flex flex-col md:flex-row">
-              <label className="md:text-lg font-bold text-[#222222] md:mr-9">
+            <div className="flex md:flex-row items-center">
+              <label className="md:text-lg font-bold text-[#222222] mr-5">
                 LOCATION:
               </label>
 
               <select
-                className="select select-ghost border-2 border-opacity-15 border-black focus:border-[#f5ab35] shadow-lg rounded-lg md:mr-12 px-3 py-2 w-1/3"
+                className="select select-ghost border-2 border-opacity-15 border-black focus:border-[#f5ab35] shadow-lg rounded-lg md:mr-12 px-3 py-2 w-1/3 mr-2 text-sm lg:text-base"
                 name="from_country"
                 required
               >
@@ -195,11 +195,11 @@ const CalculateCost = () => {
             </div>
 
             <div>
-              <label className="md:text-lg font-bold mr-11 text-[#222222]">
+              <label className="md:text-lg font-bold mr-10 text-[#222222]">
                 PACKAGE:
               </label>
               <select
-                className="select select-ghost border-2 border-opacity-15 border-black focus:border-[#f5ab35] shadow-lg rounded-lg px-3 py-2 w-3/4"
+                className="select select-ghost border-2 border-opacity-15 border-black focus:border-[#f5ab35] shadow-lg rounded-lg px-3 py-2 lg:w-3/4 w-fit"
                 name="pick"
                 required
               >
@@ -208,9 +208,9 @@ const CalculateCost = () => {
               </select>
             </div>
 
-            <div className="w-3/4 lg:ml-32">
+            <div className="lg:w-3/4 lg:ml-32">
               <button
-                className="border bg-[#f5ab35] w-full py-3 mt-2 border-none shadow-xl text-white font-semibold"
+                className="border bg-[#f5ab35] w-full py-3 mt-2 border-none shadow-xl text-white font-semibold rounded-lg"
                 onClick={() => document.getElementById("my_modal").showModal()}
                 type="submit"
               >
