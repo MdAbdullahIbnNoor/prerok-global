@@ -49,11 +49,9 @@ const AuthProvider = ({ children }) => {
   };
 
   const logoutUser = async () => {
-    setLoading(true);
     await signOut(auth);
     await removeToken();
     toast("Logout successful");
-    setLoading(false);
   };
 
   useEffect(() => {
@@ -76,6 +74,7 @@ const AuthProvider = ({ children }) => {
     googleLogin,
     facebookLogin,
     logoutUser,
+    setLoading
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

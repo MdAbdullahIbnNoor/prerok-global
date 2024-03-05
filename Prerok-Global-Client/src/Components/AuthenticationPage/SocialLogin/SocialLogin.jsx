@@ -1,11 +1,11 @@
-import { FaGoogle, FaFacebook } from "react-icons/fa";
+import { FaGoogle } from "react-icons/fa";
 import useAuth from "../../../hooks/useAuth";
 import toast from "react-hot-toast";
 import {  saveUser } from "../../../api/usersApi";
 import { useNavigate } from "react-router";
 
 const SocialLogin = () => {
-    const { facebookLogin, googleLogin } = useAuth();
+    const { googleLogin, setLoading } = useAuth();
     const navigate = useNavigate();
     const handleSocialLogin = async (method) => {
         try {
@@ -19,9 +19,11 @@ const SocialLogin = () => {
             if (dbResponse.acknowledged || dbResponse.message === "User found") {
                 // await getToken(loginInfo.email)
                 toast.success("Login successful")
+                setLoading(false)
                 navigate('/')
             }
         } catch (error) {
+            setLoading(false)
             toast.error(error.message)
         }
     }
