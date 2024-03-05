@@ -57,20 +57,20 @@ const Footer = () => {
             <h1 className="font-bold text-xl">GET IN TOUCH</h1>
             <div className="flex gap-2 pb-7 mt-4">
               <div className="">
-                <FaFacebook className="text-2xl text-gray-500 hover:text-gray-300 " />
+                <FaFacebook className="text-2xl text-cyan-700 hover:text-gray-300 " />
               </div>
               <div className="">
-                <FaLinkedin className="text-2xl text-gray-500 hover:text-gray-300 " />
+                <FaLinkedin className="text-2xl text-cyan-700  hover:text-gray-300 " />
               </div>
               <div className="">
-                <FaTwitter className="text-2xl text-gray-500 hover:text-gray-300 " />
+                <FaTwitter className="text-2xl text-cyan-700  hover:text-gray-300 " />
               </div>
               <div className=" ">
-                <FaGithub className="text-2xl text-gray-500 hover:text-gray-300 " />
+                <FaGithub className="text-2xl text-cyan-700  hover:text-gray-300 " />
               </div>
             </div>
 
-            <div className="flex gap-1">
+            <div className="flex gap-6 pb-8">
               <img className="w-16" src={paypal} alt="paypal" />
               <img className="w-16" src={visa} alt="visa card " />
               <img className="w-16" src={ssl} alt="sslcomarz" />
@@ -82,7 +82,7 @@ const Footer = () => {
 
       <div className=" bg-gray-900 w-full md:h-16  bottom-0">
         <div className="md:flex justify-between px-5 py-5 md:px-20 items-center">
-          <h1 className="text-gray-300">
+          <h1 className="text-gray-300 text-base mb-1">
             © Copyright 2024, All rights reserved
           </h1>
           <h1 className="text-gray-300">

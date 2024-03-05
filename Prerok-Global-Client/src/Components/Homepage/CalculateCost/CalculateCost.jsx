@@ -86,8 +86,8 @@ const CalculateCost = () => {
             <div className="space-y-3">
               <h3 className="font-bold text-2xl">Cost Details</h3>
               <ul className="space-y-3">
-                <li>Delivery charge: $15 (Intra-Country)</li>
-                <li>Delivery charge: $100 (Foreign Country)</li>
+                <li>Delivery charge: $2 (Intra-Country)</li>
+                <li>Delivery charge: $0.001 per KM (Foreign Country)</li>
                 <li>
                   Normal Delivery Charge: Weight(0.1 - 50 KG), Size(0.1 - 500
                   CM)
