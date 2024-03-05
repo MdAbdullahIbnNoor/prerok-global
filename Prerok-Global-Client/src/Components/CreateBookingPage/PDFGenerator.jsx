@@ -1,5 +1,6 @@
-import jsPDF from "jspdf";
-import "jspdf-autotable";
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
+
 
 const PDFGenerator = ({ bookingInfo }) => {
   const bgColor = [255, 193, 7];
@@ -18,6 +19,7 @@ const PDFGenerator = ({ bookingInfo }) => {
       10,
       { align: "center" }
     );
+    
     pdf.setFontSize(10);
     pdf.text(
       `TrackingID: ${bookingInfo?.trackingID}`,
