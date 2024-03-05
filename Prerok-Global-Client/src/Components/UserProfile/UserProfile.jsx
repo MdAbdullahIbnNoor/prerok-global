@@ -22,7 +22,7 @@ const UserProfile = () => {
   if (isLoading) {
     return <Loading></Loading>;
   }
-  // console.log(userData);
+  // console.log(userData.image);
 
   const handelBack = () => {
     navigate(-1);
@@ -44,7 +44,7 @@ const UserProfile = () => {
               className="mx-auto object-cover rounded-full h-28 w-28  border-2 border-white "
             />
 
-            <p className="p-2 px-4 text-xs text-white bg-green-600 rounded-full">
+            <p className="p-2 px-4 text-xs text-white bg-[#f5ab35] rounded-full">
               {"user"}
             </p>
             <h4 className="mt-2 text-xl font-medium text-gray-800">
@@ -99,7 +99,7 @@ const UserProfile = () => {
                   <div className="mt-5 mb-5">
                     <Link to={`/dashboard/update-profile/${user?.email}`}>
                       <button
-                        className="btn bg-green-500 mr-1  text-white btn-sm  hover:bg-green-600"
+                        className="btn bg-[#f5ab35] mr-1  text-white btn-sm  hover:bg-[#df9826]"
                       >
                         Update
                       </button>
@@ -244,7 +244,7 @@ const UserProfile = () => {
           <div className="blocl text-center mt-5">
             <Link to={`/dashboard/update-profile/${user?.email}`}>
               <button
-                className="btn bg-green-500 mr-1 px-10 text-white btn-sm hover:bg-green-600"
+                className="btn bg-[#f5ab35] mr-1 px-10 text-white btn-sm hover:bg-[#df9826]"
               >
                 Add Info
               </button>
