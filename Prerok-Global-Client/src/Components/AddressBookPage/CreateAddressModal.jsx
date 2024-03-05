@@ -51,7 +51,7 @@ const CreateAddressModal = ({ id, refetch }) => {
                 </span>{" "}
                 Add New Delivery Address
             </button>
-            <div className={`${isOpen ? "scale-100" : "scale-0"} bg-white/40  duration-300 ease-out h-screen w-full px-2 top-0 right-0 flex items-center justify-center z-50 fixed`}>
+            <div className={`${isOpen ? "scale-100" : "scale-0"} overflow-y-auto my-2 bg-white/40  duration-300 ease-out h-screen w-full px-2 top-0 right-0 flex items-center justify-center z-50 fixed`}>
                 <div className='relative w-full md:w-8/12 lg:w-4/12'>
                     {/* input form */}
                     <form

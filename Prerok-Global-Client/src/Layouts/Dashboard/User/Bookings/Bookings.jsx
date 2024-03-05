@@ -144,7 +144,7 @@ const Bookings = () => {
               </div>
               {/* content */}
               <div>
-                <p className="text-xl font-bold flex gap-2 items-center uppercase text-gray-500"> {data[0]?.fromAddress?.from_address} <FaArrowRightArrowLeft className="text-yellow-500" /> {data[0]?.toAddress?.to_address} </p>
+                <p className="text-xl font-bold flex flex-wrap gap-2 items-center uppercase text-gray-500"> {data[0]?.fromAddress?.from_address} <FaArrowRightArrowLeft className="text-yellow-500" /> {data[0]?.toAddress?.to_address} </p>
                 <h1 className=" font-semibold text-gray-600">From - To</h1>
               </div>
             </div>
@@ -180,40 +180,6 @@ const Bookings = () => {
                 </h1>
               </div>
             </div>
-
-            {/* payment mathodes  */}
-            {/* <div className="md:w-7/6 mx-auto">
-              <h1 className="text-2xl font-bold text-gray-400">Payment Mathodes</h1>
-
-              <div className="flex justify-between items-center   bg-gray-50 ">
-                
-                <div className="flex justify-between items-center">
-                  <div className="rounded-md">
-                    <img className="w-[300px] h-[100px]" src={ssl} alt="" />
-                    <button
-                      onClick={() => setIsOpen(true)}
-                      className="btn bg-orange-400 text-white px-10 text-lg block w-full mx-auto"
-                    >
-                      Payment
-                    </button>
-                  </div>
-
-                  <div></div>
-                </div>
-
-                <div className="flex justify-between items-center border-gray-100">
-                  <div className=" ">
-                    <img className="w-[300px] h-[100px]" src={stripe} alt="" />
-                    <button
-                      onClick={handelSslPayment}
-                      className="btn bg-orange-400 text-white px-10 text-lg w-full block mx-auto"
-                    >
-                      Payment
-                    </button>
-                  </div>               
-                </div>
-              </div>
-            </div> */}
           </div>
 
           {/* table  */}
@@ -238,7 +204,7 @@ const Bookings = () => {
                         <th>{idx + 1}</th>
                         <td>{bookingInfo?._id}</td>
                         <td>{bookingInfo?.trackingStatus}</td>
-                        <td>12-03-22</td>
+                        <td>{bookingInfo?.estimatedDeliveryTime}</td>
                         <td>12:40 pm</td>
                         <td> {bookingInfo?.paymentInfo?.status} </td>
                       </tr>

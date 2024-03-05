@@ -12,7 +12,7 @@ const Dashboard = () => {
             <div className="col-span-3 w-[232px] bg-white">
                 <Sidebar></Sidebar>
             </div>
-            <div className="min-h-screen col-span-9 pt-10 lg:pt-0">
+            <div className="min-h-screen col-span-9 pt-20 lg:pt-0">
                 <div className="min-h-screen pt-[5vh]">
                     <Outlet></Outlet>
                 </div>
