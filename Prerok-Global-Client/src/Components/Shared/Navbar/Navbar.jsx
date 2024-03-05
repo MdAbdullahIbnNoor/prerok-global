@@ -128,7 +128,7 @@ const Navbar = () => {
           <div className="py-4 flex justify-center">
             <div className="mr-3 flex flex-row items-center">
               <span className="text-white">Call us now: </span>
-              <span className="text-yellow-600"> +880-1756-390-370</span>
+              <span className="text-yellow-600"> +8801700000000</span>
             </div>
             {!user ? (
               <Link
