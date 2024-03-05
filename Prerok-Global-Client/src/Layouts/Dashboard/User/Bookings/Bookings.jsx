@@ -184,17 +184,16 @@ const Bookings = () => {
 
           {/* table  */}
           <div>
-            <div className="overflow-x-auto mt-20 bg-gray-50 p-3 rounded-lg">
+            <div className="overflow-x-auto mt-20 bg-gray-50 p-3 rounded-lg h-[35vh]">
               <table className="table">
                 {/* head */}
                 <thead>
-                  <tr className="uppercase">
+                  <tr className="uppercase text-black">
                     <th>Invoice Id</th>
                     <th>TRACKING NUMBER</th>
                     <th> booking STATUS </th>
                     <th>SCHEDUL DELIVERY DATE </th>
-                    <th>SCHEDUL DELIVERY TIME </th>
-                    <th className="uppercase">Payment Status</th>
+                    <th className="uppercase">Tracking Status</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -205,8 +204,7 @@ const Bookings = () => {
                         <td>{bookingInfo?._id}</td>
                         <td>{bookingInfo?.trackingStatus}</td>
                         <td>{bookingInfo?.estimatedDeliveryTime}</td>
-                        <td>12:40 pm</td>
-                        <td> {bookingInfo?.paymentInfo?.status} </td>
+                        <td> {bookingInfo?.trackingStatus} </td>
                       </tr>
                     ))}
                 </tbody>
