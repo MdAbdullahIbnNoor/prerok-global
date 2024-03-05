@@ -175,7 +175,7 @@ const Sidebar = () => {
     </>
   );
   return (
-    <div className="fixed lg:px-2 pt-1 md:mt-[5vh] lg:w-auto w-full z-50">
+    <div className="fixed lg:px-2 pt-1 md:mt-[5vh] lg:w-auto w-full z-40">
       {/* menu dropdown */}
       <div className="lg:hidden flex items-center justify-between mx-2 bg-white shadow-md">
         <Hamburger toggled={isMobileMenuOpen} toggle={setMobileMenuOpen} />

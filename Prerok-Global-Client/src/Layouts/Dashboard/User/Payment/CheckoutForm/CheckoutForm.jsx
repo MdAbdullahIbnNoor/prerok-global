@@ -7,6 +7,7 @@ import useAuth from "../../../../../hooks/useAuth";
 import { axiosSecure } from "../../../../../api/axiosInstances";
 import { ImSpinner } from "react-icons/im";
 import Swal from "sweetalert2";
+import toast from "react-hot-toast";
 
 const CheckoutFrom = ({ closeModal, handleStepper, setBookingInfo, bookingInfo }) => {
   const [processing, setProcessing] = useState(false);
@@ -61,6 +62,8 @@ const CheckoutFrom = ({ closeModal, handleStepper, setBookingInfo, bookingInfo }
       setError("");
     }
 
+    setProcessing(true);
+
     //   confirm payment
     const { paymentIntent, error: confirmError } =
       await stripe.confirmCardPayment(clientSecret, {
@@ -74,12 +77,9 @@ const CheckoutFrom = ({ closeModal, handleStepper, setBookingInfo, bookingInfo }
       });
 
     if (confirmError) {
-      // console.log("confirm error", confirmError);
-    } else {
-      // console.log("payment Intent", paymentIntent);
+      toast.error(confirmError.message);
+      return setProcessing(false);
     }
-
-    setProcessing(true);
 
     if (paymentIntent?.status === "succeeded") {
       // console.log("transaction id", paymentIntent.id);
@@ -98,10 +98,10 @@ const CheckoutFrom = ({ closeModal, handleStepper, setBookingInfo, bookingInfo }
       };
 
       const data = { ...bookingInfo, paymentInfo: payment, bookingEmail: user?.email };
-      
+
       const { data: saveBookingResponse } = await axiosSecure.post('/api/bookings/create-booking', data);
-      setBookingInfo({...data, trackingID: saveBookingResponse?.data?._id})
-      
+      setBookingInfo({ ...data, trackingID: saveBookingResponse?.data?._id })
+
       // const saveBooking = await saveBooking(data)
       // console.log(saveBooking);
 
