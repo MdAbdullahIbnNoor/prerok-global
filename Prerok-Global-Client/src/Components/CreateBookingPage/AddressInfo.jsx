@@ -76,7 +76,7 @@ const AddressInfo = ({ handleStepper, setBookingInfo, bookingInfo }) => {
                 <div className='flex flex-col md:flex-row gap-6 items-center justify-betweenmt-10'>
                     <div className="flex flex-col gap-2 flex-1">
                         <div className='md:flex items-center justify-between my-2'>
-                            <h3 className='text-2xl font-medium mb-2'>From Address :</h3>
+                            <h3 className='text-xl md:text-2xl font-medium mb-2'>From Address :</h3>
                             <ImportAddreessModal handleImportAddress={handleImportFromAddress} modalFor="fromAddress" />
                         </div>
                         {/* Name Field */}
@@ -133,7 +133,7 @@ const AddressInfo = ({ handleStepper, setBookingInfo, bookingInfo }) => {
                         <div className="flex mb-4">
                             {/* <p className=" w-1/3"><label className="text-left font-semibold">Postal code</label></p> */}
                             <div className="w-full">
-                                <input type="text" {...register("from_postal_code", { required: true })} placeholder="Your Postal code" className="border py-1 outline-none w-full px-3" />
+                                <input type="number" {...register("from_postal_code", { required: true })} placeholder="Your Postal code" className="border py-1 outline-none w-full px-3" />
                                 {errors.postal_code && <p className="text-red-600">Postal code is required</p>}
                             </div>
                         </div>
@@ -159,7 +159,7 @@ const AddressInfo = ({ handleStepper, setBookingInfo, bookingInfo }) => {
                     </div>
                     <div className="flex flex-col gap-2 flex-1">
                         <div className='md:flex items-center justify-between my-2'>
-                            <h3 className='text-2xl font-medium mb-2'>To Address :</h3>
+                            <h3 className='text-xl md:text-2xl font-medium mb-2'>To Address :</h3>
                             <ImportAddreessModal handleImportAddress={handleImportToAddress} modalFor="toAddress" />
                         </div>
                         {/* Name Field */}
@@ -216,7 +216,7 @@ const AddressInfo = ({ handleStepper, setBookingInfo, bookingInfo }) => {
                         <div className="flex mb-4">
                             {/* <p className=" w-1/3"><label className="text-left font-semibold">Postal code</label></p> */}
                             <div className="w-full">
-                                <input type="text" {...register("to_postal_code", { required: true })} placeholder="Recipient Postal code" className="border py-1 outline-none w-full px-3" />
+                                <input type="number" {...register("to_postal_code", { required: true })} placeholder="Recipient Postal code" className="border py-1 outline-none w-full px-3" />
                                 {errors.postal_code && <p className="text-red-600">Postal code is required</p>}
                             </div>
                         </div>
