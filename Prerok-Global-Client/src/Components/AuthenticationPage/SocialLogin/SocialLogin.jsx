@@ -30,7 +30,7 @@ const SocialLogin = () => {
             <h5><span className="text-lg"> Or</span> <br /> continue with</h5>
             <div>
                 <button onClick={() => handleSocialLogin(googleLogin)} className="p-1 text-2xl mx-1 mt-1"><FaGoogle></FaGoogle></button>
-                <button onClick={() => handleSocialLogin(facebookLogin)} className="p-1 text-2xl mx-1 mt-1"><FaFacebook></FaFacebook></button>
+                {/* <button onClick={() => handleSocialLogin(facebookLogin)} className="p-1 text-2xl mx-1 mt-1"><FaFacebook></FaFacebook></button> */}
             </div>
         </div>
     );
