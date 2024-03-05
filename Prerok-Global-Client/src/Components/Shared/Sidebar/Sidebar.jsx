@@ -175,7 +175,7 @@ const Sidebar = () => {
     </>
   );
   return (
-    <div className="min-h-screen lg:px-2 pt-1 md:mt-[5vh] fixed lg:w-auto w-full">
+    <div className="fixed lg:px-2 pt-1 md:mt-[5vh] lg:w-auto w-full z-50">
       {/* menu dropdown */}
       <div className="lg:hidden flex items-center justify-between mx-2 bg-white shadow-md">
         <Hamburger toggled={isMobileMenuOpen} toggle={setMobileMenuOpen} />
@@ -203,9 +203,9 @@ const Sidebar = () => {
       </div>
 
       <div
-        className={`min-h-[90vh] lg:hidden my-auto flex items-center justify-center flex-col w-56 bg-white shadow-xl rounded-md text-center  ${isMobileMenuOpen
-            ? "translate-x-0 opacity-100"
-            : "-translate-x-[500px] opacity-50"
+        className={`min-h-[90vh] absolute lg:hidden my-auto flex items-center justify-center flex-col w-56 bg-white shadow-xl rounded-md text-center  ${isMobileMenuOpen
+          ? "translate-x-0 opacity-100"
+          : "-translate-x-[500px] opacity-50"
           } transition duration-300`}
       >
         <div className="">
