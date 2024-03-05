@@ -86,7 +86,7 @@ exports.updateTrackingStatus = async (req: Request, res: Response) => {
                     name: "Prerok Global",
                     address: gmailUser
                 },
-                to: bookingData.bookingEmail,
+                to: [bookingData.bookingEmail, bookingData.fromAddress?.from_email, bookingData.toAddress?.to_email],
                 subject: 'Prerok Global Tracking Update',
                 text: `Hello ${bookingData.fromAddress?.from_name},\n\nWe have some update regarding your booking.`,
                 html: `<p><b>Hello ${bookingData.fromAddress?.from_name},</b></p>
