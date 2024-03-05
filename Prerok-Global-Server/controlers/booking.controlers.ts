@@ -160,7 +160,7 @@ exports.createBooking = async (req: Request, res: Response) => {
                     name: "Prerok Global",
                     address: gmailUser
                 },
-                to: bookingData.bookingEmail,
+                to: [bookingData.bookingEmail, bookingData.fromAddress?.from_email, bookingData.toAddress?.to_email],
                 subject: 'Booking Confirmed - Prerok Global',
                 text: `Hello ${bookingData.fromAddress?.from_name},\n\nThank you for choosing Prerok Global! Your booking has been confirmed. We kindly request you to drop off your product at the nearest hub.`,
                 html: `<p><b>Hello ${bookingData.fromAddress?.from_name},</b></p>
