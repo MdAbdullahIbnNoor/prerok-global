@@ -34,10 +34,6 @@ const Sidebar = () => {
             Bookings
             <span className="absolute inset-x-0 -bottom-0.5 h-0.5 bg-amber-500 transition-transform origin-left transform scale-x-0 group-hover:scale-x-100 duration-200"></span>
           </NavLink>
-          {/* <NavLink to={"/dashboard/payment"} className={({ isActive }) => isActive ? "relative border-b-2 border-amber-500 inline-block text-black hover:text-gray-800 group font-semibold pt-2 px-2" : "relative border-b-2 border-transparent inline-block text-black hover:text-gray-800 group font-semibold pt-2 px-2"}>
-                    Payment
-                    <span className="absolute inset-x-0 -bottom-0.5 h-0.5 bg-amber-500 transition-transform origin-left transform scale-x-0 group-hover:scale-x-100 duration-200"></span>
-                </NavLink> */}
           <NavLink
             to={"/dashboard/address-book"}
             className={({ isActive }) =>
@@ -58,17 +54,6 @@ const Sidebar = () => {
             }
           >
             Create Booking
-            <span className="absolute inset-x-0 -bottom-0.5 h-0.5 bg-amber-500 transition-transform origin-left transform scale-x-0 group-hover:scale-x-100 duration-200"></span>
-          </NavLink>
-          <NavLink
-            to={"/dashboard/payment-history"}
-            className={({ isActive }) =>
-              isActive
-                ? "relative border-b-2 border-amber-500 inline-block text-black hover:text-gray-800 group font-semibold pt-2 px-2"
-                : "relative border-b-2 border-transparent inline-block text-black hover:text-gray-800 group font-semibold pt-2 px-2"
-            }
-          >
-            Payment History
             <span className="absolute inset-x-0 -bottom-0.5 h-0.5 bg-amber-500 transition-transform origin-left transform scale-x-0 group-hover:scale-x-100 duration-200"></span>
           </NavLink>
           <NavLink
@@ -218,11 +203,10 @@ const Sidebar = () => {
       </div>
 
       <div
-        className={`min-h-[90vh] lg:hidden my-auto flex items-center justify-center flex-col w-56 bg-white shadow-xl rounded-md text-center  ${
-          isMobileMenuOpen
+        className={`min-h-[90vh] lg:hidden my-auto flex items-center justify-center flex-col w-56 bg-white shadow-xl rounded-md text-center  ${isMobileMenuOpen
             ? "translate-x-0 opacity-100"
             : "-translate-x-[500px] opacity-50"
-        } transition duration-300`}
+          } transition duration-300`}
       >
         <div className="">
           <div className="flex flex-col gap-3">{navLinksDashboard}</div>
