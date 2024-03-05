@@ -1,6 +1,6 @@
 # PrerokGlobal
 
-PrerokGlobal is a comprehensive shipment and logistics management system designed to streamline the shipping process and enhance user experience. It provides a range of features for real-time tracking, online quoting, user accounts, multi-carrier integration, and more.
+PrerokGlobal is a comprehensive shipment and logistics management system designed to streamline the shipping process and enhance user experience. It provides a range of features for real-time tracking, online quoting, user accounts, and more.
 
 ## Features
 
@@ -9,55 +9,54 @@ PrerokGlobal is a comprehensive shipment and logistics management system designe
    - Real-time tracking with detailed updates.
    - User-friendly interface for tracking using reference numbers.
 
-2. **Online Quoting and Booking:**
+2. **Online Quoting:**
 
    - Instant quotes based on destination, weight, and dimensions.
-   - Direct booking and scheduling of shipments through the website.
+   - Transparent pricing and service options for informed decisions.
 
-3. **User Accounts and Profiles:**
+3. **Booking Management:**
+
+   - Online booking system for shipments.
+   - Tools for managing and cacelling bookings.
+
+4. **User Accounts and Profiles:**
 
    - Customer accounts for managing shipments and preferences.
    - Secure login system with password protection.
 
-4. **Multi-Carrier Integration:**
+5. **Shipping Label and Invoice Generation:**
 
-   - Integration with various carriers for diverse shipping options.
-   - Seamless connections with carriers like FedEx, DHL, etc.
-
-5. **Shipping Label Generation:**
-
-   - Ability to generate shipping labels on the website.
-   - Options for printing labels and integration with label printing services.
+   - Generating shipping labels and invoices on successful bookings with Booking id that can be used to track the product.
 
 6. **Customs Documentation Assistance:**
 
    - Tools and information for preparing customs documentation.
    - Guidelines and templates for customs declarations.
 
-7. **Real-time Notifications:**
+7. **Real-time Notifications via Email:**
 
    - Notification system for updates on shipment status.
-   - Alerts for events like delays, customs clearance, and successful deliveries.
+   - Update notifications are sent to the users Email address.
 
-8. **Rate Comparison Tool:**
+8. **Chat Integration using Facebook Messenger:**
 
-   - Tool for comparing shipping rates and services.
-   - Transparent pricing information for informed decision-making.
+   - Customer support portal with FAQs and help documentation.
+   - Integration of live chat support for real-time assistance with queries using Facebook Messenger.
 
-9. **Supply Chain Visibility:**
+9. **Return Managment**
 
-   - Integration of supply chain visibility features.
-   - Monitoring of the entire shipping process with insights into arrival times and milestones.
+   - Return Management feature aims to simplify the process of handling returns for both customers and businesses
 
-10. **Customer Support and Chat Integration:**
-    - Customer support portal with FAQs and help documentation.
-    - Integration of live chat support for real-time assistance with queries.
+10. **Forum**
+
+- Forum serves as a community hub where users, industry professionals, and experts can engage in discussions, share insights, and seek advice related to shipping, logistics, and related topics
 
 ## Technologies Used
 
-- Frontend: React with Tailwind CSS
-- Backend: Node.js and Express.js
-- Database: MongoDB
+- Frontend: JavaScript, React with Tailwind CSS
+- Backend: TypeScript, Node.js and Express.js
+- Database: MongoDB, Mongoose
+- Deployment: Firebase, Vercel
 
 ## Getting Started
 
@@ -66,7 +65,7 @@ To get started with PrerokGlobal, follow these steps:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/PrerokGlobal.git
+   git clone https://github.com/MdAbdullahIbnNoor/prerok-global.git
    ```
 
 2. Install dependencies:
@@ -81,14 +80,33 @@ To get started with PrerokGlobal, follow these steps:
 
 3. Set up the MongoDB database.
 
-4. Start the application:
+4. Start the application: on Client
+
    ```bash
+   npm run dev
+   ```
+
+   on Server
+
+   ```bash
+   cd ../Prerok-Global-Server
    npm start
    ```
+
+5. Now open you browser and visit localhost:5500
 
 ## Contributing
 
 Thank you for your interest in contributing to PrerokGlobal! This project is currently being developed by our internal team of six members, and we are not accepting external contributions at the moment.
+
+Our team members are:
+
+- [Abdullah Ibn Noor](https://github.com/MdAbdullahIbnNoor)
+- [Shafayet Ahmad Kanon](https://github.com/shafayetAhmad/)
+- [Mahmudul Hasan](https://github.com/mahmudulturan)
+- [Shanta Islam](https://github.com/Shanto93)
+- [Abir Mahmud](https://github.com/abir-exe)
+- [Tamim Hossain](https://github.com/tamim6421)
 
 However, we value your input and suggestions! If you have ideas for improvements or come across any issues, please feel free to create new issues. We appreciate your feedback and look forward to hearing your thoughts on how we can enhance PrerokGlobal.
 
