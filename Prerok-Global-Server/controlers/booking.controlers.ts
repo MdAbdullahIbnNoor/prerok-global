@@ -167,7 +167,7 @@ exports.createBooking = async (req: Request, res: Response) => {
                        <p>Thank you for choosing Prerok Global! We are excited to inform you that your booking has been successfully confirmed.</p>
                        <div style="display: flex; justify-content: space-between;">
                        <div style="width: 48%;">
-                       <b>Your Tracking Number:</b> <span>${bookingData._id}</span>
+                       <b>Your Tracking Number:</b> <span>${result._id}</span>
                        <p><b>From Address:</b></p>
                        <ul>
                            <li><b>Name:</b> ${bookingData.fromAddress?.from_name}</li>
