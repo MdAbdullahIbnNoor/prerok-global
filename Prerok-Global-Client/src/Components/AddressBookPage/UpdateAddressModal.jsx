@@ -47,7 +47,7 @@ const UpdateAddressModal = ({ refetch, data }) => {
     return (
         <>
             <button onClick={() => setIsOpen(true)} className="text-xl font-semibold inline cursor-pointer"><MdEdit></MdEdit></button>
-            <div className={`${isOpen ? "scale-100" : "scale-0"} bg-white/40  duration-300 ease-out h-screen w-full px-2 top-0 right-0 flex items-center justify-center z-50 fixed`}>
+            <div className={`${isOpen ? "scale-100" : "scale-0"} bg-white/40 overflow-y-auto  duration-300 ease-out h-screen w-full px-2 top-0 right-0 flex items-center justify-center z-50 fixed`}>
                 <div className='relative w-full md:w-8/12 lg:w-4/12'>
                     {/* input form */}
                     <form

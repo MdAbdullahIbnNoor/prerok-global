@@ -7,7 +7,7 @@ import SocialLogin from "../../Components/AuthenticationPage/SocialLogin/SocialL
 
 
 const LoginPage = () => {
-    const { loginUser, loading } = useAuth();
+    const { loginUser, loading, setLoading } = useAuth();
     const navigate = useNavigate();
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -18,9 +18,11 @@ const LoginPage = () => {
         try {
             await loginUser(email, password);
             // await getToken(email);
-            toast.success("Login sucessfull")
-            navigate("/")
+            toast.success("Login sucessfull");
+            setLoading(false);
+            navigate("/");
         } catch (error) {
+            setLoading(false)
             toast.error(error.message)
         }
     }

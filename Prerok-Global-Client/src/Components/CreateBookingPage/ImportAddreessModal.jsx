@@ -61,7 +61,11 @@ const ImportAddreessModal = ({ handleImportAddress, modalFor }) => {
                                     </div>
                                 </div>)
                             }
-
+                            {
+                                allAddress?.length <= 0 && <div className="shadow-xl px-4 py-3 rounded">
+                                    <h3 className="text-xl font-medium">Addressbook is empty!</h3>
+                                </div>
+                            }
                             <div className="mt-6">
                                 <button className="px-3 py-1 rounded bg-red-400 text-white font-semibold" onClick={() => setIsOpen(false)}>Close</button>
                             </div>

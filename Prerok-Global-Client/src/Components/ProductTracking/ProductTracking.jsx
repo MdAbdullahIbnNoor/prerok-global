@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { axiosSecure } from "../../api/axiosInstances";
-import { useParams } from "react-router";
+import { useLocation, useParams } from "react-router";
 import Lottie from "lottie-react";
 // import tracking from './../../assets/animations/tracking.json'
 import trackingAnimation from "./../../assets/animations/TrackingAnimation.json";
@@ -13,33 +13,33 @@ import toast from "react-hot-toast";
 const ProductTracking = () => {
   const [bookingData, setBookingData] = useState(null);
   const [loading, setLoading] = useState(false);
-  let { productIdForSearch } = useParams();
-  productIdForSearch && console.log(productIdForSearch);
-  // useEffect(() => {
-  //   console.log("here1");
-  //   if (productIdForSearch) {
-  //     console.log("here2");
-  //     handleProductIdFromRedirect();
-  //   }
-  //   const handleProductIdFromRedirect = async () => {
-  //     console.log("here3");
-  //     document
-  //       .getElementById("trackingInfo")
-  //       .scrollIntoView({ behavior: "smooth" });
-  //     setLoading(true);
-  //     try {
-  //       await axiosSecure
-  //         .get(`/api/bookings/get-booking/${productIdForSearch}`)
-  //         .then((res) => {
-  //           setBookingData(res.data);
-  //           setLoading(false);
-  //         });
-  //     } catch (error) {
-  //       toast.error("Product Not Found");
-  //       setLoading(false);
-  //     }
-  //   };
-  // }, [productIdForSearch]);
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const productIdForSearch = searchParams.get("productIdForSearch");
+  
+  // productIdForSearch && console.log(productIdForSearch);
+  useEffect(() => {
+    const handleProductIdFromRedirect = async () => {
+      document
+        .getElementById("trackingInfo")
+        .scrollIntoView({ behavior: "smooth" });
+      setLoading(true);
+      try {
+        await axiosSecure
+          .get(`/api/bookings/get-booking/${productIdForSearch}`)
+          .then((res) => {
+            setBookingData(res.data);
+            setLoading(false);
+          });
+      } catch (error) {
+        toast.error("Product Not Found");
+        setLoading(false);
+      }
+    };
+    if (productIdForSearch) {
+      handleProductIdFromRedirect();
+    }
+  }, [productIdForSearch]);
 
   const handleTracking = async (e) => {
     e.preventDefault();
@@ -61,17 +61,6 @@ const ProductTracking = () => {
     }
   };
 
-  useEffect(() => {
-    console.log(productIdForSearch);
-    if (productIdForSearch) {
-      axiosSecure
-        .get(`api/bookings/get-booking/${productIdForSearch}`)
-        .then((res) => setBookingData(res.data.paymentInfo));
-    }
-    // else {
-    //   toast.error("Please Try Again");
-    // }
-  }, [productIdForSearch, bookingData]);
 
   return (
     <div className="overflow-hidden lg:max-w-screen-2xl my-10 mx-auto px-3 md:px-20 min-h-[90vh]">
@@ -96,19 +85,19 @@ const ProductTracking = () => {
           </p>
           <form
             onSubmit={handleTracking}
-            className="flex justify-center p-5 items-center gap-6"
+            className="flex flex-col md:flex-row justify-center p-5 items-center gap-4"
           >
             <input
               type="text"
               name="productID"
-              className="border-2 border-amber-500 md:w-[400px] px-4 py-2 rounded-lg outline-none"
+              className="flex-1 border-2 border-amber-500 w-full px-4 py-2 rounded-lg outline-none"
               id=""
               placeholder="Enter your product ID"
             />
             <button
               type="submit"
               name="productId"
-              className="btn bg-amber-500 px-4 py-2 rounded-lg  text-white duration-300 flex items-center justify-center"
+              className="flex-1 btn bg-amber-500 px-4 py-2 rounded-lg w-full text-white duration-300 flex items-center justify-center"
             >
               {loading ? (
                 <TbProgress className="animate-spin text-center" />

@@ -18,18 +18,18 @@ const AllBookingsPage = () => {
         const trackingStatus = value;
         const { data: dbResponse } = await axiosSecure.patch(`/api/bookings/update-status/${id}`, { trackingStatus });
         if (dbResponse.modifiedCount > 0) {
-            toast.success(trackingStatus) 
+            toast.success(trackingStatus)
         }
-        else{
+        else {
             toast.success("error")
         }
         refetch()
     }
     return (
         <div className=''>
-            <div className="relative overflow-x-auto rounded-lg ">
+            <div className="relative overflow-x-auto rounded-lg h-[91vh] shadow-md">
                 <table className="w-full text-left p-4 rtl:text-right rounded-t-xl  text-secondary-50">
-                    <thead className="my-3 p-5 bg-slate-300">
+                    <thead className="my-3 p-5 bg-slate-100">
                         <tr>
                             <th className="p-5 font-semibold">
                                 #
@@ -52,7 +52,7 @@ const AllBookingsPage = () => {
 
                         </tr>
                     </thead>
-                    <tbody className=' overflow-hidden bg-slate-100'>
+                    <tbody className=' overflow-hidden'>
                         {
                             bookings?.map((booking, indx) => <tr key={indx} className=" bg-primary-50 my-3 p-2">
                                 <td className="px-6 py-4 m-5 font-medium">

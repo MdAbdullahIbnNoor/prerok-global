@@ -70,7 +70,7 @@ const Footer = () => {
               </div>
             </div>
 
-            <div className="flex gap-6 pb-8">
+            <div className="flex gap-6 pb-8 flex-wrap">
               <img className="w-16" src={paypal} alt="paypal" />
               <img className="w-16" src={visa} alt="visa card " />
               <img className="w-16" src={ssl} alt="sslcomarz" />

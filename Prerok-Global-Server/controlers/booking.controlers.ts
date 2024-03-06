@@ -86,7 +86,7 @@ exports.updateTrackingStatus = async (req: Request, res: Response) => {
                     name: "Prerok Global",
                     address: gmailUser
                 },
-                to: bookingData.bookingEmail,
+                to: [bookingData.bookingEmail, bookingData.fromAddress?.from_email, bookingData.toAddress?.to_email],
                 subject: 'Prerok Global Tracking Update',
                 text: `Hello ${bookingData.fromAddress?.from_name},\n\nWe have some update regarding your booking.`,
                 html: `<p><b>Hello ${bookingData.fromAddress?.from_name},</b></p>
@@ -160,14 +160,14 @@ exports.createBooking = async (req: Request, res: Response) => {
                     name: "Prerok Global",
                     address: gmailUser
                 },
-                to: bookingData.bookingEmail,
+                to: [bookingData.bookingEmail, bookingData.fromAddress?.from_email, bookingData.toAddress?.to_email],
                 subject: 'Booking Confirmed - Prerok Global',
                 text: `Hello ${bookingData.fromAddress?.from_name},\n\nThank you for choosing Prerok Global! Your booking has been confirmed. We kindly request you to drop off your product at the nearest hub.`,
                 html: `<p><b>Hello ${bookingData.fromAddress?.from_name},</b></p>
                        <p>Thank you for choosing Prerok Global! We are excited to inform you that your booking has been successfully confirmed.</p>
                        <div style="display: flex; justify-content: space-between;">
                        <div style="width: 48%;">
-                       <b>Your Tracking Number:</b> <span>${bookingData._id}</span>
+                       <b>Your Tracking Number:</b> <span>${result._id}</span>
                        <p><b>From Address:</b></p>
                        <ul>
                            <li><b>Name:</b> ${bookingData.fromAddress?.from_name}</li>
