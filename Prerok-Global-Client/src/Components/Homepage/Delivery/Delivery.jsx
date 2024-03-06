@@ -4,7 +4,7 @@ const Delivery = () => {
   return (
     <div className=" bg-[#fefefe] my-10 overflow-hidden wrapper">
       <div className="flex flex-col-reverse md:flex-row justify-center items-center">
-        <div className="">
+        <div className="" data-aos="fade-right">
           <h2 className="text-3xl text-[#222222] font-bold mb-2">
             GET THE <span className="text-[#f5ab35]">FASTEST</span> PRODUCT
             DELIVERY
