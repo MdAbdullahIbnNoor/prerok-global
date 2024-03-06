@@ -63,7 +63,7 @@ const ProductTracking = () => {
 
 
   return (
-    <div className="overflow-hidden lg:max-w-7xl my-10 mx-auto px-3 md:px-20 min-h-[90vh]">
+    <div className="overflow-hidden wrapper my-10 mx-auto min-h-[90vh]">
       {/* title section */}
       <div>
         <h1 className="text-2xl font-bold uppercase  md:text-3xl">

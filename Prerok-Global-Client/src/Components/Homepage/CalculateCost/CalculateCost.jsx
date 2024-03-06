@@ -1,5 +1,5 @@
 import { useState } from "react";
-import deliveryman from "./../../../assets/Home/delivery-man02.png";
+// import deliveryman from "./../../../assets/Home/delivery-man02.png";
 import useAuth from "./../../../hooks/useAuth";
 import { axiosPublic } from "../../../api/axiosInstances";
 import { FaSpinner } from "react-icons/fa";
