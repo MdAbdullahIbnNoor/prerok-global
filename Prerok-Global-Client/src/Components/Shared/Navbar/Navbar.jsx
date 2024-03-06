@@ -115,7 +115,7 @@ const Navbar = () => {
   return (
     <div className="z-50">
       <div className="bg-slate-800">
-        <div className="md:flex justify-between max-w-screen-2xl mx-auto px-2">
+        <div className="md:flex justify-between max-w-7xl mx-auto px-2">
           <div className="flex flex-row items-center justify-center lg:justify-between text-white text-xs py-4">
             <div>
               <Link>SITEMAP</Link>
@@ -154,7 +154,7 @@ const Navbar = () => {
           isScroll ? "fixed top-0 shadow-xl w-full" : ""
         } w-full z-50 bg-white`}
       >
-        <div className="py-4 max-w-screen-2xl mx-auto flex items-center justify-between">
+        <div className="py-4 max-w-7xl mx-auto flex items-center justify-between">
           <img src={logo} className="w-40 h-16" alt="Prerok-Global Logo" />
           {/* navlinks for larger device */}
           <div className="hidden lg:flex flex-col lg:flex-row items-center gap-10">

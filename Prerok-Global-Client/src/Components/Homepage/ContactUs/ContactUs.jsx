@@ -2,7 +2,7 @@ import Title from "../../Title/Title";
 
 const ContactUs = () => {
   return (
-    <div className="md:flex justify-between overflow-hidden px-7 max-w-screen-2xl md:px-20 my-10 ">
+    <div className="md:flex justify-between overflow-hidden px-7 max-w-7xl md:px-20 my-10 ">
       <div>
         <div data-aos="fade-up">
           <Title>CONTACT US</Title>

@@ -4,7 +4,7 @@ import { Toaster } from "react-hot-toast";
 
 const Dashboard = () => {
     return (
-        <div className="lg:grid grid-cols-12 gap-10  max-w-screen-2xl mx-auto">
+        <div className="lg:grid grid-cols-12 gap-10  max-w-7xl mx-auto">
             <Toaster
                 position="top-center"
                 reverseOrder={false}

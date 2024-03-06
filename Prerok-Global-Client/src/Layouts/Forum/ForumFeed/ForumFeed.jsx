@@ -24,7 +24,7 @@ const ForumFeed = () => {
     setHasPosted(false);
   }
   return (
-    <div className=" max-w-screen-2xl mx-auto">
+    <div className=" max-w-7xl mx-auto">
       {/**Forum Feed page with pagination. Facebook style */}
       <CreatePost setHasPosted={setHasPosted}></CreatePost>
 

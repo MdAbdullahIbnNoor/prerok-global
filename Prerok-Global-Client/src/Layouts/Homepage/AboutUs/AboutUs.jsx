@@ -7,7 +7,7 @@ import Title from '../../../Components/Title/Title';
 
 const AboutUs = () => {
     return (
-        <div className='md:flex px-8 max-w-screen-2xl mx-auto overflow-hidden'>
+        <div className='md:flex px-8 max-w-7xl mx-auto overflow-hidden'>
 
             <div className='flex-1'>
               

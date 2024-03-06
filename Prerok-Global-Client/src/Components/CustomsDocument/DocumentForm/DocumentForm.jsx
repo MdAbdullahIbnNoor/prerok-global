@@ -93,7 +93,7 @@ const DocumentForm = () => {
     };
 
     return (
-        <div className='max-w-screen-2xl p-7 mx-auto lg:flex lg:flex-row flex-column justify-around gap-12 items-center'>
+        <div className='max-w-7xl p-7 mx-auto lg:flex lg:flex-row flex-column justify-around gap-12 items-center'>
             <div className='lg:w-1/3 mb-16'>
                 <h2 className='text-center text-3xl text-amber-500 font-bold mb-12'>Customs Cost Calculator</h2>
                 <form onSubmit={handleSubmit}>
