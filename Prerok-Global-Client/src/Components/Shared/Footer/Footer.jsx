@@ -13,8 +13,8 @@ import ssl from "../../../assets/footerImage/ssl_commerz.png";
 const Footer = () => {
   return (
     <div className="relative containerB">
-      <div className="overlyB px-4 md:px-20 mt-20 bg-gray-800 text-white min-h-[40vh] ">
-        <div className="md:flex justify-between items-center space-y-20 ">
+      <div className="overlyB mt-20 bg-gray-800 text-white min-h-[40vh]">
+        <div className="md:flex justify-between space-y-20 wrapper">
           <div className="pt-10">
             {/* logo section  */}
             <div className="">
@@ -55,18 +55,18 @@ const Footer = () => {
           {/* icon section  */}
           <div>
             <h1 className="font-bold text-xl">GET IN TOUCH</h1>
-            <div className="flex gap-2 pb-7 mt-4">
+            <div className="flex gap-3 pb-7 mt-4">
               <div className="">
-                <FaFacebook className="text-2xl text-cyan-700 hover:text-gray-300 " />
+                <FaFacebook className="text-2xl text-gray-800 duration-200 cursor-pointer hover:text-gray-300 " />
               </div>
               <div className="">
-                <FaLinkedin className="text-2xl text-cyan-700  hover:text-gray-300 " />
+                <FaLinkedin className="text-2xl text-gray-800 duration-200 cursor-pointer  hover:text-gray-300 " />
               </div>
               <div className="">
-                <FaTwitter className="text-2xl text-cyan-700  hover:text-gray-300 " />
+                <FaTwitter className="text-2xl text-gray-800 duration-200 cursor-pointer  hover:text-gray-300 " />
               </div>
               <div className=" ">
-                <FaGithub className="text-2xl text-cyan-700  hover:text-gray-300 " />
+                <FaGithub className="text-2xl text-gray-800 duration-200 cursor-pointer  hover:text-gray-300 " />
               </div>
             </div>
 
@@ -80,16 +80,16 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className=" bg-gray-900 w-full md:h-16  bottom-0">
-        <div className="md:flex justify-between px-5 py-5 md:px-20 items-center">
-          <h1 className="text-gray-300 text-base mb-1">
+      <div className="bg-gray-900 w-full md:h-16  bottom-0 text-center">
+        <div className="md:flex justify-between h-full items-center wrapper">
+          <h1 className="text-gray-300 text-base">
             © Copyright 2024, All rights reserved
           </h1>
           <h1 className="text-gray-300">
             Design by <span className="text-lg font-semibold">Prerok</span>
             <span className="text-lg font-semibold text-yellow-500">
               Global
-            </span>{" "}
+            </span>
             Company
           </h1>
         </div>
