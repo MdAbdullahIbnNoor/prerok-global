@@ -1,7 +1,7 @@
 import { AiOutlineLike } from "react-icons/ai";
 import { FaRegCommentAlt } from "react-icons/fa";
 import { useParams } from "react-router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { axiosPublic } from "../../../api/axiosInstances";
 import { format } from "date-fns";
 import useAuth from "../../../hooks/useAuth";
@@ -14,11 +14,12 @@ import {
   TwitterShareButton,
   XIcon,
 } from "react-share";
+import { useQuery } from "@tanstack/react-query";
 
 const SinglePost = () => {
   const { id: postId } = useParams();
   const { user } = useAuth();
-  const [postData, setPostData] = useState(null);
+  // const [postData, setPostData] = useState(null);
   const [commentInput, setCommentInput] = useState("");
 
   const likePostData = {
@@ -26,19 +27,28 @@ const SinglePost = () => {
     userEmail: user.email,
   };
 
-  const getForumData = () => {
-    axiosPublic.get(`api/forum/get-forum/${postId}`).then((res) => {
-      setPostData(res.data);
-    });
-  };
+  const { data: postData = [], isLoading, refetch } = useQuery({
+    queryKey: ["usersData", "address-book", user?.email],
+    queryFn: async () => {
+      try {
+        const { data: postData } = await axiosPublic.get(`api/forum/get-forum/${postId}`)
+        return postData;
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        throw error;
+      }
+    },
+  });
+
+
   const handleLikeForum = () => {
     axiosPublic.post("api/forum/like-forum", likePostData).then((res) => {
-      // console.log(res.data);
       toast.success(res.data.message);
+      refetch();
     });
   };
+
   const handleCommentSubmit = () => {
-    // console.log("Comment submitted:", commentInput);
     axiosPublic
       .post("api/forum/add-comment", {
         forumId: postId,
@@ -47,18 +57,16 @@ const SinglePost = () => {
       })
       .then(() => {
         toast.success("Your comment has been published.");
+        refetch();
       });
-    getForumData();
     setCommentInput("");
   };
-  useEffect(() => {
-    getForumData();
-  }, [getForumData]);
+
   return (
-    <div className="border border-[#f5ab35] w-full lg:w-6/12 mx-auto mt-2 mb-4 pt-2 pb-3 shadow-xl p-4 h-full my-3">
+    <div className="border border-[#f5ab35] rounded-md w-full lg:w-6/12 mx-auto mt-2 mb-4 pt-2 pb-3 shadow-xl p-4 h-full my-3">
       <div className="overflow-hidden h-full">
         <h4 className="text-xl font-semibold">{postData?.title}</h4>
-        <div className="flex gap-8 border-2 border-blue justify-start py-2">
+        <div className="flex gap-8 border-blue justify-start py-2">
           <h6>
             Posted On:{" "}
             <span className="font-semibold">
@@ -72,6 +80,7 @@ const SinglePost = () => {
             by <span className="font-semibold">{postData?.author}</span>
           </h6>
         </div>
+        <hr className="mt-2 mb-3" />
         <img
           src={
             postData?.thumbnail
@@ -110,7 +119,7 @@ const SinglePost = () => {
           value={commentInput}
           onChange={(e) => setCommentInput(e.target.value)}
           placeholder="Add your comment..."
-          className="border border-gray-300 rounded-lg w-full p-2 mt-4"
+          className="border border-gray-300 rounded-lg w-full p-2 mt-4 outline-none"
         />
         <button
           onClick={handleCommentSubmit}
@@ -120,7 +129,7 @@ const SinglePost = () => {
         </button>
       </div>
       {postData?.comments?.map((comment) => (
-        <div key={comment._id} className="border-2 px-2 py-1 my-2">
+        <div key={comment._id} className="border-2 px-3 rounded py-2 my-2">
           <p>
             Anonymous User{" "}
             <span className="font-semibold">
