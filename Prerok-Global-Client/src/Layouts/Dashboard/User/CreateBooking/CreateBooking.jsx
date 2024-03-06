@@ -33,17 +33,17 @@ const CreateBooking = () => {
                         <div className="step">
                             {i + 1 < currentStep || complete ? <TiTick size={24} /> : i + 1}
                         </div>
-                        <p className="text-gray-500 font-medium">{step}</p>
+                        <p className="text-sm md:text-base text-center text-gray-500 font-medium ">{step}</p>
                     </div>
                 ))}
             </div>
             {/* first section  */}
-            <div className="flex justify-between py-3">
-                <h2 className="text-2xl font-semibold">Create Booking Manager</h2>
-                <div className="flex items-center gap-5 text-sm">
+            <div className="md:flex justify-between py-3">
+                <h2 className="text-xl md:text-2xl font-semibold">Create Booking Manager</h2>
+                {/* <div className="flex items-center gap-5 text-sm">
                     <div>Advance Shipping</div>
                     <div>Help</div>
-                </div>
+                </div> */}
             </div>
             {/* second section  */}
             <div>
