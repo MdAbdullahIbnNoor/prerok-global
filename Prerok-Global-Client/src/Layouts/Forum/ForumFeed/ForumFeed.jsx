@@ -67,13 +67,13 @@ const ForumFeed = () => {
               />
             </div>
             <div className="flex gap-4 text-lg font-bold pt-2">
-              <button className="flex items-center gap-1 px-2 py-1 rounded-lg hover:bg-yellow-400">
+              <button className="flex items-center gap-1 px-2 py-1 rounded-lg hover:bg-yellow-400 text-sm md:text-lg">
                 <AiOutlineLike /> Like {singleForum?.likes?.length}
               </button>
-              <button className="flex items-center gap-1 px-2 py-1 rounded-lg hover:bg-yellow-400">
+              <button className="flex items-center gap-1 px-2 py-1 rounded-lg hover:bg-yellow-400 text-sm md:text-lg">
                 <FaRegCommentAlt /> Comment
               </button>
-              <button className="flex items-center gap-1 px-2 py-1 rounded-lg hover:bg-yellow-400">
+              <button className="flex items-center gap-1 px-2 py-1 rounded-lg hover:bg-yellow-400 text-sm md:text-lg">
                 <FaRegShareSquare /> Share
               </button>
             </div>
