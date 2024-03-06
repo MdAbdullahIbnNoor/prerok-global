@@ -9,12 +9,12 @@ const Steps = () => {
     >
       <div className="pt-8 lg:pt-0 relative bg-black/70 flex flex-col lg:flex-row justify-between items-center ">
         <div
-          className="flex justify-around text-white px-12"
+          className="flex justify-around text-white md:px-12"
           data-aos="fade-right"
         >
           <div className="flex justify-between items-center">
             <h1 className="text-7xl font-semibold">1.</h1>
-            <div className=" ml-3">
+            <div className="ml-3">
               <h3 className="text-2xl font-semibold">Order</h3>
               <p className="md:w-3/4 mt-2 text-[#98968c] text-sm">
                 Swiftly select your items and checkout.

@@ -2,9 +2,9 @@ import deliveryMan from "../../../assets/Home/deliveryMan.png";
 
 const Delivery = () => {
   return (
-    <div className=" bg-[#fefefe] py-20 overflow-hidden">
-      <div className="flex flex-col-reverse md:flex-row justify-center items-center">
-        <div className="md:relative md:left-20 relative md:bottom-0">
+    <div className=" bg-[#fefefe] my-10 overflow-hidden wrapper">
+      <div className="flex flex-col-reverse md:flex-row justify-between items-center">
+        <div className="">
           <h2 className="text-3xl text-[#222222] font-bold mb-2">
             GET THE <span className="text-[#f5ab35]">FASTEST</span> PRODUCT
             DELIVERY

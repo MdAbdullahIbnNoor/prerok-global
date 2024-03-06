@@ -6,7 +6,7 @@ import { Pagination } from "swiper/modules";
 
 const Testimonial = () => {
   return (
-    <div className="relative lg:h-[500px] max-w-full my-12">
+    <div className="relative lg:h-[500px] max-w-full mb-12">
       {/* Static Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center"

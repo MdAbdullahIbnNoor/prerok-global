@@ -7,16 +7,12 @@ import Title from '../../../Components/Title/Title';
 
 const AboutUs = () => {
     return (
-        <div className='md:flex px-8 max-w-7xl mx-auto overflow-hidden'>
-
+        <div className='md:flex justify-between items-center max-w-7xl mx-auto overflow-hidden'>
             <div className='flex-1'>
-              
-            
                 <div data-aos="fade-right">
                     <Title>
-                    About Us
+                        About Us
                     </Title>
-               
                 </div>
                 <p className="text-base text-[#acacac] mt-5 mb-7" data-aos="fade-right">Welcome to Prerok-Global! Discover a world of seamless delivery services with us. Experience swift deliveries, hassle-free returns, real-time shipment tracking, and convenient online quoting and booking. Stay informed with our real-time notifications, and connect with our dedicated customer support via live chat. Your satisfaction is our priority.</p>
 
@@ -55,7 +51,6 @@ const AboutUs = () => {
                     </div>
                 </div>
             </div>
-
             <div className='flex-1' data-aos="fade-left">
                 <img className='md:h-[500px] w-[600px]' src={car} alt="delivery car image" />
             </div>

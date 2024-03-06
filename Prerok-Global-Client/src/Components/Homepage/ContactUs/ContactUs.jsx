@@ -2,7 +2,7 @@ import Title from "../../Title/Title";
 
 const ContactUs = () => {
   return (
-    <div className="md:flex justify-between overflow-hidden px-7 max-w-7xl md:px-20 my-10 ">
+    <div className="flex justify-between overflow-hidden my-12 md:px-12">
       <div>
         <div data-aos="fade-up">
           <Title>CONTACT US</Title>
@@ -38,14 +38,14 @@ const ContactUs = () => {
               </h1>
             </div>
             <div>
-              <p className="text-gray-500 font-semibold">support@go.com7</p>
+              <p className="text-gray-500 font-semibold">support@go.com</p>
               <p className="text-gray-500 font-semibold">support@go.com</p>
             </div>
           </div>
         </div>
       </div>
       <div className="">
-        <img className="w-3/2"  src="https://i.ibb.co/n0C115Y/MAP.png" alt="contactUs Image" />
+        <img className=""  src="https://i.ibb.co/n0C115Y/MAP.png" alt="contactUs Image" />
       </div>
     </div>
   );
