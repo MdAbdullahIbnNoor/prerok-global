@@ -25,7 +25,7 @@ const AboutCustoms = () => {
 
                 <div>
                     <img
-                        className="object-cover rounded h-96 w-96"
+                        className="object-cover rounded lg:h-96 lg:w-96 w-full"
                         src={networkImg}
                         alt=""
                     />
