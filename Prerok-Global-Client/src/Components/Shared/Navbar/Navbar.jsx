@@ -153,8 +153,10 @@ const Navbar = () => {
         className={`transition-transform duration-300 ${isScroll ? "fixed top-0 shadow-xl w-full" : ""
           } w-full z-50 bg-white`}
       >
-        <div className="py-4 wrapper flex items-center justify-between">
-          <img src={logo} className="w-40 h-16" alt="Prerok-Global Logo" />
+        <div className="py-4 max-w-7xl mx-auto flex items-center justify-between">
+          <Link to={'/'}>
+            <img src={logo} className="w-40 h-16" alt="Prerok Global Logo" />
+          </Link>
           {/* navlinks for larger device */}
           <div className="hidden lg:flex flex-col lg:flex-row items-center gap-10">
             {navLinks}
