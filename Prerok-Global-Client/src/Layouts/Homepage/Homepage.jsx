@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import ChatBot from "../../Components/ChatBot/ChatBot";
 import Banner from "../../Components/Homepage/Banner/Banner";
 import CalculateCost from "../../Components/Homepage/CalculateCost/CalculateCost";
@@ -8,6 +9,10 @@ import Testimonial from "../../Components/Homepage/Testimonial/Testimonial";
 import AboutUs from "./AboutUs/AboutUs";
 
 const Homepage = () => {
+  useEffect(() => {
+    document.title =
+      "PrerokGlobal | Seamless Shipping | Your Goods | Our Guarantee";
+  }, []);
   return (
     <div>
       <Banner></Banner>
