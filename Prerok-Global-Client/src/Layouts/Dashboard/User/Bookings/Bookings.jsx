@@ -4,7 +4,7 @@ import { SiOpslevel } from "react-icons/si";
 import { FaCircleArrowRight } from "react-icons/fa6";
 import { FaHandshakeSimple } from "react-icons/fa6";
 import { MdDeliveryDining, MdPayment, MdPayments } from "react-icons/md";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PaymentModal from "../Payment/PaymentModal/PaymentModal";
 import { FaArrowRightArrowLeft } from "react-icons/fa6";
 
@@ -14,6 +14,9 @@ import Loading from "../../../../Components/Shared/Loading/Loading";
 import { axiosSecure } from "../../../../api/axiosInstances";
 
 const Bookings = () => {
+  useEffect(() => {
+    document.title = "Bookings | PrerokGlobal";
+  }, []);
   let [isOpen, setIsOpen] = useState(false);
   const { user } = useAuth();
   const closeModal = () => {
