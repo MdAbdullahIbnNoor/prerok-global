@@ -3,10 +3,14 @@ import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import { FaSpinner } from "react-icons/fa";
 import SocialLogin from "../../Components/AuthenticationPage/SocialLogin/SocialLogin";
+import { useEffect } from "react";
 // import { getToken } from "../../api/usersApi";
 
 
 const LoginPage = () => {
+    useEffect(() => {
+      document.title = "Login | PrerokGlobal";
+    }, []);
     const { loginUser, loading, setLoading } = useAuth();
     const navigate = useNavigate();
     const handleLogin = async (e) => {

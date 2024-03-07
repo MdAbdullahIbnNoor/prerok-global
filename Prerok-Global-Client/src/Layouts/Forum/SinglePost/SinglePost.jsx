@@ -1,7 +1,7 @@
 import { AiOutlineLike } from "react-icons/ai";
 import { FaRegCommentAlt } from "react-icons/fa";
 import { useParams } from "react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { axiosPublic } from "../../../api/axiosInstances";
 import { format } from "date-fns";
 import useAuth from "../../../hooks/useAuth";
@@ -27,11 +27,17 @@ const SinglePost = () => {
     userEmail: user.email,
   };
 
-  const { data: postData = [], isLoading, refetch } = useQuery({
+  const {
+    data: postData = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["usersData", "address-book", user?.email],
     queryFn: async () => {
       try {
-        const { data: postData } = await axiosPublic.get(`api/forum/get-forum/${postId}`)
+        const { data: postData } = await axiosPublic.get(
+          `api/forum/get-forum/${postId}`
+        );
         return postData;
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -40,6 +46,9 @@ const SinglePost = () => {
     },
   });
 
+  useEffect(() => {
+    document.title = postData ? postData?.title : "Forum | PrerokGlobal";
+  }, [postData]);
 
   const handleLikeForum = () => {
     axiosPublic.post("api/forum/like-forum", likePostData).then((res) => {

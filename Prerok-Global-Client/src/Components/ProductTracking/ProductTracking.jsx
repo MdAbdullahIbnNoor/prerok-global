@@ -11,6 +11,9 @@ import Loading from "../Shared/Loading/Loading";
 import toast from "react-hot-toast";
 
 const ProductTracking = () => {
+  useEffect(() => {
+    document.title = "Product Tracking | PrerokGlobal";
+  }, []);
   const [bookingData, setBookingData] = useState(null);
   const [loading, setLoading] = useState(false);
   const location = useLocation();

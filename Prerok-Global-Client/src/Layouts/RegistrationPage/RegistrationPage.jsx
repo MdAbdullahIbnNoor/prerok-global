@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaUpload, FaSpinner } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
@@ -9,6 +9,9 @@ import { getToken, saveUser } from "../../api/usersApi";
 
 
 const RegistrationPage = () => {
+    useEffect(() => {
+      document.title = "Sign Up | PrerokGlobal";
+    }, []);
     const [selectedImage, setSelectedImage] = useState(null);
     const [errorMessage, setError] = useState("")
     const [loading, setLoading] = useState(false);
