@@ -6,12 +6,16 @@ import { FaUsersLine } from "react-icons/fa6";
 import { BsFillBookmarkStarFill } from "react-icons/bs";
 import { MdOutlinePendingActions } from "react-icons/md";
 import { MdDeliveryDining } from "react-icons/md";
+import { useEffect } from "react";
 
 
 
 
 
 const BookingDetails = () => {
+  useEffect(() => {
+    document.title = "Booking Details | PrerokGlobal";
+  }, []);
   const { user } = useAuth();
 
   // get user payment history

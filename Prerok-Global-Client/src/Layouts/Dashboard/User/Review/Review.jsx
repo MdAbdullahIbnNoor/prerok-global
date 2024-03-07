@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useAuth from "../../../../hooks/useAuth";
 import { FaUpload } from "react-icons/fa";
 import { imageUpload } from "../../../../api/imageUpload";
@@ -6,6 +6,9 @@ import { axiosPublic } from "../../../../api/axiosInstances";
 import toast from "react-hot-toast";
 
 const Review = () => {
+  useEffect(() => {
+    document.title = "Review | PrerokGlobal";
+  }, []);
   const { user } = useAuth();
   const [selectedImage, setSelectedImage] = useState(null);
   const [, setLoading] = useState(false);
