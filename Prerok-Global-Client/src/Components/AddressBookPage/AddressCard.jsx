@@ -40,7 +40,7 @@ const AddressCard = ({ address, refetch }) => {
                             <button onClick={() => handleDelete(address._id)} className="text-xl font-semibold inline cursor-pointer"><MdDelete></MdDelete></button>
                         </div>
                     </div>
-                    <div className="flex items-center gap-6">
+                    <div className="flex items-center gap-6 flex-col md:flex-row">
                         <p className="text-gray-500 font-medium">Phone: {address.phone} </p>
                         <p className="text-gray-500 font-medium">Email: {address.email} </p>
                     </div>

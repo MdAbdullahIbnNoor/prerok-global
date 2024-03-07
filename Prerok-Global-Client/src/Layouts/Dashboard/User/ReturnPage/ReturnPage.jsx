@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Lottie from "lottie-react";
 import { axiosSecure } from "../../../../api/axiosInstances";
 import productReturn from "./../../../../assets/animations/productReturn.json";
 import toast from "react-hot-toast";
 
 const ReturnPage = () => {
+  useEffect(() => {
+    document.title = "Return Product | PrerokGlobal";
+  }, []);
   const [reason, setReason] = useState("");
   const [trackingId, setTrackingId] = useState("");
   const [refundType, setRefundType] = useState("money");

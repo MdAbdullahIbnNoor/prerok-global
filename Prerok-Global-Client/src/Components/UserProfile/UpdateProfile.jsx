@@ -4,10 +4,13 @@ import { useQuery } from "@tanstack/react-query";
 import { imageUpload } from "../../api/imageUpload";
 import Loading from "../Shared/Loading/Loading";
 import { useNavigate, useParams } from "react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 const UpdateProfile = () => {
+  useEffect(() => {
+    document.title = "Update Profile | PrerokGlobal";
+  }, []);
   const { email } = useParams();
   const { register, handleSubmit } = useForm();
   const [imageURL, setImageURL] = useState("");
@@ -332,7 +335,7 @@ const UpdateProfile = () => {
 
         <div className="flex justify-center mt-4 md:my-5 gap-4">
           <button
-            className="btn bg-green-500 text-white btn-sm drop-shadow-xl hover:bg-green-600 "
+            className="btn bg-[#f5ab35] text-white btn-sm drop-shadow-xl hover:bg-[#df9826] "
             disabled={manualLoading || isLoading || updateLoading}
           >
             {" "}

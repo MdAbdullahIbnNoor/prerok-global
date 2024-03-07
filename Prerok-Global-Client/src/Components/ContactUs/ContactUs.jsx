@@ -1,10 +1,14 @@
+import { useEffect } from "react";
 import contactImg from "../../assets/contact-page-img.jpg";
 
 import { MdOutlineHomeWork } from "react-icons/md";
 
 const ContactUs = () => {
+  useEffect(() => {
+    document.title = "Contact Us | PrerokGlobal";
+  }, []);
   return (
-    <div className="my-10 max-w-7xl mt-5 mx-auto overflow-hidden">
+    <div className="my-10 wrapper overflow-hidden">
       <hr />
       {/* 1st part  */}
       <div className="flex justify-between items-center px-20 mb-20 my-10">

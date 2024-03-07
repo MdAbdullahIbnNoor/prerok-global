@@ -6,15 +6,19 @@ import { Toaster } from 'react-hot-toast';
 
 const Home = () => {
   return (
-    <div className="">
+    <>
       <Toaster
         position="top-center"
         reverseOrder={false}
       />
-      <Navbar></Navbar>
-      <Outlet></Outlet>
-      <Footer></Footer>
-    </div>
+      <div className="min-h-screen flex flex-col">
+        <Navbar></Navbar>
+        <div className="flex-1">
+          <Outlet></Outlet>
+        </div>
+        <Footer></Footer>
+      </div>
+    </>
   );
 };
 

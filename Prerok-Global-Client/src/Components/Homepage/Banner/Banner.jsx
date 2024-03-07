@@ -11,7 +11,7 @@ const Banner = () => {
   };
 
   return (
-    <div className=" overflow-hidden mb-8">
+    <div className=" overflow-hidden mb-8 md:mb-0">
       {" "}
       <div className="relative z-0">
         <img src={bannerImg} className="w-full h-[600px] object-cover" alt="" />
@@ -32,15 +32,14 @@ const Banner = () => {
               />
             </svg>
           </p>
-          <p className="my-8 lg:text-xl">
-            <span data-aos="fade-down">FAST</span> <span>&nbsp;.&nbsp;</span>{" "}
+          <p className="my-8 lg:text-xl" data-aos="fade-down">
+            <span>FAST</span> <span>&nbsp;.&nbsp;</span>{" "}
             <span>SECURED</span>
-            <span>&nbsp;.&nbsp;</span> <span data-aos="fade-up">WORLDVIEW</span>
+            <span>&nbsp;.&nbsp;</span> <span>WORLDVIEW</span>
           </p>
           <p
             className="lg:text-5xl text-2xl font-extrabold"
             data-aos="fade-up"
-            data-aos-duration="1000"
           >
             Seamless Shipping: <br />{" "}
             <span className="text-yellow-500">Your Goods</span> |{" "}
@@ -49,7 +48,7 @@ const Banner = () => {
         </div>
       </div>
       <div className="w-full absolute p-2">
-        <div className="lg:w-1/2 lg:h-full h-full w-full mx-auto bg-white border-2 border-red-500 md:h-32 -mt-24 z-10">
+        <div className="lg:w-1/2 lg:h-full h-full w-full mx-auto bg-white rounded shadow-md md:h-32 -mt-24 z-10">
           <p className="font-medium text-xl px-8 py-4">
             TRACK YOUR PRODUCT{" "}
             <span className="font-light text-sm text-slate-500">
@@ -57,7 +56,27 @@ const Banner = () => {
             </span>
           </p>
           <div className="md:flex justify-center md:-mt-3  p-2">
-            <form onSubmit={handleTrackProduct}>
+          <form
+              onSubmit={handleTrackProduct}
+              className="flex flex-col md:flex-row justify-center p-5 items-center gap-4 w-full"
+            >
+              <input
+                type="text"
+                name="productIdForSearch"
+                className="flex-1 border-2 border-amber-500 w-full px-4 py-2 rounded-lg outline-none"
+                id=""
+                placeholder="Enter your product ID"
+              />
+              <button
+                type="submit"
+                name="productId"
+                className="flex-1 btn bg-amber-500 px-4 py-2 rounded-lg w-full text-white duration-300 flex items-center justify-center"
+              >
+                TRACK YOUR PRODUCT
+              </button>
+            </form>
+            
+            {/* <form onSubmit={handleTrackProduct}>
               <input
                 type="text"
                 name="productIdForSearch"
@@ -72,7 +91,7 @@ const Banner = () => {
               >
                 TRACK YOUR PRODUCT
               </button>
-            </form>
+            </form> */}
           </div>
         </div>
       </div>

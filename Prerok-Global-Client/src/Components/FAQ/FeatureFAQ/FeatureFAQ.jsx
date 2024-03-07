@@ -17,7 +17,7 @@ const FeatureFAQ = () => {
             <hr className="w-full h-1 my-5 bg-[#222222] border-0 rounded dark:bg-gray-700"/>
 
 
-            <div className="collapse collapse-plus bg-base-200">
+            <div className="collapse collapse-plus bg-base-200 my-3">
                 <input type="radio" name="my-accordion-3" checked="checked" />
                 <div className="collapse-title text-lg md:text-xl font-medium">
                 What sets Prerok-Global apart from other online delivery platforms?
@@ -26,7 +26,7 @@ const FeatureFAQ = () => {
                     <p>Prerok-Global stands out with its extensive global reach, providing customers worldwide access to a diverse range of products. Our user-friendly interface, efficient delivery network, and commitment to customer satisfaction make us a preferred choice.</p>
                 </div>
             </div>
-            <div className="collapse collapse-plus bg-base-200">
+            <div className="collapse collapse-plus bg-base-200 my-3">
                 <input type="radio" name="my-accordion-3" />
                 <div className="collapse-title text-lg md:text-xl font-medium">
                 Are there any membership or subscription plans on Prerok-Global?
@@ -35,7 +35,7 @@ const FeatureFAQ = () => {
                     <p>Currently, Prerok-Global does not offer membership or subscription plans. We believe in providing a seamless shopping experience for all users without the need for additional fees.</p>
                 </div>
             </div>
-            <div className="collapse collapse-plus bg-base-200">
+            <div className="collapse collapse-plus bg-base-200 my-3">
                 <input type="radio" name="my-accordion-3" />
                 <div className="collapse-title text-lg md:text-xl font-medium">
                 Can I request a specific delivery time for my order?
@@ -44,7 +44,7 @@ const FeatureFAQ = () => {
                     <p>Prerok-Global aims to deliver your order as quickly as possible. While specific delivery times can't be guaranteed due to various factors, you can track your order in real-time using the provided tracking number for the most accurate updates.</p>
                 </div>
             </div>
-            <div className="collapse collapse-plus bg-base-200">
+            <div className="collapse collapse-plus bg-base-200 my-3">
                 <input type="radio" name="my-accordion-3" />
                 <div className="collapse-title text-lg md:text-xl font-medium">
                 Are there any loyalty programs or rewards for frequent shoppers?
@@ -53,7 +53,7 @@ const FeatureFAQ = () => {
                     <p>We value our customers, and plans for loyalty programs are in the pipeline. Stay tuned for exciting updates on potential rewards and special offers for our loyal Prerok-Global shoppers.</p>
                 </div>
             </div>
-            <div className="collapse collapse-plus bg-base-200">
+            <div className="collapse collapse-plus bg-base-200 my-3">
                 <input type="radio" name="my-accordion-3" />
                 <div className="collapse-title text-lg md:text-xl font-medium">
                 How does Prerok-Global ensure the quality of the products offered?

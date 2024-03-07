@@ -27,9 +27,11 @@ const ParcelInfo = ({ handleStepper, setBookingInfo, bookingInfo }) => {
             deliveryType: shippingMethod === 'expedited' ? 'Faster' : 'Usual'
         };
         const { data: dbResponse } = await axiosSecure.post("/api/packages/calculateCost", requestBody)
-        const parcelInfo = { ...data, shippingCost: dbResponse?.cost };
-        setBookingInfo({ ...bookingInfo, parcelInfo, estimatedDeliveryTime })
-        handleStepper()
+        if (dbResponse?.cost) {
+            const parcelInfo = { ...data, shippingCost: dbResponse?.cost };
+            setBookingInfo({ ...bookingInfo, parcelInfo, estimatedDeliveryTime })
+            handleStepper()
+        }
     }
     return (
         <div className="my-10">

@@ -33,8 +33,8 @@ const CreatePost = ({ setHasPosted }) => {
   return (
     <div>
       <div>
-        <div className="border border-[#f5ab35] w-full lg:w-6/12 mx-auto mt-2 mb-4 pt-2 pb-3 shadow-xl">
-          <div className="mx-0 md:mx-10">
+        <div className="border border-[#f5ab35] w-full rounded-md lg:w-6/12 mx-auto mt-2 mb-4 pt-2 pb-3 shadow-xl">
+          <div className="mx-0 md:mx-10 my-6">
             <div className="text-center mb-2">
               <h4 className="text-lg font-semibold text-[#080808] uppercase">
                 Create A Post
@@ -47,7 +47,7 @@ const CreatePost = ({ setHasPosted }) => {
                 <input
                   type="text"
                   name="title"
-                  className="border h-11 w-full px-4 py-2 rounded-sm caret-[#f5ab35] focus:border-[#f5ab35]"
+                  className="border h-11 w-full px-4 py-2 rounded-sm outline-none caret-[#f5ab35] focus:border-[#f5ab35]"
                   placeholder="ENTER TITLE"
                   id="title"
                 />{" "}
@@ -56,7 +56,7 @@ const CreatePost = ({ setHasPosted }) => {
                 <input
                   type="text"
                   name="thumbnail"
-                  className="border h-11 w-full px-4 py-2 mt-3 rounded-sm caret-[#f5ab35] focus:border-[#f5ab35]"
+                  className="border h-11 w-full px-4 py-2 mt-3 rounded-sm outline-none caret-[#f5ab35] focus:border-[#f5ab35]"
                   placeholder="IMAGE LINK"
                   id="photo"
                 />{" "}
@@ -64,11 +64,13 @@ const CreatePost = ({ setHasPosted }) => {
                 <textarea
                   type="text"
                   name="content"
-                  className=" textarea textarea-bordered textarea-lg w-full  py-2 px-4 mt-1  rounded-sm caret-[#f5ab35]"
+                  rows="4"
+                  cols="50"
+                  className="border w-full px-4 py-2 mt-3 rounded-sm outline-none caret-[#f5ab35] focus:border-[#f5ab35] resize-none"
                   placeholder="What's on your mind ..."
                   id="body"
                 />
-                <button className="border h-11 w-full px-5 py-2 mt-3 bg-[#f5ab35] text-white font-bold rounded-sm hover:cursor-pointer transition-all duration-300 ease-in-out hover:bg-[#222222] flex items-center justify-center">
+                <button className="border h-11 w-full px-5 py-2 mt-3 bg-[#f5ab35] text-white font-bold rounded-sm outline-none hover:cursor-pointer transition-all duration-300 ease-in-out hover:bg-[#222222] flex items-center justify-center">
                   POST
                 </button>
               </form>

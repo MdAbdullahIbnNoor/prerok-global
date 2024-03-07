@@ -17,7 +17,7 @@ const SecurityFAQ = () => {
             <hr className="w-full h-1 my-5 bg-[#222222] border-0 rounded dark:bg-gray-700"/>
 
 
-            <div className="collapse collapse-plus bg-base-200">
+            <div className="collapse collapse-plus bg-base-200 my-3">
                 <input type="radio" name="my-accordion-3" checked="checked" />
                 <div className="collapse-title text-lg md:text-xl font-medium">
                 How do Prerok-Global permissions work?
@@ -26,7 +26,7 @@ const SecurityFAQ = () => {
                     <p>At Prerok-Global, we prioritize your privacy. We collect and use your personal information only for order processing, shipping, and customer support. Rest assured, your data is handled with the utmost confidentiality. Refer to our Privacy Policy for more details.</p>
                 </div>
             </div>
-            <div className="collapse collapse-plus bg-base-200">
+            <div className="collapse collapse-plus bg-base-200 my-3">
                 <input type="radio" name="my-accordion-3" />
                 <div className="collapse-title text-lg md:text-xl font-medium">
                 Do you share my information with third parties?
@@ -35,7 +35,7 @@ const SecurityFAQ = () => {
                     <p>We do not share your personal information with third parties for marketing purposes. However, we may share data with trusted partners for order fulfillment and delivery purposes. Refer to our Privacy Policy for a comprehensive overview.</p>
                 </div>
             </div>
-            <div className="collapse collapse-plus bg-base-200">
+            <div className="collapse collapse-plus bg-base-200 my-3">
                 <input type="radio" name="my-accordion-3" />
                 <div className="collapse-title text-lg md:text-xl font-medium">
                 How secure is my payment information on Prerok-Global?
@@ -44,7 +44,7 @@ const SecurityFAQ = () => {
                     <p>Your payment information is highly secure on Prerok-Global. We use industry-standard encryption protocols to safeguard your financial data during the entire transaction process.</p>
                 </div>
             </div>
-            <div className="collapse collapse-plus bg-base-200">
+            <div className="collapse collapse-plus bg-base-200 my-3">
                 <input type="radio" name="my-accordion-3" />
                 <div className="collapse-title text-lg md:text-xl font-medium">
                 Can I opt-out of receiving marketing emails from Prerok-Global?
@@ -53,7 +53,7 @@ const SecurityFAQ = () => {
                     <p>Yes, you can manage your email preferences in your account settings or use the unsubscribe link in our marketing emails to opt-out. We respect your choices regarding communication.</p>
                 </div>
             </div>
-            <div className="collapse collapse-plus bg-base-200">
+            <div className="collapse collapse-plus bg-base-200 my-3">
                 <input type="radio" name="my-accordion-3" />
                 <div className="collapse-title text-lg md:text-xl font-medium">
                 What measures does Prerok-Global take to protect my account from unauthorized access?

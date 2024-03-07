@@ -93,18 +93,18 @@ const DocumentForm = () => {
     };
 
     return (
-        <div className='max-w-screen-2xl p-7 mx-auto flex justify-around gap-12 items-center'>
-            <div className='w-1/3'>
+        <div className='wrapper my-10 lg:flex lg:flex-row flex-column justify-around gap-12 items-center'>
+            <div className='lg:w-1/3 mb-16'>
                 <h2 className='text-center text-3xl text-amber-500 font-bold mb-12'>Customs Cost Calculator</h2>
                 <form onSubmit={handleSubmit}>
                     <div className=''>
-                        <label className='text-lg font-bold' htmlFor="originCountry">Origin Country:</label>
+                        <label className='lg:text-lg font-bold' htmlFor="originCountry">Origin Country:</label>
                         <select
                             id="originCountry"
                             name="originCountry"
                             value={formData.originCountry}
                             onChange={handleChange}
-                            className='mb-6 p-2 text-amber-600 rounded-lg ml-4'
+                            className='mb-6 p-2 text-amber-600 rounded-lg ml-4 '
                         >
                             <option disabled selected>Origin</option>
                             <option value="Bangladesh">Bangladesh</option>
@@ -115,13 +115,13 @@ const DocumentForm = () => {
                         </select>
                     </div>
                     <div className='mb-6'>
-                        <label className='text-lg font-bold' htmlFor="destinationCountry">Destination Country:</label>
+                        <label className='lg:text-lg font-bold' htmlFor="destinationCountry">Destination Country:</label>
                         <select
                             id="destinationCountry"
                             name="destinationCountry"
                             value={formData.destinationCountry}
                             onChange={handleChange}
-                            className='mb-4 p-2 text-amber-600 rounded-lg ml-4'
+                            className='mb-4 p-2 text-amber-600 rounded-lg ml-4 '
                         >
                             <option value="">Destination</option>
                             <option value="Bangladesh">Bangladesh</option>
@@ -132,14 +132,14 @@ const DocumentForm = () => {
                         </select>
                     </div>
                     <div className='mb-10'>
-                        <label className='text-lg font-bold' htmlFor="shippingFee">Shipping Fee($):</label>
+                        <label className='lg:text-lg font-bold' htmlFor="shippingFee">Shipping Fee($):</label>
                         <input
                             type="number"
                             id="shippingFee"
                             name="shippingFee"
                             value={formData.shippingFee}
                             onChange={handleChange}
-                            className='mb-6 p-2 rounded-lg ml-4 border-2 border-amber-500'
+                            className='mb-6 p-2 rounded-lg lg:ml-4 outline-none border-2 border-amber-500'
                             placeholder="Enter Shipping Fee"
                         />
                     </div>

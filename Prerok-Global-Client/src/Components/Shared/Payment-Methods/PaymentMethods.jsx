@@ -1,8 +1,12 @@
 import stripeLogo from "../../../assets/stripe.jpg";
 import paypalLogo from "../../../assets/paypal.png";
 import bankTransferLogo from "../../../assets/bank_transfer.png";
+import { useEffect } from "react";
 
 const PaymentMethods = () => {
+  useEffect(() => {
+    document.title = "Payment Methods | PrerokGlobal";
+  }, []);
   return (
     <div className="flex flex-col items-center">
       <h2 className="text-2xl font-semibold mb-4">Payment Methods Accepted</h2>

@@ -2,8 +2,12 @@ import { format } from 'date-fns';
 import Loading from '../../../../Components/Shared/Loading/Loading';
 import { axiosSecure } from '../../../../api/axiosInstances';
 import { useQuery } from '@tanstack/react-query';
+import { useEffect } from 'react';
 
 const AllPaymentPage = () => {
+    useEffect(() => {
+      document.title = "All Payments | PrerokGlobal";
+    }, []);
     const { data: transactions, isLoading } = useQuery({
         queryKey: ["all-payments"], queryFn: async () => {
             const res = await axiosSecure.get(`/api/payments/all-payment-history`)
@@ -16,9 +20,9 @@ const AllPaymentPage = () => {
     return (
         <div>
             <div className=''>
-                <div className="relative overflow-x-auto rounded-lg ">
+                <div className="relative overflow-x-auto rounded-lg h-[91vh] shadow-md">
                     <table className="w-full text-left p-4 rtl:text-right rounded-t-xl text-secondary-50">
-                        <thead className="my-3 bg-slate-300 p-5 ">
+                        <thead className="my-3 bg-slate-100 p-5 ">
                             <tr>
                                 <th className="p-5 font-semibold">
                                     #
@@ -40,7 +44,7 @@ const AllPaymentPage = () => {
                                 </th>
                             </tr>
                         </thead>
-                        <tbody className='bg-slate-100'>
+                        <tbody className=''>
                             {
                                 transactions?.map((item, indx) => (
                                     <tr key={indx} className=" bg-primary-50 my-3 p-2 cursor-pointer">
