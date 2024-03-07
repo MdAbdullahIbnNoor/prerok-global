@@ -4,10 +4,13 @@ import { useQuery } from "@tanstack/react-query";
 import { imageUpload } from "../../api/imageUpload";
 import Loading from "../Shared/Loading/Loading";
 import { useNavigate, useParams } from "react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 const UpdateProfile = () => {
+  useEffect(() => {
+    document.title = "Update Profile | PrerokGlobal";
+  }, []);
   const { email } = useParams();
   const { register, handleSubmit } = useForm();
   const [imageURL, setImageURL] = useState("");
