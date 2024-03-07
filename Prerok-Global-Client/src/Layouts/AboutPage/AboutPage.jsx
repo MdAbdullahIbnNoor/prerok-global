@@ -10,7 +10,7 @@ import { TbWorldPin } from "react-icons/tb";
 const AboutPage = () => {
     return (
         <div className="overflow-hidden"> 
-            <div className="max-w-7xl mx-auto my-10 px-2">
+            <div className="wrapper my-10">
                 {/* about heading */}
                 <div className="flex items-center justify-between relative">
                     <div data-aos="fade-right">

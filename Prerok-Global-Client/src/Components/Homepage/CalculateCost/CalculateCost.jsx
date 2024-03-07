@@ -1,11 +1,13 @@
 import { useState } from "react";
-import deliveryman from "./../../../assets/Home/delivery-man02.png";
+// import deliveryman from "./../../../assets/Home/delivery-man02.png";
 import useAuth from "./../../../hooks/useAuth";
 import { axiosPublic } from "../../../api/axiosInstances";
+import { FaSpinner } from "react-icons/fa";
 
 const CalculateCost = () => {
   const { user } = useAuth();
   const [totalCost, setTotalCost] = useState(0);
+  const [loading, setLoading] = useState(false);
   // const [error, setError] = useState(null);
 
   const countries = [
@@ -43,30 +45,37 @@ const CalculateCost = () => {
       toCountry,
       deliveryType: pick === "FASTED DELIVERY: +$25" ? "Faster" : "Usual",
     };
-
+    setLoading(false);
     try {
+      setLoading(true)
       const { data: dbResponse } = await axiosPublic.post(
         "/api/packages/calculateCost",
         requestBody
       );
       setTotalCost(dbResponse.cost);
+      setLoading(false);
+      document.getElementById("my_modal").showModal()
     } catch (error) {
+      setLoading(false);
       console.error("Error calculating cost:", error);
     }
+    setLoading(false);
   };
 
   return (
-    <div className="md:flex h-full overflow-hidden lg:max-w-screen-2xl lg:mx-auto mx-8 my-5">
+    <div className="md:flex gap-5 items-end justify-between h-full overflow-hidden wrapper">
       {/* For Left side image section */}
-      <div className="flex-1" data-aos="fade-right">
+      <div className="flex-1 md:h-[75vh] object-cover"
+       data-aos="fade-right"
+      >
         <img
-          className="md:mt-28 md:h-[450px] md:w-[680px]"
-          src={deliveryman}
+          className="w-full"
+          src={"https://i.ibb.co/FD46k1X/delivery-Man.png"}
           alt="Delivery man image"
         />
       </div>
       {/* For the right side Section */}
-      <div className="flex-1" data-aos="fade-left">
+      <div className="pb-12 flex-1 max-w-lg" data-aos="fade-left">
         <h2 className="text-xl md:text-3xl font-bold mt-10 text-[#222222]">
           CALCULATE YOUR COST
         </h2>
@@ -105,7 +114,7 @@ const CalculateCost = () => {
         {/* Form section */}
         <form
           onSubmit={handleCalculateCost}
-          className="flex justify-center items-center w-full"
+          className="flex justify-center items-center"
         >
           <div className="w-full space-y-3">
             <div>
@@ -113,7 +122,7 @@ const CalculateCost = () => {
                 HEIGHT (CM):
               </label>
               <input
-                className="border-2 border-opacity-15 border-black focus:border-[#f5ab35] shadow-lg rounded-lg py-2 lg:w-3/4 px-3"
+                className="border-2 outline-none  border-opacity-15 border-black focus:border-[#f5ab35] shadow-lg rounded-lg py-2 w-full px-3"
                 type="number"
                 name="height"
                 required
@@ -124,7 +133,7 @@ const CalculateCost = () => {
                 WIDTH (CM):
               </label>
               <input
-                className="border-2 border-opacity-15 border-black focus:border-[#f5ab35] shadow-lg rounded-lg py-2 lg:w-3/4 px-3"
+                className="border-2 outline-none  border-opacity-15 border-black focus:border-[#f5ab35] shadow-lg rounded-lg py-2 w-full px-3"
                 type="number"
                 name="width"
                 required
@@ -135,7 +144,7 @@ const CalculateCost = () => {
                 DEPTH (CM):
               </label>
               <input
-                className="border-2 border-opacity-15 border-black focus:border-[#f5ab35] shadow-lg rounded-lg py-2 lg:w-3/4 px-3"
+                className="border-2 outline-none border-opacity-15 border-black focus:border-[#f5ab35] shadow-lg rounded-lg py-2 w-full px-3"
                 type="text"
                 name="depth"
               />
@@ -145,49 +154,51 @@ const CalculateCost = () => {
                 WEIGHT (KG):
               </label>
               <input
-                className="border-2 border-opacity-15 border-black focus:border-[#f5ab35] shadow-lg rounded-lg py-2 lg:w-3/4 px-3"
+                className="border-2 outline-none  border-opacity-15 border-black focus:border-[#f5ab35] shadow-lg rounded-lg py-2 w-full px-3"
                 type="text"
                 name="weight"
                 required
               />
             </div>
-            <div className="flex md:flex-row items-center">
-              <label className="md:text-lg font-bold text-[#222222] mr-5">
+            <div className="flex flex-col">
+              <label className="md:text-lg font-bold text-[#222222] mr-5 flex-1">
                 LOCATION:
               </label>
 
-              <select
-                className="select select-ghost border-2 border-opacity-15 border-black focus:border-[#f5ab35] shadow-lg rounded-lg md:mr-12 px-3 py-2 w-1/3 mr-2 text-sm lg:text-base"
-                name="from_country"
-                required
-              >
-                <option selected>From Country</option>
+              <div className="flex justify-between items-center w-full">
+                <select
+                  className="select w-full select-ghost border-2 outline-none border-opacity-15 border-black focus:border-[#f5ab35] shadow-lg rounded-lg md:mr-12 px-3 py-2 mr-2 text-sm lg:text-base"
+                  name="from_country"
+                  required
+                >
+                  <option selected>From Country</option>
 
-                {countries.map((country, index) => (
-                  <option key={index}>{country}</option>
-                ))}
-              </select>
+                  {countries.map((country, index) => (
+                    <option key={index}>{country}</option>
+                  ))}
+                </select>
 
-              <select
-                className="select select-ghost border-2 border-opacity-15 border-black focus:border-[#f5ab35] shadow-lg rounded-lg px-3 py-2 w-1/3"
-                name="to_country"
-                required
-              >
-                <option selected>To Country</option>
+                <select
+                  className="select w-full select-ghost border-2 outline-none border-opacity-15 border-black focus:border-[#f5ab35] shadow-lg rounded-lg px-3 py-2"
+                  name="to_country"
+                  required
+                >
+                  <option selected>To Country</option>
 
-                {countries.map((country, index) => (
-                  <option key={index}>{country}</option>
-                ))}
-              </select>
+                  {countries.map((country, index) => (
+                    <option key={index}>{country}</option>
+                  ))}
+                </select>
 
+              </div>
               {/* <input
-                className="border-2 border-opacity-15 border-black focus:border-[#f5ab35] shadow-lg rounded-lg py-2 px-3 w-1/3 md:mr-12"
+                className="border-2 outline-none border-opacity-15 border-black focus:border-[#f5ab35] shadow-lg rounded-lg py-2 px-3 w-1/3 md:mr-12"
                 type="text"
                 placeholder="From"
                 name="from"
               /> */}
               {/* <input
-                className="border-2 border-opacity-15 border-black focus:border-[#f5ab35] shadow-lg rounded-lg py-2 w-1/3 px-3"
+                className="border-2 outline-none border-opacity-15 border-black focus:border-[#f5ab35] shadow-lg rounded-lg py-2 w-1/3 px-3"
                 type="text"
                 placeholder="To"
                 name="to"
@@ -199,7 +210,7 @@ const CalculateCost = () => {
                 PACKAGE:
               </label>
               <select
-                className="select select-ghost border-2 border-opacity-15 border-black focus:border-[#f5ab35] shadow-lg rounded-lg px-3 py-2 lg:w-3/4 w-fit"
+                className="select select-ghost border-2 outline-none border-opacity-15 border-black focus:border-[#f5ab35] shadow-lg rounded-lg px-3 py-2 w-full w-fit"
                 name="pick"
                 required
               >
@@ -208,13 +219,18 @@ const CalculateCost = () => {
               </select>
             </div>
 
-            <div className="lg:w-3/4 lg:ml-32">
+            <div className="w-full">
               <button
-                className="border bg-[#f5ab35] w-full py-3 mt-2 border-none shadow-xl text-white font-semibold rounded-lg"
-                onClick={() => document.getElementById("my_modal").showModal()}
+                className="border bg-[#f5ab35] w-full py-3 mt-2 border-none shadow-xl text-white font-semibold rounded-lg flex items-center justify-center"
+                onClick={() => handleCalculateCost}
                 type="submit"
               >
-                Calculate
+                {
+                  loading ?
+                    <FaSpinner className="animate-spin"></FaSpinner>
+                    :
+                    "Calculate"
+                }
               </button>
               {/* <button className="border bg-[#df9826] w-1/4 py-3 mt-2 border-none shadow-xl text-white font-semibold">
                 Total Cost: {totalCost == 0 ? "$0.00" : `$${totalCost}`}
@@ -225,7 +241,7 @@ const CalculateCost = () => {
               <div className="modal-box flex justify-center">
                 <div className="space-y-3">
                   <h3 className="font-bold text-2xl">
-                    Dear {user?.displayName}
+                    Dear {user?.displayName ? user?.displayName : "User"}
                   </h3>
                   <p className="text-xl font-semibold">
                     Your Total Cost is :{" "}

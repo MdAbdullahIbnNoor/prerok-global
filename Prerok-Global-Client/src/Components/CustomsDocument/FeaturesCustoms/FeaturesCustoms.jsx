@@ -1,11 +1,10 @@
-import React from 'react'
 import { TbTargetArrow } from "react-icons/tb";
 import { GiStopwatch } from "react-icons/gi";
 import { MdOutlineDocumentScanner } from "react-icons/md";
 
 const FeaturesCustoms = () => {
     return (
-        <div className="px-4 py-16 mx-auto max-w-xl md:max-w-full lg:max-w-screen-2xl md:px-24 lg:px-8 lg:py-20">
+        <div className="px-4 py-16 wrapper lg:py-20">
             <div className="flex flex-col lg:flex-row">
                 <div className="max-w-xl pr-16 mx-auto mb-10">
                     <h5 className="mb-6 text-3xl font-bold">

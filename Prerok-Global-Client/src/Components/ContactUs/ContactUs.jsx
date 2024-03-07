@@ -4,7 +4,7 @@ import { MdOutlineHomeWork } from "react-icons/md";
 
 const ContactUs = () => {
   return (
-    <div className="my-10 max-w-7xl mt-5 mx-auto overflow-hidden">
+    <div className="my-10 wrapper overflow-hidden">
       <hr />
       {/* 1st part  */}
       <div className="flex justify-between items-center px-20 mb-20 my-10">

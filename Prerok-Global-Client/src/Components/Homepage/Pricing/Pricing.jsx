@@ -52,7 +52,7 @@ const Pricing = () => {
       </div>
 
       <div
-        className="flex-col flex md:flex-row gap-4 lg:max-w-screen-2xl mx-auto lg:justify-center"
+        className="flex-col flex md:flex-row gap-4 lg:max-w-7xl mx-auto lg:justify-center"
         data-aos="fade-up"
         data-aos-duration="2000"
       >

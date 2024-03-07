@@ -11,7 +11,7 @@ const Banner = () => {
   };
 
   return (
-    <div className=" overflow-hidden mb-8">
+    <div className=" overflow-hidden mb-8 md:mb-0">
       {" "}
       <div className="relative z-0">
         <img src={bannerImg} className="w-full h-[600px] object-cover" alt="" />
@@ -32,15 +32,14 @@ const Banner = () => {
               />
             </svg>
           </p>
-          <p className="my-8 lg:text-xl">
-            <span data-aos="fade-down">FAST</span> <span>&nbsp;.&nbsp;</span>{" "}
+          <p className="my-8 lg:text-xl" data-aos="fade-down">
+            <span>FAST</span> <span>&nbsp;.&nbsp;</span>{" "}
             <span>SECURED</span>
-            <span>&nbsp;.&nbsp;</span> <span data-aos="fade-up">WORLDVIEW</span>
+            <span>&nbsp;.&nbsp;</span> <span>WORLDVIEW</span>
           </p>
           <p
             className="lg:text-5xl text-2xl font-extrabold"
             data-aos="fade-up"
-            data-aos-duration="1000"
           >
             Seamless Shipping: <br />{" "}
             <span className="text-yellow-500">Your Goods</span> |{" "}

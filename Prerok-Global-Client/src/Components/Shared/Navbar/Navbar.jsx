@@ -115,7 +115,7 @@ const Navbar = () => {
   return (
     <div className="z-50">
       <div className="bg-slate-800">
-        <div className="md:flex justify-between max-w-screen-2xl mx-auto px-2">
+        <div className="md:flex justify-between wrapper">
           <div className="flex flex-row items-center justify-center lg:justify-between text-white text-xs py-4">
             <div>
               <Link>SITEMAP</Link>
@@ -150,25 +150,24 @@ const Navbar = () => {
       </div>
       {/* main navbar section */}
       <nav
-        className={`transition-transform duration-300 ${
-          isScroll ? "fixed top-0 shadow-xl w-full" : ""
-        } w-full z-50 bg-white`}
+        className={`transition-transform duration-300 ${isScroll ? "fixed top-0 shadow-xl w-full" : ""
+          } w-full z-50 bg-white`}
       >
-        <div className="py-4 max-w-screen-2xl mx-auto flex items-center justify-between">
-          <img src={logo} className="w-40 h-16" alt="Prerok-Global Logo" />
+        <div className="py-4 max-w-7xl mx-auto flex items-center justify-between">
+          <Link to={'/'}>
+            <img src={logo} className="w-40 h-16" alt="Prerok Global Logo" />
+          </Link>
           {/* navlinks for larger device */}
           <div className="hidden lg:flex flex-col lg:flex-row items-center gap-10">
             {navLinks}
           </div>
           {/* navlinks for small device */}
           <div
-            className={`lg:hidden flex z-30 flex-col gap-4 absolute ${
-              isScroll ? "top-24" : "top-56"
-            } w-full py-3 px-3 bg-white/70  ${
-              isMobileMenuOpen
+            className={`lg:hidden flex z-30 flex-col gap-4 absolute ${isScroll ? "top-24" : "top-56"
+              } w-full py-3 px-3 bg-white/70  ${isMobileMenuOpen
                 ? "translate-x-0 opacity-100"
                 : "-translate-x-full opacity-50"
-            } transition duration-300`}
+              } transition duration-300`}
           >
             {navLinks}
           </div>

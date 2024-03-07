@@ -13,8 +13,8 @@ const Homepage = () => {
       <Banner></Banner>
       <ChatBot></ChatBot>
       <AboutUs></AboutUs>
-      <Delivery></Delivery>
       <Steps></Steps>
+      <Delivery></Delivery>
       <CalculateCost></CalculateCost>
       {/*<Pricing></Pricing>*/}
       <Testimonial></Testimonial>
