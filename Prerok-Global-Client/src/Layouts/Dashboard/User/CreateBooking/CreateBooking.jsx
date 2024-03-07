@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../../../../Components/Stepper/Stepper.css";
 import { TiTick } from "react-icons/ti";
 import AddressInfo from "../../../../Components/CreateBookingPage/AddressInfo";
@@ -7,6 +7,9 @@ import Payment from "../Payment/Payment";
 import ProcessingStatus from "../../../../Components/CreateBookingPage/ProcessingStatus";
 
 const CreateBooking = () => {
+    useEffect(() => {
+      document.title = "Create Booking | PrerokGlobal";
+    }, []);
     const steps = ["Address Info", "Parcel Info", "Payment Info", "Processing Status"];
     const [currentStep, setCurrentStep] = useState(1);
     const [complete, setComplete] = useState(false);

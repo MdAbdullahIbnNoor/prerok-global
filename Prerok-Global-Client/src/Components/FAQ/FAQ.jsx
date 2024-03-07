@@ -2,9 +2,13 @@ import { NavLink, Outlet } from "react-router-dom";
 import { FaEnvelopeOpenText } from "react-icons/fa6";
 import { MdOutlineSecurity } from "react-icons/md";
 import { MdOutlineStarRate } from "react-icons/md";
+import { useEffect } from "react";
 
 
 const FAQ = () => {
+    useEffect(() => {
+      document.title = "FAQ | PrerokGlobal";
+    }, []);
     return (
         <div>
             <div className="md:flex">

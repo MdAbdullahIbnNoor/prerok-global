@@ -1,6 +1,10 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const PrivacyPage = () => {
+  useEffect(() => {
+    document.title = "Privacy Policy | PrerokGlobal";
+  }, []);
   return (
     <div>
       {/* banner  */}

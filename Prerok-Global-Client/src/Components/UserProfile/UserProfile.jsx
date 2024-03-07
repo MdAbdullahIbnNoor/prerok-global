@@ -6,8 +6,12 @@ import { axiosSecure } from "../../api/axiosInstances";
 import Loading from "../Shared/Loading/Loading";
 import { AiFillEdit } from "react-icons/ai";
 import { MdKeyboardArrowRight } from "react-icons/md";
+import { useEffect } from "react";
 
 const UserProfile = () => {
+  useEffect(() => {
+    document.title = "User Profile | PrerokGlobal";
+  }, []);
   const { user } = useAuth();
   const navigate = useNavigate();
 

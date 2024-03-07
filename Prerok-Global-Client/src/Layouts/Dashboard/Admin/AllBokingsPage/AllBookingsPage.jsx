@@ -2,8 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import Loading from "../../../../Components/Shared/Loading/Loading";
 import { axiosSecure } from "../../../../api/axiosInstances";
 import toast from "react-hot-toast";
+import { useEffect } from "react";
 
 const AllBookingsPage = () => {
+    useEffect(() => {
+      document.title = "All Bookings | PrerokGlobal";
+    }, []);
     const { data: bookings, refetch, isLoading } = useQuery({
         queryKey: ["all-bookings"], queryFn: async () => {
             const res = await axiosSecure.get(`/api/bookings/get-all-bookings`)

@@ -1,4 +1,9 @@
+import { useEffect } from "react";
+
 const ReturnRefundPolicy = () => {
+  useEffect(() => {
+    document.title = "Return and Refund Policy | PrerokGlobal";
+  }, []);
   return (
     <div className="wrapper container mt-8 mx-4">
       <h2 className="text-3xl font-semibold mb-4">Return and Refund Policy</h2>

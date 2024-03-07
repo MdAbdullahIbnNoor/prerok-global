@@ -4,8 +4,12 @@ import { useQuery } from "@tanstack/react-query";
 import { axiosSecure } from "../../../../api/axiosInstances";
 import Loading from "../../../../Components/Shared/Loading/Loading";
 import AddressCard from "../../../../Components/AddressBookPage/AddressCard";
+import { useEffect } from "react";
 
 const AddressBook = () => {
+    useEffect(() => {
+      document.title = "Address Book | PrerokGlobal";
+    }, []);
     const { user } = useAuth();
     
     const { data, isLoading, refetch } = useQuery({

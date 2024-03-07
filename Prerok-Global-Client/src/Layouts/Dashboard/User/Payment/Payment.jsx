@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MdPayment } from "react-icons/md";
 import PaymentModal from "./PaymentModal/PaymentModal";
 import stripe from "../../../../assets/payment.jpg"
@@ -7,6 +7,9 @@ import ssl from "../../../../assets/stripe.jpg"
 
 
 const Payment = ({ handleStepper, setBookingInfo, bookingInfo }) => {
+    useEffect(() => {
+      document.title = "Payment | PrerokGlobal";
+    }, []);
 
     let [isOpen, setIsOpen] = useState(false)
 

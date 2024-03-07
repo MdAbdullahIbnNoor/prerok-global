@@ -1,8 +1,12 @@
 import { Outlet } from "react-router";
 import Sidebar from "../../Components/Shared/Sidebar/Sidebar";
 import { Toaster } from "react-hot-toast";
+import { useEffect } from "react";
 
 const Dashboard = () => {
+    useEffect(() => {
+      document.title = "Dashboard | PrerokGlobal";
+    }, []);
     return (
         <div className="lg:grid grid-cols-12 gap-10 max-w-screen-2xl mx-auto">
             <Toaster

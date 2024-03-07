@@ -2,8 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import { axiosSecure } from "../../../../api/axiosInstances";
 import Loading from "../../../../Components/Shared/Loading/Loading";
 import { format } from 'date-fns';
+import { useEffect } from "react";
 
 const AllUsersPage = () => {
+    useEffect(() => {
+      document.title = "All Users | PrerokGlobal";
+    }, []);
     const { data: users, isLoading } = useQuery({
         queryKey: ["all-users"], queryFn: async () => {
             const res = await axiosSecure.get(`/api/users/get-all-user`)

@@ -2,8 +2,12 @@ import { format } from 'date-fns';
 import Loading from '../../../../Components/Shared/Loading/Loading';
 import { axiosSecure } from '../../../../api/axiosInstances';
 import { useQuery } from '@tanstack/react-query';
+import { useEffect } from 'react';
 
 const AllPaymentPage = () => {
+    useEffect(() => {
+      document.title = "All Payments | PrerokGlobal";
+    }, []);
     const { data: transactions, isLoading } = useQuery({
         queryKey: ["all-payments"], queryFn: async () => {
             const res = await axiosSecure.get(`/api/payments/all-payment-history`)

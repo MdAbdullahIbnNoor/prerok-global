@@ -8,6 +8,9 @@ import { format } from "date-fns";
 import { Link } from "react-router-dom";
 
 const ForumFeed = () => {
+  useEffect(() => {
+    document.title = "Forum | PrerokGlobal";
+  }, []);
   const [hasPosted, setHasPosted] = useState(false);
   const [allForum, setAllForum] = useState([]);
   const fetchForumData = () => {

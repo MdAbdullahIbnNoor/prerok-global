@@ -4,10 +4,14 @@ import deliveryVanImg from '../../assets/images/About/deliveryVan.jpg'
 import { IoMdRocket } from "react-icons/io";
 import { SiFsecure } from "react-icons/si";
 import { TbWorldPin } from "react-icons/tb";
+import { useEffect } from "react";
 
 
 
 const AboutPage = () => {
+    useEffect(() => {
+      document.title = "About Us | PrerokGlobal";
+    }, []);
     return (
         <div className="overflow-hidden"> 
             <div className="wrapper my-10">
